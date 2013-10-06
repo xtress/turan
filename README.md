@@ -1,0 +1,1 @@
+In front-end angular-seed — the seed for AngularJS apps.
