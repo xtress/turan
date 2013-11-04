@@ -1,0 +1,11 @@
+admin_login:
+    pattern:  /admin/login
+    defaults: { _controller: AdminBundle:Security:login }
+    requirements:
+        _method:    GETs
+
+admin_index:
+    pattern:  /admin
+    defaults: { _controller: AdminBundle:Default:index }
+    requirements:
+        _method:    GET
