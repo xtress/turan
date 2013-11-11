@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<panorama id="">
+  <view fovmode="0" pannorth="106.5">
+    <start pan="18.5" fov="70" tilt="3"/>
+    <min pan="0" fov="60" tilt="-90"/>
+    <max pan="360" fov="70" tilt="90"/>
+  </view>
+  <userdata title="Ресторан Туран" datetime="" description="" copyright="" tags="" author="" source="" comment="" info="" longitude="23.844645023345947" latitude="53.6485331230467"/>
+  <hotspots width="180" height="20" wordwrap="1">
+    <label width="180" backgroundalpha="1" enabled="1" height="20" backgroundcolor="0xffffff" bordercolor="0x000000" border="1" textcolor="0x000000" background="1" borderalpha="1" borderradius="1" wordwrap="1" textalpha="1"/>
+    <polystyle mode="0" backgroundalpha="0.2509803921568627" backgroundcolor="0x0000ff" bordercolor="0x0000ff" borderalpha="1"/>
+    <hotspot title="Фойе 1-го этажа " target="" pan="-121.259" skinid="up" url="foe1.swf" id="f1x" tilt="1.04822"/>
+    <hotspot title="ViP Зона" target="" pan="54.5642" skinid="right" url="vip.swf" id="vipx" tilt="-0.8897890000000001"/>
+  </hotspots>
+  <media>
+    <video pansize="10" id="_element_0" level="0" stretch="1" rotx="-5" clickmode="0" roty="7" mode="1" rotz="-1.8" width="480" ambientlevel="0" field="90" pan="-78.3518" tilt="11.0551" height="272" loop="0" fov="10.5" tiltsize="10">
+      <source url="video.mp4"/>
+    </video>
+    <video pansize="10" id="_element_1" level="0" stretch="1" rotx="1" clickmode="0" roty="-41" mode="1" rotz="9" width="480" ambientlevel="0" field="90" pan="105.407" tilt="8.372400000000001" height="272" loop="0" fov="7.8" tiltsize="10">
+      <source url="video.mp4"/>
+    </video>
+    <video pansize="10" id="_element_2" level="0" stretch="1" rotx="-12" clickmode="2" roty="0" mode="1" rotz="1" width="480" ambientlevel="0" field="90" pan="54.3874" tilt="4.1089" height="272" loop="0" fov="3.6" tiltsize="10">
+      <source url="video.mp4"/>
+    </video>
+    <image width="200" rotx="1" roty="-24" rotz="3" pan="-43.9631" stretch="1" fov="4.91" height="200" id="_element_3" tilt="11.5303" clickmode="0">
+      <source url="Clock66.swf"/>
+    </image>
+  </media>
+  <input tile0url="images/pizza_o_0.jpg" tile5url="images/pizza_o_5.jpg" tilesize="1900" tile4url="images/pizza_o_4.jpg" tile3url="images/pizza_o_3.jpg" tilescale="1.005263157894737" tile2url="images/pizza_o_2.jpg" tile1url="images/pizza_o_1.jpg"/>
+  <altinput tile0url="images/pizza_o_900_0.jpg" screensize="1024" tile5url="images/pizza_o_900_5.jpg" tilesize="900" tile4url="images/pizza_o_900_4.jpg" tile3url="images/pizza_o_900_3.jpg" tilescale="1.005263157894737" tile2url="images/pizza_o_900_2.jpg" tile1url="images/pizza_o_900_1.jpg"/>
+  <altinput tile0url="images/pizza_o_400_0.jpg" screensize="500" tile5url="images/pizza_o_400_5.jpg" tilesize="400" tile4url="images/pizza_o_400_4.jpg" tile3url="images/pizza_o_400_3.jpg" tilescale="1.005263157894737" tile2url="images/pizza_o_400_2.jpg" tile1url="images/pizza_o_400_1.jpg"/>
+  <autorotate speed="0.120" nodedelay="0.00" startloaded="1" returntohorizon="1.000" delay="5.00"/>
+  <control simulatemass="1" lockedmouse="0" lockedkeyboard="0" dblclickfullscreen="0" invertwheel="0" lockedwheel="0" invertcontrol="1" speedwheel="1" sensitivity="12"/>
+</panorama>
