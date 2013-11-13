@@ -1,22 +1,24 @@
  <article class="menu left">
+ 	<nav class="mobile-menu"></nav>
+ 	<nav class="mobile-search"></nav>
  	<div class="nav-buttons">
- 		<div class="left">
- 			<a href="#" class="btn-menu"></a>
- 		</div>
- 		<div class="right">
- 			<a href="#" class="btn-login"></a>
- 		</div>	
+ 		<a href="#" class="left" onclick="mainJs.toggleMenu();return false;">
+ 			<div class="btn-menu"></div>
+ 		</a>
+ 		<a href="#" class="right">
+ 			<div class="btn-login" onclick="mainJs.toggleSearch();return false;"></div>
+ 		</a>	
  	</div>
-	<nav>
+	<nav class="main-menu">
 		<ul>
 			<li class="active"><a href="#">Главная</a></li>
 			<li><a href="#">Ресторан</a></li>
 			<li><a href="#">Пиццерия</a></li>
-			<li><a href="#">Галерея</a></li>
+			<li><a href="#/gallery">Галерея</a></li>
 			<li><a href="#">Банкетный зал</a></li>
-			<li><a href="#">История</a></li>
+			<li><a href="#/history">История</a></li>
 			<li><a href="#">Вакансии</a></li>
-			<li><a href="#">Контакты</a></li>
+			<li><a href="#/contacts">Контакты</a></li>
 			<li><a href="#">Онлайн-чат</a></li>
 			<li><a href="#">Call-Center</a></li>
 			<li><a href="#">Клуб</a></li>
@@ -25,15 +27,17 @@
  </article>
 
  <article class="container">
- 	<section class="rounded">
-	<iframe id="panoram-view" src="asset/index.html" width="100%" height="300px" style="border: 0px;">
-		    Ваш браузер не поддерживает плавающие фреймы!
-	</iframe>
-	
-	<a href="#" class="btn"> Пиццерия </a>
-	<a href="#" class="btn"> Ресторан </a>
-	<a href="#" class="btn"> Банкетный зал </a>
- 	</section>
+	<div class="panoram-view">
+ 		<section class="rounded">
+			<iframe src="asset/index.html" width="100%" height="300px" style="border: 0px;">
+				    Ваш браузер не поддерживает плавающие фреймы!
+			</iframe>
+			
+			<a href="#" class="btn"> Пиццерия </a>
+			<a href="#" class="btn"> Ресторан </a>
+			<a href="#" class="btn"> Банкетный зал </a>
+ 		</section>
+	</div>
 
  	<section class="news">
  		<h2>Новости:</h2>
@@ -50,7 +54,7 @@
 	 				Русский текст. Русский текст. Русский текст. Русский текст. Русский текст. 
 	 			</div>
 	 			<div class="news-item-readmore">
-	 				<a href="#">Подробно...</a>
+	 				<a href="#/news/1">Подробно...</a>
 	 			</div>
 	 		</div>
 
@@ -65,7 +69,7 @@
 	 				Русский текст. Русский текст. Русский текст. Русский текст. Русский текст. 
 	 			</div>
 	 			<div class="news-item-readmore">
-	 				<a href="#">Подробно...</a>
+	 				<a href="#/news/2">Подробно...</a>
 	 			</div>
 	 		</div>
 
@@ -80,7 +84,7 @@
 	 				Русский текст. Русский текст. Русский текст. Русский текст. Русский текст. 
 	 			</div>
 	 			<div class="news-item-readmore">
-	 				<a href="#">Подробно...</a>
+	 				<a href="#/news/3">Подробно...</a>
 	 			</div>
 	 		</div>
  		</div>

@@ -3,7 +3,7 @@
 /* Controllers */
 
 angular.module('restApp.controllers', ['restApp.services']).
-  controller('MyCtrl1', ['$scope','apiConfig', function($scope, apiConfig) {
+  controller('MainCtrl', ['$scope','apiConfig', function($scope, apiConfig) {
 	
 
     $scope.apiConfig = apiConfig;
@@ -21,6 +21,6 @@ angular.module('restApp.controllers', ['restApp.services']).
   }])
 
 
-  .controller('MyCtrl2', ['$scope','apiConfig', function($scope, apiConfig) {
-    $scope.apiConfig = apiConfig;  		
-  }]);
+  // .controller('MainCtrl', ['$scope','apiConfig', function($scope, apiConfig) {
+  //   $scope.apiConfig = apiConfig;  		
+  // }]);

@@ -22,6 +22,10 @@ body {
     font-size: 1em;
     line-height: 1.4;
     color: #DEC9E2;
+    max-width: 1450px;
+    min-width: 100px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 ::-moz-selection {
@@ -283,7 +287,18 @@ a.btn{
 
 .rounded{
     background-color: rgba(63, 14, 54, 0.6);
-    border-radius: 15px 15px 15px 15px;
+    -webkit-border-top-left-radius:15px;
+    -moz-border-radius-topleft:15px;
+    border-top-left-radius:15px;
+    -webkit-border-top-right-radius:15px;
+    -moz-border-radius-topright:15px;
+    border-top-right-radius:15px;
+    -webkit-border-bottom-right-radius:15px;
+    -moz-border-radius-bottomright:15px;
+    border-bottom-right-radius:15px;
+    -webkit-border-bottom-left-radius:15px;
+    -moz-border-radius-bottomleft:15px;
+    border-bottom-left-radius:15px;
     padding-top: 10px;
     padding-left: 10px;
     padding-right: 10px;
@@ -331,13 +346,167 @@ a.btn{
         float: right;
         clear: both;
     }
+.mobile-menu{
+    width: 250px;
+    height: auto;
+    position: absolute;
+    left: -255px;
+    top: 0px;
+    visibility: visible;
+}
 
+.mobile-search{
+    width: 250px;
+    height: auto;
+    position: absolute;
+    right: -255px;
+    top: 0px;
+    visibility: visible;
+}
+
+    .pagination{
+        border-radius: 0;
+        width: 500px;
+        margin-left: auto;
+        text-align: center;
+        margin-right: auto;
+    }
+
+    .pagination .preview,
+    .pagination .page,
+    .pagination .next{
+        display: inline;
+        font-weight: bolder;
+    }
+    .pagination .preview{
+        float: left;
+    }
+    .pagination .next{
+        float: right;
+    }
+    
+    .image-box{
+        margin: 7px 7px 7px 7px;
+    }
+    .image-box.right{
+        float: right;
+    }
+
+    .image-box.left{
+        float: left;
+    }
+
+    .image-box, .image-box img{
+        width: 250px;
+        height: 225px;
+    }
+
+    .image-box .image-title{
+        top: -52px;
+        position: relative;
+        padding-left: 10px;
+        padding-right: 10px;
+        background: rgba(63, 14, 54, 0.9);
+    }
+
+    .news-title{
+        font-size: 110%;
+        margin-bottom: 10px;
+    }
+
+    .gallery-description{
+        padding: 5px 5px 5px 5px;
+        background: rgba(63, 14, 54, 0.2);    -webkit-border-top-left-radius:15px;
+        -moz-border-radius-topleft:5px;
+        border-top-left-radius:5px;
+        -webkit-border-top-right-radius:5px;
+        -moz-border-radius-topright:5px;
+        border-top-right-radius:5px;
+        -webkit-border-bottom-right-radius:5px;
+        -moz-border-radius-bottomright:5px;
+        border-bottom-right-radius:5px;
+        -webkit-border-bottom-left-radius:5px;
+        -moz-border-radius-bottomleft:5px;
+        border-bottom-left-radius:5px;
+        margin-bottom: 15px;
+    }
+    .gallery-links a{
+        font-weight: bolder;
+        margin-right: 15px;
+    }
+    .gallery-links a:hover{
+        text-decoration: none;
+        color: #aa65a3;
+    }
+    .gallery{
+        min-height: 475px;
+        margin-bottom: 30px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .address{
+        width: 30%;
+        display: inline;
+        float: left;
+    }
+    .address h3{
+        margin: 0px;
+        height: auto;
+    }
+    .phones{
+        margin-top: 15px;
+    }
+
+    .call-center{
+        width: 80px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 15px;
+        text-align: center;
+    }
+    .call-center img{
+        width: 80px;
+       
+    }
+    .map{
+        float: left;
+        height: 300px;
+        width: 60%;
+        display: inline;
+        margin-bottom: 25px;
+    }
+    .map img{
+        width: 510px;
+        height: 300px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    .company-data{
+        display: block;
+    }
+    .company-data h3{
+        margin-top: 25px;
+        margin-bottom: 0px;
+    }
+    .company-data p{
+        margin-top: 0px;
+        margin-bottom: 5px;
+    }
+    .history > p:first-letter{
+        font-weight: bolder;
+        font-size: 150%;
+    }
+
+    .history p.right {
+        float: right;
+    }
 /* ==========================================================================
    Media Queries
    ========================================================================== */
 
-/*@media only screen and (min-width: 480px){*/
 @media only screen and (min-width: 0px) and (max-width: 480px){
+/*@media only screen and (min-width: 480px){*/
+
     .main article h1 {
         font-size: 2em;
         margin: 0.67em 0;
@@ -349,25 +518,54 @@ a.btn{
         height: 0px;
         display: none;
     }
+
+    .panoram-view{
+        visibility: hidden;
+        width: 0px;
+        height: 0px;
+        display: none;   
+    }
+
+    .nav-buttons{
+        width: 100%;
+        height: 50px;
+        padding: 0px;
+    }
+    .nav-buttons .left, .nav-buttons .right{
+        width: 50px;
+        height: 50px;
+
+    }
+    .btn-menu{
+        background:url('../img/menu-icon.png') left top no-repeat;
+        background-size: 50px 50px;
+        width: 50px;
+        height: 50px;
+        content: ' ';
+        position: absolute;
+        left: 0px;
+        background-position-x: -5px;
+        background-position-y: -5px;
+    }
+
+
+    .btn-login{
+        background:url('../img/login-icon.png') left top no-repeat;
+        background-size: 50px 50px;
+        width: 50px;
+        height: 50px;
+        content: ' ';
+        position: absolute;
+        right: 0px;
+        background-position-x: 5px;
+        background-position-y: -5px;
+    }
+
 
 }
-/*
-@media only screen and (min-width: 481px) and (max-width: 767px){
-    .main article h1 {
-        font-size: 2em;
-        margin: 0.67em 0;
-    }
 
-    article.right{
-        visibility: hidden;
-        width: 0px;
-        height: 0px;
-        display: none;
-    }
-
-}*/
-
-@media only screen and (min-width: 768px) and (max-width: 1139px){
+/*@media only screen and (min-width: 768px) and (max-width: 1139px){*/
+@media only screen and (min-width: 768px){
     nav{        
         float: left;
         width: 90%;
@@ -392,6 +590,7 @@ a.btn{
         float: right;
         width: 28%;
     }
+    
 
     article.menu, article.right{
        width: 20%;
