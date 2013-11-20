@@ -9,6 +9,10 @@ angular.module('restApp', ['restApp.filters', 'restApp.services', 'restApp.direc
     $routeProvider.when('/gallery', {templateUrl: 'partials/gallery.html', controller: 'MainCtrl'});
     $routeProvider.when('/contacts', {templateUrl: 'partials/contacts.html', controller: 'MainCtrl'});
     $routeProvider.when('/history', {templateUrl: 'partials/history.html', controller: 'MainCtrl'});
+    $routeProvider.when('/vacancies', {templateUrl: 'partials/vacancies.html', controller: 'MainCtrl'});
+    $routeProvider.when('/ballroom', {templateUrl: 'partials/ballroom.html', controller: 'MainCtrl'});
+    $routeProvider.when('/restaurant', {templateUrl: 'partials/restaurant.html', controller: 'MainCtrl'});
+    $routeProvider.when('/pizzeria', {templateUrl: 'partials/pizzeria.html', controller: 'MainCtrl'});
 
     $routeProvider.otherwise({redirectTo: '/'});
   }]);

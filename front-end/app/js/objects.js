@@ -77,6 +77,9 @@ var mainJs = {
   			
   		}
   	},
-  	cconst: "const",
+  	togglePositionDesc: function(element){
+      var descriptonElement = $(element).parent().parent().children('.position-description');
+      $(descriptonElement).toggle("slow");
 
+    }
 }

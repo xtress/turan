@@ -1,0 +1,8 @@
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^(www.)?turan.by$
+RewriteCond %{REQUEST_URI} !^/app/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /app/$1
+RewriteCond %{HTTP_HOST} ^(www.)?turan.by$
+RewriteRule ^(/)?$ app/index.html [L]
