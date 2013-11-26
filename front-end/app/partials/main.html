@@ -19,8 +19,7 @@
 			<li><a href="#/history">История</a></li>
 			<li><a href="#/vacancies">Вакансии</a></li>
 			<li><a href="#/contacts">Контакты</a></li>
-			<li><a href="#">Онлайн-чат</a></li>
-			<li><a href="#">Call-Center</a></li>
+			<li> </li>
 		</ul>
 	</nav>	
  </article>
@@ -28,13 +27,13 @@
  <article class="container">
 	<div class="panoram-view">
  		<section class="rounded">
-			<iframe src="asset/index.html" width="100%" height="300px" style="border: 0px;">
+			<iframe class="main-panoram-view" src="asset/pizza.html" width="100%" height="300px" style="border: 0px;">
 				    Ваш браузер не поддерживает плавающие фреймы!
 			</iframe>
 			
-			<a href="#" class="btn"> Пиццерия </a>
-			<a href="#" class="btn"> Ресторан </a>
-			<a href="#" class="btn"> Банкетный зал </a>
+			<a href="#" class="btn active" onclick="mainJs.changePanoranView('main-panoram-view', 'asset/pizza.html'); return false;"> Пиццерия </a>
+			<a href="#" class="btn" onclick="mainJs.changePanoranView('main-panoram-view', 'asset/restorant.html'); return false;"> Ресторан </a>
+			<a href="#" class="btn" onclick="mainJs.changePanoranView('main-panoram-view', 'asset/banket.html'); return false;"> Банкетный зал </a>
  		</section>
 	</div>
 
@@ -101,12 +100,12 @@
 	</section> 	
 
 	<section class="login-form">
-	    <a href="#">Зарегестрироваться</a>
+	    <a href="#/registration">Зарегистрироваться</a>
     	<form>
 	   		<input type="text" placeholder="Имя" /><br>
 	   		<input type="password" placeholder="Пароль" /><br>
 	   		<input type="submit" name="search" class="btn" value="Войти"> 
 	  	</form>
-		<a href="#">Не можите войти?</a>
+		<a href="#/recover">Не можите войти?</a>
 	</section> 	
  </article>
