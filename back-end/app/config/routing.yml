@@ -1,8 +1,0 @@
-admin:
-    resource: "@AdminBundle/Resources/config/routing.yml"
-    prefix:   /
-
-admin_page:
-    resource: "@AdminPageBundle/Resources/config/routing.yml"
-    prefix:   /
-

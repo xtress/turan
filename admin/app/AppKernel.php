@@ -18,6 +18,8 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Turan\AdminPageBundle\AdminPageBundle(),
             new Turan\AdminBundle\AdminBundle(),
+            new Admin\MainBundle\AdminMainBundle(),
+            new API\MainBundle\APIMainBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
