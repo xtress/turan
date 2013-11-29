@@ -1,0 +1,665 @@
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+/* Styles */
+
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width : 321px){
+/* Styles */
+
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width : 320px) {
+/* Styles */
+    
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+/* Styles */
+}
+
+/* iPads (landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+/* Styles */
+}
+
+/* iPads (portrait) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+/* Styles */
+}
+/* Large screens ----------- */
+@media only screen and (min-width : 1824px) {
+/* Styles */
+}
+
+/* iPhone 4 ----------- */
+@media only screen and (-webkit-min-device-pixel-ratio : 1.5),only screen and (min-device-pixel-ratio : 1.5) {
+/* Styles */
+}
+
+/* ==========================================================================
+   Mobile styles
+   ========================================================================== */
+@media only screen and (min-width : 0px) and (max-width : 480px), only screen and (min-device-width : 0px) and (max-device-width : 480px){
+    .left, .center, .right{
+        display: block;
+    }
+    article.menu, article.right {
+        width: 100%;
+    }
+    
+    article.container {
+        width: 100%;
+        display: inline-block;
+    }
+
+    .logo img {
+        margin: 0 auto;
+        height: 125px;
+        width: 200px;
+    }
+
+    header .left, header .center{
+        width: auto;
+    }
+
+
+    nav{
+        width: 0px;
+        height: 0px;
+        visibility: hidden;
+    }
+    
+    .main article h1 {
+        font-size: 2em;
+        margin: 0.67em 0;
+    }
+
+    article.right{
+        visibility: hidden;
+        width: 0px;
+        height: 0px;
+        display: none;
+    }
+    
+    .contacts-description .position-block {
+        width: 100%;
+        margin-bottom: 1em;
+    }
+
+    .nav-buttons{
+        width: 100%;
+        height: 50px;
+        padding: 0px;
+        position: absolute;
+        top: 100px;
+        left: 0px;
+        z-index: 1;
+    }
+    .nav-buttons .left, .nav-buttons .right{
+        width: 50px;
+        height: 50px;
+
+    }
+    .nav-buttons a.left{
+        float: left;
+    }
+    .nav-buttons a.right{
+        float: right;
+    }
+    .btn-menu{
+        background:url('../img/menu-icon.png') left top no-repeat;
+        background-size: 50px 50px;
+        width: 50px;
+        height: 50px;
+        content: ' ';
+        position: absolute;
+        left: 0px;
+        background-position-x: -5px;
+        background-position-y: -5px;
+    }
+    .gallery {
+        height: 100%;
+        margin-bottom: 30px;
+        margin-left: auto;
+        margin-right: auto;
+        display: inline-block;
+    }
+
+    .btn-login{
+        background:url('../img/login-icon.png') left top no-repeat;
+        background-size: 50px 50px;
+        width: 50px;
+        height: 50px;
+        content: ' ';
+        position: absolute;
+        right: 0px;
+        background-position-x: 5px;
+        background-position-y: -5px;
+    }
+
+    .pagination {
+        width: auto;
+    }
+
+    .map{
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+    .map img{
+        width: 95%;
+    }
+    .image-box, .image-box img {
+        width: 270px;
+        height: 255px;
+    }
+    .footer-container footer {
+        color: #DEC9E2;
+        padding: 20px 0;
+    }
+    .wrapper {
+        width: 90%;
+        margin: 0 5%;
+    }
+    .sub-menu{
+        width: 100%;
+    }
+    .position-block{
+        width: auto;
+    }
+    .info{
+        display: inline-block;
+    }    
+}
+
+/*Phones landscape and Tablets portrait*/
+@media only screen and (min-width : 481px) and (max-width : 768px){
+    
+    .left, .center, .right {
+        display: inline;
+        float: left;
+    }
+
+    .logo img {
+        margin: 0 auto;
+        height: 180px;
+        width: 300px;
+    }
+    
+    .width80 {
+        width: 80%;
+    }
+
+    article.menu, article.right {
+        width: 100%;
+    }
+    
+    article.container {
+        width: 100%;
+        display: inline-block;
+    }
+
+    nav{
+        width: 0px;
+        height: 0px;
+        visibility: hidden;
+    }
+    
+    .main article h1 {
+        font-size: 2em;
+        margin: 0.67em 0;
+    }
+
+    article.right{
+        visibility: hidden;
+        width: 0px;
+        height: 0px;
+        display: none;
+    }
+    
+    .contacts-description .position-block {
+        width: 30%;
+        margin-bottom: 1em;
+    }
+
+    .nav-buttons{
+        width: 100%;
+        height: 50px;
+        padding: 0px;
+        position: absolute;
+        top: 100px;
+        left: 0px;
+        z-index: 1;
+    }
+    .nav-buttons .left, .nav-buttons .right{
+        width: 50px;
+        height: 50px;
+    }
+    .nav-buttons a.left{
+        float: left;
+    }
+    .nav-buttons a.right{
+        float: right;
+    }
+    .btn-menu{
+        background:url('../img/menu-icon.png') left top no-repeat;
+        background-size: 50px 50px;
+        width: 50px;
+        height: 50px;
+        content: ' ';
+        position: absolute;
+        left: 0px;
+        background-position-x: -5px;
+        background-position-y: -5px;
+    }
+
+
+    .btn-login{
+        background:url('../img/login-icon.png') left top no-repeat;
+        background-size: 50px 50px;
+        width: 50px;
+        height: 50px;
+        content: ' ';
+        position: absolute;
+        right: 0px;
+        background-position-x: 5px;
+        background-position-y: -5px;
+    }
+
+    .gallery {
+        height: 100%;
+        margin-bottom: 30px;
+        margin-left: auto;
+        margin-right: auto;
+        display: inline-block;
+    }
+    .pagination {
+        width: auto;
+    }
+
+    .map{
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+    .map img{
+        width: 95%;
+    }
+
+    .footer-container footer {
+        color: #DEC9E2;
+        padding: 20px 0;
+    }
+    .wrapper {
+        width: 90%;
+        margin: 0 5%;
+    }
+    .sub-menu{
+        height: auto;
+    }
+    .position-block{
+        width: auto;
+    }
+    .info{
+        display: inline-block;
+    }    
+
+    div.panoram-view{
+        width: 100%;
+    }
+
+}
+/* Desctop and Tablets landscape */
+@media only screen and (min-width : 769px) and (max-width : 1124px){
+
+    nav{
+        width: 0px;
+        height: 0px;
+        visibility: hidden;
+    }
+    article.right{
+        visibility: hidden;
+        width: 0px;
+        height: 0px;
+        display: none;
+    }
+    .nav-buttons{
+        width: 100%;
+        height: 65px;
+        padding: 0px;
+        position: absolute;
+        top: 100px;
+        left: 0px;
+        z-index: 1;
+    }
+    .nav-buttons .left, .nav-buttons .right{
+        width: 65px;
+        height: 65px;
+    }
+    .nav-buttons a.left{
+        float: left;
+    }
+    .nav-buttons a.right{
+        float: right;
+    }
+    .btn-menu{
+        background:url('../img/menu-icon.png') left top no-repeat;
+        background-size: 80px 80px;
+        width: 65px;
+        height: 65px;
+        content: ' ';
+        position: absolute;
+        left: 0px;
+        background-position-x: -9px;
+        background-position-y: -5px;
+    }
+
+
+    .btn-login{
+        background:url('../img/login-icon.png') left top no-repeat;
+        background-size: 80px 80px;
+        width: 65px;
+        height: 65px;
+        content: ' ';
+        position: absolute;
+        right: 0px;
+        background-position-x: 5px;
+        background-position-y: -5px;
+    }
+    .map{
+        float: left;
+        height: 300px;
+        width: 60%;
+        display: inline;
+        margin-bottom: 25px;
+    }
+    .map img{
+        width: 510px;
+        height: 300px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    
+    .gallery{
+        height: 100%;
+        margin-bottom: 30px;
+        margin-left: auto;
+        margin-right: auto;
+        display: inline-block;
+    }
+    .image-box, .image-box img {
+        width: 225px;
+        height: 225px;
+    }
+
+    .address{
+        width: 30%;
+        display: inline;
+        float: left;
+    }
+
+    .main article {
+        float: left;
+        width: auto;
+    }
+
+    article.container{
+        margin-right: 10px;
+        min-height: 500px;
+        width: 100%;
+        display: inline-block;
+    }
+
+    article.menu, article.right{
+        width: 15%;
+    }
+
+    .width10{
+        width: 10%;
+    }
+
+    .width80{
+        width: 80%;
+    }
+
+    .logo img{
+        margin: 0 auto;
+        height: auto;
+    }
+
+    .wrapper {
+        width: 95%;
+        margin: 0 auto;
+    }
+    .right section{
+        padding-bottom: 40px;
+    }
+
+    .footer-container{
+        min-height: 50px;
+        padding-top: 40px;
+        padding-bottom: 40px;
+
+    }
+    .sub-menu{
+        height: auto;
+    }
+    .footer-container footer.wrapper div.left{
+        content: ' ';
+        width: 10%;
+    }
+    .footer-container footer.wrapper div.center{
+        content: ' ';
+        width: 65%;
+        text-align: center;
+    }
+
+    .footer-container footer.wrapper div.right{
+        content: ' ';
+        width: 25%;
+        text-align: right;
+    }
+
+    .footer-container div.social-links{
+        width: 400px;
+        background-color: rgba(63, 14, 54, 0.6);
+        border-radius: 5px 5px 5px 5px;
+        padding-top: 10px;
+        padding-left: 5px;
+        padding-right: 5px;
+        padding-bottom: 5px;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+/* Desktops and laptops ----------- */
+@media only screen and (min-width : 1125px){
+/* Styles */
+
+    .map{
+        float: left;
+        height: 300px;
+        width: 60%;
+        display: inline;
+        margin-bottom: 25px;
+    }
+    .map img{
+        width: 510px;
+        height: 300px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    
+    .gallery{
+        min-height: 475px;
+        margin-bottom: 30px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .address{
+        width: 30%;
+        display: inline;
+        float: left;
+    }
+
+    .main article {
+        float: left;
+        width: auto;
+    }
+
+    article.container{
+        width: 69%;
+        margin-right: 10px;
+        min-height: 500px;
+    }
+
+    article.menu, article.right{
+        width: 15%;
+    }
+
+    .width10{
+        width: 10%;
+    }
+
+    .width80{
+        width: 80%;
+    }
+
+    nav {
+        float: left;
+        width: 90%;
+        height: auto;
+        visibility: visible;
+    }
+
+    .logo img{
+        margin: 0 auto;
+        height: auto;
+    }
+
+    .wrapper {
+        width: 95%;
+        margin: 0 auto;
+    }
+    .right section{
+        padding-bottom: 40px;
+    }
+
+    .footer-container{
+        min-height: 50px;
+        padding-top: 40px;
+        padding-bottom: 40px;
+
+    }
+    .sub-menu{
+        height: auto;
+    }
+    .footer-container footer.wrapper div.left{
+        content: ' ';
+        width: 10%;
+    }
+    .footer-container footer.wrapper div.center{
+        content: ' ';
+        width: 65%;
+        text-align: center;
+    }
+
+    .footer-container footer.wrapper div.right{
+        content: ' ';
+        width: 25%;
+        text-align: right;
+    }
+
+    .footer-container div.social-links{
+        width: 400px;
+        background-color: rgba(63, 14, 54, 0.6);
+        border-radius: 5px 5px 5px 5px;
+        padding-top: 10px;
+        padding-left: 5px;
+        padding-right: 5px;
+        padding-bottom: 5px;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+
+
+/* ==========================================================================
+   Print styles
+   ========================================================================== */
+
+@media print {
+    * {
+        background: transparent !important;
+        color: #000 !important; /* Black prints faster: h5bp.com/s */
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    /*
+     * Don't show links for images, or javascript/internal links
+     */
+
+    .ir a:after,
+    a[href^="javascript:"]:after,
+    a[href^="#"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    thead {
+        display: table-header-group; /* h5bp.com/t */
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    @page {
+        margin: 0.5cm;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}

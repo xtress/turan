@@ -1,0 +1,110 @@
+ <article class="menu left">
+ 	<nav class="mobile-menu"></nav>
+ 	<nav class="mobile-search"></nav>
+ 	<div class="nav-buttons">
+ 		<a href="#" class="left" onclick="mainJs.toggleMenu();return false;">
+ 			<div class="btn-menu"></div>
+ 		</a>
+ 		<a href="#" class="right">
+ 			<div class="btn-login" onclick="mainJs.toggleSearch();return false;"></div>
+ 		</a>	
+ 	</div>
+	<nav class="main-menu">
+		<ul>
+			<li><a href="#">Главная</a></li>
+			<li><a href="#/restaurant">Ресторан</a></li>
+			<li><a href="#/pizzeria">Пиццерия</a></li>
+			<li><a href="#/gallery">Галерея</a></li>
+			<li><a href="#/ballroom">Банкетный зал</a></li>
+			<li><a href="#/history">История</a></li>
+			<li><a href="#/vacancies">Вакансии</a></li>
+			<li><a href="#/contacts">Контакты</a></li>
+			<li> </li>
+			<li> </li>
+		</ul>
+	</nav>	
+ </article>
+
+ <article class="container">
+	<h2>Регистрация пользователя</h2>
+	<form action="#">
+		<div class="form">
+			<div class="row">	
+				<div class="left">
+					<label for="name"><b>Имя:</b></label>
+				</div>	
+				<div class="right">	
+					<input id="name" type="text" placeholder="Имя" />
+				</div>
+			</div>	
+			<div class="row">	
+				<div class="left">
+					<label for="lastname"><b>Фамилия:</b></label>
+				</div>	
+				<div class="right">	
+					<input id="lastname" type="text" placeholder="Фамилия" />
+				</div>
+			</div>
+			<div class="row">	
+				<div class="left">
+					<label for="email"><b>Ваш электронный адрес:</b></label>
+				</div>	
+				<div class="right">	
+					<input id="email" type="text" placeholder="e-mail" />
+				</div>
+			</div>	
+			<div class="row">	
+				<div class="left">
+					<label for="email"><b>Ваш номер телефона:</b></label>
+				</div>	
+				<div class="right">	
+					<input id="email" type="text" placeholder="Номер телефона" />
+				</div>
+			</div>
+			<div class="row">	
+				<div class="left">
+					<label for="pass"><b>Пароль:</b></label>
+				</div>	
+				<div class="right">	
+					<input id="pass" type="password" />
+				</div>
+			</div>
+			<div class="row">	
+				<div class="left">
+					<label for="passconfirm"><b>Еще раз пароль:</b></label>
+				</div>	
+				<div class="right">	
+					<input id="passconfirm" type="password" />
+				</div>
+			</div>
+			<div class="row">	
+				<div class="left">
+				</div>
+				<div class="right">	
+					<input type="submit" class="btn" value="Зарегистрироваться">
+				</div>
+			</div>
+		</div>	
+		
+	</form>
+ </article>
+
+ <article class="right width10">
+
+	<section class="search-form">
+	    <form>
+	    	<input type="text" class="search" placeholder="Поиск по сайту..." /><br>
+	    	<input type="submit" name="search" class="btn" value="Найти">
+	    </form>
+	</section> 	
+
+	<section class="login-form">
+	    <a href="#/registration">Зарегистрироваться</a>
+    	<form>
+	   		<input type="text" placeholder="Имя" /><br>
+	   		<input type="password" placeholder="Пароль" /><br>
+	   		<input type="submit" name="search" class="btn" value="Войти"> 
+	  	</form>
+		<a href="#/recover">Не можите войти?</a>
+	</section> 	
+ </article>

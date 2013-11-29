@@ -1,0 +1,186 @@
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+/* Styles */
+
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width : 321px){
+/* Styles */
+
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width : 320px) {
+/* Styles */
+    
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+/* Styles */
+}
+
+/* iPads (landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+/* Styles */
+}
+
+/* iPads (portrait) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+/* Styles */
+}
+
+/* Desktops and laptops ----------- */
+@media only screen and (min-width : 1224px) {
+/* Styles */
+
+}
+
+/* Large screens ----------- */
+@media only screen and (min-width : 1824px) {
+/* Styles */
+}
+
+/* iPhone 4 ----------- */
+@media only screen and (-webkit-min-device-pixel-ratio : 1.5),only screen and (min-device-pixel-ratio : 1.5) {
+/* Styles */
+}
+
+/* ==========================================================================
+   Mobile styles
+   ========================================================================== */
+@media only screen and (min-width : 0px) and (max-width : 480px){
+    nav{
+        width: 0px;
+        height: 0px;
+        visibility: hidden;
+    }
+    .main article h1 {
+        font-size: 2em;
+        margin: 0.67em 0;
+    }
+
+    article.right{
+        visibility: hidden;
+        width: 0px;
+        height: 0px;
+        display: none;
+    }
+
+    .panoram-view{
+        visibility: hidden;
+        width: 0px;
+        height: 0px;
+        display: none;   
+    }
+
+    .nav-buttons{
+        width: 100%;
+        height: 50px;
+        padding: 0px;
+    }
+    .nav-buttons .left, .nav-buttons .right{
+        width: 50px;
+        height: 50px;
+
+    }
+    .btn-menu{
+        background:url('../img/menu-icon.png') left top no-repeat;
+        background-size: 50px 50px;
+        width: 50px;
+        height: 50px;
+        content: ' ';
+        position: absolute;
+        left: 0px;
+        background-position-x: -5px;
+        background-position-y: -5px;
+    }
+
+
+    .btn-login{
+        background:url('../img/login-icon.png') left top no-repeat;
+        background-size: 50px 50px;
+        width: 50px;
+        height: 50px;
+        content: ' ';
+        position: absolute;
+        right: 0px;
+        background-position-x: 5px;
+        background-position-y: -5px;
+    }
+    .pagination{
+        width: auto;
+    }
+}
+
+/* ==========================================================================
+   Print styles
+   ========================================================================== */
+
+@media print {
+    * {
+        background: transparent !important;
+        color: #000 !important; /* Black prints faster: h5bp.com/s */
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    /*
+     * Don't show links for images, or javascript/internal links
+     */
+
+    .ir a:after,
+    a[href^="javascript:"]:after,
+    a[href^="#"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    thead {
+        display: table-header-group; /* h5bp.com/t */
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    @page {
+        margin: 0.5cm;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}
