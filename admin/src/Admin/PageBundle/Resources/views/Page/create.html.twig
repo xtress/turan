@@ -10,6 +10,23 @@
 {%endblock page_title_h1 %}
 
 {% block container %}
+                
+    {% block javascripts %}
+
+            <script>
+                
+                $(document).ready(function() {
+                    
+                    CKEDITOR.replace( 'admin_pagebundle_staticpage_pageBody', { toolbar: 'Full' } );
+                    
+                });
+                
+            </script>
+
+            <script type="text/javascript" src="{{ asset('js/ckeditor/ckeditor.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('js/ckeditor/ckeditor.config.js') }}"></script>
+
+    {% endblock javascripts %}
     
     <br />
     
