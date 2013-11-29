@@ -151,6 +151,7 @@ class UserManagerController extends Controller {
         $request = $this->getRequest();
         
         $admin = $adminRepo->find($id);
+        $oldPass = $admin->getPassword();
         
         $form = $this->createForm(new AdminType(), $admin);
         $form->handleRequest($request);
@@ -170,6 +171,8 @@ class UserManagerController extends Controller {
                 
                 if ($data->getPassword() != null)
                     $admin->setPassword($pass);
+                else
+                    $admin->setPassword($oldPass);
                 
                 $em->persist($admin);
                 $em->flush();
