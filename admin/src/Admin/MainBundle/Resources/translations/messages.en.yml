@@ -1,8 +1,36 @@
 ## YAML Template.
 ---
-AB_ADMIN_PANEL_TITLE: Admin Dashboard
+AMB_DASHBOARD_TITLE: Dashboard
+AMB_ADMIN_PANEL_TITLE: Admin Dashboard
+AMB_ADMIN_DASHBOARD_TITLE: Admin Dashboard
 
-AB_ADMINS_MANAGER: Administrators management
-AB_PAGE_MANAGER:  Static Page Management
+#Admins management part
+AMB_ADMINS_MANAGER: Administrators Management
+AMB_ADMINS_DASHBOARD: Administrators Dashboard
+AMB_ADMINISTRATORS_LIST: Administrators List
+AMB_ADD_ADMINISTRATORS: Add administrator
+AMB_ADMINS_ID: ID
+AMB_ADMINS_LOGIN: Login
+AMB_ADMINS_ROLES: User roles
+AMB_ADMINS_CREATEDAT: Created at
+AMB_ADMINS_CREATEDBY: Created by
+AMB_ADMINS_ACTIONS: Actions
+AMB_ERROR_WHILE_CREATING: Error while creating administrator
+AMB_ADMIN_CREATED: Administrator succesfully created
+AMB_FORM_NOT_VALID: Form not valid
+AMB_ERROR_WHILE_DELETING: Error while deleting administrator
+AMB_ADMINISTRATOR_DELETED: Administrator succesfully deleted
+AMB_ERROR_WHILE_UPDATING: Error while updating administrator info
+AMB_SUCESFULLY_UPDATED: Administrator info succesfully updated
+
+AMB_PAGE_MANAGER:  Static Page Management
+
+#common
+AMB_BACK: Back
+AMB_SAVE: Save
+AMB_CREATE: Create
+AMB_EDIT: Edit
+AMB_DELETE: Delete
+AMB_LOGOUT: Logout
 
 UB_AUTHORISATION_TITLE: LOGIN

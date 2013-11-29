@@ -69,3 +69,8 @@ services:
     logout.handler:
         class: Helpers\LogoutHandler
         arguments: [ "@router_listener" ]
+    locale_listener:
+        class: Helpers\LocaleListener
+        arguments: ["%kernel.default_locale%"]
+        tags:
+            - { name: kernel.event_subscriber }

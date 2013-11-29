@@ -2,9 +2,9 @@
 
 {%block page_title_h1 %}
     <h1 style="display: inline">
-        {%trans%}AB_USERS_DASHBOARD{%endtrans%}
+        {%trans%}AMB_ADMINS_DASHBOARD{%endtrans%}
         <a href="{{ path('_admin_user_management') }}" class="btn btn-primary">
-            {%trans%}AB_BACK{%endtrans%}
+            {%trans%}AMB_BACK{%endtrans%}
         </a>
     </h1>
 {%endblock page_title_h1 %}
@@ -17,27 +17,27 @@
         <thead>
             
             <th>
-                {%trans%}AB_ADMINS_ID{%endtrans%}
+                {%trans%}AMB_ADMINS_ID{%endtrans%}
             </th>
             
             <th>
-                {%trans%}AB_ADMINS_LOGIN{%endtrans%}
+                {%trans%}AMB_ADMINS_LOGIN{%endtrans%}
             </th>
             
             <th>
-                {%trans%}AB_ADMINS_ROLES{%endtrans%}
+                {%trans%}AMB_ADMINS_ROLES{%endtrans%}
             </th>
             
             <th>
-                {%trans%}AB_ADMINS_CREATEDAT{%endtrans%}
+                {%trans%}AMB_ADMINS_CREATEDAT{%endtrans%}
             </th>
             
             <th>
-                {%trans%}AB_ADMINS_CREATEDBY{%endtrans%}
+                {%trans%}AMB_ADMINS_CREATEDBY{%endtrans%}
             </th>
             
             <th>
-                {%trans%}AB_ADMINS_ACTIONS{%endtrans%}
+                {%trans%}AMB_ADMINS_ACTIONS{%endtrans%}
             </th>
             
         </thead>
@@ -75,9 +75,9 @@
                     </td>
                     
                     <td style="display:inline-block">
-                        <a href="{{ path('_admin_administrators_viewAdminInfo', { 'id': administrator.id }) }}" class="btn btn-primary">{%trans%}AB_ADMINS_EDIT{%endtrans%}</a>
+                        <a href="{{ path('_admin_administrators_viewAdminInfo', { 'id': administrator.id }) }}" class="btn btn-primary">{%trans%}AMB_ADMINS_EDIT{%endtrans%}</a>
                         {#<a href="#" class="btn btn-inverse">{%trans%}AB_ADMIN_SHOWLOGS{%endtrans%}</a>#}
-                        <a href="{{ path('_admin_administrators_deleteAdmin', { 'id': administrator.id }) }}" class="btn btn-danger">{%trans%}AB_ADMINS_DELETE{%endtrans%}</a>
+                        <a href="{{ path('_admin_administrators_deleteAdmin', { 'id': administrator.id }) }}" class="btn btn-danger">{%trans%}AMB_ADMINS_DELETE{%endtrans%}</a>
                     </td>
                     
                 </tr>

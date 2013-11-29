@@ -1,8 +1,36 @@
 ## YAML Template.
 ---
-AB_ADMIN_PANEL_TITLE: Панель управления сайтом
+AMB_DASHBOARD_TITLE: Панель управления
+AMB_ADMIN_PANEL_TITLE: Панель управления сайтом
+AMB_ADMIN_DASHBOARD_TITLE: Панель управления сайтом
 
-AB_ADMINS_MANAGER: Управление администраторами
-AB_PAGE_MANAGER:  Управление статическими страницами
+#Часть управления администраторами
+AMB_ADMINS_MANAGER: Управление администраторами
+AMB_ADMINS_DASHBOARD: Управление администраторами
+AMB_ADMINISTRATORS_LIST: Список администраторов
+AMB_ADD_ADMINISTRATORS: Добавить администратор
+AMB_ADMINS_ID: ID
+AMB_ADMINS_LOGIN: Логин
+AMB_ADMINS_ROLES: Роли
+AMB_ADMINS_CREATEDAT: Когда добавлен
+AMB_ADMINS_CREATEDBY: Кем добавлен
+AMB_ADMINS_ACTIONS: Действия
+AMB_ERROR_WHILE_CREATING: Ошибка при добавлении администратора
+AMB_ADMIN_CREATED: Учетная запись администратора успешно создана
+AMB_FORM_NOT_VALID: Форма не валидна
+AMB_ERROR_WHILE_DELETING: Ошибка при удалении администратора
+AMB_ADMINISTRATOR_DELETED: Учетная запись администратора успешно удалена
+AMB_ERROR_WHILE_UPDATING: Ошибка при обновлении данных администратора
+AMB_SUCESFULLY_UPDATED: Данные администратора успешно обновлены
+
+AMB_PAGE_MANAGER:  Управление статическими страницами
+
+#common
+AMB_BACK: Назад
+AMB_SAVE: Сохранить
+AMB_CREATE: Создать
+AMB_EDIT: Редактировать
+AMB_DELETE: Удалить
+AMB_LOGOUT: Выход
 
 UB_AUTHORISATION_TITLE: ВХОД

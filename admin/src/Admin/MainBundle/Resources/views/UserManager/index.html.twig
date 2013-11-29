@@ -2,9 +2,9 @@
 
 {%block page_title_h1 %}
     <h1 style="display: inline">
-        {%trans%}AB_USERS_DASHBOARD{%endtrans%}
+        {%trans%}AMB_ADMINS_DASHBOARD{%endtrans%}
         <a href="{{ path('_admin_main_homepage') }}" class="btn btn-primary">
-            {%trans%}AB_BACK{%endtrans%}
+            {%trans%}AMB_BACK{%endtrans%}
         </a>
     </h1>
 {%endblock page_title_h1 %}
@@ -15,16 +15,16 @@
     <div class="bundle_panel">
 
         <div class="bundle_item">
-            <a title="{{ 'AB_ADMINISTRATORS_LIST' | trans }}" href="{{path ('_admin_administrators_list')}}">
+            <a title="{{ 'AMB_ADMINISTRATORS_LIST' | trans }}" href="{{path ('_admin_administrators_list')}}">
                 <img src="{{asset("img_admin/icon-48-user.png")}}" alt=""><br>
-                <span>{{ 'AB_ADMINISTRATORS_LIST' | trans }}</span>
+                <span>{{ 'AMB_ADMINISTRATORS_LIST' | trans }}</span>
             </a>
         </div>
 
         <div class="bundle_item">
-            <a title="{{ 'AB_ADD_ADMINISTRATORS' | trans }}" href="{{path ('_admin_administrators_createAdmin')}}">
+            <a title="{{ 'AMB_ADD_ADMINISTRATORS' | trans }}" href="{{path ('_admin_administrators_createAdmin')}}">
                 <img src="{{asset("img_admin/icon-48-article.png")}}" alt=""><br>
-                <span>{{ 'AB_ADD_ADMINISTRATORS' | trans }}</span>
+                <span>{{ 'AMB_ADD_ADMINISTRATORS' | trans }}</span>
             </a>
         </div>
 

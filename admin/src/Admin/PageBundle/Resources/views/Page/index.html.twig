@@ -2,9 +2,9 @@
 
 {%block page_title_h1 %}
     <h1 style="display: inline">
-        {%trans%}AB_PAGE_DASHBOARD{%endtrans%}
+        {%trans%}APB_PAGE_DASHBOARD{%endtrans%}
         <a href="{{ path('_admin_main_homepage') }}" class="btn btn-primary">
-            {%trans%}AB_BACK{%endtrans%}
+            {%trans%}APB_BACK{%endtrans%}
         </a>
     </h1>
 {%endblock page_title_h1 %}
@@ -15,16 +15,16 @@
     <div class="bundle_panel">
 
         <div class="bundle_item">
-            <a title="{{ 'AB_PAGES_LIST' | trans }}" href="{{path ('_adminpage_staticpages_list')}}">
+            <a title="{{ 'APB_PAGES_LIST' | trans }}" href="{{path ('_adminpage_staticpages_list')}}">
                 <img src="{{asset("img_admin/icon-48-user.png")}}" alt=""><br>
-                <span>{{ 'AB_PAGES_LIST' | trans }}</span>
+                <span>{{ 'APB_PAGES_LIST' | trans }}</span>
             </a>
         </div>
 
         <div class="bundle_item">
-            <a title="{{ 'AB_ADD_PAGE' | trans }}" href="{{path ('_adminpage_staticpage_create')}}">
+            <a title="{{ 'APB_ADD_PAGE' | trans }}" href="{{path ('_adminpage_staticpage_create')}}">
                 <img src="{{asset("img_admin/icon-48-article.png")}}" alt=""><br>
-                <span>{{ 'AB_ADD_PAGE' | trans }}</span>
+                <span>{{ 'APB_ADD_PAGE' | trans }}</span>
             </a>
         </div>
 

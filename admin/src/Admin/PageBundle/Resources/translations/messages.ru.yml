@@ -1,8 +1,20 @@
 ## YAML Template.
 ---
-AB_ADMIN_PANEL_TITLE: Admin Dashboard
+APB_PAGE_DASHBOARD: Панель управления статическими страницами
+APB_PAGES_LIST: Список статических страниц
+APB_ADD_PAGE: Добавить страницу
+APB_PAGES_ID: ID
+APB_PAGES_PAGENAME: Название
+APB_PAGES_CREATEDAT: Когда создана
+APB_PAGES_CREATEDBY: Кем создана
+APB_ADMINS_MODIFIEDAT: Когда отредактирована
+APB_PAGES_MODIFIEDBY: Кем отредактирована
+APB_PAGES_ACTIONS: Действия
 
-AB_USERS_MANAGER: User management
-AB_PAGE_MANAGER:  Static Page Management
 
-UB_AUTHORISATION_TITLE: LOGIN
+#common
+APB_BACK: Назад
+APB_SAVE: Сохранить
+APB_CREATE: Создать
+APB_PAGES_EDIT: Редактировать
+APB_PAGES_DELETE: Удалить

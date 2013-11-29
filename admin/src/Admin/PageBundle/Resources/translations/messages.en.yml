@@ -1,8 +1,20 @@
 ## YAML Template.
 ---
-AB_ADMIN_PANEL_TITLE: Admin Dashboard
+APB_PAGE_DASHBOARD: Static pages dashboard
+APB_PAGES_LIST: Static pages list
+APB_ADD_PAGE: Add static page
+APB_PAGES_ID: ID
+APB_PAGES_PAGENAME: Name
+APB_PAGES_CREATEDAT: Created at
+APB_PAGES_CREATEDBY: Created by
+APB_ADMINS_MODIFIEDAT: Modified at
+APB_PAGES_MODIFIEDBY: Modified by
+APB_PAGES_ACTIONS: Actions
 
-AB_USERS_MANAGER: User management
-AB_PAGE_MANAGER:  Static Page Management
 
-UB_AUTHORISATION_TITLE: LOGIN
+#common
+APB_BACK: Back
+APB_SAVE: Save
+APB_CREATE: Create
+APB_PAGES_EDIT: Edit
+APB_PAGES_DELETE: Delete

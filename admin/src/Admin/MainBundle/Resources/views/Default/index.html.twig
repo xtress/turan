@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>{%trans%}AB_ADMIN_PANEL_TITLE{%endtrans%}</title>
+    <title>{%trans%}AMB_ADMIN_PANEL_TITLE{%endtrans%}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="omlook">
@@ -143,7 +143,7 @@
           <div class="nav-collapse">
             <ul class="nav">
             {%block nav %}  
-                           <li><a href="{{path ('_admin_main_homepage')}}">DashBoard</a></li>
+                           <li><a href="{{path ('_admin_main_homepage')}}">{%trans%}AMB_DASHBOARD_TITLE{%endtrans%}</a></li>
                            {#<li><a href="{{path ('admin_deal_dashboard')}}">Deal</a></li>
                            <li><a href="{{path ('admin_news_dashboard')}}">News</a></li>
                            <li><a href="{{path ('OmlookAdminOrdersBundle_indexpage')}}">Orders</a></li>
@@ -163,7 +163,7 @@
                                      <li><a href="{{path ('OmlookConfigBundle_setLocale', {'locale':'cn'})}}" title="{%trans%}UB_LANG_CN{%endtrans%}">{%trans%}UB_LANG_MIN_CN{%endtrans%}&nbsp;&nbsp;&nbsp;<img class="flag" title="China" src="{{ asset('omlook/img/cn.png') }}" border="0"/>&nbsp;&nbsp;&nbsp;{%trans%}UB_LANG_CN{%endtrans%}</a> </li>  
                             </ul>  
              		  </li>#}
-             		  
+                           <li><a href="{{ path('logout') }}">{%trans%}AMB_LOGOUT{%endtrans%}</a></li>
               {%endblock nav%}
             </ul>
           </div><!--/.nav-collapse -->
@@ -173,7 +173,7 @@
 
     <div class="container">
       {%block page_title_h1 %}
-        <h1>Omlook Admin DashBoard</h1>
+        <h1>{%trans%}AMB_ADMIN_DASHBOARD_TITLE{%endtrans%}</h1>
       {%endblock page_title_h1 %}
         
     {% for flashMessage in app.session.flashbag.get('success') %}
@@ -201,16 +201,16 @@
         <div class="bundle_panel">
 
             <div class="bundle_item">
-                <a title="{{ 'AB_ADMINS_MANAGER' | trans }}" href="{{path ('_admin_user_management')}}">
+                <a title="{{ 'AMB_ADMINS_MANAGER' | trans }}" href="{{path ('_admin_user_management')}}">
                     <img src="{{asset("img_admin/icon-48-user.png")}}" alt=""><br>
-                    <span>{{ 'AB_ADMINS_MANAGER' | trans }}</span>
+                    <span>{{ 'AMB_ADMINS_MANAGER' | trans }}</span>
                 </a>
             </div>
 
             <div class="bundle_item">
-                <a title="{{ 'AB_PAGE_MANAGER' | trans }}" href="{{path ('_adminpage_index')}}">
+                <a title="{{ 'AMB_PAGE_MANAGER' | trans }}" href="{{path ('_adminpage_index')}}">
                     <img src="{{asset("img_admin/icon-48-article.png")}}" alt=""><br>
-                    <span>{{ 'AB_PAGE_MANAGER' | trans }}</span>
+                    <span>{{ 'AMB_PAGE_MANAGER' | trans }}</span>
                 </a>
             </div>
             
