@@ -1,3 +1,68 @@
-admin_main_homepage:
-    pattern:  /hello/{name}
+_admin_main_homepage:
+    pattern:  /admin
     defaults: { _controller: AdminMainBundle:Default:index }
+    requirements:
+                _method:  GET
+
+#_registerpage:
+#    pattern:  /register
+#    defaults: { _controller: AdminMainBundle:Register:index }
+#    requirements:
+#                 _method:  GET
+#
+#_registerpage_save:
+#    pattern:  /register
+#    defaults: { _controller: AdminMainBundle:Register:save }
+#    requirements:
+#                _method:  POST
+login:
+    pattern:   /login
+    defaults:  { _controller: AdminMainBundle:Security:login }
+    
+login_check:
+    pattern:   /admin/login_check
+
+logout:
+    pattern:  /admin/logout
+    
+_admin_user_management:
+    pattern:  /admin/user_manager
+    defaults: { _controller: AdminMainBundle:UserManager:index }
+    requirements:
+                _method:  GET
+                
+_admin_administrators_list:
+    pattern:  /admin/administrators/list()
+    defaults: { _controller: AdminMainBundle:UserManager:showAdministrators }
+    requirements:
+                _method:  GET
+                
+_admin_administrators_viewAdminInfo:
+    pattern:  /admin/administrators/showInfo({id})
+    defaults: { _controller: AdminMainBundle:UserManager:viewAdministratorInfo }
+    requirements:
+                _method:  GET
+                
+_admin_administrators_saveAdminInfo:
+    pattern:  /admin/administrators/saveInfo({id})
+    defaults: { _controller: AdminMainBundle:UserManager:saveAdministratorInfo }
+    requirements:
+                _method:  POST
+                
+_admin_administrators_viewAdminLogs:
+    pattern:  /admin/administrators/viewActivityFor({login})
+    defaults: { _controller: AdminMainBundle:UserManager:viewAdministratorActivity }
+    requirements:
+                _method:  GET
+                
+_admin_administrators_deleteAdmin:
+    pattern:  /admin/administrators/deleteAdministrator({id})
+    defaults: { _controller: AdminMainBundle:UserManager:deleteAdministrator }
+    requirements:
+                _method:  GET
+                
+_admin_administrators_createAdmin:
+    pattern:  /admin/administrators/create()
+    defaults: { _controller: AdminMainBundle:UserManager:createAdministrator }
+    requirements:
+                _method:  GET

@@ -1,0 +1,103 @@
+{% extends 'AdminMainBundle:Default:index.html.twig' %}
+
+{%block page_title_h1 %}
+    <h1 style="display: inline">
+        {%trans%}APB_PAGES_DASHBOARD{%endtrans%}
+        <a href="{{ path('_admin_user_management') }}" class="btn btn-primary">
+            {%trans%}APB_BACK{%endtrans%}
+        </a>
+    </h1>
+{%endblock page_title_h1 %}
+
+{% block container %}
+    <br />
+    
+    <table class="table table-bordered table-striped">
+        
+        <thead>
+            
+            <th>
+                {%trans%}APB_PAGES_ID{%endtrans%}
+            </th>
+            
+            <th>
+                {%trans%}APB_PAGES_PAGENAME{%endtrans%}
+            </th>
+            
+            <th>
+                {%trans%}APB_PAGES_CREATEDAT{%endtrans%}
+            </th>
+            
+            <th>
+                {%trans%}APB_PAGES_CREATEDBY{%endtrans%}
+            </th>
+            
+            <th>
+                {%trans%}APB_ADMINS_MODIFIEDAT{%endtrans%}
+            </th>
+            
+            <th>
+                {%trans%}APB_PAGES_MODIFIEDBY{%endtrans%}
+            </th>
+            
+            <th>
+                {%trans%}APB_PAGES_ACTIONS{%endtrans%}
+            </th>
+            
+        </thead>
+        
+        <tbody>
+            {% for page in pages %}
+
+                <tr>
+                    
+                    <td>
+                        {{ page.id }}
+                    </td>
+                    
+                    <td>
+                        {{ page.pageName }}
+                    </td>
+                    
+                    <td>
+                        {{ page.dateCreated | date("Y-m-d H:i:s") }}
+                    </td>
+                    
+                    <td>
+                        {{ page.adminCreator.login }}
+                    </td>
+                    
+                    {% if page.adminModifier != null %}
+                        
+                        <td>
+                            {{ page.dateModified | date("Y-m-d H:i:s") }}
+                        </td>
+                        
+                        <td>
+                            {{ page.adminModifier.login }}
+                        </td>
+                        
+                    {% else %}
+                        
+                        <td>
+                        </td>
+                        
+                        <td>
+                        </td>
+                        
+                    {% endif %}
+                    
+                    <td style="display:inline-block">
+                        <a href="{{ path('_adminpage_staticpage_edit', { 'id': page.id }) }}" class="btn btn-danger">{%trans%}APB_PAGES_EDIT{%endtrans%}</a>
+                        <a href="{{ path('_adminpage_staticpage_delete', { 'id': page.id }) }}" class="btn btn-inverse">{%trans%}APB_PAGES_DELETE{%endtrans%}</a>
+                        {#<a href="{{ path('_adminpage_staticpage_preview', { 'id': page.id }) }}" class="btn btn-danger">{%trans%}APB_PAGES_PREVIEW{%endtrans%}</a>#}
+                    </td>
+                    
+                </tr>
+
+            {% endfor %}
+        </tbody>
+        
+    </table>
+    
+{% endblock container %}

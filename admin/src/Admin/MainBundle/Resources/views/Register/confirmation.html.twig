@@ -1,0 +1,42 @@
+{% extends '::base.html.twig' %}
+
+{% block content %}
+<style>
+.box_success{
+	height: 300px;
+	width: 1200px;
+}
+
+#box_success .alert.alert-success{
+	width: 700px;
+	margin: 50px auto;
+	height: 200px;
+}
+
+#box_success h4{
+	font-size: 20px;
+	margin-bottom: 10px;
+	margin-top: 20px;
+}
+
+.login{
+margin-top: 10px;
+}
+
+</style>
+<div id="404">
+	<div class="box_success" id="box_success">
+		<div class="alert alert-success">
+			<a class="close" title="Close" data-dismiss="alert" href="#">×</a>
+			 <img src="{{ asset('omlook/img/confirmation/confirmation.png') }}" border="0"/>
+			<h4 class="alert-heading"></h4>
+				{%trans%}UB_CONFIRMATION_READY{%endtrans%}
+			<div class="login">
+				<a href="{{path ('login')}}" title="{%trans%}UB_LOGIN{%endtrans%}">{%trans%}UB_LOGIN{%endtrans%}</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+ 
+{% endblock content %}

@@ -1,1 +1,252 @@
-Hello {{ name }}!
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>{%trans%}AB_ADMIN_PANEL_TITLE{%endtrans%}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="omlook">
+
+    <!-- Le styles -1
+    <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
+    <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet">
+    -->
+    <link href="{{asset('bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('bootstrap/css/bootstrap-responsive.min.css')}}" rel="stylesheet">
+
+    <style>
+        body {
+            padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+        }
+
+        
+        .bundle_panel .bundle_item {
+            text-align: center;
+            margin-top: 5px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            margin-left: 5px;
+            width: 108px;
+            height: 97px;
+            float: left;
+            padding:5px 5px 5px 5px;
+            margin-bottom: 15px;
+
+        }
+      
+        .bundle_panel .bundle_item a {
+            background-color: #fff;
+            background-position: -30px;
+            display: block;
+            float: left;
+            height: 97px;
+            width: 108px;
+            color: #565656;
+            vertical-align: middle;
+            text-decoration: none;
+            border: 1px solid #CCC;
+
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+            -webkit-transition-property:
+                    background-position,
+                    -webkit-border-bottom-left-radius,
+                    -webkit-box-shadow;
+            -moz-transition-property:
+                    background-position,
+                    -moz-border-radius-bottomleft,
+                    -moz-box-shadow;
+            -webkit-transition-duration: 0.8s;
+            -moz-transition-duration: 0.8s;
+        }
+        
+        .bundle_panel .bundle_item img{
+            margin-top: 15px;
+        }
+      
+        .bundle_panel .bundle_item a:hover,
+        .bundle_panel .bundle_item a:focus,
+        .bundle_panel .bundle_item a:active,
+        .bundle_panel .bundle_item a:hover,
+        .bundle_panel .bundle_item a:focus,
+        .bundle_panel .bundle_item a:active {
+                background-position: 0;
+                -webkit-border-bottom-left-radius: 50% 20px;
+                -moz-border-radius-bottomleft: 50% 20px;
+                border-bottom-left-radius: 50% 20px;
+                -webkit-box-shadow: -5px 10px 15px rgba(0, 0, 0, 0.25);
+                -moz-box-shadow: -5px 10px 15px rgba(0, 0, 0, 0.25);
+                box-shadow: -5px 10px 15px rgba(0, 0, 0, 0.25);
+                position: relative;
+                z-index: 10;
+        }
+
+        .bundle_panel{
+         background-color: #ff0000;
+        }
+
+        span.error {
+            display: block;
+            color: #880000;
+            font-weight: bold;
+        }
+        
+        #admin_edit_blog_form_title {
+            width: 550px;
+        }
+        #admin_edit_blog_form_description {
+            width: 550px;
+            height: 175px;
+        }
+    </style>
+    <script type="text/javascript">
+        {% if app.request.locale == 'en' %}
+            var globalLanguage = 'en';
+        {% endif %}
+        {% if app.request.locale == 'ru' %}
+            var globalLanguage = 'ru';
+        {% endif %}
+        {% if app.request.locale == 'cn' %}
+            var globalLanguage = 'zh-cn';
+        {% endif %}
+    </script>
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="{{asset("jquery/html5.js")}}"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="{{asset("favicon.ico")}}">
+    
+    <script src="{{asset("js/jquery-1.10.2.min.js")}}"></script>   
+    {#<link  href="{{asset('jquery/jquery-ui/css/redmond/jquery-ui-1.8.18.custom.css')}}" rel="stylesheet">
+    <script src="{{asset("jquery/jquery-ui/js/jquery-1.7.1.min.js")}}"></script>   
+    <script src="{{asset("jquery/jquery-ui/js/jquery-ui-1.8.18.custom.min.js")}}"></script>   #}
+    <script src="{{asset("bootstrap/js/bootstrap.min.js")}}"></script>
+    {#<script src="{{ asset('bootstrap/js/select2-release-3.2/select2.min.js') }}"></script>
+    <link href="{{ asset('bootstrap/js/select2-release-3.2/select2.css') }}" rel="stylesheet"/>#}
+  </head>
+
+  <body>
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">Turan</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+            {%block nav %}  
+                           <li><a href="{{path ('_admin_main_homepage')}}">DashBoard</a></li>
+                           {#<li><a href="{{path ('admin_deal_dashboard')}}">Deal</a></li>
+                           <li><a href="{{path ('admin_news_dashboard')}}">News</a></li>
+                           <li><a href="{{path ('OmlookAdminOrdersBundle_indexpage')}}">Orders</a></li>
+                           <li class="dropdown">
+                           <a href="" class="dropdown-toggle" data-toggle="dropdown">Users<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                             <li><a href="{{path ('admin_users_dashboard')}}">User dashboard</a></li>
+                             <li><a href="{{path ('admin_users_list')}}">User List</a></li>                            
+                            </ul>  
+             		  </li>#}
+             		  
+             		  {#<li class="dropdown">
+                           <a href="" class="dropdown-toggle" data-toggle="dropdown"><img class="flag" src="{{ asset('omlook/img/'~app.session.getLocale()~'.png') }}" border="0"/> LANGUAGE<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                     <li><a href="{{path ('OmlookConfigBundle_setLocale', {'locale':'ru'})}}" title="{%trans%}UB_LANG_RU{%endtrans%}">{%trans%}UB_LANG_MIN_RU{%endtrans%}&nbsp;&nbsp;&nbsp;<img class="flag" title="Russian" src="{{ asset('omlook/img/ru.png') }}" border="0"/>&nbsp;&nbsp;&nbsp;{%trans%}UB_LANG_RU{%endtrans%}</a></li>
+                                     <li><a href="{{path ('OmlookConfigBundle_setLocale', {'locale':'en'})}}" title="{%trans%}UB_LANG_EN{%endtrans%}">{%trans%}UB_LANG_MIN_EN{%endtrans%}&nbsp;&nbsp;&nbsp;<img class="flag" title="English" src="{{ asset('omlook/img/en.png') }}" border="0"/>&nbsp;&nbsp;&nbsp;{%trans%}UB_LANG_EN{%endtrans%}</a> </li>
+                                     <li><a href="{{path ('OmlookConfigBundle_setLocale', {'locale':'cn'})}}" title="{%trans%}UB_LANG_CN{%endtrans%}">{%trans%}UB_LANG_MIN_CN{%endtrans%}&nbsp;&nbsp;&nbsp;<img class="flag" title="China" src="{{ asset('omlook/img/cn.png') }}" border="0"/>&nbsp;&nbsp;&nbsp;{%trans%}UB_LANG_CN{%endtrans%}</a> </li>  
+                            </ul>  
+             		  </li>#}
+             		  
+              {%endblock nav%}
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      {%block page_title_h1 %}
+        <h1>Omlook Admin DashBoard</h1>
+      {%endblock page_title_h1 %}
+        
+    {% for flashMessage in app.session.flashbag.get('success') %}
+        <div class="alert alert-success">
+            <a class="close" data-dismiss="alert">×</a>
+            {{ flashMessage }}
+        </div>
+    {% endfor %}     
+        
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+        <div class="alert alert-info">
+            <a class="close" data-dismiss="alert">×</a>
+            {{ flashMessage }}
+        </div>
+    {% endfor %}     
+        
+    {% for flashMessage in app.session.flashbag.get('error') %}
+        <div class="alert alert-error">
+            <a class="close" data-dismiss="alert">×</a>
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+        
+    {%block container %}
+        <div class="bundle_panel">
+
+            <div class="bundle_item">
+                <a title="{{ 'AB_ADMINS_MANAGER' | trans }}" href="{{path ('_admin_user_management')}}">
+                    <img src="{{asset("img_admin/icon-48-user.png")}}" alt=""><br>
+                    <span>{{ 'AB_ADMINS_MANAGER' | trans }}</span>
+                </a>
+            </div>
+
+            <div class="bundle_item">
+                <a title="{{ 'AB_PAGE_MANAGER' | trans }}" href="{{path ('_adminpage_index')}}">
+                    <img src="{{asset("img_admin/icon-48-article.png")}}" alt=""><br>
+                    <span>{{ 'AB_PAGE_MANAGER' | trans }}</span>
+                </a>
+            </div>
+            
+            {#<div class="bundle_item">
+                <a title="{{ 'AB_TRANSLATIONS_MANAGER' | trans }}" href="{{path ('admin_deal_dashboard')}}">
+                    <img src="{{asset("img_admin/icon-48-deals.png")}}" alt=""><br>
+                    <span>{{ 'AB_TRANSLATIONS_MANAGER' | trans }}</span>
+                </a>
+            </div>#}
+
+      </div>
+
+    {%endblock container%}
+   </div>
+  
+  <script>
+	$(function() {
+	  $( ".bundle_item" ).show( 'drop',600);
+          
+        });
+ 
+   </script>
+
+    <!--  
+    <script src="http://twitter.github.com/bootstrap/assets/js/jquery.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-transition.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-alert.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-modal.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-dropdown.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-scrollspy.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tab.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tooltip.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-popover.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-button.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-carousel.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-typeahead.js"></script>
+   -->
+  </body>
+</html>

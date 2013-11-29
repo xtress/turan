@@ -1,9 +1,0 @@
-admin_page_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: AdminPageBundle:Default:index }
-    
-_admin_page_choose:
-    pattern:  /admin/page
-    defaults: { _controller: AdminPageBundle:AdminPage:choose }
-    requirements:
-        _method:    GET

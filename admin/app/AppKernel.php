@@ -16,9 +16,8 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            new Turan\AdminPageBundle\AdminPageBundle(),
-            new Turan\AdminBundle\AdminBundle(),
             new Admin\MainBundle\AdminMainBundle(),
+            new Admin\PageBundle\AdminPageBundle(),
             new API\MainBundle\APIMainBundle(),
         );
 

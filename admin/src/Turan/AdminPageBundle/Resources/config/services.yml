@@ -1,7 +1,0 @@
-parameters:
-#    admin_page.example.class: Turan\AdminPageBundle\Example
-
-services:
-#    admin_page.example:
-#        class: %admin_page.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]

@@ -1,0 +1,90 @@
+{% extends 'AdminMainBundle:Default:index.html.twig' %}
+
+{%block page_title_h1 %}
+    <h1 style="display: inline">
+        {%trans%}AB_USERS_DASHBOARD{%endtrans%}
+        <a href="{{ path('_admin_user_management') }}" class="btn btn-primary">
+            {%trans%}AB_BACK{%endtrans%}
+        </a>
+    </h1>
+{%endblock page_title_h1 %}
+
+{% block container %}
+    <br />
+    
+    <table class="table table-bordered table-striped">
+        
+        <thead>
+            
+            <th>
+                {%trans%}AB_ADMINS_ID{%endtrans%}
+            </th>
+            
+            <th>
+                {%trans%}AB_ADMINS_LOGIN{%endtrans%}
+            </th>
+            
+            <th>
+                {%trans%}AB_ADMINS_ROLES{%endtrans%}
+            </th>
+            
+            <th>
+                {%trans%}AB_ADMINS_CREATEDAT{%endtrans%}
+            </th>
+            
+            <th>
+                {%trans%}AB_ADMINS_CREATEDBY{%endtrans%}
+            </th>
+            
+            <th>
+                {%trans%}AB_ADMINS_ACTIONS{%endtrans%}
+            </th>
+            
+        </thead>
+        
+        <tbody>
+            {% for administrator in admins %}
+
+                <tr>
+                    
+                    <td>
+                        {{ administrator.id }}
+                    </td>
+                    
+                    <td>
+                        {{ administrator.login }}
+                    </td>
+                    
+                    <td>
+                        {% for role in administrator.userRoles %}
+                            
+                            {{ role.name }}
+                            {% if loopindex != role.length %}<br />{% endif %}
+                            
+                        {% endfor %}
+                    </td>
+                    
+                    <td>
+                        {{ administrator.createdAt | date("Y-m-d H:i:s") }}
+                    </td>
+                    
+                    <td>
+                        {% if administrator.createdBy != null %}
+                            {{ administrator.createdBy.login }}
+                        {% endif %}
+                    </td>
+                    
+                    <td style="display:inline-block">
+                        <a href="#" class="btn btn-primary">{%trans%}AB_ADMINS_EDIT{%endtrans%}</a>
+                        <a href="#" class="btn btn-inverse">{%trans%}AB_ADMIN_SHOWLOGS{%endtrans%}</a>
+                        <a href="#" class="btn btn-danger">{%trans%}AB_ADMINS_DELETE{%endtrans%}</a>
+                    </td>
+                    
+                </tr>
+
+            {% endfor %}
+        </tbody>
+        
+    </table>
+    
+{% endblock container %}

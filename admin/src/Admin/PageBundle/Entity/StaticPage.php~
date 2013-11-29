@@ -1,0 +1,87 @@
+<?php
+
+namespace Admin\PageBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * StaticPage
+ *
+ * @ORM\Table(name="static_page")
+ * @ORM\Entity
+ */
+class StaticPage
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="bigint", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="page_name", type="string", length=127, nullable=false)
+     */
+    private $pageName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="page_body", type="text", nullable=false)
+     */
+    private $pageBody;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="page_seo", type="string", length=15, nullable=false)
+     */
+    private $pageSeo;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_created", type="datetime", nullable=false)
+     */
+    private $dateCreated;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_modified", type="datetime", nullable=false)
+     */
+    private $dateModified;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_published", type="boolean", nullable=false)
+     */
+    private $isPublished;
+
+    /**
+     * @var \Admin
+     *
+     * @ORM\ManyToOne(targetEntity="Admin")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="admin_creator_id", referencedColumnName="id")
+     * })
+     */
+    private $adminCreator;
+
+    /**
+     * @var \Admin
+     *
+     * @ORM\ManyToOne(targetEntity="Admin")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="admin_modifier_id", referencedColumnName="id")
+     * })
+     */
+    private $adminModifier;
+
+
+}

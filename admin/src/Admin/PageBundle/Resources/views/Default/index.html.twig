@@ -1,0 +1,33 @@
+{% extends 'AdminMainBundle:Default:index.html.twig' %}
+
+{%block page_title_h1 %}
+    <h1 style="display: inline">
+        {%trans%}AB_PAGE_DASHBOARD{%endtrans%}
+        <a href="{{ path('_admin_main_homepage') }}" class="btn btn-primary">
+            {%trans%}AB_BACK{%endtrans%}
+        </a>
+    </h1>
+{%endblock page_title_h1 %}
+
+{% block container %}
+    
+    
+    <div class="bundle_panel">
+
+        <div class="bundle_item">
+            <a title="{{ 'AB_PAGES_LIST' | trans }}" href="{{path ('_adminpage_staticpages_list')}}">
+                <img src="{{asset("img_admin/icon-48-user.png")}}" alt=""><br>
+                <span>{{ 'AB_PAGES_LIST' | trans }}</span>
+            </a>
+        </div>
+
+        <div class="bundle_item">
+            <a title="{{ 'AB_ADD_PAGE' | trans }}" href="{{path ('_adminpage_staticpage_create')}}">
+                <img src="{{asset("img_admin/icon-48-article.png")}}" alt=""><br>
+                <span>{{ 'AB_ADD_PAGE' | trans }}</span>
+            </a>
+        </div>
+
+    </div>
+    
+{% endblock container %}

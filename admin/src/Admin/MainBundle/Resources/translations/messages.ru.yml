@@ -1,0 +1,8 @@
+## YAML Template.
+---
+AB_ADMIN_PANEL_TITLE: Панель управления сайтом
+
+AB_ADMINS_MANAGER: Управление администраторами
+AB_PAGE_MANAGER:  Управление статическими страницами
+
+UB_AUTHORISATION_TITLE: ВХОД

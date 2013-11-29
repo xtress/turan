@@ -1,0 +1,45 @@
+_adminpage_index:
+    pattern:  /
+    defaults: { _controller: AdminPageBundle:Page:index }
+    requirements:
+                _method:  GET
+                
+_adminpage_staticpages_list:
+    pattern:  /list()
+    defaults: { _controller: AdminPageBundle:Page:list }
+    requirements:
+                _method:  GET
+                
+_adminpage_staticpage_create:
+    pattern:  /create()
+    defaults: { _controller: AdminPageBundle:Page:create }
+#    requirements:
+#                _method:  GET
+                
+_adminpage_staticpage_edit:
+    pattern:  /edit({id})
+    defaults: { _controller: AdminPageBundle:Page:edit }
+    requirements:
+                _method:  GET
+                id:       \d+
+                
+_adminpage_staticpage_save:
+    pattern:  /save({id})
+    defaults: { _controller: AdminPageBundle:Page:save }
+    requirements:
+                _method:  POST
+                id:       \d+
+                
+_adminpage_staticpage_delete:
+    pattern:  /delete({id})
+    defaults: { _controller: AdminPageBundle:Page:delete }
+    requirements:
+                _method:  GET
+                id:       \d+
+                
+_adminpage_staticpage_preview:
+    pattern:  /preview({id})
+    defaults: { _controller: AdminPageBundle:Page:preview }
+    requirements:
+                _method:  GET
+                id:       \d+

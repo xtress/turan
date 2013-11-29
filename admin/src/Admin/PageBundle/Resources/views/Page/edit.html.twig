@@ -1,0 +1,27 @@
+{% extends 'AdminMainBundle:Default:index.html.twig' %}
+
+{%block page_title_h1 %}
+    <h1 style="display: inline">
+        {%trans%}AB_PAGE_DASHBOARD{%endtrans%}
+        <a href="{{ path('_admin_main_homepage') }}" class="btn btn-primary">
+            {%trans%}AB_BACK{%endtrans%}
+        </a>
+    </h1>
+{%endblock page_title_h1 %}
+
+{% block container %}
+    
+    <br />
+    
+    <form action="{{ path('_adminpage_staticpage_save', { 'id': pageID }) }}" method="POST" {{ form_enctype(form) }} >
+        {{ form_errors(form) }}
+                
+        {{ form_widget(form) }}
+                    
+        {{ form_rest(form) }}
+            
+        <input type="submit" value="{%trans%}ABB_SAVE{%endtrans%}" class="btn btn-success">
+        
+    </form>
+    
+{% endblock container %}

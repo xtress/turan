@@ -1,0 +1,58 @@
+{#{% extends "::base.html.twig" %}#}
+
+{% block content %}
+<link rel="stylesheet" href="{{ asset('omlook/css/recover.css') }}" type="text/css" media="all" />
+
+    <div class="content" >
+        <div class="row" style="margin: 30px 70px 10px 70px;">
+
+    <div class="span6 well login1">
+        <h4>{%trans%}UB_AUTHORISATION_TITLE{%endtrans%}</h4>
+    {% if error is defined and error != null %}
+        
+		<div class="alert alert-error" id="box_error">
+			<a class="close" title="Close" data-dismiss="alert" href="#">×</a>
+			<h4 class="alert-heading">{{ error.message|trans({}) }}</h4>
+		</div>
+        
+    {% endif %}
+        <script type="text/javascript">
+            
+        </script>
+    {#{% if app.session.hasFlash('error') %}           
+         <div class="alert alert-error">
+             <a class="close" data-dismiss="alert" >×</a>             
+		   <h4 class="alert-heading">{{ app.session.flash('error')|trans }}</h4>
+         </div>
+    {% endif %}  
+
+    {% if app.session.hasFlash('notice') %}
+             <div class="alert alert-success">
+                 <a class="close" data-dismiss="alert" >×</a>                     
+			  <h4 class="alert-heading">{{ app.session.flash('notice') }}</h4>
+             </div>
+    {% endif %}#}
+        <form  action="{{ path('login_check') }}" method="post">
+           
+            <div class="login1 row-fluid" style="padding-top: 40px; ">
+                <div class="usertext span4" style="text-align: right; padding-top: 5px; "><label for="username">{%trans%}UB_USERNAME_LABEL{%endtrans%}</label></div>
+                <div class="username0 span4"><div class="wearch "><input type="text" class="username2" id="username" name="_username" value="{{ last_username }}" /></div></div>
+            </div>
+            <div class="login2 row-fluid" style="padding-top: 10px;height: 70px">
+                <div class="usertext span4" style="text-align: right; padding-top: 5px;" ><label for="password">{%trans%}UB_FORM_LABEL_PASSWORD{%endtrans%}</label></div>
+                <div class="username0 span4"><div class="wearch "><input type="password" class="username2" id="password2" name="_password" /></div>
+                    <div class="remember checkbox">
+                    <label for="remember_me"><input type="checkbox" id="remember_me" name="_remember_me" checked />{%trans%}UB_KEEP_ME_LOGGED{%endtrans%}</label>
+                    </div>
+                </div>
+            </div>
+            <div style="padding-left: 15%; margin: 15px auto 0 auto; text-align: center">
+                <button type="submit" name="login" title="{%trans%}UB_LOGIN{%endtrans%}" class="btn btn-info btn-large" style=""><i class="icon-ok-sign icon-white"></i> &nbsp;{%trans%}UB_LOGIN{%endtrans%}</button>
+            </div>
+        </form>
+    </div>
+
+    </div>
+    </div>
+
+{% endblock content %} 

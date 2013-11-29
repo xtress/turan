@@ -1,0 +1,13 @@
+{%trans%}UB_MAIL_ROBOT{%endtrans%}.<br />
+{%trans%}UB_MAIL_CONFIRMATION{%endtrans%}:
+<a href="http://{{ host ~  path('_confirmationpage', { 'login': login, 'confirmation_token': token })}}">
+    {%trans%}UB_MAIL_CONFIRM{%endtrans%}
+</a>.<br />
+{%trans%}UB_MAIL_LOGIN{%endtrans%}: 
+<b>
+    {{ login }}
+</b>.<br />
+{%trans%}UB_MAIL_PASSWORD{%endtrans%}: 
+<b>
+    {{ password }}
+</b>.

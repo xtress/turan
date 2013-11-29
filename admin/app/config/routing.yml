@@ -1,16 +1,16 @@
 api_main:
     resource: "@APIMainBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /api
 
 admin_main:
     resource: "@AdminMainBundle/Resources/config/routing.yml"
     prefix:   /
 
-admin:
-    resource: "@AdminBundle/Resources/config/routing.yml"
-    prefix:   /
+#admin:
+#    resource: "@AdminBundle/Resources/config/routing.yml"
+#    prefix:   /admin
 
 admin_page:
     resource: "@AdminPageBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /admin/page
 
