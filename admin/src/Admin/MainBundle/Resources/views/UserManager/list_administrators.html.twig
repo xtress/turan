@@ -59,7 +59,7 @@
                         {% for role in administrator.userRoles %}
                             
                             {{ role.name }}
-                            {% if loopindex != role.length %}<br />{% endif %}
+                            {% if loop.index != administrator.userRoles.count %}<br />{% endif %}
                             
                         {% endfor %}
                     </td>
@@ -75,9 +75,9 @@
                     </td>
                     
                     <td style="display:inline-block">
-                        <a href="#" class="btn btn-primary">{%trans%}AB_ADMINS_EDIT{%endtrans%}</a>
-                        <a href="#" class="btn btn-inverse">{%trans%}AB_ADMIN_SHOWLOGS{%endtrans%}</a>
-                        <a href="#" class="btn btn-danger">{%trans%}AB_ADMINS_DELETE{%endtrans%}</a>
+                        <a href="{{ path('_admin_administrators_viewAdminInfo', { 'id': administrator.id }) }}" class="btn btn-primary">{%trans%}AB_ADMINS_EDIT{%endtrans%}</a>
+                        {#<a href="#" class="btn btn-inverse">{%trans%}AB_ADMIN_SHOWLOGS{%endtrans%}</a>#}
+                        <a href="{{ path('_admin_administrators_deleteAdmin', { 'id': administrator.id }) }}" class="btn btn-danger">{%trans%}AB_ADMINS_DELETE{%endtrans%}</a>
                     </td>
                     
                 </tr>

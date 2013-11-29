@@ -205,6 +205,16 @@ class Admin implements AdvancedUserInterface, \Serializable
     {
         return $this->userRoles;
     }
+    
+    public function setUserRoles($roles)
+    {
+        $this->userRoles = ($roles);
+    }
+    
+    public function addRoles($role)
+    {
+        $this->roles->add($role);
+    }
 
     public function __construct()
     {

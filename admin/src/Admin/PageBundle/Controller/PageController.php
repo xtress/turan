@@ -4,7 +4,7 @@ namespace Admin\PageBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use Doctrine\DBAL\DBALException;
+use Doctrine\DBAL\DBALException as DBALException;
 
 use Admin\PageBundle\Form\StaticPageType;
 use Admin\PageBundle\Entity\StaticPage;
@@ -53,7 +53,7 @@ class PageController extends Controller {
                     $em->persist($page);
                     $em->flush();
                     
-                } catch(\Doctrine\DBAL\DBALException $e) {
+                } catch(DBALException $e) {
                     
                     var_dump($e->getMessage());
                     $session->getFlashBag()->set('error', $translator->trans('APB_ERROR_WHILE_CREATING'));
@@ -133,7 +133,7 @@ class PageController extends Controller {
                 $em->persist($page);
                 $em->flush();
                 
-            } catch(Doctrine\DBAL\DBALException $e) {
+            } catch(DBALException $e) {
                     
                 var_dump($e->getMessage());
                 $session->getFlashBag()->set('error', $translator->trans('APB_ERROR_WHILE_EDITING'));
@@ -158,7 +158,8 @@ class PageController extends Controller {
     {
         $em = $this->getDoctrine()->getManager();
         $pageRepo = $em->getRepository(self::pageClass);
-        
+        $session    = $this->get('session');
+        $translator = $this->get('translator');
         $page = $pageRepo->find($id);
         
         try {
@@ -166,7 +167,7 @@ class PageController extends Controller {
             $em->remove($page);
             $em->flush();
             
-        } catch (Doctrine\DBAL\DBALException $e) {
+        } catch (DBALException $e) {
                     
             var_dump($e->getMessage());
             $session->getFlashBag()->set('error', $translator->trans('APB_ERROR_WHILE_DELETING'));

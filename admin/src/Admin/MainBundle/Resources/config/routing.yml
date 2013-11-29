@@ -64,5 +64,5 @@ _admin_administrators_deleteAdmin:
 _admin_administrators_createAdmin:
     pattern:  /admin/administrators/create()
     defaults: { _controller: AdminMainBundle:UserManager:createAdministrator }
-    requirements:
-                _method:  GET
+#    requirements:
+#                _method:  GET
