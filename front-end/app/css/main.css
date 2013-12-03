@@ -356,7 +356,7 @@
     }
 
     .image-box .image-title{
-        top: -52px;
+        top: -51px;
         position: relative;
         padding-left: 10px;
         padding-right: 10px;
@@ -516,7 +516,8 @@
     }
 
     .contacts-description{
-        width: 95%;
+        /*width: 95%; */
+        width: 98%;
         height: auto;
         margin: auto auto;
         content: " ";
