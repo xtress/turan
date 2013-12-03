@@ -1,0 +1,6 @@
+/admin/web/bundles/
+/admin/app/bootstrap*
+/admin/app/cache/*
+/admin/app/logs/*
+/admin/vendor/
+/admin/app/config/parameters.yml
