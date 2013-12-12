@@ -5,7 +5,7 @@
 angular.module('restApp', ['restApp.filters', 'restApp.services', 'restApp.directives', 'restApp.controllers']).
   config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/', {templateUrl: 'partials/main.html', controller: 'MainCtrl'});
-    $routeProvider.when('/news/:id', {templateUrl: 'partials/news.html', controller: 'MainCtrl'});
+    $routeProvider.when('/news/:id', {templateUrl: 'partials/news.html', controller: 'NewsCtrl'});
     $routeProvider.when('/gallery', {templateUrl: 'partials/gallery.html', controller: 'MainCtrl'});
     $routeProvider.when('/gallery/:alias', {templateUrl: 'partials/gallery.item.html', controller: 'MainCtrl'});
     $routeProvider.when('/contacts', {templateUrl: 'partials/contacts.html', controller: 'MainCtrl'});

@@ -14,8 +14,8 @@
 			<li><a href="#">Главная</a></li>
 			<li><a href="#/restaurant">Ресторан</a></li>
 			<li><a href="#/pizzeria">Пиццерия</a></li>
-			<li><a href="#/gallery">Галерея</a></li>
-			<li><a href="#/ballroom">Банкетный зал</a></li>
+            <li><a href="#/ballroom">Банкетный зал</a></li>
+            <li><a href="#/gallery">Галерея</a></li>
 			<li><a href="#/history">История</a></li>
 			<li><a href="#/vacancies">Вакансии</a></li>
 			<li><a href="#/contacts">Контакты</a></li>
@@ -27,7 +27,17 @@
 
  <article class="container">
  		<h2>Новости ресторанного комплекса:</h2>
- 		<div class="news-title">Шоу профессора «Вуаля»</div>
+ 		<div class="news-title">{{news.title}}</div>
+ 		<div class="news-content">
+ 			<div ng-bind-html-unsafe="news.content"></div>
+ 		</div>
+ 		
+ 		<div class="pagination rounded">
+ 			<div class="preview"><a href="{{news.preview}}"><<НАЗАД</a></div>
+ 			<div class="page">{{news.page}}</div>
+ 			<div class="next"><a href="{{news.next}}">ДАЛЬШЕ>></a></div>
+ 		</div>
+ 		<!-- <div class="news-title">Шоу профессора «Вуаля»</div>
  		<div class="news-content">
  			Давняя мечта морской столицы – включить парусный спорт в школьные уроки физкультуры – получила
 своё развитие: с нынешней осени у кадетских классов, организованных для питерских старшеклассников,
@@ -49,7 +59,7 @@
  			<div class="preview"><a href="#"><<НАЗАД</a></div>
  			<div class="page">1/10</div>
  			<div class="next"><a href="#">ДАЛЬШЕ>></a></div>
- 		</div>
+ 		</div> -->
 
  </article>
 

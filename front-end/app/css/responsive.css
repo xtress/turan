@@ -309,6 +309,7 @@
     }    
 
     div.panoram-view{
+        display: inline;
         width: 100%;
     }
 
@@ -382,6 +383,7 @@
         height: 300px;
         margin-right: auto;
         margin-left: auto;
+        display: block;
     }
     
     .gallery{
@@ -466,8 +468,8 @@
 
     .footer-container div.social-links{
         width: 400px;
-        background-color: rgba(63, 14, 54, 0.6);
-        border-radius: 5px 5px 5px 5px;
+        /*background-color: rgba(63, 14, 54, 0.6);*/
+        /*border-radius: 5px 5px 5px 5px;*/
         padding-top: 10px;
         padding-left: 5px;
         padding-right: 5px;
@@ -490,7 +492,7 @@
         margin-bottom: 25px;
     }
     .map img{
-        width: 510px;
+        width: 100%;
         height: 300px;
         margin-right: auto;
         margin-left: auto;
@@ -579,8 +581,8 @@
 
     .footer-container div.social-links{
         width: 400px;
-        background-color: rgba(63, 14, 54, 0.6);
-        border-radius: 5px 5px 5px 5px;
+        /*background-color: rgba(63, 14, 54, 0.6);*/
+        /*border-radius: 5px 5px 5px 5px;*/
         padding-top: 10px;
         padding-left: 5px;
         padding-right: 5px;
