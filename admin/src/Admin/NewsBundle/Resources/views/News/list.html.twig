@@ -1,0 +1,103 @@
+{% extends 'AdminMainBundle:Default:index.html.twig' %}
+
+{%block page_title_h1 %}
+    <h1 style="display: inline">
+        {%trans%}ANB_CATEGORY_DASHBOARD{%endtrans%}
+        <a href="{{ path('admin_news_categories_index') }}" class="btn btn-primary">
+            {%trans%}ANB_BACK{%endtrans%}
+        </a>
+    </h1>
+{%endblock page_title_h1 %}
+
+{% block container %}
+    <br />
+    
+    <table class="table table-bordered table-striped">
+        
+        <thead>
+            
+            <th>
+                {%trans%}ANB_NEWS_ID{%endtrans%}
+            </th>
+            
+            <th>
+                {%trans%}ANB_NEWS_CATEGORYNAME{%endtrans%}
+            </th>
+            
+            <th>
+                {%trans%}ANB_NEWS_TITLE{%endtrans%}
+            </th>
+            
+            <th>
+                {%trans%}ANB_NEWS_CREATOR{%endtrans%}
+            </th>
+            
+            <th>
+                {%trans%}ANB_NEWS_CREATEDAT{%endtrans%}
+            </th>
+            
+            {% if news.modifier != null %}
+                <th>
+                    {%trans%}ANB_NEWS_MODIFIER{%endtrans%}
+                </th>
+
+                <th>
+                    {%trans%}ANB_NEWS_MODIFIEDAT{%endtrans%}
+                </th>
+            {% endif %}
+            
+            <th>
+                {%trans%}ANB_NEWS_ACTIONS{%endtrans%}
+            </th>
+            
+        </thead>
+        
+        <tbody>
+            {% for news in newsList %}
+
+                <tr>
+                    
+                    <td>
+                        {{ news.id }}
+                    </td>
+                    
+                    <td>
+                        {{ news.newsCategories.name }}
+                    </td>
+                    
+                    <td>
+                        {{ news.title }}
+                    </td>
+                    
+                    <td>
+                        {{ news.creator.login }}
+                    </td>
+                    
+                    <td>
+                        {{ news.createdAt | date('Y-m-d H:i:s') }}
+                    </td>
+                    
+                    {% if news.modifier != null %}
+                        <td>
+                            {{ news.modifier.login }}
+                        </td>
+
+                        <td>
+                            {{ news.modifiedAt | date('Y-m-d H:i:s') }}
+                        </td>
+                    {% endif %}
+                    
+                    <td style="display:inline-block">
+                        <a href="{{ path('admin_news_edit', { 'newsID': news.id }) }}" class="btn btn-danger">{%trans%}ANB_NEWS_EDIT{%endtrans%}</a>
+                        <a href="{{ path('admin_news_delete', { 'newsID': news.id }) }}" class="btn btn-inverse">{%trans%}ANB_NEWS_DELETE{%endtrans%}</a>
+                        {#<a href="{{ path('_adminpage_staticpage_preview', { 'id': page.id }) }}" class="btn btn-danger">{%trans%}APB_PAGES_PREVIEW{%endtrans%}</a>#}
+                    </td>
+                    
+                </tr>
+
+            {% endfor %}
+        </tbody>
+        
+    </table>
+    
+{% endblock container %}

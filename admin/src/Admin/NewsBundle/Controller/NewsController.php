@@ -41,28 +41,32 @@ class NewsController extends Controller {
                 
                 try {
                     
-                    $newsCategory = new News();
+                    $news = new News();
 
-                    $newsCategory->setName($data->getName());
+                    $news->setTitle($data->getTitle());
+                    $news->setCreator($user);
+                    $news->setBody($data->getBody());
+                    $news->setIsPublished(true);
+                    $news->setNewsCategories($em->getRepository('Admin\NewsBundle\Entity\NewsCategories')->find($data->getNewsCategories()));
 
-                    $em->persist($newsCategory);
+                    $em->persist($news);
                     $em->flush();
                     
                 } catch(DBALException $e) {
                     
                     var_dump($e->getMessage());
                     $session->getFlashBag()->set('error', $translator->trans('ANB_ERROR_WHILE_CREATING'));
-                    return $this->redirect($this->generateUrl('admin_news_categories_create'));
+                    return $this->redirect($this->generateUrl('admin_news_create'));
                     
                 }
                 
                 $session->getFlashBag()->set('success', $translator->trans('ANB_NEWS_ADDED'));
-                return $this->redirect($this->generateUrl('admin_news_categories_index'));
+                return $this->redirect($this->generateUrl('admin_news_index'));
                 
             } else {
                 
                 $session->getFlashBag()->set('error', $translator->trans('ANB_FORM_NOT_VALID'));
-                return $this->redirect($this->generateUrl('admin_news_categories_create'));
+                return $this->redirect($this->generateUrl('admin_news_create'));
                 
             }
             
@@ -75,22 +79,95 @@ class NewsController extends Controller {
     
     public function deleteAction(Request $request, $newsID)
     {
+        $em = $this->getDoctrine()->getManager();
+        $newsRepo = $em->getRepository(self::newsClass);
+        $session    = $this->get('session');
+        $translator = $this->get('translator');
+        $news = $newsRepo->find($newsID);
         
+        try {
+            
+            $em->remove($news);
+            $em->flush();
+            
+        } catch (DBALException $e) {
+                    
+            var_dump($e->getMessage());
+            $session->getFlashBag()->set('error', $translator->trans('ANB_ERROR_WHILE_DELETING'));
+            return $this->redirect($this->generateUrl('admin_news_list'));
+            
+        }
+        
+        $session->getFlashBag()->set('success', $translator->trans('ANB_NEWS_DELETED'));
+        return $this->redirect($this->generateUrl('admin_news_list'));
     }
     
     public function editAction(Request $request, $newsID)
     {
+        $em = $this->getDoctrine()->getManager();
+        $repo = $em->getRepository(self::newsClass);
+        $news = $repo->find($newsID);
+        $form       = $this->createForm(new NewsType(), $news);
         
+        return $this->render('AdminNewsBundle:News:edit.html.twig', array(
+            'form' => $form->createView(),
+            'newsID' => $news->getId(),
+        ));
     }
     
     public function saveAction(Request $request, $newsID)
     {
+        $user = $this->get('security.context')->getToken()->getUser();
+        $request    = $this->getRequest();
+        $form       = $this->createForm(new NewsType());
+        $em         = $this->getDoctrine()->getManager();
+        $session    = $this->get('session');
+        $translator = $this->get('translator');
         
+        $form->handleRequest($request);
+        
+        if ($form->isValid()) {
+            
+            try {
+                
+                $data = $form->getData();
+                
+                $news = $em->getRepository(self::newsClass)->find($newsID);
+
+                $news->setBody($data->getBody());
+                
+                $em->persist($news);
+                $em->flush();
+                
+            } catch(DBALException $e) {
+                    
+                var_dump($e->getMessage());
+                $session->getFlashBag()->set('error', $translator->trans('ANB_ERROR_WHILE_EDITING'));
+                return $this->redirect($this->generateUrl('admin_news_edit'));
+                
+            }
+                
+            $session->getFlashBag()->set('success', $translator->trans('ANB_NEWS_SAVED'));
+            return $this->redirect($this->generateUrl('admin_news_list'));
+            
+        } else {
+
+            $session->getFlashBag()->set('error', $translator->trans('ANB_FORM_NOT_VALID'));
+            return $this->redirect($this->generateUrl('admin_news_edit'));
+
+        }
     }
     
     public function listAction(Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
+        $repo = $em->getRepository(self::newsClass);
         
+        $newsList = $repo->getNews();
+        
+        return $this->render('AdminNewsBundle:News:list.html.twig', array(
+            'newsList' => $newsList,
+        ));
     }
     
 }

@@ -95,7 +95,7 @@ class NewsCategoriesController extends Controller {
             
         }
         
-        $session->getFlashBag()->set('success', $translator->trans('APB_STATICPAGE_DELETED'));
+        $session->getFlashBag()->set('success', $translator->trans('ANB_NEWSCATEGORY_DELETED'));
         return $this->redirect($this->generateUrl('admin_news_categories_list'));
     }
     
