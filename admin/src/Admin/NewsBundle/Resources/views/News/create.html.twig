@@ -1,0 +1,27 @@
+{% extends 'AdminMainBundle:Default:index.html.twig' %}
+
+{%block page_title_h1 %}
+    <h1 style="display: inline">
+        {%trans%}ANB_NEWS_DASHBOARD{%endtrans%}
+        <a href="{{ path('admin_news_index') }}" class="btn btn-primary">
+            {%trans%}ANB_BACK{%endtrans%}
+        </a>
+    </h1>
+{%endblock page_title_h1 %}
+
+{% block container %}
+    
+    <br />
+    
+    <form action="{{ path('admin_news_create') }}" method="POST" {{ form_enctype(form) }} >
+        {{ form_errors(form) }}
+                
+        {{ form_widget(form) }}
+                    
+        {{ form_rest(form) }}
+            
+        <input type="submit" value="{%trans%}ANB_SAVE{%endtrans%}" class="btn btn-success">
+        
+    </form>
+    
+{% endblock container %}

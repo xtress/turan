@@ -1,0 +1,59 @@
+{% extends 'AdminMainBundle:Default:index.html.twig' %}
+
+{%block page_title_h1 %}
+    <h1 style="display: inline">
+        {%trans%}ANB_CATEGORY_DASHBOARD{%endtrans%}
+        <a href="{{ path('admin_news_categories_index') }}" class="btn btn-primary">
+            {%trans%}ANB_BACK{%endtrans%}
+        </a>
+    </h1>
+{%endblock page_title_h1 %}
+
+{% block container %}
+    <br />
+    
+    <table class="table table-bordered table-striped">
+        
+        <thead>
+            
+            <th>
+                {%trans%}ANB_CATEGORY_ID{%endtrans%}
+            </th>
+            
+            <th>
+                {%trans%}ANB_CATEGORY_NAME{%endtrans%}
+            </th>
+            
+            <th>
+                {%trans%}ANB_CATEGORY_ACTIONS{%endtrans%}
+            </th>
+            
+        </thead>
+        
+        <tbody>
+            {% for cat in categories %}
+
+                <tr>
+                    
+                    <td>
+                        {{ cat.id }}
+                    </td>
+                    
+                    <td>
+                        {{ cat.name }}
+                    </td>
+                    
+                    <td style="display:inline-block">
+                        <a href="{{ path('admin_news_categories_edit', { 'categoryID': cat.id }) }}" class="btn btn-danger">{%trans%}ANB_CATEGORY_EDIT{%endtrans%}</a>
+                        <a href="{{ path('admin_news_categories_delete', { 'categoryID': cat.id }) }}" class="btn btn-inverse">{%trans%}ANB_CATEGORY_DELETE{%endtrans%}</a>
+                        {#<a href="{{ path('_adminpage_staticpage_preview', { 'id': page.id }) }}" class="btn btn-danger">{%trans%}APB_PAGES_PREVIEW{%endtrans%}</a>#}
+                    </td>
+                    
+                </tr>
+
+            {% endfor %}
+        </tbody>
+        
+    </table>
+    
+{% endblock container %}

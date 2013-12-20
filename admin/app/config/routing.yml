@@ -1,3 +1,7 @@
+admin_news:
+    resource: "@AdminNewsBundle/Resources/config/routing.yml"
+    prefix:   /admin/news
+
 api_main:
     resource: "@APIMainBundle/Resources/config/routing.yml"
     prefix:   /api
