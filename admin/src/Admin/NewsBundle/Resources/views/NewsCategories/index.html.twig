@@ -1,0 +1,33 @@
+{% extends 'AdminMainBundle:Default:index.html.twig' %}
+
+{%block page_title_h1 %}
+    <h1 style="display: inline">
+        {%trans%}ANB_NEWSCATEGORIES_DASHBOARD{%endtrans%}
+        <a href="{{ path('admin_news_homepage') }}" class="btn btn-primary">
+            {%trans%}ANB_BACK{%endtrans%}
+        </a>
+    </h1>
+{%endblock page_title_h1 %}
+
+{% block container %}
+    
+    
+    <div class="bundle_panel">
+
+        <div class="bundle_item">
+            <a title="{{ 'ANB_NEWSCATEGORIES_LIST' | trans }}" href="{{path ('admin_news_categories_list')}}">
+                <img src="{{asset("img_admin/icon-48-user.png")}}" alt=""><br>
+                <span>{{ 'ANB_NEWSCATEGORIES_LIST' | trans }}</span>
+            </a>
+        </div>
+
+        <div class="bundle_item">
+            <a title="{{ 'ANB_NEWSCATEGORIES_CREATE' | trans }}" href="{{path ('admin_news_categories_create')}}">
+                <img src="{{asset("img_admin/icon-48-article.png")}}" alt=""><br>
+                <span>{{ 'ANB_NEWSCATEGORIES_CREATE' | trans }}</span>
+            </a>
+        </div>
+
+    </div>
+    
+{% endblock container %}
