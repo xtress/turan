@@ -11,7 +11,7 @@
 
 {% block container %}
     <br />
-    {% if news is defined and news != null %}
+    {% if newsList is defined and newsList != null %}
         <table class="table table-bordered table-striped">
 
             <thead>
@@ -35,16 +35,14 @@
                 <th>
                     {%trans%}ANB_NEWS_CREATEDAT{%endtrans%}
                 </th>
+                
+                <th>
+                    {%trans%}ANB_NEWS_MODIFIER{%endtrans%}
+                </th>
 
-                {% if news.modifier != null %}
-                    <th>
-                        {%trans%}ANB_NEWS_MODIFIER{%endtrans%}
-                    </th>
-
-                    <th>
-                        {%trans%}ANB_NEWS_MODIFIEDAT{%endtrans%}
-                    </th>
-                {% endif %}
+                <th>
+                    {%trans%}ANB_NEWS_MODIFIEDAT{%endtrans%}
+                </th>
 
                 <th>
                     {%trans%}ANB_NEWS_ACTIONS{%endtrans%}
@@ -77,15 +75,18 @@
                             {{ news.createdAt | date('Y-m-d H:i:s') }}
                         </td>
 
-                        {% if news.modifier != null %}
-                            <td>
+                        <td>
+                            {% if news.modifier != null %}
                                 {{ news.modifier.login }}
-                            </td>
+                            {% endif %}
+                        </td>
 
-                            <td>
+                        <td>
+
+                            {% if news.modifier != null %}
                                 {{ news.modifiedAt | date('Y-m-d H:i:s') }}
-                            </td>
-                        {% endif %}
+                            {% endif %}
+                        </td>
 
                         <td style="display:inline-block">
                             <a href="{{ path('admin_news_edit', { 'newsID': news.id }) }}" class="btn btn-danger">{%trans%}ANB_NEWS_EDIT{%endtrans%}</a>

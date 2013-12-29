@@ -20,12 +20,12 @@ config.language = globalLanguage;
 
 config.removePlugins = 'contextmenu';
 extraPlugins:'spoiler';
-config.filebrowserBrowseUrl = '/../js/ckeditor/plugins/kcfinder/browse.php?type=files';
-config.filebrowserImageBrowseUrl = '/../js/ckeditor/plugins/kcfinder/browse.php?type=images';
-config.filebrowserFlashBrowseUrl = '/../js/ckeditor/plugins/kcfinder/browse.php?type=flash';
-config.filebrowserUploadUrl = '/../js/ckeditor/plugins/kcfinder/upload.php?type=files';
-config.filebrowserImageUploadUrl = '/../js/ckeditor/plugins/kcfinder/upload.php?type=images';
-config.filebrowserFlashUploadUrl = '/../js/ckeditor/plugins/kcfinder/upload.php?type=flash';
+config.filebrowserBrowseUrl = '../../../js/ckeditor/plugins/kcfinder/browse.php?type=files';
+config.filebrowserImageBrowseUrl = '../../../js/ckeditor/plugins/kcfinder/browse.php?type=images';
+config.filebrowserFlashBrowseUrl = '../../../js/ckeditor/plugins/kcfinder/browse.php?type=flash';
+config.filebrowserUploadUrl = '../../../js/ckeditor/plugins/kcfinder/upload.php?type=files';
+config.filebrowserImageUploadUrl = '../../../js/ckeditor/plugins/kcfinder/upload.php?type=images';
+config.filebrowserFlashUploadUrl = '../../../js/ckeditor/plugins/kcfinder/upload.php?type=flash';
 
 CKEDITOR.on( 'dialogDefinition', function( ev )
    {
@@ -107,43 +107,4 @@ CKEDITOR.on( 'dialogDefinition', function( ev )
 		{ name: 'colors', items: ['TextColor','BGColor'] },
 		{ name: 'tools', items: ['Maximize','ShowBlocks','-','About'] },
 	];
-	
-//config.toolbar = 'Omlook';
- 
-	config.toolbar_Omlook =
-	[
-		{ name: 'document', items : [ 'Preview' ] },
-		{ name: 'clipboard', items : [ 'Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo' ] },
-		{ name: 'editing', items : [ 'Replace','-','SelectAll' ] },		
-		{ name: 'links', items: ['Link','Unlink'] },
-
-	];
-//config.toolbar = 'NewAd';
- 
-	config.toolbar_NewAd =
-	[
-		{ name: 'clipboard', items: ['Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo'] },
-		{ name: 'editing', items: ['Replace','-','SelectAll'] },
-                { name: 'insert', items: ['Table'] },
-                { name: 'styles', items: ['Font','FontSize'] },
-		'/',
-		{ name: 'basicstyles', items: ['Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat'] },
-		{ name: 'paragraph', items: ['NumberedList','BulletedList','-','Outdent','Indent','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'] },		
-		{ name: 'links', items: ['Link','Unlink'] },
-	];
 };
-
-
-//This is an example of creating a new toolbar
-//CKEDITOR.editorConfig = function( config )
-//{
-//	config.toolbar = 'Omlook';
-// 
-//	config.toolbar_Omlook =
-//	[
-//		{ name: 'document', items : [ 'NewPage','Preview' ] },
-//		{ name: 'clipboard', items : [ 'Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo' ] },
-//		{ name: 'editing', items : [ 'Find','Replace','-','SelectAll','-','Scayt' ] },
-//
-//	];
-//};

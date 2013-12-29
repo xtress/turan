@@ -17,6 +17,13 @@ ANB_NEWS_MODIFIEDAT: Отредактирована
 ANB_NEWS_ACTIONS: Действия
 ANB_NEWS_EDIT: Редактировать
 ANB_NEWS_DELETE: Удалить
+ANB_ERROR_WHILE_CREATING: Произошла ошибка при создании. Пожалуйста, повторите еще раз!
+ANB_NEWS_ADDED: Новость успешно добавлена!
+ANB_FORM_NOT_VALID: Форма не валидна. Пожалуйста, повторите еще раз!
+ANB_ERROR_WHILE_DELETING: Произошла ощибка при удалении. Пожалуйста, повторите еще раз!
+ANB_NEWS_DELETED: Новость успешно удалена!
+ANB_ERROR_WHILE_EDITING: Произошла ошибка при сохранении. Пожалуйста, повторите еще раз!
+ANB_NEWS_SAVED: Новость успешно сохранена!
 
 ANB_NEWSCATEGORIES_DASHBOARD: Панель управления категориями новостей
 ANB_NEWSCATEGORIES_LIST: Список категорий
@@ -28,3 +35,6 @@ ANB_CATEGORY_NAME: Название
 ANB_CATEGORY_ACTIONS: Действия
 ANB_CATEGORY_EDIT: Редактировать
 ANB_CATEGORY_DELETE: Удалить
+ANB_NEWSCATEGORY_ADDED: Новостная категория успешно добавлена!
+ANB_NEWSCATEGORY_DELETED: Новостная категория успешно удалена!
+ANB_NEWSCATEGORY_SAVED: Новостная категория успещно сохранена!

@@ -281,4 +281,9 @@ class News
     {
         return $this->newsCategories;
     }
+    
+    public function __toArray()
+    {
+        return array("title" => $this->title, "content" => $this->body);
+    }
 }

@@ -30,7 +30,7 @@
     
     <br />
     
-    <form action="{{ path('admin_news_create') }}" method="POST" {{ form_enctype(form) }} >
+    <form action="{{ path('admin_news_create') }}" method="POST" {{ form_enctype(form) }} novalidate="true" >
         {{ form_errors(form) }}
                 
         {{ form_widget(form) }}

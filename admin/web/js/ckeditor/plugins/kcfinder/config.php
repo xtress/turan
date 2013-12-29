@@ -15,7 +15,7 @@
 // IMPORTANT!!! Do not remove uncommented settings in this file even if
 // you are using session configuration.
 // See http://kcfinder.sunhater.com/install for setting descriptions
-
+//var_dump(getcwd()."/../../../../uploads/infopage/");exit;
 $_CONFIG = array(
 
     'disabled' => false,
@@ -25,7 +25,7 @@ $_CONFIG = array(
 
     'theme' => "oxygen",
 
-    'uploadURL' => "../../../../uploads/infopage/",
+    'uploadURL' => "../../../../../../front-end/app/content/files",
     'uploadDir' => "",
 
     'dirPerms' => 0755,

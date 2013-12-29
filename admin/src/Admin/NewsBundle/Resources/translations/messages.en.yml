@@ -17,6 +17,14 @@ ANB_NEWS_MODIFIEDAT: Modified at
 ANB_NEWS_ACTIONS: Actions
 ANB_NEWS_EDIT: Edit
 ANB_NEWS_DELETE: Delete
+ANB_ERROR_WHILE_CREATING: There was an error while creating. Please, do it again!
+ANB_NEWS_ADDED: News succesfully created!
+ANB_FORM_NOT_VALID: Form is not valid. Please, send it again!
+ANB_ERROR_WHILE_DELETING: There was an error while deleting. Please, do it again!
+ANB_NEWS_DELETED: News succesfully deleted!
+ANB_ERROR_WHILE_EDITING: There was an error while editing. Please, do it again!
+ANB_NEWS_SAVED: News succesfully saved!
+
 
 ANB_NEWSCATEGORIES_DASHBOARD: News categories Dashboard
 ANB_NEWSCATEGORIES_LIST: News categories list
@@ -28,3 +36,6 @@ ANB_CATEGORY_NAME: Name
 ANB_CATEGORY_ACTIONS: Actions
 ANB_CATEGORY_EDIT: Edit
 ANB_CATEGORY_DELETE: Delete
+ANB_NEWSCATEGORY_ADDED: News category succesfully added!
+ANB_NEWSCATEGORY_DELETED: News category succesfully deleted!
+ANB_NEWSCATEGORY_SAVED: News category succesfully saved!

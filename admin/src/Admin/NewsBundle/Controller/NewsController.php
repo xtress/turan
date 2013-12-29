@@ -45,16 +45,19 @@ class NewsController extends Controller {
 
                     $news->setTitle($data->getTitle());
                     $news->setCreator($user);
+                    $news->setCreatedAt(new \DateTime());
                     $news->setBody($data->getBody());
                     $news->setIsPublished(true);
-                    $news->setNewsCategories($em->getRepository('Admin\NewsBundle\Entity\NewsCategories')->find($data->getNewsCategories()));
+                    $news->setNewsCategories($em->getRepository('Admin\NewsBundle\Entity\NewsCategories')->find($data->getNewsCategories()->getId()));
 
                     $em->persist($news);
                     $em->flush();
                     
+                    $this->generateJSON($news);
+                    
                 } catch(DBALException $e) {
                     
-                    var_dump($e->getMessage());
+                    var_dump($e->getMessage());exit;
                     $session->getFlashBag()->set('error', $translator->trans('ANB_ERROR_WHILE_CREATING'));
                     return $this->redirect($this->generateUrl('admin_news_create'));
                     
@@ -139,6 +142,8 @@ class NewsController extends Controller {
                 $em->persist($news);
                 $em->flush();
                 
+                $this->generateJSON($news);
+                
             } catch(DBALException $e) {
                     
                 var_dump($e->getMessage());
@@ -168,6 +173,40 @@ class NewsController extends Controller {
         return $this->render('AdminNewsBundle:News:list.html.twig', array(
             'newsList' => $newsList,
         ));
+    }
+    
+    private function generateJSON(\Admin\NewsBundle\Entity\News $news)
+    {
+        $repo = $this->getDoctrine()->getEntityManager()->getRepository('\Admin\NewsBundle\Entity\News');
+        
+        $newsArray = $news->__toArray();
+        $newsIterator = $repo->getNewsIterator();
+        
+        for ($i = 1; $i <= count($newsIterator); $i++) {
+            
+            if ($newsIterator[$i]['id'] == $news->getId()) {
+                
+                $currentEl = $newsIterator[$i];
+                $currentPos = $i;
+                
+            }
+            
+        }
+        
+        if ($currentPos != 1)
+            $newsArray["previous"] = "#/news/".$newsIterator[$currentPos - 1]['id'];
+        else
+            $newsArray["previous"] = "#/news/".$newsIterator[$currentPos]['id'];
+        
+        if ( $currentPos != count($newsIterator) )
+            $newsArray["next"] = "#/news/".$newsIterator[$currentPos + 1]['id'];
+        else
+            $newsArray["next"] = "#/news/".$newsIterator[$currentPos]['id'];
+        
+        $newsArray["page"] = $currentPos."/".count($newsIterator);
+        
+//        var_dump($newsArray);exit;
+        file_put_contents(getcwd()."/../../front-end/app/content/news/".$news->getId().".json", json_encode($newsArray, JSON_UNESCAPED_SLASHES), LOCK_EX);
     }
     
 }

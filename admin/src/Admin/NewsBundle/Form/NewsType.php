@@ -17,7 +17,7 @@ class NewsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('newsCategory', 'entity', array(
+            ->add('newsCategories', 'entity', array(
                 'class' => 'Admin\NewsBundle\Entity\NewsCategories',
                 'property' => 'name',
                 'query_builder' => function(EntityRepository $er) {
