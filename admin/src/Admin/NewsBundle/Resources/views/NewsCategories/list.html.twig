@@ -43,7 +43,7 @@
                         {{ cat.name }}
                     </td>
                     
-                    <td style="display:inline-block">
+                    <td>
                         <a href="{{ path('admin_news_categories_edit', { 'categoryID': cat.id }) }}" class="btn btn-danger">{%trans%}ANB_CATEGORY_EDIT{%endtrans%}</a>
                         <a href="{{ path('admin_news_categories_delete', { 'categoryID': cat.id }) }}" class="btn btn-inverse">{%trans%}ANB_CATEGORY_DELETE{%endtrans%}</a>
                         {#<a href="{{ path('_adminpage_staticpage_preview', { 'id': page.id }) }}" class="btn btn-danger">{%trans%}APB_PAGES_PREVIEW{%endtrans%}</a>#}
