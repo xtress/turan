@@ -1,0 +1,30 @@
+ANB_NEWS_DASHBOARD: Панель управления новостями
+ANB_BACK: Назад
+ANB_NEWS_MANAGEMENT: Управление новостями
+ANB_NEWSCATEGORIES_MANAGEMENT: Управление категориями новостей
+ANB_SAVE: Сохранить
+ANB_NEWS_LIST: Список новостей
+ANB_NEWS_CREATE: Создать новость
+
+
+ANB_NEWS_ID: ID
+ANB_NEWS_CATEGORYNAME: Категория
+ANB_NEWS_TITLE: Название
+ANB_NEWS_CREATOR: Создатель
+ANB_NEWS_CREATEDAT: Создана
+ANB_NEWS_MODIFIER: Редактор
+ANB_NEWS_MODIFIEDAT: Отредактирована
+ANB_NEWS_ACTIONS: Действия
+ANB_NEWS_EDIT: Редактировать
+ANB_NEWS_DELETE: Удалить
+
+ANB_NEWSCATEGORIES_DASHBOARD: Панель управления категориями новостей
+ANB_NEWSCATEGORIES_LIST: Список категорий
+ANB_NEWSCATEGORIES_CREATE: Создать категорию
+
+
+ANB_CATEGORY_ID: ID
+ANB_CATEGORY_NAME: Название
+ANB_CATEGORY_ACTIONS: Действия
+ANB_CATEGORY_EDIT: Редактировать
+ANB_CATEGORY_DELETE: Удалить

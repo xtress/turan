@@ -101,14 +101,11 @@
         }
     </style>
     <script type="text/javascript">
-        {% if app.request.locale == 'en_US' %}
+        {% if app.request.locale == 'en' %}
             var globalLanguage = 'en';
         {% endif %}
-        {% if app.request.locale == 'ru_RU' %}
+        {% if app.request.locale == 'ru' %}
             var globalLanguage = 'ru';
-        {% endif %}
-        {% if app.request.locale == 'cn' %}
-            var globalLanguage = 'zh-cn';
         {% endif %}
     </script>
 
@@ -123,11 +120,6 @@
     <script src="{{asset("js/jquery-1.10.2.min.js")}}"></script>   
     <script src="{{asset("js/jquery-migrate-1.2.1.min.js")}}"></script>   
     <script src="{{asset("bootstrap/js/bootstrap.js")}}"></script>
-    {#<link  href="{{asset('jquery/jquery-ui/css/redmond/jquery-ui-1.8.18.custom.css')}}" rel="stylesheet">
-    <script src="{{asset("jquery/jquery-ui/js/jquery-1.7.1.min.js")}}"></script>   
-    <script src="{{asset("jquery/jquery-ui/js/jquery-ui-1.8.18.custom.min.js")}}"></script>   #}
-    {#<script src="{{ asset('bootstrap/js/select2-release-3.2/select2.min.js') }}"></script>
-    <link href="{{ asset('bootstrap/js/select2-release-3.2/select2.css') }}" rel="stylesheet"/>#}
   </head>
 
   <body>
@@ -144,25 +136,6 @@
             <ul class="nav">
             {%block nav %}  
                            <li><a href="{{path ('_admin_main_homepage')}}">{%trans%}AMB_DASHBOARD_TITLE{%endtrans%}</a></li>
-                           {#<li><a href="{{path ('admin_deal_dashboard')}}">Deal</a></li>
-                           <li><a href="{{path ('admin_news_dashboard')}}">News</a></li>
-                           <li><a href="{{path ('OmlookAdminOrdersBundle_indexpage')}}">Orders</a></li>
-                           <li class="dropdown">
-                           <a href="" class="dropdown-toggle" data-toggle="dropdown">Users<b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                             <li><a href="{{path ('admin_users_dashboard')}}">User dashboard</a></li>
-                             <li><a href="{{path ('admin_users_list')}}">User List</a></li>                            
-                            </ul>  
-             		  </li>#}
-             		  
-             		  {#<li class="dropdown">
-                           <a href="" class="dropdown-toggle" data-toggle="dropdown"><img class="flag" src="{{ asset('omlook/img/'~app.session.getLocale()~'.png') }}" border="0"/> LANGUAGE<b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                     <li><a href="{{path ('OmlookConfigBundle_setLocale', {'locale':'ru'})}}" title="{%trans%}UB_LANG_RU{%endtrans%}">{%trans%}UB_LANG_MIN_RU{%endtrans%}&nbsp;&nbsp;&nbsp;<img class="flag" title="Russian" src="{{ asset('omlook/img/ru.png') }}" border="0"/>&nbsp;&nbsp;&nbsp;{%trans%}UB_LANG_RU{%endtrans%}</a></li>
-                                     <li><a href="{{path ('OmlookConfigBundle_setLocale', {'locale':'en'})}}" title="{%trans%}UB_LANG_EN{%endtrans%}">{%trans%}UB_LANG_MIN_EN{%endtrans%}&nbsp;&nbsp;&nbsp;<img class="flag" title="English" src="{{ asset('omlook/img/en.png') }}" border="0"/>&nbsp;&nbsp;&nbsp;{%trans%}UB_LANG_EN{%endtrans%}</a> </li>
-                                     <li><a href="{{path ('OmlookConfigBundle_setLocale', {'locale':'cn'})}}" title="{%trans%}UB_LANG_CN{%endtrans%}">{%trans%}UB_LANG_MIN_CN{%endtrans%}&nbsp;&nbsp;&nbsp;<img class="flag" title="China" src="{{ asset('omlook/img/cn.png') }}" border="0"/>&nbsp;&nbsp;&nbsp;{%trans%}UB_LANG_CN{%endtrans%}</a> </li>  
-                            </ul>  
-             		  </li>#}
                            <li><a href="{{ path('logout') }}">{%trans%}AMB_LOGOUT{%endtrans%}</a></li>
               {%endblock nav%}
             </ul>
@@ -215,32 +188,11 @@
             </div>
 
             <div class="bundle_item">
-                <a title="{{ 'AB_NEWS_MANAGER' | trans }}" href="{{path ('admin_news_homepage')}}">
+                <a title="{{ 'AMB_NEWS_MANAGER' | trans }}" href="{{path ('admin_news_homepage')}}">
                     <img src="{{asset("img_admin/icon-48-article.png")}}" alt=""><br>
-                    <span>{{ 'AB_NEWS_MANAGER' | trans }}</span>
+                    <span>{{ 'AMB_NEWS_MANAGER' | trans }}</span>
                 </a>
             </div>
-            
-            {#<div class="bundle_item">
-                <a title="{{ 'AB_TRANSLATIONS_MANAGER' | trans }}" href="{{path ('admin_deal_dashboard')}}">
-                    <img src="{{asset("img_admin/icon-48-deals.png")}}" alt=""><br>
-                    <span>{{ 'AB_TRANSLATIONS_MANAGER' | trans }}</span>
-                </a>
-            </div>
-            
-            <div class="bundle_item">
-                <a title="{{ 'AB_LOG_MANAGER' | trans }}" href="{{path ('admin_deal_dashboard')}}">
-                    <img src="{{asset("img_admin/icon-48-deals.png")}}" alt=""><br>
-                    <span>{{ 'AB_LOG_MANAGER' | trans }}</span>
-                </a>
-            </div>
-            
-            <div class="bundle_item">
-                <a title="{{ 'AB_ORDERS_MANAGER' | trans }}" href="{{path ('admin_deal_dashboard')}}">
-                    <img src="{{asset("img_admin/icon-48-deals.png")}}" alt=""><br>
-                    <span>{{ 'AB_ORDERS_MANAGER' | trans }}</span>
-                </a>
-            </div>#}
 
       </div>
 

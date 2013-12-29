@@ -12,6 +12,7 @@ class SecurityController extends Controller
         $request = $this->getRequest();
         $session = $request->getSession();
         $request->setLocale('ru');
+        $session->set('_locale', 'ru');
 
         // get the login error if there is one
         if ($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {

@@ -10,6 +10,7 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
+        $this->getRequest()->setLocale('ru_RU');
         if (false === $this->get('security.context')->isGranted('ROLE_SUPER_ADMIN')) {
             throw new AccessDeniedException();
         }

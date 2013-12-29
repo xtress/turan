@@ -24,6 +24,7 @@ AMB_ERROR_WHILE_UPDATING: Error while updating administrator info
 AMB_SUCESFULLY_UPDATED: Administrator info succesfully updated
 
 AMB_PAGE_MANAGER:  Static Page Management
+AMB_NEWS_MANAGER: News Management
 
 #common
 AMB_BACK: Back

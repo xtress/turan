@@ -24,6 +24,7 @@ AMB_ERROR_WHILE_UPDATING: Ошибка при обновлении данных 
 AMB_SUCESFULLY_UPDATED: Данные администратора успешно обновлены
 
 AMB_PAGE_MANAGER:  Управление статическими страницами
+AMB_NEWS_MANAGER: Управление новостями
 
 #common
 AMB_BACK: Назад

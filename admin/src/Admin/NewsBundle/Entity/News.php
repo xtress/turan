@@ -59,7 +59,7 @@ class News
     /**
      * @var \Admin
      *
-     * @ORM\ManyToOne(targetEntity="Admin")
+     * @ORM\ManyToOne(targetEntity="Admin\MainBundle\Entity\Admin")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="creator", referencedColumnName="id")
      * })
@@ -69,7 +69,7 @@ class News
     /**
      * @var \Admin
      *
-     * @ORM\ManyToOne(targetEntity="Admin")
+     * @ORM\ManyToOne(targetEntity="Admin\MainBundle\Entity\Admin")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="modifier", referencedColumnName="id")
      * })
@@ -216,10 +216,10 @@ class News
     /**
      * Set creator
      *
-     * @param \Admin\NewsBundle\Entity\Admin $creator
+     * @param \Admin\MainBundle\Entity\Admin $creator
      * @return News
      */
-    public function setCreator(\Admin\NewsBundle\Entity\Admin $creator = null)
+    public function setCreator(\Admin\MainBundle\Entity\Admin $creator = null)
     {
         $this->creator = $creator;
     
@@ -229,7 +229,7 @@ class News
     /**
      * Get creator
      *
-     * @return \Admin\NewsBundle\Entity\Admin 
+     * @return \Admin\MainBundle\Entity\Admin 
      */
     public function getCreator()
     {
@@ -239,10 +239,10 @@ class News
     /**
      * Set modifier
      *
-     * @param \Admin\NewsBundle\Entity\Admin $modifier
+     * @param \Admin\MainBundle\Entity\Admin $modifier
      * @return News
      */
-    public function setModifier(\Admin\NewsBundle\Entity\Admin $modifier = null)
+    public function setModifier(\Admin\MainBundle\Entity\Admin $modifier = null)
     {
         $this->modifier = $modifier;
     
@@ -252,7 +252,7 @@ class News
     /**
      * Get modifier
      *
-     * @return \Admin\NewsBundle\Entity\Admin 
+     * @return \Admin\MainBundle\Entity\Admin 
      */
     public function getModifier()
     {

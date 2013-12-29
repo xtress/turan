@@ -36,7 +36,7 @@ security:
                 always_use_default_target_path: false
             logout:
                 path:   /admin/logout
-                invalidate_session: true
+                invalidate_session: false
                 target: /login
                 handlers: [ logout.handler ]
             #anonymous: ~
