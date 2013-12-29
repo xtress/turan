@@ -69,7 +69,7 @@ var mainJs = {
 				}
     		});
     		$('.btn-login').animate({
-	  			right: "0px",
+	  			right: "0px"
 	  		},500);
   			
   		}
@@ -80,7 +80,23 @@ var mainJs = {
 
     },
     changePanoranView: function(className, url){
+      var urlsIMG = {
+          1: 'asset/images/1.jpg',
+          3: 'asset/images/3.jpg',
+          4: 'asset/images/4.jpg'
+      };
+      var urlsIframe = {
+          1: 'asset/pizza.html',
+          3: 'asset/restorant.html',
+          4: 'asset/banket.html'
+      };
       var $iframe = $('.' + className);
-      $iframe.attr('src', url);
+      console.log( urlsIMG[url]);
+      if ( $('iframe.main-panoram-view').css('display') !== 'none'){
+          $iframe.attr('src', urlsIframe[url]);
+      }else{
+          $iframe.attr('src', urlsIMG[url]);
+      }
+
     }
 }

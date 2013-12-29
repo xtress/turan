@@ -44,6 +44,13 @@
    Mobile styles
    ========================================================================== */
 @media only screen and (min-width : 0px) and (max-width : 480px), only screen and (min-device-width : 0px) and (max-device-width : 480px){
+    .rounded iframe{
+        display: none;
+        visibility: hidden;
+        width: 0px;
+        height: 0px;
+    }
+
     .left, .center, .right{
         display: block;
     }
@@ -178,7 +185,13 @@
 
 /*Phones landscape and Tablets portrait*/
 @media only screen and (min-width : 481px) and (max-width : 768px){
-    
+    .rounded iframe{
+        display: none;
+        visibility: hidden;
+        width: 0px;
+        height: 0px;
+    }
+
     .left, .center, .right {
         display: inline;
         float: left;
@@ -316,6 +329,12 @@
 }
 /* Desctop and Tablets landscape */
 @media only screen and (min-width : 769px) and (max-width : 1124px){
+    .rounded iframe{
+        display: none;
+        visibility: hidden;
+        width: 0px;
+        height: 0px;
+    }
 
     nav{
         width: 0px;
@@ -483,6 +502,15 @@
 /* Desktops and laptops ----------- */
 @media only screen and (min-width : 1125px){
 /* Styles */
+    iframe.main-panoram-view{
+        width: 100%;
+    }
+    img.main-panoram-view{
+        display: none;
+        visibility: hidden;
+        width: 0px;
+        height: 0px;
+    }
 
     .map{
         float: left;
