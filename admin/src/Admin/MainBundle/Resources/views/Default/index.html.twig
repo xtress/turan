@@ -19,7 +19,7 @@
             padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
         }
 
-        
+
         .bundle_panel .bundle_item {
             text-align: center;
             margin-top: 5px;
@@ -33,13 +33,13 @@
             margin-bottom: 15px;
 
         }
-      
+
         .bundle_panel .bundle_item a {
             background-color: #fff;
             background-position: -30px;
             display: block;
             float: left;
-            height: 97px;
+            height: auto;
             width: 108px;
             color: #565656;
             vertical-align: middle;
@@ -50,40 +50,48 @@
             -moz-border-radius: 5px;
             border-radius: 5px;
             -webkit-transition-property:
-                    background-position,
-                    -webkit-border-bottom-left-radius,
-                    -webkit-box-shadow;
+                background-position,
+                -webkit-border-bottom-left-radius,
+                -webkit-box-shadow;
             -moz-transition-property:
-                    background-position,
-                    -moz-border-radius-bottomleft,
-                    -moz-box-shadow;
+                background-position,
+                -moz-border-radius-bottomleft,
+                -moz-box-shadow;
             -webkit-transition-duration: 0.8s;
             -moz-transition-duration: 0.8s;
+            word-wrap: break-word;
+            padding-bottom: 5px;
         }
-        
+
+        .bundle_panel .bundle_item a span{
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+
         .bundle_panel .bundle_item img{
             margin-top: 15px;
         }
-      
+
         .bundle_panel .bundle_item a:hover,
         .bundle_panel .bundle_item a:focus,
         .bundle_panel .bundle_item a:active,
         .bundle_panel .bundle_item a:hover,
         .bundle_panel .bundle_item a:focus,
         .bundle_panel .bundle_item a:active {
-                background-position: 0;
-                -webkit-border-bottom-left-radius: 50% 20px;
-                -moz-border-radius-bottomleft: 50% 20px;
-                border-bottom-left-radius: 50% 20px;
-                -webkit-box-shadow: -5px 10px 15px rgba(0, 0, 0, 0.25);
-                -moz-box-shadow: -5px 10px 15px rgba(0, 0, 0, 0.25);
-                box-shadow: -5px 10px 15px rgba(0, 0, 0, 0.25);
-                position: relative;
-                z-index: 10;
+            background-position: 0;
+            -webkit-border-bottom-left-radius: 50% 20px;
+            -moz-border-radius-bottomleft: 50% 20px;
+            border-bottom-left-radius: 50% 20px;
+            -webkit-box-shadow: -5px 10px 15px rgba(0, 0, 0, 0.25);
+            -moz-box-shadow: -5px 10px 15px rgba(0, 0, 0, 0.25);
+            box-shadow: -5px 10px 15px rgba(0, 0, 0, 0.25);
+            position: relative;
+            z-index: 10;
         }
 
         .bundle_panel{
-         background-color: #ff0000;
+            background-color: #ff0000;
         }
 
         span.error {
@@ -91,7 +99,7 @@
             color: #880000;
             font-weight: bold;
         }
-        
+
         #admin_edit_blog_form_title {
             width: 550px;
         }
