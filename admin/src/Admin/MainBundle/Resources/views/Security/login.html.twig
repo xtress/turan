@@ -1,58 +1,74 @@
 {#{% extends "::base.html.twig" %}#}
 
 {% block content %}
-<link rel="stylesheet" href="{{ asset('omlook/css/recover.css') }}" type="text/css" media="all" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}" type="text/css" media="all" />
+    <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script>
 
-    <div class="content" >
-        <div class="row" style="margin: 30px 70px 10px 70px;">
+    <style type="text/css">
+        body {
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-color: #f5f5f5;
+            padding-left: 0px;
+        }
 
-    <div class="span6 well login1">
-        <h4>{%trans%}UB_AUTHORISATION_TITLE{%endtrans%}</h4>
-    {% if error is defined and error != null %}
-        
-		<div class="alert alert-error" id="box_error">
-			<a class="close" title="Close" data-dismiss="alert" href="#">×</a>
-			<h4 class="alert-heading">{{ error.message|trans({}) }}</h4>
-		</div>
-        
-    {% endif %}
-        <script type="text/javascript">
-            
-        </script>
-    {#{% if app.session.hasFlash('error') %}           
-         <div class="alert alert-error">
-             <a class="close" data-dismiss="alert" >×</a>             
-		   <h4 class="alert-heading">{{ app.session.flash('error')|trans }}</h4>
-         </div>
-    {% endif %}  
+        .form-signin {
+            max-width: 300px;
+            padding: 19px 29px 29px;
+            margin: auto auto auto;
+            background-color: #fff;
+            border: 1px solid #e5e5e5;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+            -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+            -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+            box-shadow: 0 1px 2px rgba(0,0,0,.05);
+        }
+        .form-signin .form-signin-heading,
+        .form-signin .checkbox {
+            margin-bottom: 10px;
+        }
+        .form-signin input[type="text"],
+        .form-signin input[type="password"] {
+            font-size: 16px;
+            height: auto;
+            margin-bottom: 15px;
+            padding: 7px 9px;
+        }
 
-    {% if app.session.hasFlash('notice') %}
-             <div class="alert alert-success">
-                 <a class="close" data-dismiss="alert" >×</a>                     
-			  <h4 class="alert-heading">{{ app.session.flash('notice') }}</h4>
-             </div>
-    {% endif %}#}
-        <form  action="{{ path('login_check') }}" method="post">
-           
-            <div class="login1 row-fluid" style="padding-top: 40px; ">
-                <div class="usertext span4" style="text-align: right; padding-top: 5px; "><label for="username">{%trans%}UB_USERNAME_LABEL{%endtrans%}</label></div>
-                <div class="username0 span4"><div class="wearch "><input type="text" class="username2" id="username" name="_username" value="{{ last_username }}" /></div></div>
+        #remember_me{
+            display: inline-block;
+        }
+
+    </style>
+
+    <div class="flash-messages">
+        {% if error %}
+            <div class="alert alert-error">
+                <i class="icon-warning-sign"></i>
+                <strong>Error!</strong>
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                {{ error.message }}
             </div>
-            <div class="login2 row-fluid" style="padding-top: 10px;height: 70px">
-                <div class="usertext span4" style="text-align: right; padding-top: 5px;" ><label for="password">{%trans%}UB_FORM_LABEL_PASSWORD{%endtrans%}</label></div>
-                <div class="username0 span4"><div class="wearch "><input type="password" class="username2" id="password2" name="_password" /></div>
-                    <div class="remember checkbox">
-                    <label for="remember_me"><input type="checkbox" id="remember_me" name="_remember_me" checked />{%trans%}UB_KEEP_ME_LOGGED{%endtrans%}</label>
-                    </div>
-                </div>
-            </div>
-            <div style="padding-left: 15%; margin: 15px auto 0 auto; text-align: center">
-                <button type="submit" name="login" title="{%trans%}UB_LOGIN{%endtrans%}" class="btn btn-info btn-large" style=""><i class="icon-ok-sign icon-white"></i> &nbsp;{%trans%}UB_LOGIN{%endtrans%}</button>
-            </div>
-        </form>
+        {% endif %}
     </div>
 
-    </div>
-    </div>
 
+    <form class="form-signin" action="{{ path('login_check') }}" method="POST">
+        <h2 class="form-signin-heading">Авторизация</h2>
+        <label for='_username'>Имя пользователя: </label>
+        <input type="text" class="input-block-level" id="username" placeholder="Введите имя пользователя" name="_username" value="{{ last_username }}">
+        <label for='_password'>Пароль: </label>
+        <input type="password" class="input-block-level" placeholder="Введите пароль" id="password" name="_password" >
+        <label for="remember_me">
+            <input type="checkbox" id="remember_me" name="_remember_me" checked />
+            Запомнить меня
+        </label>
+
+
+        <button class="btn btn-large btn-primary" type="submit">Войти</button>
+
+    </form>
 {% endblock content %} 
