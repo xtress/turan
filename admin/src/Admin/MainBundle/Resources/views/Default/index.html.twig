@@ -144,7 +144,18 @@
             <ul class="nav">
             {%block nav %}  
                            <li><a href="{{path ('_admin_main_homepage')}}">{%trans%}AMB_DASHBOARD_TITLE{%endtrans%}</a></li>
-                           <li><a href="{{ path('logout') }}">{%trans%}AMB_LOGOUT{%endtrans%}</a></li>
+                           <li style="position: fixed; margin-left: 73%;"><a href="{{ path('logout') }}">{%trans%}AMB_LOGOUT{%endtrans%}</a></li>
+                           {% if app.request.locale == 'ru' %}
+                               <li style="margin-left: 68%; position: fixed;"><a href="{{ path('_admin_change_locale', { 'locale': 'ru' }) }}" style="text-decoration: underline">RU</a></li>
+                           {% else %}
+                               <li style="margin-left: 68%; position: fixed;"><a href="{{ path('_admin_change_locale', { 'locale': 'ru' }) }}">RU</a></li>
+                           {% endif %}
+                           <li style="cursor: default"></li>
+                           {% if app.request.locale == 'en' %}
+                               <li style="margin-left: 69.3%; position: fixed;"><a href="{{ path('_admin_change_locale', { 'locale': 'en' }) }}" style="text-decoration: underline; float:right">EN</a></li>
+                           {% else %}
+                               <li style="margin-left: 69.3%; position: fixed;"><a href="{{ path('_admin_change_locale', { 'locale': 'en' }) }}">EN</a></li>
+                           {% endif %}
               {%endblock nav%}
             </ul>
           </div><!--/.nav-collapse -->

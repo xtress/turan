@@ -66,3 +66,10 @@ _admin_administrators_createAdmin:
     defaults: { _controller: AdminMainBundle:UserManager:createAdministrator }
 #    requirements:
 #                _method:  GET
+
+_admin_change_locale:
+    pattern:  /admin/service/setLocale({locale})
+    defaults: { _controller: AdminMainBundle:Default:setLocale, locale: ru }
+    requirements:
+                _method:  GET
+                locale:   en|ru

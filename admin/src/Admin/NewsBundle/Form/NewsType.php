@@ -16,13 +16,18 @@ class NewsType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $session = \Helpers\ServiceBridge::getInstance()->get('session');
+        $locale = $session->get('_locale');
+//        var_dump($locale);exit;
+        
         $builder
             ->add('newsCategories', 'entity', array(
                 'class' => 'Admin\NewsBundle\Entity\NewsCategories',
                 'property' => 'name',
-                'query_builder' => function(EntityRepository $er) {
+                'query_builder' => function(EntityRepository $er) use ($locale) {
                     return $er->createQueryBuilder('c')
-                        ->orderBy('c.name', 'ASC');
+                        ->orderBy('c.name', 'ASC')
+                        ->where("c.locale = '$locale'");
                 }
             ))
             ->add('title', 'text', array(

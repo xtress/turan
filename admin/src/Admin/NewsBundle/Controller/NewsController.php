@@ -246,8 +246,8 @@ class NewsController extends Controller {
                         );
 
                     } 
-                    elseif ( $key != ($quantity - 1) ) {
-
+                    elseif ( $key != ($quantity - 1) || $quantity === 1 ) {
+                        
                         $pagination[$value["iterator"]] = array(
                             'prev'      => $value['id'].".json", 
                             'next'      => $newsIterator[$value['iterator']]['id'].".json", 

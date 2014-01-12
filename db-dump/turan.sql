@@ -3,11 +3,10 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 12, 2014 at 09:28 PM
+-- Generation Time: Jan 13, 2014 at 12:05 AM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
-SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
@@ -27,7 +26,6 @@ SET time_zone = "+00:00";
 -- Table structure for table `admin`
 --
 
-DROP TABLE IF EXISTS `admin`;
 CREATE TABLE IF NOT EXISTS `admin` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `login` varchar(20) NOT NULL,
@@ -53,7 +51,6 @@ INSERT INTO `admin` (`id`, `login`, `password`, `salt`, `created_at`, `created_b
 -- Table structure for table `admin_roles`
 --
 
-DROP TABLE IF EXISTS `admin_roles`;
 CREATE TABLE IF NOT EXISTS `admin_roles` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(127) NOT NULL,
@@ -77,7 +74,6 @@ INSERT INTO `admin_roles` (`id`, `name`) VALUES
 -- Table structure for table `admin_to_admin_roles`
 --
 
-DROP TABLE IF EXISTS `admin_to_admin_roles`;
 CREATE TABLE IF NOT EXISTS `admin_to_admin_roles` (
   `id` bigint(19) unsigned NOT NULL AUTO_INCREMENT,
   `admin_id` int(10) unsigned NOT NULL,
@@ -101,7 +97,6 @@ INSERT INTO `admin_to_admin_roles` (`id`, `admin_id`, `admin_roles_id`) VALUES
 -- Table structure for table `locale`
 --
 
-DROP TABLE IF EXISTS `locale`;
 CREATE TABLE IF NOT EXISTS `locale` (
   `locale` varchar(2) NOT NULL,
   `name` varchar(15) NOT NULL,
@@ -123,7 +118,6 @@ INSERT INTO `locale` (`locale`, `name`, `alias`) VALUES
 -- Table structure for table `news`
 --
 
-DROP TABLE IF EXISTS `news`;
 CREATE TABLE IF NOT EXISTS `news` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
@@ -140,14 +134,15 @@ CREATE TABLE IF NOT EXISTS `news` (
   KEY `fk_news_admin2_idx` (`modifier`),
   KEY `fk_news_news_categories1_idx` (`news_categories_id`),
   KEY `fk_news_locale1_idx` (`locale`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `news`
 --
 
 INSERT INTO `news` (`id`, `title`, `body`, `created_at`, `updated_at`, `is_published`, `creator`, `modifier`, `news_categories_id`, `locale`) VALUES
-(2, 'title', '<div>\r\n	iajgipsjgisgiohsoihgsih</div>', '2014-01-12 19:35:58', NULL, 1, 2, NULL, 3, 'ru');
+(2, 'title', '<div>\r\n	iajgipsjgisgiohsoihgsih</div>', '2014-01-12 19:35:58', NULL, 1, 2, NULL, 3, 'ru'),
+(3, 'aeta', '<div>\r\n	afdszxvcv</div>', '2014-01-12 21:44:24', NULL, 1, 2, NULL, 3, 'ru');
 
 -- --------------------------------------------------------
 
@@ -155,7 +150,6 @@ INSERT INTO `news` (`id`, `title`, `body`, `created_at`, `updated_at`, `is_publi
 -- Table structure for table `news_categories`
 --
 
-DROP TABLE IF EXISTS `news_categories`;
 CREATE TABLE IF NOT EXISTS `news_categories` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
@@ -177,7 +171,6 @@ INSERT INTO `news_categories` (`id`, `name`, `locale`) VALUES
 -- Table structure for table `static_page`
 --
 
-DROP TABLE IF EXISTS `static_page`;
 CREATE TABLE IF NOT EXISTS `static_page` (
   `id` bigint(19) unsigned NOT NULL AUTO_INCREMENT,
   `page_name` varchar(127) NOT NULL,
@@ -242,7 +235,6 @@ ALTER TABLE `static_page`
   ADD CONSTRAINT `fk_turan_page_turan_admin` FOREIGN KEY (`admin_creator_id`) REFERENCES `admin` (`id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_turan_page_turan_admin1` FOREIGN KEY (`admin_modifier_id`) REFERENCES `admin` (`id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_static_page_locale1` FOREIGN KEY (`locale`) REFERENCES `locale` (`locale`) ON UPDATE CASCADE;
-SET FOREIGN_KEY_CHECKS=1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
