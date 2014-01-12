@@ -31,6 +31,11 @@ class NewsType extends AbstractType
                 ))
             ->add('body', 'textarea')
             ->add('isPublished', 'checkbox')
+            ->add('locale', 'entity', array(
+                'required'  => true,
+                'class'     => 'Admin\NewsBundle\Entity\Locale',
+                'empty_value' => '',
+            ))
         ;
     }
     

@@ -30,7 +30,7 @@
     
     <br />
     
-    <form action="{{ path('_adminpage_staticpage_create') }}" method="POST" {{ form_enctype(form) }} >
+    <form action="{{ path('_adminpage_staticpage_create') }}" novalidate="true" method="POST" {{ form_enctype(form) }}  >
         {{ form_errors(form) }}
                 
         {{ form_widget(form) }}

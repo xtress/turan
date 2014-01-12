@@ -17,7 +17,9 @@ use Admin\NewsBundle\Form\NewsType;
  */
 class NewsController extends Controller {
     
-    const newsClass = 'Admin\NewsBundle\Entity\News';
+    const newsClass         = 'Admin\NewsBundle\Entity\News';
+    const newsParentDir     = '/../../front-end/app/content/';
+    const newsDirName       = 'news';
     
     public function indexAction()
     {
@@ -49,6 +51,7 @@ class NewsController extends Controller {
                     $news->setBody($data->getBody());
                     $news->setIsPublished(true);
                     $news->setNewsCategories($em->getRepository('Admin\NewsBundle\Entity\NewsCategories')->find($data->getNewsCategories()->getId()));
+                    $news->setLocale($data->getLocale());
 
                     $em->persist($news);
                     $em->flush();
@@ -177,36 +180,70 @@ class NewsController extends Controller {
     
     private function generateJSON(\Admin\NewsBundle\Entity\News $news)
     {
-        $repo = $this->getDoctrine()->getEntityManager()->getRepository('\Admin\NewsBundle\Entity\News');
+//        $repo = $this->getDoctrine()->getEntityManager()->getRepository('\Admin\NewsBundle\Entity\News');
         
         $newsArray = $news->__toArray();
-        $newsIterator = $repo->getNewsIterator();
         
-        for ($i = 1; $i <= count($newsIterator); $i++) {
+        if (!file_exists(getcwd().self::newsParentDir.self::newsDirName)) {
+            if (!$this->generateNewsDirStructure()) {
+                var_dump(false);exit;
+            }
+        }
+        
+        
+//        $newsIterator = $repo->getNewsIterator();
+//        
+//        for ($i = 1; $i <= count($newsIterator); $i++) {
+//            
+//            if ($newsIterator[$i]['id'] == $news->getId()) {
+//                
+//                $currentEl = $newsIterator[$i];
+//                $currentPos = $i;
+//                
+//            }
+//            
+//        }
+//        
+//        if ($currentPos != 1)
+//            $newsArray["previous"] = "#/news/".$newsIterator[$currentPos - 1]['id'];
+//        else
+//            $newsArray["previous"] = "#/news/".$newsIterator[$currentPos]['id'];
+//        
+//        if ( $currentPos != count($newsIterator) )
+//            $newsArray["next"] = "#/news/".$newsIterator[$currentPos + 1]['id'];
+//        else
+//            $newsArray["next"] = "#/news/".$newsIterator[$currentPos]['id'];
+//        
+//        $newsArray["page"] = $currentPos."/".count($newsIterator);
+        
+//        var_dump($newsArray);exit;
+        file_put_contents(getcwd()."/../../front-end/app/content/news/".$news->getLocale()->__toLocaleString()."/".$news->getId().".json", json_encode($newsArray, JSON_UNESCAPED_SLASHES), LOCK_EX);
+    }
+    
+    private function generateNewsDirStructure()
+    {
+        $flag = false;
+        
+        while(!$flag) {
             
-            if ($newsIterator[$i]['id'] == $news->getId()) {
+            if (!file_exists(getcwd().self::newsParentDir.self::newsDirName)) {
                 
-                $currentEl = $newsIterator[$i];
-                $currentPos = $i;
+                mkdir(getcwd().self::newsParentDir.self::newsDirName, 0777);
+                mkdir(getcwd().self::newsParentDir.self::newsDirName."/en", 0777);
+                mkdir(getcwd().self::newsParentDir.self::newsDirName."/ru", 0777);
                 
             }
             
+            $flag = true;
+            
         }
         
-        if ($currentPos != 1)
-            $newsArray["previous"] = "#/news/".$newsIterator[$currentPos - 1]['id'];
-        else
-            $newsArray["previous"] = "#/news/".$newsIterator[$currentPos]['id'];
-        
-        if ( $currentPos != count($newsIterator) )
-            $newsArray["next"] = "#/news/".$newsIterator[$currentPos + 1]['id'];
-        else
-            $newsArray["next"] = "#/news/".$newsIterator[$currentPos]['id'];
-        
-        $newsArray["page"] = $currentPos."/".count($newsIterator);
-        
-//        var_dump($newsArray);exit;
-        file_put_contents(getcwd()."/../../front-end/app/content/news/".$news->getId().".json", json_encode($newsArray, JSON_UNESCAPED_SLASHES), LOCK_EX);
+        return true;
+    }
+    
+    private function generatePaginationJSON()
+    {
+        return true;
     }
     
 }

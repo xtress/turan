@@ -31,6 +31,7 @@ class NewsCategoriesController extends Controller {
         $em         = $this->getDoctrine()->getEntityManager();
         $session    = $this->get('session');
         $translator = $this->get('translator');
+        $localeRepo = $em->getRepository('\Admin\NewsBundle\Entity\Locale');
         
         if ($request->getMethod() === "POST") {
             
@@ -44,6 +45,7 @@ class NewsCategoriesController extends Controller {
                     $newsCategory = new NewsCategories();
 
                     $newsCategory->setName($data->getName());
+                    $newsCategory->setLocale($localeRepo->find($session->get('_locale')));
 
                     $em->persist($newsCategory);
                     $em->flush();

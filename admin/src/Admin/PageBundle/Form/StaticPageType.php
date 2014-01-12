@@ -22,6 +22,11 @@ class StaticPageType extends AbstractType
             ->add('pageBody', 'textarea')
             ->add('pageSeo', 'text')
             ->add('isPublished', 'checkbox')
+            ->add('locale', 'entity', array(
+                'required'  => true,
+                'class'     => 'Admin\PageBundle\Entity\Locale',
+                'empty_value' => '',
+            ))
         ;
     }
     

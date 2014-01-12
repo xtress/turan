@@ -86,6 +86,16 @@ class News
      */
     private $newsCategories;
 
+    /**
+     * @var Admin\NewsBundle\Entity\Locale
+     *
+     * @ORM\ManyToOne(targetEntity="Admin\NewsBundle\Entity\Locale")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="locale", referencedColumnName="locale")
+     * })
+     */
+    private $locale;
+
 
 
     /**
@@ -280,6 +290,29 @@ class News
     public function getNewsCategories()
     {
         return $this->newsCategories;
+    }
+
+    /**
+     * Set locale
+     *
+     * @param \Admin\NewsBundle\Entity\Locale $locale
+     * @return Locale
+     */
+    public function setLocale(\Admin\NewsBundle\Entity\Locale $locale)
+    {
+        $this->locale = $locale;
+    
+        return $this;
+    }
+
+    /**
+     * Get locale
+     *
+     * @return \Admin\NewsBundle\Entity\Locale
+     */
+    public function getLocale()
+    {
+        return $this->locale;
     }
     
     public function __toArray()

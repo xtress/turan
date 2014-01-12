@@ -16,7 +16,9 @@ use Admin\PageBundle\Entity\StaticPage;
  */
 class PageController extends Controller {
     
-    const pageClass = 'Admin\PageBundle\Entity\StaticPage';
+    const pageClass         = 'Admin\PageBundle\Entity\StaticPage';
+    const staticParentDir   = '/../../front-end/app/content/';
+    const staticDirName     = 'static';
     
     public function indexAction()
     {
@@ -49,9 +51,12 @@ class PageController extends Controller {
                     $page->setPageBody($data->getPageBody());
                     $page->setPageName($data->getPageName());
                     $page->setPageSeo($data->getPageSeo());
+                    $page->setLocale($data->getLocale());
 
                     $em->persist($page);
                     $em->flush();
+                    
+                    $this->generateJSON($page);
                     
                 } catch(DBALException $e) {
                     
@@ -132,6 +137,8 @@ class PageController extends Controller {
                 
                 $em->persist($page);
                 $em->flush();
+                    
+                $this->generateJSON($page);
                 
             } catch(DBALException $e) {
                     
@@ -185,6 +192,48 @@ class PageController extends Controller {
     public function previewAction()
     {
         
+    }
+    
+    private function generateJSON(\Admin\PageBundle\Entity\StaticPage $page)
+    {
+        $repo = $this->getDoctrine()->getEntityManager()->getRepository('\Admin\PageBundle\Entity\StaticPage');
+        
+        $pageArray = $page->__toArray();
+        
+        if (!file_exists(getcwd().self::staticParentDir.self::staticDirName)) {
+            if (!$this->generateStaticPageDirStructure()) {
+                var_dump(false);exit;
+            }
+        }
+        
+//        var_dump($pageArray);exit;
+        file_put_contents(getcwd()."/../../front-end/app/content/static/".$page->getLocale()->__toLocaleString()."/".$pageArray["seo"].".json", json_encode($pageArray, JSON_UNESCAPED_SLASHES), LOCK_EX);
+    }
+    
+    private function generateStaticPageDirStructure()
+    {
+        $flag = false;
+        
+        while(!$flag) {
+            
+            if (!file_exists(getcwd().self::staticParentDir.self::staticDirName)) {
+                
+                mkdir(getcwd().self::staticParentDir.self::staticDirName, 0777);
+                mkdir(getcwd().self::staticParentDir.self::staticDirName."/en", 0777);
+                mkdir(getcwd().self::staticParentDir.self::staticDirName."/ru", 0777);
+                
+            }
+            
+            $flag = true;
+            
+        }
+        
+        return true;
+    }
+    
+    private function generatePaginationJSON()
+    {
+        return true;
     }
     
 }

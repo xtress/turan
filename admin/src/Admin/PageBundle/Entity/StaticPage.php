@@ -83,6 +83,16 @@ class StaticPage
      */
     private $adminModifier;
 
+    /**
+     * @var Admin\PageBundle\Entity\Locale
+     *
+     * @ORM\ManyToOne(targetEntity="Admin\PageBundle\Entity\Locale")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="locale", referencedColumnName="locale")
+     * })
+     */
+    private $locale;
+
 
 
     /**
@@ -277,5 +287,33 @@ class StaticPage
     public function getAdminModifier()
     {
         return $this->adminModifier;
+    }
+
+    /**
+     * Set locale
+     *
+     * @param \Admin\PageBundle\Entity\Locale $locale
+     * @return Locale
+     */
+    public function setLocale(\Admin\PageBundle\Entity\Locale $locale)
+    {
+        $this->locale = $locale;
+    
+        return $this;
+    }
+
+    /**
+     * Get locale
+     *
+     * @return \Admin\PageBundle\Entity\Locale
+     */
+    public function getLocale()
+    {
+        return $this->locale;
+    }
+    
+    public function __toArray()
+    {
+        return array("title" => $this->pageName, "content" => $this->pageBody, 'seo' => $this->pageSeo);
     }
 }
