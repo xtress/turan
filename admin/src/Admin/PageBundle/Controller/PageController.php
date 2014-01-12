@@ -231,9 +231,4 @@ class PageController extends Controller {
         return true;
     }
     
-    private function generatePaginationJSON()
-    {
-        return true;
-    }
-    
 }

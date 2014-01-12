@@ -30,7 +30,10 @@ class NewsType extends AbstractType
                 'error_bubbling' => true,
                 ))
             ->add('body', 'textarea')
-            ->add('isPublished', 'checkbox')
+            ->add('isPublished', 'checkbox', array(
+                'required' => false,
+                'error_bubbling' => true,
+            ))
             ->add('locale', 'entity', array(
                 'required'  => true,
                 'class'     => 'Admin\NewsBundle\Entity\Locale',

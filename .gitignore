@@ -9,3 +9,7 @@
 
 /front-end/.idea
 /front-end/app/content/files*
+/front-end/app/content/news/en/*
+/front-end/app/content/news/ru/*
+/front-end/app/content/static/en/*
+/front-end/app/content/static/ru/*

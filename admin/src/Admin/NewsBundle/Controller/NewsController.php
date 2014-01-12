@@ -20,6 +20,7 @@ class NewsController extends Controller {
     const newsClass         = 'Admin\NewsBundle\Entity\News';
     const newsParentDir     = '/../../front-end/app/content/';
     const newsDirName       = 'news';
+    const newsDir           = '/../../front-end/app/content/news';
     
     public function indexAction()
     {
@@ -49,7 +50,7 @@ class NewsController extends Controller {
                     $news->setCreator($user);
                     $news->setCreatedAt(new \DateTime());
                     $news->setBody($data->getBody());
-                    $news->setIsPublished(true);
+                    $news->setIsPublished($data->getIsPublished());
                     $news->setNewsCategories($em->getRepository('Admin\NewsBundle\Entity\NewsCategories')->find($data->getNewsCategories()->getId()));
                     $news->setLocale($data->getLocale());
 
@@ -57,6 +58,7 @@ class NewsController extends Controller {
                     $em->flush();
                     
                     $this->generateJSON($news);
+                    $this->generatePaginationJSON();
                     
                 } catch(DBALException $e) {
                     
@@ -93,8 +95,13 @@ class NewsController extends Controller {
         
         try {
             
+            $id = $news->getId();
+            
             $em->remove($news);
             $em->flush();
+            
+            $this->generatePaginationJSON();
+            $this->removeNewsJson($id.".json");
             
         } catch (DBALException $e) {
                     
@@ -139,13 +146,27 @@ class NewsController extends Controller {
                 $data = $form->getData();
                 
                 $news = $em->getRepository(self::newsClass)->find($newsID);
+                
+                $oldTitle = $news->getTitle();
+                $oldPublishFlag = $news->getIsPublished();
 
                 $news->setBody($data->getBody());
+                $news->setTitle($data->getTitle());
+                $news->setIsPublished($data->getIsPublished());
+                $news->setNewsCategories($em->getRepository('Admin\NewsBundle\Entity\NewsCategories')->find($data->getNewsCategories()->getId()));
+                $news->setLocale($data->getLocale());
+                $news->setModifier($user);
+                $news->setUpdatedAt(new \DateTime());
                 
                 $em->persist($news);
                 $em->flush();
                 
                 $this->generateJSON($news);
+                if ( 
+                        $data->getIsPublished() !== $oldPublishFlag
+                        || $data->getTitle() !== $oldTitle ) {
+                    $this->generatePaginationJSON();
+                }
                 
             } catch(DBALException $e) {
                     
@@ -178,59 +199,184 @@ class NewsController extends Controller {
         ));
     }
     
-    private function generateJSON(\Admin\NewsBundle\Entity\News $news)
+    /**
+     * Is only alias to gain access to regenerateJsons, unlinkJsons, generatePaginationJSON functions
+     */
+    public function serviceRegenerateAction($modifier = 'id', $locale = 'ru')
     {
-//        $repo = $this->getDoctrine()->getEntityManager()->getRepository('\Admin\NewsBundle\Entity\News');
+        $bool = false;
+        while (!$bool) {
+            $bool = $this->unlinkJsons($locale);
+        }
+        
+        $this->regenerateJsons($modifier);
+        $this->generatePaginationJSON($modifier);
+        
+        return $this->redirect($this->generateUrl('admin_news_index'));
+    }
+    
+    /**
+     * Generates json file for pagination under current locale
+     * needs try/catch block
+     */
+    private function generatePaginationJSON($caseModifier = 'id')
+    {
+        $repo = $this->getDoctrine()->getEntityManager()->getRepository('\Admin\NewsBundle\Entity\News');
+        $locale = $this->get('session')->get('_locale');
+        $pagination = [];
+        
+        $newsIterator = $repo->getNewsIteratorWLocale($locale);
+        $quantity = count($newsIterator);
+        
+        switch ($caseModifier) {
+            
+            case 'id':
+                foreach ($newsIterator as $key => $value) {
+                    if ( 
+                        ($key != 0) && 
+                        ($key != ($quantity - 1)) 
+                        ) {
+
+                        $pagination[$value["iterator"]] = array(
+                            'prev'      => $newsIterator[$value['iterator']-2]['id'].".json", 
+                            'next'      => $newsIterator[$value['iterator']]['id'].".json", 
+                            'page'      => $value["iterator"]."/".count($newsIterator), 
+                            'alias'     => $value['id'].".json",
+                            'category'  => $value['news_category'],
+                        );
+
+                    } 
+                    elseif ( $key != ($quantity - 1) ) {
+
+                        $pagination[$value["iterator"]] = array(
+                            'prev'      => $value['id'].".json", 
+                            'next'      => $newsIterator[$value['iterator']]['id'].".json", 
+                            'page'      => $value["iterator"]."/".count($newsIterator), 
+                            'alias'     => $value['id'].".json",
+                            'category'  => $value['news_category'],
+                        );
+
+                    } 
+                    else {
+
+                        $pagination[$value["iterator"]] = array(
+                            'prev'      => $newsIterator[$value['iterator']-2]['id'].".json", 
+                            'next'      => $value['id'].".json", 
+                            'page'      => $value["iterator"]."/".count($newsIterator), 
+                            'alias'     => $value['id'].".json",
+                            'category'  => $value['news_category'],
+                        );
+
+                    }
+                }
+                break;
+            case 'title':
+                foreach ($newsIterator as $key => $value) {
+                    if ( 
+                        ($key != 0) && 
+                        ($key != ($quantity - 1)) 
+                        ) {
+
+                        $pagination[$value["iterator"]] = array(
+                            'prev'      => $newsIterator[$value['iterator']-2]['title'].".json", 
+                            'next'      => $newsIterator[$value['iterator']]['title'].".json", 
+                            'page'      => $value["iterator"]."/".count($newsIterator), 
+                            'alias'     => $value['title'].".json",
+                            'category'  => $value['news_category'],
+                        );
+
+                    } 
+                    elseif ( $key != ($quantity - 1) ) {
+
+                        $pagination[$value["iterator"]] = array(
+                            'prev'      => $value['title'].".json", 
+                            'next'      => $newsIterator[$value['iterator']]['title'].".json", 
+                            'page'      => $value["iterator"]."/".count($newsIterator), 
+                            'alias'     => $value['title'].".json",
+                            'category'  => $value['news_category'],
+                        );
+
+                    } 
+                    else {
+
+                        $pagination[$value["iterator"]] = array(
+                            'prev'      => $newsIterator[$value['iterator']-2]['title'].".json", 
+                            'next'      => $value['title'].".json", 
+                            'page'      => $value["iterator"]."/".count($newsIterator), 
+                            'alias'     => $value['title'].".json",
+                            'category'  => $value['news_category'],
+                        );
+
+                    }
+                }
+                break;
+            
+        }
+        
+        file_put_contents(getcwd().self::newsDir."/".$locale."/pagination.json", json_encode($pagination, JSON_UNESCAPED_SLASHES), LOCK_EX);
+    }
+    
+    /**
+     * Generates json file for a single news
+     * needs try/catch block
+     * 
+     * @param \Admin\NewsBundle\Entity\News $news
+     */
+    private function generateJSON(\Admin\NewsBundle\Entity\News $news, $caseModifier = 'id')
+    {
         
         $newsArray = $news->__toArray();
         
-        if (!file_exists(getcwd().self::newsParentDir.self::newsDirName)) {
+        if (!file_exists(getcwd().self::newsDir)) {
             if (!$this->generateNewsDirStructure()) {
                 var_dump(false);exit;
             }
         }
         
-        
-//        $newsIterator = $repo->getNewsIterator();
-//        
-//        for ($i = 1; $i <= count($newsIterator); $i++) {
-//            
-//            if ($newsIterator[$i]['id'] == $news->getId()) {
-//                
-//                $currentEl = $newsIterator[$i];
-//                $currentPos = $i;
-//                
-//            }
-//            
-//        }
-//        
-//        if ($currentPos != 1)
-//            $newsArray["previous"] = "#/news/".$newsIterator[$currentPos - 1]['id'];
-//        else
-//            $newsArray["previous"] = "#/news/".$newsIterator[$currentPos]['id'];
-//        
-//        if ( $currentPos != count($newsIterator) )
-//            $newsArray["next"] = "#/news/".$newsIterator[$currentPos + 1]['id'];
-//        else
-//            $newsArray["next"] = "#/news/".$newsIterator[$currentPos]['id'];
-//        
-//        $newsArray["page"] = $currentPos."/".count($newsIterator);
-        
-//        var_dump($newsArray);exit;
-        file_put_contents(getcwd()."/../../front-end/app/content/news/".$news->getLocale()->__toLocaleString()."/".$news->getId().".json", json_encode($newsArray, JSON_UNESCAPED_SLASHES), LOCK_EX);
+        switch ($caseModifier) {
+            case 'id':
+                file_put_contents(getcwd().self::newsDir."/".$news->getLocale()->__toLocaleString()."/".$news->getId().".json", json_encode($newsArray, JSON_UNESCAPED_SLASHES), LOCK_EX);
+                break;
+            case 'title':
+                file_put_contents(getcwd().self::newsDir."/".$news->getLocale()->__toLocaleString()."/".$news->getTitle().".json", json_encode($newsArray, JSON_UNESCAPED_SLASHES), LOCK_EX);
+                break;
+        }
     }
     
+    /**
+     * Removes json file for deleted news
+     * 
+     * @param type $fileName
+     * @return boolean
+     */
+    private function removeNewsJson($fileName)
+    {
+        $locale = $this->get('session')->get('_locale');
+        $dir = getcwd().self::newsDir."/".$locale;
+        
+        if (is_file($dir.DIRECTORY_SEPARATOR.$fileName))
+            unlink($dir.DIRECTORY_SEPARATOR.$fileName);
+        
+        return true;
+    }
+    
+    /**
+     * Generates directory structure under AngularJS's content folder for news.
+     * needs try/catch block
+     * 
+     * @return boolean
+     */
     private function generateNewsDirStructure()
     {
         $flag = false;
         
         while(!$flag) {
             
-            if (!file_exists(getcwd().self::newsParentDir.self::newsDirName)) {
+            if (!file_exists(getcwd().self::newsDir)) {
                 
-                mkdir(getcwd().self::newsParentDir.self::newsDirName, 0777);
-                mkdir(getcwd().self::newsParentDir.self::newsDirName."/en", 0777);
-                mkdir(getcwd().self::newsParentDir.self::newsDirName."/ru", 0777);
+                mkdir(getcwd().self::newsDir, 0777);
+                mkdir(getcwd().self::newsDir."/en", 0777);
+                mkdir(getcwd().self::newsDir."/ru", 0777);
                 
             }
             
@@ -241,8 +387,42 @@ class NewsController extends Controller {
         return true;
     }
     
-    private function generatePaginationJSON()
+    /**
+     * Added for test purposes. Regenerates json files for news
+     * needs try/catch block
+     * 
+     * @return boolean
+     */
+    private function regenerateJsons($modifier)
     {
+        $repo = $this->getDoctrine()->getEntityManager()->getRepository('\Admin\NewsBundle\Entity\News');
+        
+        $news = $repo->findAll();
+        
+        foreach ($news as $newsEntity) {
+            
+            $this->generateJSON($newsEntity, $modifier);
+            
+        }
+        
+        return true;
+    }
+    
+    /**
+     * Be careful! Removes all files under news/{locale} directory
+     * 
+     * @param type $locale
+     * @return boolean
+     */
+    private function unlinkJsons($locale)
+    {
+        $dir = getcwd().self::newsDir.DIRECTORY_SEPARATOR.$locale;
+        
+        foreach (scandir($dir) as $item) {
+            if ($item == '.' || $item == '..') continue;
+            unlink($dir.DIRECTORY_SEPARATOR.$item);
+        }
+        
         return true;
     }
     

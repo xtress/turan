@@ -75,3 +75,11 @@ admin_news_delete:
     requirements:
                 _method:  GET
                 newsID: \d+
+                
+admin_news_regenerateJSONS:
+    pattern:  /service/regenerateJSONS({modifier},{locale})
+    defaults: { _controller: AdminNewsBundle:News:serviceRegenerate, modifier: id, locale: ru }
+    requirements:
+                _method:  GET
+                modifier: id|title
+                locale:   ru|en
