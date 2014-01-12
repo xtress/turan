@@ -83,3 +83,9 @@ admin_news_regenerateJSONS:
                 _method:  GET
                 modifier: id|title
                 locale:   ru|en
+                
+admin_news_lastNewsJSON:
+    pattern:  /lastNews()
+    defaults: { _controller: AdminNewsBundle:News:generateLastNews }
+    requirements:
+                _method:  GET

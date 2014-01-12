@@ -211,8 +211,41 @@ class NewsController extends Controller {
         
         $this->regenerateJsons($modifier);
         $this->generatePaginationJSON($modifier);
+        $this->generateLastNewsJson();
         
         return $this->redirect($this->generateUrl('admin_news_index'));
+    }
+    
+    /**
+     * This function is only public alias to generateLastNewsJson method
+     * 
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @return type
+     */
+    public function generateLastNewsAction(Request $request)
+    {
+        $this->generateLastNewsJson();
+        
+        return $this->redirect($request->server->get('HTTP_REFERER'));
+    }
+    
+    private function generateLastNewsJson()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $repo = $em->getRepository('Admin\NewsBundle\Entity\News');
+        $locale = $this->get('session')->get('_locale');
+        $lastNewsArr = [];
+        
+        $lastNews = $repo->getLastNews(5, $locale);
+        
+        foreach ($lastNews as $key => $value) {
+            
+            $lastNewsArr["id".$key] = $value->__toArray();
+            $lastNewsArr["id".$key]['fileName'] = $value->getId().".json";
+            
+        }
+        
+        file_put_contents(getcwd().self::newsDir."/".$locale."/lastNews.json", json_encode($lastNewsArr, JSON_UNESCAPED_SLASHES), LOCK_EX);
     }
     
     /**
@@ -237,7 +270,7 @@ class NewsController extends Controller {
                         ($key != ($quantity - 1)) 
                         ) {
 
-                        $pagination[$value["iterator"]] = array(
+                        $pagination["id".$value["iterator"]] = array(
                             'prev'      => $newsIterator[$value['iterator']-2]['id'].".json", 
                             'next'      => $newsIterator[$value['iterator']]['id'].".json", 
                             'page'      => $value["iterator"]."/".count($newsIterator), 
@@ -248,7 +281,7 @@ class NewsController extends Controller {
                     } 
                     elseif ( $key != ($quantity - 1) || $quantity === 1 ) {
                         
-                        $pagination[$value["iterator"]] = array(
+                        $pagination["id".$value["iterator"]] = array(
                             'prev'      => $value['id'].".json", 
                             'next'      => $newsIterator[$value['iterator']]['id'].".json", 
                             'page'      => $value["iterator"]."/".count($newsIterator), 
@@ -259,7 +292,7 @@ class NewsController extends Controller {
                     } 
                     else {
 
-                        $pagination[$value["iterator"]] = array(
+                        $pagination["id".$value["iterator"]] = array(
                             'prev'      => $newsIterator[$value['iterator']-2]['id'].".json", 
                             'next'      => $value['id'].".json", 
                             'page'      => $value["iterator"]."/".count($newsIterator), 

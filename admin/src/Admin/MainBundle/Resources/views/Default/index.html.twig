@@ -144,6 +144,8 @@
             <ul class="nav">
             {%block nav %}  
                            <li><a href="{{path ('_admin_main_homepage')}}">{%trans%}AMB_DASHBOARD_TITLE{%endtrans%}</a></li>
+                           <li style="position: fixed; margin-left: -23%"><a href="{{ path('admin_news_regenerateJSONS') }}">REGEN</a></li>
+                           <li style="position: fixed; margin-left: -20%"><a href="{{ path('admin_news_lastNewsJSON') }}">REGEN_LAST_NEWS</a></li>
                            <li style="position: fixed; margin-left: 73%;"><a href="{{ path('logout') }}">{%trans%}AMB_LOGOUT{%endtrans%}</a></li>
                            {% if app.request.locale == 'ru' %}
                                <li style="margin-left: 68%; position: fixed;"><a href="{{ path('_admin_change_locale', { 'locale': 'ru' }) }}" style="text-decoration: underline">RU</a></li>

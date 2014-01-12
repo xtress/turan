@@ -103,4 +103,28 @@ class NewsRepository extends EntityRepository
         
         return $queryResult;
     }
+    
+    public function getLastNews($quantity = 5, $locale = 'ru')
+    {
+        $em = $this->_em;
+        
+        $qb = $em->getRepository($this->_entityName)->createQueryBuilder('news');
+        
+        $qb->select('news');
+        
+        $qb->where("news.locale = '$locale'");
+        $qb->andWhere("news.isPublished = TRUE");
+        
+        $qb->orderBy('news.createdAt', 'DESC');
+        $qb->setMaxResults($quantity);
+        
+        $query = $qb->getQuery();
+        
+        $result = $query->getResult();
+        
+        if (!empty($result))
+            return $result;
+        else
+            return null;
+    }
 }

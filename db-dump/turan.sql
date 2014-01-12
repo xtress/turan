@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 13, 2014 at 12:05 AM
+-- Generation Time: Jan 13, 2014 at 01:22 AM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -134,7 +134,7 @@ CREATE TABLE IF NOT EXISTS `news` (
   KEY `fk_news_admin2_idx` (`modifier`),
   KEY `fk_news_news_categories1_idx` (`news_categories_id`),
   KEY `fk_news_locale1_idx` (`locale`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
 
 --
 -- Dumping data for table `news`
@@ -142,7 +142,16 @@ CREATE TABLE IF NOT EXISTS `news` (
 
 INSERT INTO `news` (`id`, `title`, `body`, `created_at`, `updated_at`, `is_published`, `creator`, `modifier`, `news_categories_id`, `locale`) VALUES
 (2, 'title', '<div>\r\n	iajgipsjgisgiohsoihgsih</div>', '2014-01-12 19:35:58', NULL, 1, 2, NULL, 3, 'ru'),
-(3, 'aeta', '<div>\r\n	afdszxvcv</div>', '2014-01-12 21:44:24', NULL, 1, 2, NULL, 3, 'ru');
+(3, 'aeta', '<div>\r\n	afdszxvcv</div>', '2014-01-12 21:44:24', NULL, 1, 2, NULL, 3, 'ru'),
+(9, 'aushflahlja', '<div>\r\n	siohgoshgoishgdiohsddgioh</div>', '2014-01-13 01:07:20', NULL, 1, 2, NULL, 4, 'en'),
+(11, 'adgsdg', '<div>\r\n	psdjzgisjh pjspigjs pgjs ghsohdgoushguoshdgouh</div>', '2014-01-13 01:08:54', NULL, 0, 2, NULL, 4, 'en'),
+(14, 'asdfjafpjadgsdg', '<div>\r\n	psdjzgisjh pjspigjs pgjs ghsohdgoushguoshdgouh</div>', '2014-01-13 01:10:28', NULL, 1, 2, NULL, 4, 'en'),
+(15, 'agagagag', '<div>\r\n	ad ipejg pjg piag ahg</div>', '2014-01-13 01:10:55', NULL, 1, 2, NULL, 4, 'en'),
+(16, 'aksf aipjeg pjsepigjspgipsghsigh', '<div>\r\n	jhfoijsaifjafj aijf apj fpajfp japjfipajf paj fpaj pfjap jf</div>', '2014-01-13 01:11:20', NULL, 1, 2, NULL, 4, 'en'),
+(17, 'sngs;gs;g sjgljjsjgsj', '<div>\r\n	psjgpsj gpsej gpsjegp jspiegjseijgisejgi sjeijspegj spjgsjgp&#39;</div>', '2014-01-13 01:12:11', NULL, 1, 2, NULL, 3, 'ru'),
+(18, 'asjf', '<div>\r\n	aigjeapjg poej gpaeo japejfpajfpajfpj</div>', '2014-01-13 01:12:30', NULL, 1, 2, NULL, 3, 'ru'),
+(19, 'afjapjfpajfepjawpjfapwjfajsifjapjpj', '<div>\r\n	jafjafpjapsjfapsjfajfpaj fpjaspf japfj apjsf pasjfpajsfpasfpj</div>', '2014-01-13 01:12:50', NULL, 0, 2, NULL, 3, 'ru'),
+(20, 'aiosfaoihj', '<div>\r\n	aoighoa ehgoeahouhafhauhaoh foahe fuhae ufhaefhaoe hfeauhfoaehfohaof ha</div>', '2014-01-13 01:13:11', NULL, 1, 2, NULL, 3, 'ru');
 
 -- --------------------------------------------------------
 
@@ -156,14 +165,15 @@ CREATE TABLE IF NOT EXISTS `news_categories` (
   `locale` varchar(2) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_news_categories_locale1_idx` (`locale`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `news_categories`
 --
 
 INSERT INTO `news_categories` (`id`, `name`, `locale`) VALUES
-(3, 'TMP_NEW', 'ru');
+(3, 'TMP_NEW', 'ru'),
+(4, 'TMP_NEW_EN', 'en');
 
 -- --------------------------------------------------------
 
