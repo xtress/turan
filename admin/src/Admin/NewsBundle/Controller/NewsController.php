@@ -59,6 +59,7 @@ class NewsController extends Controller {
                     
                     $this->generateJSON($news);
                     $this->generatePaginationJSON();
+                    $this->generateLastNewsJson();
                     
                 } catch(DBALException $e) {
                     
@@ -244,7 +245,16 @@ class NewsController extends Controller {
             foreach ($lastNews as $key => $value) {
 
                 $lastNewsArr["id".$key] = $value->__toArray();
-                $lastNewsArr["id".$key]['fileName'] = $value->getId().".json";
+                $lastNewsArr["id".$key]['url'] = "#/news/".$value->getId();
+                
+                $body = $lastNewsArr["id".$key]['content'];
+                $body = html_entity_decode(strip_tags($body));
+                
+                if ($locale === 'ru')
+                    $substring_limited = substr($body, 0, 500);
+                else
+                    $substring_limited = substr($body, 0, 300);
+                $lastNewsArr["id".$key]['content'] = substr($substring_limited, 0, strrpos($substring_limited, ' ' ))."...";
 
             }
             
