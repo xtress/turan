@@ -10,17 +10,7 @@
  		</a> -->	
  	</div>
 	<nav class="main-menu">
-		<ul>
-			<li class="active"><a href="#">Главная</a></li>
-			<li><a href="#/restaurant">Ресторан</a></li>
-			<li><a href="#/pizzeria">Пиццерия</a></li>
-            <li><a href="#/ballroom">Банкетный зал</a></li>
-            <li><a href="#/gallery">Галерея</a></li>
-			<li><a href="#/history">История</a></li>
-			<li><a href="#/vacancies">Вакансии</a></li>
-			<li><a href="#/contacts">Контакты</a></li>
-			<li> </li>
-		</ul>
+        <!-- directive: mainMenu -->
 	</nav>	
  </article>
 
@@ -41,7 +31,20 @@
 
  		<div class="news-items">
 
- 			<div class="news-item">
+            <div class="news-item" ng-repeat="item in lastNews">
+                <div class="news-item-title">
+                    {{item.title}}
+                    <div class="news-item-date">{{item.dateCreated}}</div>
+                </div>
+                <div class="news-item-separator"></div>
+                <div class="news-item-preview-text">
+                    <div ng-bind-html-unsafe="item.content"></div>
+                </div>
+                <div class="news-item-readmore">
+                    <a href="{{item.moreLink}}">Подробно...</a>
+                </div>
+            </div>
+ 	  <!-- <div class="news-item">
 	 			<div class="news-item-title">
 	 				Туран ищет таланты
 	 				<div class="news-item-date">19.11.2013 23:25</div>
@@ -55,33 +58,33 @@
 	 			</div>
 	 		</div>
 
- 			<div class="news-item">
-	 			<div class="news-item-title">
-	 				Новогодняя ночь
-	 				<div class="news-item-date">19.11.2013 23:25</div>
-	 			</div>
-	 			<div class="news-item-separator"></div>
-	 			<div class="news-item-preview-text">
-                    Туран – это неповторимый стиль, тонкий вкус и непревзойденная кухня. Новогодняя ночь 2014 станет первой в нашей истории, и будьте уверены, – такого вы еще не видели!
-	 			</div>
-	 			<div class="news-item-readmore">
-	 				<a href="#/news/2">Подробно...</a>
-	 			</div>
-	 		</div>
+ 			<div class="news-item">-->
+	 			<!--<div class="news-item-title">-->
+	 				<!--Новогодняя ночь-->
+	 				<!--<div class="news-item-date">19.11.2013 23:25</div>-->
+	 			<!--</div>-->
+	 			<!--<div class="news-item-separator"></div>-->
+	 			<!--<div class="news-item-preview-text">-->
+                    <!--Туран – это неповторимый стиль, тонкий вкус и непревзойденная кухня. Новогодняя ночь 2014 станет первой в нашей истории, и будьте уверены, – такого вы еще не видели!-->
+	 			<!--</div>-->
+	 			<!--<div class="news-item-readmore">-->
+	 				<!--<a href="#/news/2">Подробно...</a>-->
+	 			<!--</div>-->
+	 		<!--</div>-->
 
-	 		<div class="news-item">
-	 			<div class="news-item-title">
-	 				Сайт взлетел
-	 				<div class="news-item-date">19.11.2013 23:25</div>
-	 			</div>
-	 			<div class="news-item-separator"></div>
-	 			<div class="news-item-preview-text">
-	 				Мы рады приветствовать вас на нашем сайте! Тут можно совершить виртуальную экскурсию по залам, просмотреть фотографии, узнать о последних нововведениях (которых грядет очень много!), а в будущем - даже ознакомиться с меню в режиме онлайн. Обо всех новостях можно также узнать на нашей странице в Вконтакте: <a href="http://vk.com/turanpizza">http://vk.com/turanpizza</a> <br>Оставайтесь с нами! 
-	 			</div>
-	 			<div class="news-item-readmore">
-	 				<a href="#/news/3">Подробно...</a>
-	 			</div>
-	 		</div>
+	 		<!--<div class="news-item">-->
+	 			<!--<div class="news-item-title">-->
+	 				<!--Сайт взлетел-->
+	 				<!--<div class="news-item-date">19.11.2013 23:25</div>-->
+	 			<!--</div>-->
+	 			<!--<div class="news-item-separator"></div>-->
+	 			<!--<div class="news-item-preview-text">-->
+	 				<!--Мы рады приветствовать вас на нашем сайте! Тут можно совершить виртуальную экскурсию по залам, просмотреть фотографии, узнать о последних нововведениях (которых грядет очень много!), а в будущем - даже ознакомиться с меню в режиме онлайн. Обо всех новостях можно также узнать на нашей странице в Вконтакте: <a href="http://vk.com/turanpizza">http://vk.com/turanpizza</a> <br>Оставайтесь с нами! -->
+	 			<!--</div>-->
+	 			<!--<div class="news-item-readmore">-->
+	 				<!--<a href="#/news/3">Подробно...</a>-->
+	 			<!--</div>-->
+	 		<!--</div>-->
  		</div>
  	</section>
 

@@ -4,16 +4,71 @@
 
 angular.module('restApp.controllers', ['restApp.services']).
 
-  controller('MainCtrl', ['$scope','apiConfig', function($scope, apiConfig) {
-    $scope.apiConfig = apiConfig;
+  controller('MainCtrl', ['$scope','$routeParams','$http','$location','apiConfig','locale', function($scope, $routeParams, $http, $location, apiConfig, locale){
+
+        var lastNewsCacheFile = 'lastNews.json';
+        var contentFolder = 'content/news/'+locale+'/';
+        $http({method: 'GET', url: contentFolder+lastNewsCacheFile}).
+            success(function(data, status, headers, config) {
+                $scope.lastNews = data
+            }).
+            error(function(data, status, headers, config) {
+                console.log("Not found!");
+            });
   }]).
-  controller('NewsCtrl', ['$scope','$routeParams','$http','$location', function($scope, $routeParams, $http,$location) {
-    var newsCacheFile = $routeParams.id+'.json';
-	$http({method: 'GET', url: 'content/news/'+newsCacheFile}).
+
+  controller('ContentCtrl', ['$scope','$routeParams','$http','$location','apiConfig','locale', function($scope, $routeParams, $http, $location, apiConfig, locale){
+        var alias = $routeParams.alias;
+        var contentCacheFile = alias+'.json';
+        var contentFolder = 'content/static/'+locale+'/';
+        $scope.alias = alias;
+        $http({method: 'GET', url: contentFolder+contentCacheFile}).
+            success(function(data, status, headers, config) {
+                $scope.page = data
+            }).
+            error(function(data, status, headers, config) {
+                console.log("Not found!");
+                $location.path( "#/" );
+            });
+  }]).
+
+  controller('NewsCtrl', ['$scope','$routeParams','$http','$location', 'locale', function($scope, $routeParams, $http, $location, locale) {
+
+    var newsId = $routeParams.id;
+    var newsCacheFile = newsId+'.json';
+
+    var contentFolder = 'content/news/'+locale+'/';
+    $http({method: 'GET', url: contentFolder+newsCacheFile}).
 		success(function(data, status, headers, config) {
 		     $scope.news = data
 		}).
 		error(function(data, status, headers, config) {
-		    $location.path( "#/" );
+            console.log("Not found!");
+            $location.path( "#/" );
 		});
+
+    var newsPaginationFile = contentFolder+'pagination.json';
+    $http({method: 'GET', url: newsPaginationFile}).
+            success(function(data, status, headers, config) {
+                $scope.pagination = eval('data.'+'id'+$routeParams.id);
+            }).
+            error(function(data, status, headers, config) {
+                console.log("Pagination not found!");
+             });
+  }]).
+
+  controller('RecoverCtrl', ['$scope','$routeParams','$http','$location','apiConfig', function($scope, $routeParams, $http, $location, apiConfig){
+
+  }]).
+  controller('RegistrationCtrl', ['$scope','$routeParams','$http','$location','apiConfig', function($scope, $routeParams, $http, $location, apiConfig){
+
+  }]).
+  controller('VacanciesCtrl', ['$scope','$routeParams','$http','$location','apiConfig', function($scope, $routeParams, $http, $location, apiConfig){
+
+  }]).
+  controller('GalleryCtrl', ['$scope','$routeParams','$http','$location','apiConfig', function($scope, $routeParams, $http, $location, apiConfig){
+
   }])
+
+
+

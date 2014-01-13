@@ -11,22 +11,13 @@
  	</div>
 	<nav class="main-menu">
         <!-- directive: mainMenu -->
-	</nav>	
+	</nav>
  </article>
 
  <article class="container">
- 		<h2>Новости ресторанного комплекса:</h2>
- 		<div class="news-title">{{news.title}}</div>
- 		<div class="news-content">
- 			<div ng-bind-html-unsafe="news.content"></div>
- 		</div>
- 		
- 		<div class="pagination rounded">
- 			<div class="preview"><a href="{{pagination.previous}}"><<НАЗАД</a></div>
- 			<div class="page">{{pagination.page}}</div>
- 			<div class="next"><a href="{{pagination.next}}">ДАЛЬШЕ>></a></div>
- 		</div>
-
+       <h2>{{page.title}}</h2>
+        <div ng-bind-html-unsafe="page.content"></div>
+     <pane title="{{title}}">{{text}}</pane>
  </article>
 
  <article class="right width10">

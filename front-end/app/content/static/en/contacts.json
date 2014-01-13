@@ -1,0 +1,5 @@
+{
+    "title":"Контактная информация ООО \"Зегам\"",
+    "content":"<div class=\"address\"><h3>Адрес:</h3><p>230020, Республика Беларусь<br>г. Гродно, проспект Клецкова 15а<br></p><div class=\"phones\"><p>Пиццерия:<br>Тел.: 8 (0152) 50-92-86<br>+375(33) 300-00-85 (МТС)<br>+375(44) 566-22-28 (Velcom)</p><p>Ресторан:<br>Тел.: 8 (0152) 50-92-88<br>+375(33) 300-00-84 (МТС)<br>+375(44) 566-22-27 (Velcom)</p></div><!--<div class=\"call-center\">--><!--<img src=\"./img/call.png\">--><!--Call-Center 777--><!--</div>--></div><div class=\"map rounded\"><!-- <script type=\"text/javascript\" charset=\"utf-8\" src=\"http://api-maps.yandex.ru/services/constructor/1.0/js/?sid=fnZ-ZeLrt2EyQUFVbBdfj6vkO4bUwXBZ&width=500&height=300\"></script>--><img src=\"//api-maps.yandex.ru/services/constructor/1.0/static/?sid=cQq-iKRxhnhT6tgFvz7h42OKZoTdXvKd&width=530&height=320\" alt=\"\"/></div><div class=\"company-data\"><h3>Электронная почта:</h3><p><a href=\"mailto:zegam@yandex.by\">zegam@yandex.by</a></p></div>"
+
+}
