@@ -317,6 +317,6 @@ class News
     
     public function __toArray()
     {
-        return array("title" => $this->title, "content" => $this->body, "date_created" => $this->createdAt->format("d.m.Y H:i"));
+        return array("title" => $this->title, "content" => $this->body, "dateCreated" => $this->createdAt->format("d.m.Y H:i"));
     }
 }
