@@ -195,4 +195,14 @@ class GalleryPics
     {
         return $this->filepath."/thumbs/".$this->name;
     }
+    
+    public function getFrontendPicture()
+    {
+        return $this->frontendPath."/".$this->name;
+    }
+    
+    public function getFrontendThumb()
+    {
+        return $this->frontendPath."/thumbs/".$this->name;
+    }
 }

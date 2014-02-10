@@ -424,6 +424,7 @@ class GalleryController extends Controller
             'files' => $files,
             'mainPic' => $mainPic,
             'galleryType' => $galleryType,
+            'isPublished' => $gallery->getIsPublished(),
         ));
     }
     
@@ -460,10 +461,10 @@ class GalleryController extends Controller
         if ($data->getMainPic() != null)
             $gallery['cover'] = array(
                 'filename'  => $data->getMainPic()->getPicture(),
-                'filepath'  => $data->getMainPic()->getPicture(),
+                'filepath'  => $data->getFrontendPath(),
                 'thumb'     => array(
                     'filename' => $data->getMainPic()->getName(),
-                    'filepath' => $data->getMainPic()->getThumb(),
+                    'filepath' => $data->getMainPic()->getFrontendThumb(),
                 )
             );
         
@@ -474,14 +475,14 @@ class GalleryController extends Controller
                 
                 $gallery['files'][$i] = array(
                     'filename' => $file->getName(),
-                    'filepath' => $file->getFilepath(),
+                    'filepath' => $file->getFrontendPath(),
                     'title'    => $file->getTitle(),
                 );
                 
                 if ($file instanceof GalleryPics) {
                     $gallery['files'][$i]['thumb'] = array(
                         'filename' => $file->getName(),
-                        'filepath' => $file->getThumb(),
+                        'filepath' => $file->getFrontendThumb(),
                     );
                 }
                 

@@ -37,6 +37,7 @@
                 
                 var timestamp = "{{''|date('U')}}";
                 var mainPicID = "{{ mainPic }}";
+                var isPublished = "{{isPublished}}";
                 if (mainPicID != "") {
                     $($('.trow-file#'+mainPicID).children()).css('background-color','#D8CCCC');
                     $('input#'+mainPicID+'.set-main').attr('checked', 'checked');
@@ -113,11 +114,13 @@
                                 
                             }
                             
-                            $.ajax({
-                              type: "POST",
-                              url: "{{ path('admin_gallery_update_json') }}",
-                              data: { galleryID: '{{galleryID}}' }
-                            })
+                            if (isPublished) {
+                                $.ajax({
+                                  type: "POST",
+                                  url: "{{ path('admin_gallery_update_json') }}",
+                                  data: { galleryID: '{{galleryID}}' }
+                                })
+                            }
                             
                         }
                         // Put your options here
