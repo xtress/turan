@@ -163,13 +163,13 @@ class NewsController extends Controller {
                 $em->flush();
                 
                 $this->generateJSON($news);
-                if ( 
+                if (
                         $data->getIsPublished() !== $oldPublishFlag
                         || $data->getTitle() !== $oldTitle ) {
                     $this->generatePaginationJSON();
-                    $this->generateLastNewsJson();
                 }
-                
+                $this->generateLastNewsJson();
+
             } catch(DBALException $e) {
                     
                 var_dump($e->getMessage());
@@ -194,7 +194,7 @@ class NewsController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository(self::newsClass);
         
-        $newsList = $repo->getNews();
+        $newsList = $repo->getNews($this->get('session')->get('_locale'));
         
         return $this->render('AdminNewsBundle:News:list.html.twig', array(
             'newsList' => $newsList,
@@ -273,47 +273,57 @@ class NewsController extends Controller {
         $repo = $this->getDoctrine()->getEntityManager()->getRepository('\Admin\NewsBundle\Entity\News');
         $locale = $this->get('session')->get('_locale');
         $pagination = array();
-        
+
         $newsIterator = $repo->getNewsIteratorWLocale($locale);
         $quantity = count($newsIterator);
-        
+
         if ($quantity > 0) {
             switch ($caseModifier) {
 
                 case 'id':
                     foreach ($newsIterator as $key => $value) {
-                        if ( 
-                            ($key != 0) && 
-                            ($key != ($quantity - 1)) 
-                            ) {
+                        if (
+                            ($key != 0) &&
+                            ($key != ($quantity - 1))
+                        ) {
 
-                            $pagination["id".$value["iterator"]] = array(
-                                'previous'  => $newsIterator[$value['iterator']-2]['id'].".json", 
-                                'next'      => $newsIterator[$value['iterator']]['id'].".json", 
-                                'page'      => $value["iterator"]."/".count($newsIterator), 
-                                'alias'     => $value['id'].".json",
+                            $pagination["id".$value['id']] = array(
+                                'previous'  => $newsIterator[$value['iterator']-2]['id'],
+                                'next'      => $newsIterator[$value['iterator']]['id'],
+                                'page'      => $value["iterator"]."/".count($newsIterator),
+                                'alias'     => $value['id'],
                                 'category'  => $value['news_category'],
                             );
 
-                        } 
+                        }
                         elseif ( $key != ($quantity - 1) || $quantity === 1 ) {
 
-                            $pagination["id".$value["iterator"]] = array(
-                                'previous'  => $value['id'].".json", 
-                                'next'      => $newsIterator[$value['iterator']]['id'].".json", 
-                                'page'      => $value["iterator"]."/".count($newsIterator), 
-                                'alias'     => $value['id'].".json",
-                                'category'  => $value['news_category'],
-                            );
+                            if ($quantity !== 1) {
+                                $pagination["id".$value['id']] = array(
+                                    'previous'  => $value['id'],
+                                    'next'      => $newsIterator[$value['iterator']]['id'],
+                                    'page'      => $value["iterator"]."/".count($newsIterator),
+                                    'alias'     => $value['id'],
+                                    'category'  => $value['news_category'],
+                                );
+                            } else {
+                                $pagination["id".$value['id']] = array(
+                                    'previous'  => $value['id'],
+                                    'next'      => $value['id'],
+                                    'page'      => $value["iterator"]."/".count($newsIterator),
+                                    'alias'     => $value['id'],
+                                    'category'  => $value['news_category'],
+                                );
+                            }
 
-                        } 
+                        }
                         else {
 
-                            $pagination["id".$value["iterator"]] = array(
-                                'previous'  => $newsIterator[$value['iterator']-2]['id'].".json", 
-                                'next'      => $value['id'].".json", 
-                                'page'      => $value["iterator"]."/".count($newsIterator), 
-                                'alias'     => $value['id'].".json",
+                            $pagination["id".$value['id']] = array(
+                                'previous'  => $newsIterator[$value['iterator']-2]['id'],
+                                'next'      => $value['id'],
+                                'page'      => $value["iterator"]."/".count($newsIterator),
+                                'alias'     => $value['id'],
                                 'category'  => $value['news_category'],
                             );
 
@@ -322,38 +332,48 @@ class NewsController extends Controller {
                     break;
                 case 'title':
                     foreach ($newsIterator as $key => $value) {
-                        if ( 
-                            ($key != 0) && 
-                            ($key != ($quantity - 1)) 
-                            ) {
+                        if (
+                            ($key != 0) &&
+                            ($key != ($quantity - 1))
+                        ) {
 
                             $pagination[$value["iterator"]] = array(
-                                'previous'  => $newsIterator[$value['iterator']-2]['title'].".json", 
-                                'next'      => $newsIterator[$value['iterator']]['title'].".json", 
-                                'page'      => $value["iterator"]."/".count($newsIterator), 
-                                'alias'     => $value['title'].".json",
+                                'previous'  => $newsIterator[$value['iterator']-2]['title'],
+                                'next'      => $newsIterator[$value['iterator']]['title'],
+                                'page'      => $value["iterator"]."/".count($newsIterator),
+                                'alias'     => $value['title'],
                                 'category'  => $value['news_category'],
                             );
 
-                        } 
-                        elseif ( $key != ($quantity - 1) ) {
+                        }
+                        elseif ( $key != ($quantity - 1) || $quantity === 1 ) {
 
-                            $pagination[$value["iterator"]] = array(
-                                'previous'  => $value['title'].".json", 
-                                'next'      => $newsIterator[$value['iterator']]['title'].".json", 
-                                'page'      => $value["iterator"]."/".count($newsIterator), 
-                                'alias'     => $value['title'].".json",
-                                'category'  => $value['news_category'],
-                            );
+                            if ($quantity !== 1) {
+                                $pagination[$value["iterator"]] = array(
+                                    'previous'  => $value['title'],
+                                    'next'      => $newsIterator[$value['iterator']]['title'],
+                                    'page'      => $value["iterator"]."/".count($newsIterator),
+                                    'alias'     => $value['title'],
+                                    'category'  => $value['news_category'],
+                                );
+                            } else {
+                                $pagination[$value["iterator"]] = array(
+                                    'previous'  => $value['title'],
+                                    'next'      => $value['title'],
+                                    'page'      => $value["iterator"]."/".count($newsIterator),
+                                    'alias'     => $value['title'],
+                                    'category'  => $value['news_category'],
+                                );
+                            }
 
-                        } 
+                        }
                         else {
 
                             $pagination[$value["iterator"]] = array(
-                                'previous'  => $newsIterator[$value['iterator']-2]['title'].".json", 
-                                'next'      => $value['title'].".json", 
-                                'page'      => $value["iterator"]."/".count($newsIterator), 
-                                'alias'     => $value['title'].".json",
+                                'previous'  => $newsIterator[$value['iterator']-2]['title'],
+                                'next'      => $value['title'],
+                                'page'      => $value["iterator"]."/".count($newsIterator),
+                                'alias'     => $value['title'],
                                 'category'  => $value['news_category'],
                             );
 
@@ -363,7 +383,7 @@ class NewsController extends Controller {
 
             }
         }
-        
+
         file_put_contents(getcwd().self::newsDir."/".$locale."/pagination.json", json_encode($pagination, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE), LOCK_EX);
     }
     

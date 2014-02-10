@@ -5,7 +5,7 @@ ANB_NEWSCATEGORIES_MANAGEMENT: News categories Management
 ANB_SAVE: Save
 ANB_NEWS_LIST: News list
 ANB_NEWS_CREATE: Create news
-
+ANB_NEWS_LOCALE: News locale
 
 ANB_NEWS_ID: ID
 ANB_NEWS_CATEGORYNAME: Category

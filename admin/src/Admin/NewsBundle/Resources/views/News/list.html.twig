@@ -43,6 +43,9 @@
                 <th>
                     {%trans%}ANB_NEWS_MODIFIEDAT{%endtrans%}
                 </th>
+                <th>
+                    {%trans%}ANB_NEWS_LOCALE{%endtrans%}
+                </th>
 
                 <th>
                     {%trans%}ANB_NEWS_ACTIONS{%endtrans%}
@@ -86,6 +89,10 @@
                             {% if news.modifier != null %}
                                 {{ news.updatedAt | date('Y-m-d H:i:s') }}
                             {% endif %}
+                        </td>
+                        <td>
+                            {{ news.locale|trans}}
+
                         </td>
 
                         <td>

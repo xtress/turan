@@ -39,3 +39,10 @@ UB_AUTHORISATION_TITLE: ВХОД
 
 TR_ENGLISH_LOCALE: English language
 TR_RUSSIAN_LOCALE: Русский язык
+
+ROLE_SUPER_ADMIN: Суперадминистратор
+ROLE_CONTENT_MANAGER: Контент менеджер
+ROLE_WAITER: Автор
+ROLE_HELPDESK: Служба поддержки
+
+AMB_GALLERY_MANAGER: Управление галерей

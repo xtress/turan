@@ -39,3 +39,10 @@ UB_AUTHORISATION_TITLE: LOGIN
 
 TR_ENGLISH_LOCALE: English language
 TR_RUSSIAN_LOCALE: Русский язык
+
+ROLE_SUPER_ADMIN: Super admin
+ROLE_CONTENT_MANAGER: Content manager
+ROLE_WAITER: Writer
+ROLE_HELPDESK: Help desk
+
+AMB_GALLERY_MANAGER: Gallery manager

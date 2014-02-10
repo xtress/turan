@@ -388,8 +388,9 @@ class GalleryController extends Controller
     private function createGalleryFolders($locale, $galleryID)
     {
         $path = getcwd()."/../../front-end/app/img/gallery/".$locale."/".$galleryID."/thumbs/";
-        
-        mkdir($path, 0755, true);
+        if(!is_dir($path)){
+            mkdir($path, 0755, true);
+        }
     }
     
     public function uploadFilesAction($galleryID)
@@ -431,8 +432,9 @@ class GalleryController extends Controller
     private function generateJSONDirStructure($galleryID, $galleryLocale)
     {
         $path = getcwd().self::_galleryDir."/".$galleryLocale."/".$galleryID;
-        
-        mkdir($path, 0755, true);
+        if(!is_dir($path)){
+            mkdir($path, 0755, true);
+        }
     }
     
     private function generateGalleryJSON($galleryID, $data = null)

@@ -5,7 +5,7 @@ ANB_NEWSCATEGORIES_MANAGEMENT: Управление категориями но�
 ANB_SAVE: Сохранить
 ANB_NEWS_LIST: Список новостей
 ANB_NEWS_CREATE: Создать новость
-
+ANB_NEWS_LOCALE: Язык новости
 
 ANB_NEWS_ID: ID
 ANB_NEWS_CATEGORYNAME: Категория

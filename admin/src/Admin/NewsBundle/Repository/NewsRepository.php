@@ -7,14 +7,15 @@ use Doctrine\ORM\EntityRepository;
 class NewsRepository extends EntityRepository
 {
     
-    public function getNews()
+    public function getNews($locale='ru')
     {
         $em = $this->_em;
         
         $qb = $em->getRepository($this->_entityName)->createQueryBuilder('news');
         
         $qb->select('news, creator, modifier, newsCategories');
-        
+        $qb->where("news.locale = '$locale'");
+
         $qb->leftJoin('news.creator', 'creator');
         $qb->leftJoin('news.modifier', 'modifier');
         $qb->leftJoin('news.newsCategories', 'newsCategories');

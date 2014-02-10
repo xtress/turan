@@ -1,6 +1,6 @@
 ## YAML Template.
----
-APB_PAGE_DASHBOARD: Панель управления статическими страницами
+
+APB_PAGES_DASHBOARD: Панель управления статическими страницами
 APB_PAGES_LIST: Список статических страниц
 APB_ADD_PAGE: Добавить страницу
 APB_PAGES_ID: ID

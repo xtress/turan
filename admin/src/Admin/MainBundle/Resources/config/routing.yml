@@ -26,49 +26,49 @@ logout:
     pattern:  /admin/logout
     
 _admin_user_management:
-    pattern:  /admin/user_manager
+    pattern:  /admin/userManager
     defaults: { _controller: AdminMainBundle:UserManager:index }
     requirements:
                 _method:  GET
                 
 _admin_administrators_list:
-    pattern:  /admin/administrators/list()
+    pattern:  /admin/administrators/list
     defaults: { _controller: AdminMainBundle:UserManager:showAdministrators }
     requirements:
                 _method:  GET
                 
 _admin_administrators_viewAdminInfo:
-    pattern:  /admin/administrators/showInfo({id})
+    pattern:  /admin/administrators/showInfo/{id}
     defaults: { _controller: AdminMainBundle:UserManager:viewAdministratorInfo }
     requirements:
                 _method:  GET
                 
 _admin_administrators_saveAdminInfo:
-    pattern:  /admin/administrators/saveInfo({id})
+    pattern:  /admin/administrators/saveInfo/{id}
     defaults: { _controller: AdminMainBundle:UserManager:saveAdministratorInfo }
     requirements:
                 _method:  POST
                 
 _admin_administrators_viewAdminLogs:
-    pattern:  /admin/administrators/viewActivityFor({login})
+    pattern:  /admin/administrators/viewActivityFor/{login}
     defaults: { _controller: AdminMainBundle:UserManager:viewAdministratorActivity }
     requirements:
                 _method:  GET
                 
 _admin_administrators_deleteAdmin:
-    pattern:  /admin/administrators/deleteAdministrator({id})
+    pattern:  /admin/administrators/deleteAdministrator/{id}
     defaults: { _controller: AdminMainBundle:UserManager:deleteAdministrator }
     requirements:
                 _method:  GET
                 
 _admin_administrators_createAdmin:
-    pattern:  /admin/administrators/create()
+    pattern:  /admin/administrators/create
     defaults: { _controller: AdminMainBundle:UserManager:createAdministrator }
 #    requirements:
 #                _method:  GET
 
 _admin_change_locale:
-    pattern:  /admin/service/setLocale({locale})
+    pattern:  /admin/service/setLocale/{locale}
     defaults: { _controller: AdminMainBundle:Default:setLocale, locale: ru }
     requirements:
                 _method:  GET

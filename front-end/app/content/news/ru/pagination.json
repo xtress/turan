@@ -1,5 +1,1 @@
-{
-    "id1":{"previous":"#/news/1","next":"#/news/2","page":"1/3"},
-    "id2":{"previous":"#/news/1","next":"#/news/3","page":"2/3"},
-    "id3":{"previous":"#/news/2","next":"#/news/3","page":"3/3"}
-}
+{"id34":{"previous":"34","next":"35","page":"1/6","alias":"34","category":"Новости"},"id35":{"previous":"34","next":"36","page":"2/6","alias":"35","category":"Новости"},"id36":{"previous":"35","next":"37","page":"3/6","alias":"36","category":"Новости"},"id37":{"previous":"36","next":"38","page":"4/6","alias":"37","category":"Новости"},"id38":{"previous":"37","next":"39","page":"5/6","alias":"38","category":"Новости"},"id39":{"previous":"38","next":"39","page":"6/6","alias":"39","category":"Новости"}}

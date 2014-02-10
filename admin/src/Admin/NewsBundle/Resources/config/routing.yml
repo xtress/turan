@@ -9,31 +9,31 @@ admin_news_categories_index:
                 _method:  GET
     
 admin_news_categories_list:
-    pattern:  /categories/list()
+    pattern:  /categories/list
     defaults: { _controller: AdminNewsBundle:NewsCategories:list }
     requirements:
                 _method:  GET
                 
 admin_news_categories_create:
-    pattern:  /categories/create()
+    pattern:  /categories/create
     defaults: { _controller: AdminNewsBundle:NewsCategories:create }
     
 admin_news_categories_edit:
-    pattern:  /categories/edit({categoryID})
+    pattern:  /categories/edit/{categoryID}
     defaults: { _controller: AdminNewsBundle:NewsCategories:edit }
     requirements:
                 _method:  GET
                 categoryID: \d+
                 
 admin_news_categories_save:
-    pattern:  /categories/save({categoryID})
+    pattern:  /categories/save/{categoryID}
     defaults: { _controller: AdminNewsBundle:NewsCategories:save }
     requirements:
                 _method:  POST
                 categoryID: \d+
                 
 admin_news_categories_delete:
-    pattern:  /categories/delete({categoryID})
+    pattern:  /categories/delete/{categoryID}
     defaults: { _controller: AdminNewsBundle:NewsCategories:delete }
     requirements:
                 _method:  GET
@@ -46,38 +46,38 @@ admin_news_index:
                 _method:  GET
                 
 admin_news_list:
-    pattern:  /list()
+    pattern:  /list
     defaults: { _controller: AdminNewsBundle:News:list }
     requirements:
                 _method:  GET
                 
 admin_news_create:
-    pattern:  /create()
+    pattern:  /create
     defaults: { _controller: AdminNewsBundle:News:create }
     
 admin_news_edit:
-    pattern:  /edit({newsID})
+    pattern:  /edit/{newsID}
     defaults: { _controller: AdminNewsBundle:News:edit }
     requirements:
                 _method:  GET
                 newsID: \d+
                 
 admin_news_save:
-    pattern:  /save({newsID})
+    pattern:  /save/{newsID}
     defaults: { _controller: AdminNewsBundle:News:save }
     requirements:
                 _method:  POST
                 newsID: \d+
                 
 admin_news_delete:
-    pattern:  /delete({newsID})
+    pattern:  /delete/{newsID}
     defaults: { _controller: AdminNewsBundle:News:delete }
     requirements:
                 _method:  GET
                 newsID: \d+
                 
 admin_news_regenerateJSONS:
-    pattern:  /service/regenerateJSONS({modifier},{locale})
+    pattern:  /service/regenerateJSONS/{modifier}/{locale}
     defaults: { _controller: AdminNewsBundle:News:serviceRegenerate, modifier: id, locale: ru }
     requirements:
                 _method:  GET
@@ -85,7 +85,7 @@ admin_news_regenerateJSONS:
                 locale:   ru|en
                 
 admin_news_lastNewsJSON:
-    pattern:  /lastNews()
+    pattern:  /lastNews
     defaults: { _controller: AdminNewsBundle:News:generateLastNews }
     requirements:
                 _method:  GET
