@@ -1,0 +1,7 @@
+parameters:
+#    admin_gallery.example.class: Admin\GalleryBundle\Example
+
+services:
+#    admin_gallery.example:
+#        class: %admin_gallery.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

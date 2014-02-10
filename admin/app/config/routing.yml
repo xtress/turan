@@ -1,3 +1,7 @@
+admin_gallery:
+    resource: "@AdminGalleryBundle/Resources/config/routing.yml"
+    prefix:   /admin/gallery
+
 admin_news:
     resource: "@AdminNewsBundle/Resources/config/routing.yml"
     prefix:   /admin/news

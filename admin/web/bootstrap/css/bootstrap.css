@@ -2483,6 +2483,10 @@ input[type="submit"].btn.btn-mini {
   text-decoration: none;
   background-color: #eeeeee;
 }
+.nav > li > a.disabled:hover {
+  text-decoration: none;
+  background-color: #ffffff;
+}
 .nav .nav-header {
   display: block;
   padding: 3px 15px;
@@ -2571,6 +2575,11 @@ input[type="submit"].btn.btn-mini {
 }
 .nav-tabs > li > a:hover {
   border-color: #eeeeee #eeeeee #dddddd;
+}
+.nav-tabs > li > a.disabled:hover {
+  border-color: #ffffff;
+  border: 0px;
+  cursor: default;
 }
 .nav-tabs > .active > a,
 .nav-tabs > .active > a:hover {

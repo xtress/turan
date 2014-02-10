@@ -1,0 +1,99 @@
+{% extends 'AdminMainBundle:Default:index.html.twig' %}
+
+{%block page_title_h1 %}
+    <h1 style="display: inline">
+        {%trans%}AGB_GALLERY_DASHBOARD{%endtrans%}
+        <a href="{{ path('admin_gallery_homepage') }}" class="btn btn-primary">
+            {%trans%}AGB_BACK{%endtrans%}
+        </a>
+    </h1>
+{%endblock page_title_h1 %}
+
+{% block container %}
+    <br />
+    {% if galleries is defined and galleries != null %}
+        <table class="table table-bordered table-striped">
+
+            <thead>
+
+                <th>
+                    {%trans%}AGB_GALLERY_ID{%endtrans%}
+                </th>
+
+                <th>
+                    {%trans%}AGB_GALLERY_MAIN_PICTURE{%endtrans%}
+                </th>
+
+                <th>
+                    {%trans%}AGB_GALLERY_NAME{%endtrans%}
+                </th>
+
+                <th>
+                    {%trans%}AGB_GALLERY_CREATOR{%endtrans%}
+                </th>
+
+                <th>
+                    {%trans%}AGB_GALLERY_GALLERY_TYPE{%endtrans%}
+                </th>
+                
+                <th>
+                    {%trans%}AGB_GALLERY_IS_PUBLISHED{%endtrans%}
+                </th>
+
+                <th>
+                    {%trans%}AGB_GALLERY_ACTIONS{%endtrans%}
+                </th>
+
+            </thead>
+
+            <tbody>
+                {% for gallery in galleries %}
+
+                    <tr>
+
+                        <td>
+                            {{ gallery.id }}
+                        </td>
+
+                        <td>
+                            {% if gallery.mainPic is defined and gallery.mainPic != null %}
+                                <img src="{{ gallery.mainPic.getThumb }}" />
+                            {% else %}
+                            {% endif %}
+                        </td>
+
+                        <td>
+                            {{ gallery.name }}
+                        </td>
+
+                        <td>
+                            {{ gallery.creator }}
+                        </td>
+
+                        <td>
+                            {{ gallery.galleryType|trans }}
+                        </td>
+
+                        <td>
+                            {% if gallery.isPublished %}
+                                {%trans%}AGB_YES{%endtrans%}
+                            {% else %}
+                                {%trans%}AGB_NO{%endtrans%}
+                            {% endif %}
+                        </td>
+
+                        <td>
+                            <a href="{{ path('admin_gallery_edit_info', { 'galleryID': gallery.id }) }}" class="btn btn-danger">{%trans%}AGB_EDIT{%endtrans%}</a>
+                            <a href="{{ path('admin_gallery_delete', { 'galleryID': gallery.id }) }}" class="btn btn-inverse">{%trans%}AGB_DELETE{%endtrans%}</a>
+                            <a href="{{ path('admin_gallery_show_info', { 'galleryID': gallery.id }) }}" class="btn btn-danger">{%trans%}AGB_PREVIEW{%endtrans%}</a>
+                        </td>
+
+                    </tr>
+
+                {% endfor %}
+            </tbody>
+
+        </table>
+    {% endif %}
+    
+{% endblock container %}

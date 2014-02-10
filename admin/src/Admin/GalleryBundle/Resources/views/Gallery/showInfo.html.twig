@@ -1,0 +1,123 @@
+{% extends 'AdminMainBundle:Default:index.html.twig' %}
+
+{%block page_title_h1 %}
+    <h1 style="display: inline">
+        {%trans%}AGB_GALLERY_DASHBOARD{%endtrans%}
+        <a href="{{ path('admin_gallery_show_list') }}" class="btn btn-primary">
+            {%trans%}AGB_BACK{%endtrans%}
+        </a>
+    </h1>
+{%endblock page_title_h1 %}
+
+{% block container %}
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a href="#">{%trans%}AGB_GALLERY_INFO{%endtrans%}</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_gallery_uploadFiles', { 'galleryID': galleryID }) }}">{%trans%}AGB_GALLERY_FILES{%endtrans%}</a>
+        </li>
+    </ul>
+    
+    <br />
+    
+    {% if gallery is defined and gallery != null %}
+        <table class="table table-bordered table-striped">
+
+            <thead>
+
+                <th>
+                    {%trans%}AGB_ATTRIBUTE{%endtrans%}
+                </th>
+
+                <th>
+                    {%trans%}AGB_VALUE{%endtrans%}
+                </th>
+
+            </thead>
+            <tbody>
+                
+                <tr>
+
+                    <td>
+                        {%trans%}AGB_GALLERY_NAME{%endtrans%}
+                    </td>
+
+                    <td>
+                        {{ gallery.name }}
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td>
+                        {%trans%}AGB_GALLERY_GALLERY_TYPE{%endtrans%}
+                    </td>
+
+                    <td>
+                        {{ gallery.galleryType|trans }}
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td>
+                        {%trans%}AGB_GALLERY_MAIN_PICTURE{%endtrans%}
+                    </td>
+
+                    <td>
+                        {% if gallery.mainPic is defined and gallery.mainPic != null %}
+                            <img src="{{gallery.mainPic.getThumb}}" />
+                        {% else %}
+                        {% endif %}
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td>
+                        {%trans%}AGB_GALLERY_CREATOR{%endtrans%}
+                    </td>
+
+                    <td>
+                        {{ gallery.creator }}
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td>
+                        {%trans%}AGB_GALLERY_LOCALE{%endtrans%}
+                    </td>
+
+                    <td>
+                        {{ gallery.locale|trans }}
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td>
+                        {%trans%}AGB_GALLERY_IS_PUBLISHED{%endtrans%}
+                    </td>
+
+                    <td>
+                        {% if gallery.isPublished %}
+                            {%trans%}AGB_YES{%endtrans%}
+                        {% else %}
+                            {%trans%}AGB_NO{%endtrans%}
+                        {% endif %}
+                    </td>
+
+                </tr>
+                
+            </tbody>
+
+        </table>
+    {% endif %}
+    
+    <br />
+    
+    <a href="{{ path('admin_gallery_edit_info', { 'galleryID': galleryID }) }}" class="btn btn-warning" style="margin-left: 540px;">{%trans%}AGB_EDIT{%endtrans%}</a>
+    
+{% endblock container %}

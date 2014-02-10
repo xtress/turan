@@ -1,0 +1,70 @@
+#GalleryController
+AGB_GALLERY_CREATED: Галерея успешно создана!
+AGB_ERROR_WHILE_CREATING: При создании галереи произошла ошибка
+AGB_ERROR_WHILE_DELETING: При удалении галереи произошла ошибка
+AGB_GALLERY_DELETED: Галерея успешно удалена!
+AGB_ERROR_WHILE_UPDATING: При обновлении галереи произошла ошибка
+AGB_UPDATED_SUCCESFULLY: Галерея успешно обновлена!
+AGB_FORM_NOT_VALID: Форма не валидна. Пожалуйста, попробуйте еще раз.
+AGB_FILE_TITLE_CHANGED: "Поле 'title' файла изменено"
+AGB_FILE_TITLE_NOT_CHANGED: "При изменении поля 'title' произошла ошибка."
+AGB_REQUEST_NOT_VALID_XHR: Запрос является не валидным
+AGB_GALLERY_MAIN_PIC_CHANGED: Обложка галереи изменена
+AGB_GALLERY_MAIN_PIC_NOT_CHANGED: Произошла ошибка при изменении обложки галереи
+AGB_PICTURE_REMOVED: Файл удален
+AGB_PICTURE_NOT_REMOVED: Произошла ошибка при удалении файла
+AGB_JSON_UPDATED: Gallery JSON updated!
+
+#index.html.twig
+AGB_GALLERY_DASHBOARD: Панель управления галереями
+AGB_BACK: Назад
+AGB_CREATE_GALLERY: Создать галерею
+AGB_GALLERY_MANAGEMENT: Управление галереями
+
+#create.html.twig
+AGB_GALLERY_INFO: Информация о галерее
+AGB_GALLERY_FILES: Файлы
+AGB_SAVE: Сохранить
+
+#list.html.twig
+AGB_GALLERY_ID: ID
+AGB_GALLERY_MAIN_PICTURE: Обложка
+AGB_GALLERY_NAME: Имя
+AGB_GALLERY_CREATOR: Создатель
+AGB_GALLERY_GALLERY_TYPE: Тип
+AGB_GALLERY_IS_PUBLISHED: Опубликована?
+AGB_GALLERY_ACTIONS: Действия
+AGB_EDIT: Редактировать
+AGB_DELETE: Удалить
+AGB_PREVIEW: Просмотр
+
+#showInfo.html.twig
+AGB_GALLERY_LOCALE: Язык
+AGB_YES: Да
+AGB_NO: Нет
+
+#upload.html.twig
+AGB_ONLY_VIDEOS_ALLOWED: Разрешено загружать только видеофайлы (*.avi, *.wmv, *.mkv, *.mp4)!
+AGB_ONLY_IMAGES_ALLOWED: Разрешено загружать только картинки (*.jpe, *.jpg, *.jpeg, *.gif, *.png)!
+AGB_FILE_TYPE_NOT_ALLOWED: Извините, файл данного типа не может быть загружен.
+AGB_SET_COVER: Сделать обложкой
+AGB_FILE_TITLE: Поле 'title'
+AGB_FILE_NAME: Имя
+AGB_FILE_PREVIEW: Превью
+AGB_VIDEO_MODAL_CLOSE: Закрыть
+AGB_SORRY_NO_SOLUTION_FOR_VIDEO: Извините, в связи с настройками сервера, файл не может быть проигран на данный момент.
+AGB_REPEAT_VIDEO_OFF: Выключить повтор
+AGB_REPEAT_VIDEO: Повтор
+AGB_VIDEO_RESTORE_SCREEN: Восстановить
+AGB_VIDEO_FULL_SCREEN: Полный экран
+AGB_VIDEO_MAX_VOLUME: Макс. громкость
+AGB_VIDEO_UNMUTE: Включить звук
+AGB_VIDEO_MUTE: Выключить звук
+AGB_STOP_VIDEO: Стоп
+AGB_PAUSE_VIDEO: Пауза
+AGB_PLAY_VIDEO: Воспроизвести
+
+#db
+GT_PHOTO_GALLERY: Фотогалерея
+GT_VIDEO_GALLERY: Видеогалерея
+

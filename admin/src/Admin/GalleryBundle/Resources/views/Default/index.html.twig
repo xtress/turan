@@ -1,0 +1,33 @@
+{% extends 'AdminMainBundle:Default:index.html.twig' %}
+
+{%block page_title_h1 %}
+    <h1 style="display: inline">
+        {%trans%}AGB_GALLERY_DASHBOARD{%endtrans%}
+        <a href="{{ path('_admin_main_homepage') }}" class="btn btn-primary">
+            {%trans%}AGB_BACK{%endtrans%}
+        </a>
+    </h1>
+{%endblock page_title_h1 %}
+
+{% block container %}
+    
+    
+    <div class="bundle_panel">
+
+        <div class="bundle_item">
+            <a title="{{ 'AGB_CREATE_GALLERY' | trans }}" href="{{path ('admin_gallery_create')}}">
+                <img src="{{asset("img_admin/icon-48-user.png")}}" alt=""><br>
+                <span>{{ 'AGB_CREATE_GALLERY' | trans }}</span>
+            </a>
+        </div>
+
+        <div class="bundle_item">
+            <a title="{{ 'AGB_GALLERY_MANAGEMENT' | trans }}" href="{{path ('admin_gallery_show_list')}}">
+                <img src="{{asset("img_admin/icon-48-article.png")}}" alt=""><br>
+                <span>{{ 'AGB_GALLERY_MANAGEMENT' | trans }}</span>
+            </a>
+        </div>
+
+    </div>
+    
+{% endblock container %}

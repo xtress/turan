@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new Admin\PageBundle\AdminPageBundle(),
             new API\MainBundle\APIMainBundle(),
             new Admin\NewsBundle\AdminNewsBundle(),
+            new Admin\GalleryBundle\AdminGalleryBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

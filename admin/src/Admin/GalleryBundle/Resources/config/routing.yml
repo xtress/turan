@@ -1,0 +1,76 @@
+admin_gallery_homepage:
+    pattern:  /
+    defaults: { _controller: AdminGalleryBundle:Default:index }
+    requirements:
+                _method:  GET
+                
+admin_gallery_show_list:
+    pattern:  /list()
+    defaults: { _controller: AdminGalleryBundle:Gallery:showGalleryList }
+    requirements:
+                _method:  GET
+    
+admin_gallery_create:
+    pattern:  /create()
+    defaults: { _controller: AdminGalleryBundle:Gallery:createGallery }
+    requirements:
+                _method:  GET|POST
+                
+admin_gallery_delete:
+    pattern:  /{galleryID}/delete()
+    defaults: { _controller: AdminGalleryBundle:Gallery:deleteGallery }
+    requirements:
+                _method:    GET
+                galleryID:  \d+
+                
+admin_gallery_show_info:
+    pattern:  /{galleryID}/showInfo()
+    defaults: { _controller: AdminGalleryBundle:Gallery:showGalleryInfo }
+    requirements:
+                _method:    GET
+                galleryID:  \d+
+                
+admin_gallery_edit_info:
+    pattern:  /{galleryID}/edit()
+    defaults: { _controller: AdminGalleryBundle:Gallery:editGalleryInfo }
+    requirements:
+                _method:    GET
+                galleryID:  \d+
+                
+admin_gallery_save_info:
+    pattern:  /{galleryID}/save()
+    defaults: { _controller: AdminGalleryBundle:Gallery:saveGalleryInfo }
+    requirements:
+                _method:    POST
+                galleryID:  \d+
+                
+admin_gallery_uploadFiles:
+    pattern:  /{galleryID}/uploadFiles()
+    defaults: { _controller: AdminGalleryBundle:Gallery:uploadFiles }
+    requirements:
+                _method:    GET
+                galleryID:  \d+
+                
+admin_gallery_change_file_title:
+    pattern:  /gallery/changeFileTitle()
+    defaults: { _controller: AdminGalleryBundle:Gallery:changeFileTitle }
+    requirements:
+                _method:  POST
+                
+admin_gallery_set_gallery_cover:
+    pattern:  /gallery/setGalleryCover()
+    defaults: { _controller: AdminGalleryBundle:Gallery:setGalleryCover }
+    requirements:
+                _method:  POST
+                
+admin_gallery_delete_file:
+    pattern:  /deleteFile()
+    defaults: { _controller: AdminGalleryBundle:Gallery:deleteFile }
+    requirements:
+                _method:  POST
+                
+admin_gallery_update_json:
+    pattern:  /updateJSON()
+    defaults: { _controller: AdminGalleryBundle:Gallery:updateGalleryJson }
+    requirements:
+                _method:  POST

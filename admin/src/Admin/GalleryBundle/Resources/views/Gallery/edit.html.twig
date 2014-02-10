@@ -1,0 +1,32 @@
+{% extends 'AdminMainBundle:Default:index.html.twig' %}
+
+{%block page_title_h1 %}
+    <h1 style="display: inline">
+        {%trans%}AGB_GALLERY_DASHBOARD{%endtrans%}
+        <a href="{{ path('admin_gallery_show_list') }}" class="btn btn-primary">
+            {%trans%}AGB_BACK{%endtrans%}
+        </a>
+    </h1>
+{%endblock page_title_h1 %}
+
+{% block container %}
+    
+    <br />
+    
+    <form action="{{ path('admin_gallery_save_info', { 'galleryID': galleryID }) }}" method="POST" {{ form_enctype(form) }} >
+        {{ form_errors(form) }}
+                
+        {{ form_label(form.name) }}
+        {{ form_widget(form.name) }}
+        {{ form_label(form.galleryType) }}
+        {{ form_widget(form.galleryType) }}
+        {{ form_label(form.isPublished) }}
+        {{ form_widget(form.isPublished) }}
+                    
+        {{ form_rest(form) }}
+            
+        <input type="submit" value="{%trans%}AGB_SAVE{%endtrans%}" class="btn btn-success">
+        
+    </form>
+    
+{% endblock container %}

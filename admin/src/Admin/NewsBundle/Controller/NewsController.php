@@ -167,6 +167,7 @@ class NewsController extends Controller {
                         $data->getIsPublished() !== $oldPublishFlag
                         || $data->getTitle() !== $oldTitle ) {
                     $this->generatePaginationJSON();
+                    $this->generateLastNewsJson();
                 }
                 
             } catch(DBALException $e) {
@@ -235,7 +236,7 @@ class NewsController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('Admin\NewsBundle\Entity\News');
         $locale = $this->get('session')->get('_locale');
-        $lastNewsArr = [];
+        $lastNewsArr = array();
         
         $lastNews = $repo->getLastNews(5, $locale);
         $quantity = count($lastNews);
@@ -260,7 +261,7 @@ class NewsController extends Controller {
             
         }
         
-        file_put_contents(getcwd().self::newsDir."/".$locale."/lastNews.json", json_encode($lastNewsArr, JSON_UNESCAPED_SLASHES), LOCK_EX);
+        file_put_contents(getcwd().self::newsDir."/".$locale."/lastNews.json", json_encode($lastNewsArr, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE), LOCK_EX);
     }
     
     /**
@@ -271,7 +272,7 @@ class NewsController extends Controller {
     {
         $repo = $this->getDoctrine()->getEntityManager()->getRepository('\Admin\NewsBundle\Entity\News');
         $locale = $this->get('session')->get('_locale');
-        $pagination = [];
+        $pagination = array();
         
         $newsIterator = $repo->getNewsIteratorWLocale($locale);
         $quantity = count($newsIterator);
@@ -287,7 +288,7 @@ class NewsController extends Controller {
                             ) {
 
                             $pagination["id".$value["iterator"]] = array(
-                                'prev'      => $newsIterator[$value['iterator']-2]['id'].".json", 
+                                'previous'  => $newsIterator[$value['iterator']-2]['id'].".json", 
                                 'next'      => $newsIterator[$value['iterator']]['id'].".json", 
                                 'page'      => $value["iterator"]."/".count($newsIterator), 
                                 'alias'     => $value['id'].".json",
@@ -298,7 +299,7 @@ class NewsController extends Controller {
                         elseif ( $key != ($quantity - 1) || $quantity === 1 ) {
 
                             $pagination["id".$value["iterator"]] = array(
-                                'prev'      => $value['id'].".json", 
+                                'previous'  => $value['id'].".json", 
                                 'next'      => $newsIterator[$value['iterator']]['id'].".json", 
                                 'page'      => $value["iterator"]."/".count($newsIterator), 
                                 'alias'     => $value['id'].".json",
@@ -309,7 +310,7 @@ class NewsController extends Controller {
                         else {
 
                             $pagination["id".$value["iterator"]] = array(
-                                'prev'      => $newsIterator[$value['iterator']-2]['id'].".json", 
+                                'previous'  => $newsIterator[$value['iterator']-2]['id'].".json", 
                                 'next'      => $value['id'].".json", 
                                 'page'      => $value["iterator"]."/".count($newsIterator), 
                                 'alias'     => $value['id'].".json",
@@ -327,7 +328,7 @@ class NewsController extends Controller {
                             ) {
 
                             $pagination[$value["iterator"]] = array(
-                                'prev'      => $newsIterator[$value['iterator']-2]['title'].".json", 
+                                'previous'  => $newsIterator[$value['iterator']-2]['title'].".json", 
                                 'next'      => $newsIterator[$value['iterator']]['title'].".json", 
                                 'page'      => $value["iterator"]."/".count($newsIterator), 
                                 'alias'     => $value['title'].".json",
@@ -338,7 +339,7 @@ class NewsController extends Controller {
                         elseif ( $key != ($quantity - 1) ) {
 
                             $pagination[$value["iterator"]] = array(
-                                'prev'      => $value['title'].".json", 
+                                'previous'  => $value['title'].".json", 
                                 'next'      => $newsIterator[$value['iterator']]['title'].".json", 
                                 'page'      => $value["iterator"]."/".count($newsIterator), 
                                 'alias'     => $value['title'].".json",
@@ -349,7 +350,7 @@ class NewsController extends Controller {
                         else {
 
                             $pagination[$value["iterator"]] = array(
-                                'prev'      => $newsIterator[$value['iterator']-2]['title'].".json", 
+                                'previous'  => $newsIterator[$value['iterator']-2]['title'].".json", 
                                 'next'      => $value['title'].".json", 
                                 'page'      => $value["iterator"]."/".count($newsIterator), 
                                 'alias'     => $value['title'].".json",
@@ -363,7 +364,7 @@ class NewsController extends Controller {
             }
         }
         
-        file_put_contents(getcwd().self::newsDir."/".$locale."/pagination.json", json_encode($pagination, JSON_UNESCAPED_SLASHES), LOCK_EX);
+        file_put_contents(getcwd().self::newsDir."/".$locale."/pagination.json", json_encode($pagination, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE), LOCK_EX);
     }
     
     /**
@@ -385,10 +386,10 @@ class NewsController extends Controller {
         
         switch ($caseModifier) {
             case 'id':
-                file_put_contents(getcwd().self::newsDir."/".$news->getLocale()->__toLocaleString()."/".$news->getId().".json", json_encode($newsArray, JSON_UNESCAPED_SLASHES), LOCK_EX);
+                file_put_contents(getcwd().self::newsDir."/".$news->getLocale()->__toLocaleString()."/".$news->getId().".json", json_encode($newsArray, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE), LOCK_EX);
                 break;
             case 'title':
-                file_put_contents(getcwd().self::newsDir."/".$news->getLocale()->__toLocaleString()."/".$news->getTitle().".json", json_encode($newsArray, JSON_UNESCAPED_SLASHES), LOCK_EX);
+                file_put_contents(getcwd().self::newsDir."/".$news->getLocale()->__toLocaleString()."/".$news->getTitle().".json", json_encode($newsArray, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE), LOCK_EX);
                 break;
         }
     }
@@ -424,9 +425,8 @@ class NewsController extends Controller {
             
             if (!file_exists(getcwd().self::newsDir)) {
                 
-                mkdir(getcwd().self::newsDir, 0777);
-                mkdir(getcwd().self::newsDir."/en", 0777);
-                mkdir(getcwd().self::newsDir."/ru", 0777);
+                mkdir(getcwd().self::newsDir."/en", 0777, true);
+                mkdir(getcwd().self::newsDir."/ru", 0777, true);
                 
             }
             
