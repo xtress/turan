@@ -11,6 +11,13 @@ APB_ADMINS_MODIFIEDAT: Modified at
 APB_PAGES_MODIFIEDBY: Modified by
 APB_PAGES_ACTIONS: Actions
 
+APB_ERROR_WHILE_CREATING: There was an error while creating static page.
+APB_STATICPAGE_ADDED: Static page succesfully added.
+APB_FORM_NOT_VALID: Form not valid
+APB_ERROR_WHILE_EDITING: There was an error while editing static page.
+APB_STATICPAGE_SAVED: Static page succesfully saved.
+APB_ERROR_WHILE_DELETING: There was an error while deleting static page.
+APB_STATICPAGE_DELETED: Static page succesfully deleted.
 
 #common
 APB_BACK: Back

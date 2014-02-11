@@ -8,7 +8,7 @@ AMB_ADMIN_DASHBOARD_TITLE: Панель управления сайтом
 AMB_ADMINS_MANAGER: Управление администраторами
 AMB_ADMINS_DASHBOARD: Управление администраторами
 AMB_ADMINISTRATORS_LIST: Список администраторов
-AMB_ADD_ADMINISTRATORS: Добавить администратор
+AMB_ADD_ADMINISTRATORS: Добавить администратора
 AMB_ADMINS_ID: ID
 AMB_ADMINS_LOGIN: Логин
 AMB_ADMINS_ROLES: Роли
@@ -45,4 +45,5 @@ ROLE_CONTENT_MANAGER: Контент менеджер
 ROLE_WAITER: Автор
 ROLE_HELPDESK: Служба поддержки
 
-AMB_GALLERY_MANAGER: Управление галерей
+AMB_GALLERY_MANAGER: Управление галереями
+AMB_GALLERY_NOT_WORKING_YET: Управление галереями временно не работает, в связи с программными ограничениями сервера.

@@ -192,6 +192,12 @@
     {% endfor %}
         
     {%block container %}
+
+    
+    <div class="alert alert-error file-not-allowed">
+        <a class="close" data-dismiss="alert">×</a>
+        {%trans%}AMB_GALLERY_NOT_WORKING_YET{%endtrans%}
+    </div>
         <div class="bundle_panel">
 
             <div class="bundle_item">
@@ -216,7 +222,7 @@
             </div>
 
             <div class="bundle_item">
-                <a title="{{ 'AMB_GALLERY_MANAGER' | trans }}" href="{{path ('admin_gallery_homepage')}}">
+                <a title="{{ 'AMB_GALLERY_MANAGER' | trans }}" href="#{#{{path ('admin_gallery_homepage')}}#}">
                     <img src="{{asset("img_admin/icon-48-media.png")}}" alt=""><br>
                     <span>{{ 'AMB_GALLERY_MANAGER' | trans }}</span>
                 </a>

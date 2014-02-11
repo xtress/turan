@@ -16,10 +16,13 @@ class AdminType extends AbstractType
     {
         $builder
             ->add('login')
-            ->add('password', 'text', array(
+            ->add('password', 'repeated', array(
+                'type' => 'password',
                 'required' => false,
                 'attr' => array('value' => ''),
-                ))
+                'first_options'  => array('label' => 'Password'),
+                'second_options' => array('label' => 'Repeat Password'),
+            ))
             ->add('userRoles')
         ;
     }

@@ -929,6 +929,10 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
 					async   : false,
 					url     : settings.checkExisting,
 					data    : {filename: file.name},
+                                        beforeSend: function (request)
+                                        {
+                                            request.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+                                        },
 					success : function(data) {
 						if (data == 1) {
 							var overwrite = confirm('A file with the name "' + file.name + '" already exists on the server.\nWould you like to replace the existing file?');

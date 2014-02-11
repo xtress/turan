@@ -46,3 +46,4 @@ ROLE_WAITER: Writer
 ROLE_HELPDESK: Help desk
 
 AMB_GALLERY_MANAGER: Gallery manager
+AMB_GALLERY_NOT_WORKING_YET: Gallery management not working yet due to server software restrictions.

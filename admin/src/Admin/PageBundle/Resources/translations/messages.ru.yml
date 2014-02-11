@@ -11,6 +11,14 @@ APB_ADMINS_MODIFIEDAT: Когда отредактирована
 APB_PAGES_MODIFIEDBY: Кем отредактирована
 APB_PAGES_ACTIONS: Действия
 
+APB_ERROR_WHILE_CREATING: Во время создания произошла ошибка.
+APB_STATICPAGE_ADDED: Страница была добавлена.
+APB_FORM_NOT_VALID: Форма не валидна.
+APB_ERROR_WHILE_EDITING: Во время обновления произошла ошибка.
+APB_STATICPAGE_SAVED: Страница была сохранена.
+APB_ERROR_WHILE_DELETING: Во время удаления произошла ошибка.
+APB_STATICPAGE_DELETED: Страница была удалена.
+
 
 #common
 APB_BACK: Назад
