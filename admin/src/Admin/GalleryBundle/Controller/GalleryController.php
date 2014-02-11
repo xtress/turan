@@ -148,10 +148,18 @@ class GalleryController extends Controller
             
             if (!$OS) {
             
-                chmod($thumbPath, 0777);
-                unlink($thumbPath);
-                chmod($galPath, 0777);
-                unlink($galPath);
+                if (is_dir($thumbPath)) {
+                    
+                    chmod($thumbPath, 0777);
+                    unlink($thumbPath);
+                
+                }
+                if (is_dir($thumbPath)) {
+                    
+                    chmod($galPath, 0777);
+                    unlink($galPath);
+                    
+                }
                 
             } else {
                 $lines = array();

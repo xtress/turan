@@ -169,9 +169,10 @@ class UserManagerController extends Controller {
                 $admin->setUserRoles($data->getUserRoles());
                 $admin->setLogin($data->getLogin());
                 
-                if ($data->getPassword() != null)
+                if ($data->getPassword() != null) {
                     $admin->setPassword($pass);
-                else
+                    $admin->setSalt($salt);
+                } else
                     $admin->setPassword($oldPass);
                 
                 $em->persist($admin);

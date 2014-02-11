@@ -103,6 +103,7 @@ class NewsController extends Controller {
             
             $this->generatePaginationJSON();
             $this->removeNewsJson($id.".json");
+            $this->generateLastNewsJson();
             
         } catch (DBALException $e) {
                     
