@@ -6,7 +6,7 @@ angular.module('restApp.controllers', ['restApp.services']).
 
   controller('MainCtrl', ['$scope','$routeParams','$http','$location','apiConfig','locale', function($scope, $routeParams, $http, $location, apiConfig, locale){
 
-        var lastNewsCacheFile = 'lastNews.json';
+        var lastNewsCacheFile = 'lastNews.json?'+settingsJs.getUniqueValue();
         var contentFolder = 'content/news/'+locale+'/';
         $http({method: 'GET', url: contentFolder+lastNewsCacheFile}).
             success(function(data, status, headers, config) {
@@ -19,7 +19,7 @@ angular.module('restApp.controllers', ['restApp.services']).
 
   controller('ContentCtrl', ['$scope','$routeParams','$http','$location','apiConfig','locale', function($scope, $routeParams, $http, $location, apiConfig, locale){
         var alias = $routeParams.alias;
-        var contentCacheFile = alias+'.json';
+        var contentCacheFile = alias+'.json?'+settingsJs.getUniqueValue();
         var contentFolder = 'content/static/'+locale+'/';
         $scope.alias = alias;
         $http({method: 'GET', url: contentFolder+contentCacheFile}).
@@ -35,7 +35,7 @@ angular.module('restApp.controllers', ['restApp.services']).
   controller('NewsCtrl', ['$scope','$routeParams','$http','$location', 'locale', function($scope, $routeParams, $http, $location, locale) {
 
     var newsId = $routeParams.id;
-    var newsCacheFile = newsId+'.json';
+    var newsCacheFile = newsId+'.json?'+settingsJs.getUniqueValue();
 
     var contentFolder = 'content/news/'+locale+'/';
     $http({method: 'GET', url: contentFolder+newsCacheFile}).
@@ -47,7 +47,7 @@ angular.module('restApp.controllers', ['restApp.services']).
             $location.path( "#/" );
 		});
 
-    var newsPaginationFile = contentFolder+'pagination.json';
+    var newsPaginationFile = contentFolder+'pagination.json?'+settingsJs.getUniqueValue();
     $http({method: 'GET', url: newsPaginationFile}).
             success(function(data, status, headers, config) {
                 $scope.pagination = eval('data.'+'id'+$routeParams.id);

@@ -17,6 +17,10 @@ var settingsJs = {
             }
         }
         return locale;
+    },
+    getUniqueValue: function(){
+        var value = Math.round(new Date().getTime() / 1000);
+        return value;
     }
 };
 
