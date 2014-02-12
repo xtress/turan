@@ -1,0 +1,23 @@
+{
+    "MORE_BTN":"Подробно",
+    "COPYRIGHT":"© Ресторанный комплекс Туран",
+    "NEWS_PAGE_TITLE":"Новости ресторанного комплекса",
+    "NEWS_PAGINATION_PREVIOUS":"НАЗАД",
+    "NEWS_PAGINATION_NEXT":"ДАЛЬШЕ",
+
+    "GALLERY_PAGE_TITLE":"Галерея ресторанного комплекса \"Туран\"",
+    "GALLERY_DESC":"В данном разделе представленны фотографии и видеоотчеты прошедших мероприятий в нашем комплексе.",
+    "GALLERY_VIDEOS":"Видео",
+    "GALLERY_PHOTOS":"Фотографии",
+
+    "VACANCIES_PAGE_TITLE":"Vacancies in the restaurant complex \"Туран\"",
+
+    "Menu_Home":"Главная",
+    "Menu_Restaurant":"Ресторан",
+    "Menu_Pizzeria":"Пиццерия",
+    "Menu_Banqueting_hall":"Банкетный зал",
+    "Menu_Gallery":"Галерея",
+    "Menu_History":"История",
+    "Menu_Vacancies":"Вакансии",
+    "Menu_Contact":"Контакты"
+}

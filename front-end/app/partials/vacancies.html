@@ -16,9 +16,34 @@
 
  <article class="container">
 	
-		<h2>Вакансии в ресторанном комплексе "Туран"</h2>
-			<p>В данный момент нет ни одной вакансии.</p>
+		<h2>{{VACANCIES_PAGE_TITLE}}</h2>
+			<!-- <p>В данный момент нет ни одной вакансии.</p> -->
 		<div class="vacancies">
+            <div class="vacancy">
+                <div class="position">
+                    <div class="position-title"><b>Официанты</b></div>
+                    <div class="position-content">
+                        Ресторанному комплексу на постоянной основе требуются официанты.
+                    </div>
+                </div>
+                <div class="position-read-more"><a onclick="mainJs.togglePositionDesc(this); return false;"><b>{{'MORE_BTN' | translate}}...</b></a></div>
+                <div class="position-description">
+                    Требования к кандидату: Стаж работы не менее 1 года, приятная внешность, коммуникабельность, знание иностранных языков приветствуется, гостеприимность и вежливость.
+                </div>
+            </div>
+
+            <div class="vacancy">
+                <div class="position">
+                    <div class="position-title"><b>Повора</b></div>
+                    <div class="position-content">
+                        Ресторанному комплексу на постоянной основе требуются повора.
+                    </div>
+                </div>
+                <div class="position-read-more"><a onclick="mainJs.togglePositionDesc(this); return false;"><b>{{'MORE_BTN' | translate}}...</b></a></div>
+                <div class="position-description">
+                    Ищем повара-универсала европейской кухни, по-настоящему любящего свое дело, умеющего готовить стабильно вкусно. Банкетные и обеденные блюда. Условия оплаты и другие вопросы оговариваются при встрече, на собеседовании.
+                </div>
+            </div>
 <!-- 			<div class="vacancy">
 				
 				<div class="position">

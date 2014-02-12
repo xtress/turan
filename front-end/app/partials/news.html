@@ -15,16 +15,16 @@
  </article>
 
  <article class="container">
- 		<h2>Новости ресторанного комплекса:</h2>
+ 		<h2>{{'NEWS_PAGE_TITLE' | translate}}:</h2>
  		<div class="news-title">{{news.title}}</div>
  		<div class="news-content">
  			<div ng-bind-html-unsafe="news.content"></div>
  		</div>
  		
  		<div class="pagination rounded">
- 			<div class="preview"><a href="#/news/{{pagination.previous}}"><<НАЗАД</a></div>
+ 			<div class="preview"><a href="#/news/{{pagination.previous}}"><<{{'NEWS_PAGINATION_PREVIOUS' | translate}}</a></div>
  			<div class="page">{{pagination.page}}</div>
- 			<div class="next"><a href="#/news/{{pagination.next}}">ДАЛЬШЕ>></a></div>
+ 			<div class="next"><a href="#/news/{{pagination.next}}">{{'NEWS_PAGINATION_NEXT' | translate}}>></a></div>
  		</div>
 
  </article>

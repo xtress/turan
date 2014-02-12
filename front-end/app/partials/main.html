@@ -21,9 +21,9 @@
 				    Ваш браузер не поддерживает плавающие фреймы!
 			</iframe>
 			<img class="main-panoram-view" src='asset/images/1.jpg'>
-			<a href="#" class="btn active" onclick="mainJs.changePanoranView('main-panoram-view', 1); return false;"> Пиццерия </a>
-			<a href="#" class="btn" onclick="mainJs.changePanoranView('main-panoram-view', 3); return false;"> Ресторан </a>
-			<a href="#" class="btn" onclick="mainJs.changePanoranView('main-panoram-view', 4); return false;"> Банкетный зал </a>
+			<a href="#" class="btn active" onclick="mainJs.changePanoranView('main-panoram-view', 1); return false;"> {{'Menu_Pizzeria' | translate}}</a>
+			<a href="#" class="btn" onclick="mainJs.changePanoranView('main-panoram-view', 3); return false;"> {{'Menu_Restaurant' | translate}}</a>
+			<a href="#" class="btn" onclick="mainJs.changePanoranView('main-panoram-view', 4); return false;"> {{'Menu_Banqueting_hall' | translate}}</a>
  		</section>
 	</div>
 
@@ -41,7 +41,7 @@
                     <div ng-bind-html-unsafe="item.content"></div>
                 </div>
                 <div class="news-item-readmore">
-                    <a href="{{item.url}}">Подробно...</a>
+                    <a href="{{item.url}}">{{'MORE_BTN' | translate}}...</a>
                 </div>
             </div>
  	  <!-- <div class="news-item">

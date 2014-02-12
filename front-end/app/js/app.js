@@ -1,9 +1,8 @@
 'use strict';
-
-
 // Declare app level module which depends on filters, and services
-angular.module('restApp', ['restApp.filters', 'restApp.services', 'restApp.directives', 'restApp.controllers']).
-  config(['$routeProvider', function($routeProvider) {
+angular.module('restApp', ['restApp.filters', 'restApp.services', 'restApp.directives', 'restApp.controllers', 'pascalprecht.translate']).
+  config(['$routeProvider','$translateProvider','$translatePartialLoaderProvider', function($routeProvider, $translateProvider, $translatePartialLoaderProvider) {
+
     $routeProvider.when('/', {templateUrl: 'partials/main.html', controller: 'MainCtrl'});
 
     $routeProvider.when('/:alias\.html', {templateUrl: 'partials/staticContentTemplate.html', controller: 'ContentCtrl'});
@@ -23,4 +22,17 @@ angular.module('restApp', ['restApp.filters', 'restApp.services', 'restApp.direc
     $routeProvider.when('/registration', {templateUrl: 'partials/registration.html', controller: 'RegistrationCtrl'});
 
     $routeProvider.otherwise({redirectTo: '/'});
+
+
+    $translatePartialLoaderProvider.addPart('main');
+    $translateProvider.useLoader('$translatePartialLoader', {
+       urlTemplate: 'translations/{part}/{lang}.json'
+    });
+        var locale = 'ru';
+        var locationPartials = location.host.split('.');
+        if (locationPartials[0] == 'en'){
+            locale = 'en';
+        }
+    $translateProvider.preferredLanguage(locale);
   }]);
+
