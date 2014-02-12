@@ -28,11 +28,7 @@ angular.module('restApp', ['restApp.filters', 'restApp.services', 'restApp.direc
     $translateProvider.useLoader('$translatePartialLoader', {
        urlTemplate: 'translations/{part}/{lang}.json'
     });
-        var locale = 'ru';
-        var locationPartials = location.host.split('.');
-        if (locationPartials[0] == 'en'){
-            locale = 'en';
-        }
-    $translateProvider.preferredLanguage(locale);
+
+    $translateProvider.preferredLanguage(settingsJs.getLocale());
   }]);
 

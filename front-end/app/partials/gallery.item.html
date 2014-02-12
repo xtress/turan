@@ -10,26 +10,15 @@
                  </a>	 -->
     </div>
     <nav class="main-menu">
-        <ul>
-            <li><a href="#">Главная</a></li>
-            <li><a href="#/restaurant">Ресторан</a></li>
-            <li><a href="#/pizzeria">Пиццерия</a></li>
-            <li><a href="#/ballroom">Банкетный зал</a></li>
-            <li class="active"><a href="#/gallery">Галерея</a></li>
-            <li><a href="#/history">История</a></li>
-            <li><a href="#/vacancies">Вакансии</a></li>
-            <li><a href="#/contacts">Контакты</a></li>
-            <li> </li>
-            <li> </li>
-        </ul>
+        <!-- directive: mainMenu -->
     </nav>
 </article>
 
 <article class="container">
-<h2>Галерея ресторанного комплекса "Туран"</h2>
-<div class="gallery-description">В данном разделе представленны фотографии и видеоотчеты прошедших мероприятий в нашем комплексе.</div>
+<h2>{{'GALLERY_PAGE_TITLE'|translate}}</h2>
+<div class="gallery-description">{{'GALLERY_DESC'|translate}}</div>
 <div class="gallery-links">
-    <a href="#/gallery">Фотографии</a>
+    <a href="#/gallery">{{'GALLERY_PHOTOS'|translate}}</a>
     <!-- <a href="#">Видеоролики</a> -->
 </div>
 <div class="gallery-item-description">Вип-фуршет в честь официального открытия (17 ноября)</div>
@@ -405,9 +394,9 @@
 </div>
 
 <div class="pagination rounded">
-    <div class="preview"><a href="#/gallery/open"><<НАЗАД</a></div>
+    <div class="preview"><a href="#/gallery/open"><<{{'PREVIOUS_BTN' | translate}}</a></div>
     <div class="page">1/1</div>
-    <div class="next"><a href="#/gallery/open">ДАЛЬШЕ>></a></div>
+    <div class="next"><a href="#/gallery/open">{{'NEXT_BTN' | translate}}>></a></div>
 </div>
 </article>
 

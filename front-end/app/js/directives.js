@@ -4,12 +4,12 @@
 
 
 angular.module('restApp.directives', []).
-  directive('appVersion', ['version', function(version) {
-    return function(scope, elm, attrs) {
-      elm.text(version);
-    };
-  }]).
-   directive('mainMenu', function(){
+    directive('appVersion', ['version', function(version) {
+        return function(scope, elm, attrs) {
+            elm.text(version);
+        };
+    }])
+    .directive('mainMenu', function(){
         return {
             transclude: true,
             restrict: 'M',
@@ -24,8 +24,8 @@ angular.module('restApp.directives', []).
 
 
         };
- }).
-    directive('languagesLinks', function(){
+    })
+    .directive('languagesLinks', function(){
         return {
             transclude: true,
             restrict: 'M',
@@ -34,18 +34,28 @@ angular.module('restApp.directives', []).
             compile: function compile(tElement, tAttrs) {
                 return function postLink(scope, elm, attrs) {
                     var location = document.location;
-                    var locale = 'ru';
                     var locationPartials = location.hostname.split('.');
-                    if (locationPartials[0] == 'en'){
-                        locale = 'en';
-                        scope.ruLink = location.protocol+'//'+locationPartials[1]+location.pathname+'#/';
-                        scope.enLink = location.protocol+'//'+location.hostname+location.pathname+'#/';
+                    if (locationPartials[0] == 'www'){
+                        if (locationPartials[1] == 'en'){
+                           
+                            scope.ruLink = location.protocol+'//'+locationPartials[0]+'.'+locationPartials[2]+'.'+locationPartials[3]+location.pathname;
+                            scope.enLink = location.protocol+'//'+locationPartials[0]+'.'+locationPartials[1]+'.'+locationPartials[2]+'.'+locationPartials[3]+location.pathname;
+                        }else{
+                            scope.ruLink = location.protocol+'//'+locationPartials[0]+'.'+locationPartials[1]+'.'+locationPartials[2]+location.pathname;
+                            scope.enLink = location.protocol+'//'+locationPartials[0]+'.en.'+locationPartials[1]+'.'+locationPartials[2]+location.pathname;
+                        }
                     }else{
-                        scope.ruLink = location.protocol+'//'+location.hostname+location.pathname+'#/';
-                        scope.enLink = location.protocol+'//'+'en.'+location.hostname+location.pathname+'#/';
+                        if (locationPartials[0] == 'en'){
+                            
+                            scope.ruLink = location.protocol+'//'+locationPartials[1]+'.'+locationPartials[2]+location.pathname;
+                            scope.enLink = location.protocol+'//'+locationPartials[0]+'.'+locationPartials[1]+'.'+locationPartials[2]+location.pathname;
+                        }else{
+                            scope.ruLink = location.protocol+'//'+locationPartials[0]+'.'+locationPartials[1]+location.pathname;
+                            scope.enLink = location.protocol+'//'+'en.'+locationPartials[0]+'.'+locationPartials[1]+location.pathname;
+                        }
                     }
 
-                    $('a.lang.'+locale).addClass('active');
+                    $('a.lang.'+settingsJs.getLocale()).addClass('active');
 
                 }
             }
@@ -54,4 +64,3 @@ angular.module('restApp.directives', []).
         };
     })
 ;
-

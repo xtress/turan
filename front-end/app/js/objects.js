@@ -1,8 +1,28 @@
 'use strict';
 
 /* Objects */
+
+var settingsJs = {
+    getLocale: function(){
+
+        var locale = 'ru';
+        var locationPartials = location.host.split('.');
+        if (locationPartials[0] == 'www'){
+            if (locationPartials[1] == 'en'){
+                locale = 'en';
+            }
+        }else{
+            if (locationPartials[0] == 'en'){
+                locale = 'en';
+            }
+        }
+        return locale;
+    }
+};
+
+
 var mainJs = {
-  	
+
   	toggleMenu: function (){
   		if ($('.mobile-search').hasClass('visible')){
   			this.toggleSearch();
