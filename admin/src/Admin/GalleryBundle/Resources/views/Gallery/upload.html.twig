@@ -38,6 +38,14 @@
                 var timestamp = "{{''|date('U')}}";
                 var mainPicID = "{{ mainPic }}";
                 var isPublished = "{{isPublished}}";
+                var galleryType = "{{galleryType}}";
+                var fsLimit = 1024 * 1024 * 2;
+                
+                if (galleryType == 1)
+                    var allowedExts = '*.jpg; *.JPG; *.jpe; *.JPE; *.jpeg;*.JPEG; *.png; *.PNG; *.gif; *.GIF';
+                else
+                    var allowedExts = '*.avi; *.AVI; *.mp4; *.MP4; *.wmv; *.WMV; *.mkv; *.MKV';
+                
                 if (mainPicID != "") {
                     $($('.trow-file#'+mainPicID).children()).css('background-color','#D8CCCC');
                     $('input#'+mainPicID+'.set-main').attr('checked', 'checked');
@@ -48,16 +56,21 @@
                 $(function() {
                     $('#file_upload').uploadify({
                         'swf'      : "{{ asset('bundles/uploadify/uploadify.swf') }}",//'uploadify.swf',
-                        'uploader' : "{{ asset('bundles/uploadify/uploadify.php') }}",
+                        'uploader' : "{{ path('admin_gallery_upload', { galleryID: galleryID }) }}"/*"{{ asset('bundles/uploadify/uploadify.php') }}"*/,
                         'onError'  : function(event,queueID,fileObj,errorObj){
                                        alert(errorObj["type"]+" - "+errorObj["status"]+" - "+errorObj["text"]);
                                    },
+                        'fileSizeLimit': fsLimit,
                         'formData' : {
-                            'timestamp' : timestamp,
-                            'token'     : md5('unique_salt' + timestamp),
-                            'folder': '../../../../front-end/app/img/gallery/{{galleryLocale}}/{{galleryID}}',
+                            'timestamp' : "{{timestamp}}",
+                            'token'     : "{{token}}",
+                            /*'folder': '../../../../front-end/app/img/gallery/{{galleryLocale}}/{{galleryID}}',*/
                             'galleryID': '{{galleryID}}',
                             'galleryType': '{{galleryType}}',
+                            'galleryLocale': '{{galleryLocale}}',
+                        },
+                        onSelect: function (fileObj) {
+                            validateFile(fileObj.size, fileObj.type, fileObj.id);
                         },
                         onUploadSuccess : function(fileObj,data,response) {
                     
@@ -65,11 +78,17 @@
                             
                             if (parsed.code == 3) {
                                 $('.file-not-allowed').css('display', 'block');
+                            } else if (parsed.code == 4) {
+                                console.log(parsed);
+                            } else if (parsed.code == 5) {
+                                console.log(parsed);
+                            } else if (parsed.code == 6) {
+                                console.log(parsed);
                             } else if (parsed.code == 1) {
                                 
                                 setTimeout(function() {
                                     $('#thumbnail').append(
-                                        '<tr>\n\
+                                        '<tr class="trow-file" id="'+parsed.fileID+'">\n\
                                             <td><img src=\"' + parsed.thumb + '\" /></td>\n\
                                             <td>'+ parsed.name +'</td>\n\
                                             <td><input class="file-title-change" id="'+parsed.fileID+'" type="text" value="'+parsed.title+'" titleOld="'+parsed.title+'" />\n'+
@@ -88,10 +107,10 @@
                                 , 1000);
                                 
                             } else {
-                                console.log(parsed.thumb);
+                                
                                 setTimeout(function() {
                                     $('#thumbnail').append(
-                                        '<tr>\n\
+                                        '<tr class="trow-file" id="'+parsed.fileID+'">\n\
                                             <td>\n\
                                                 <div style="width:320px; height:240px; background-color: #000; vertical-align:middle; text-align:center">\n\
                                                     <a href="#myModal" data-toggle="modal" dataName="'+ parsed.name +'" dataSrc="'+ parsed.thumb +'" id="video-link" class="video">\n\
@@ -126,6 +145,61 @@
                         // Put your options here
                     });
                 });
+                
+                function validateFile(fSize, fileExt, fileID)
+                {
+                    var fileSize = Math.round(fSize / 1024);
+                    var suffix   = 'KB';
+                    if (fileSize > 1000) {
+                            fileSize = Math.round(fileSize / 1000);
+                            suffix   = 'MB';
+                    }
+                    var fileSizeParts = fileSize.toString().split('.');
+                    fileSize = fileSizeParts[0];
+                    if (fileSizeParts.length > 1) {
+                            fileSize += '.' + fileSizeParts[1].substr(0,2);
+                    }
+
+                    var fileSizeLimit = Math.round(fsLimit / 1024);
+                    var suffixFSL   = 'KB';
+                    if (fileSizeLimit > 1000) {
+                            fileSizeLimit = Math.round(fileSizeLimit / 1000);
+                            suffixFSL   = 'MB';
+                    }
+                    var fileSizeParts = fileSizeLimit.toString().split('.');
+                    fileSizeLimit = fileSizeParts[0];
+                    if (fileSizeParts.length > 1) {
+                            fileSizeLimit += '.' + fileSizeParts[1].substr(0,2);
+                    }
+
+                    if (Number(fileSize) > Number(fileSizeLimit)) {
+
+                        if (
+                                (suffix == 'MB' && suffixFSL == 'KB') 
+                                || (suffix == 'MB' && suffixFSL == 'MB')
+                            )   
+                        {
+                            $('#file_upload').uploadify('cancel', fileID, true);
+                            $('.file-size-exceeds').css('display', 'block');
+                            $('.file-size-exceeds > #fsLimit').html(" "+fileSizeLimit+suffixFSL+" ");
+                            $('.file-size-exceeds > #fSize').html(" "+fileSize+suffix+" ");
+                        }
+
+                    } else {
+                        if (suffix == 'MB' && suffixFSL == 'KB') {
+                            $('#file_upload').uploadify('cancel', fileID, true);
+                            $('.file-size-exceeds').css('display', 'block');
+                            $('.file-size-exceeds > #fsLimit').html(" "+fileSizeLimit+suffixFSL+" ");
+                            $('.file-size-exceeds > #fSize').html(" "+fileSize+suffix+" ");
+                        }
+                    }
+                    
+                    if (allowedExts.indexOf(fileExt) < 0) {
+                        $('.file-not-allowed').css('display', 'block');
+                        $('#file_upload').uploadify('cancel', fileID, true);
+                    }
+                    
+                }
                 
                 $('.file-title-change').on('input', function() {
                     
@@ -230,6 +304,11 @@
                     });
                     
                 });
+                
+                $("[data-hide]").on("click", function(){
+                    $(this).closest("." + $(this).attr("data-hide")).hide();
+                });
+                
                 $(document).on('click', "a#video-link.video", function(){
                     
                     var src = $(this).attr('dataSrc');
@@ -408,13 +487,19 @@
     
     
     <div class="alert alert-error file-not-allowed" style="display:none;">
-        <a class="close" data-dismiss="alert">×</a>
+        <a class="close" data-hide="alert">×</a>
         {%trans%}AGB_FILE_TYPE_NOT_ALLOWED{%endtrans%}<br />
         {% if galleryType == 1 %}
             {%trans%}AGB_ONLY_IMAGES_ALLOWED{%endtrans%}
         {% else %}
             {%trans%}AGB_ONLY_VIDEOS_ALLOWED{%endtrans%}
         {% endif %}
+    </div>
+    
+    <div class="alert alert-error file-size-exceeds" style="display:none;">
+        <a class="close" data-hide="alert">×</a>
+        {%trans%}AGB_FILE_SIZE_EXCEEDS_LIMIT{%endtrans%}<br />
+        {%trans%}AGB_ONLY_FILES{%endtrans%}<span id="fsLimit"></span>{%trans%}AGB_ALLOWED{%endtrans%}{%trans%}AGB_TRIED_TO_UPLOAD{%endtrans%}<span id="fSize"></span>{%trans%}AGB_FILE{%endtrans%}
     </div>
     
     <form action="{{ path('admin_gallery_create') }}" method="POST" enctype="multipart/form-data" >

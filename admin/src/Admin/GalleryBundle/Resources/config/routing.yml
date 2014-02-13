@@ -51,6 +51,13 @@ admin_gallery_uploadFiles:
                 _method:    GET
                 galleryID:  \d+
                 
+admin_gallery_upload:
+    pattern:  /{galleryID}/upload
+    defaults: { _controller: AdminGalleryBundle:Upload:uploadFile }
+    requirements:
+                _method:    POST
+                galleryID:  \d+
+                
 admin_gallery_change_file_title:
     pattern:  /gallery/changeFileTitle
     defaults: { _controller: AdminGalleryBundle:Gallery:changeFileTitle }

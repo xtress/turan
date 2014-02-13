@@ -25,7 +25,48 @@ framework:
 twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
-
+    
+parameters:
+    json_generator:
+      newsDir:    ""
+      staticDir:  ""
+      uploadDir:  ""
+      galleryDir: ""
+    uploader:
+      upload_dir:   "../../front-end/app/img/gallery"
+      token:        "1oiCZN24qL237vL12CZN24qL237"
+      img_types:
+        0: "jpg"
+        1: "JPG"
+        2: "jpeg"
+        3: "JPEG"
+        4: "jpe"
+        5: "JPE"
+        6: "png"
+        7: "PNG"
+        8: "gif"
+        9: "GIF"
+      video_types:
+        0: "avi"
+        1: "AVI"
+        2: "mp4"
+        3: "MP4"
+        4: "m4v"
+        5: "M4V"
+        6: "mkv"
+        7: "MKV"
+        8: "wmv"
+        9: "WMV"
+      glob_options:
+        max_width:            160
+        max_height:           160
+        no_cache:             false
+        no_video_thumbs:      true
+        max_original_width:   1024
+        max_original_height:  768
+        thumbnail:
+          max_width:  160
+          max_height: 160
 # Assetic Configuration
 assetic:
     debug:          %kernel.debug%

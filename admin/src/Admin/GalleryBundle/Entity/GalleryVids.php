@@ -31,6 +31,13 @@ class GalleryVids
     /**
      * @var string
      *
+     * @ORM\Column(name="frontend_path", type="string", length=255, nullable=false)
+     */
+    private $frontendPath;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="filepath", type="string", length=255, nullable=false)
      */
     private $filepath;
@@ -85,6 +92,29 @@ class GalleryVids
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set frontendPath
+     *
+     * @param string $frontendPath
+     * @return GalleryPics
+     */
+    public function setFrontendPath($frontendPath)
+    {
+        $this->frontendPath = $frontendPath;
+    
+        return $this;
+    }
+
+    /**
+     * Get frontendPath
+     *
+     * @return string 
+     */
+    public function getFrontendPath()
+    {
+        return $this->frontendPath;
     }
 
     /**

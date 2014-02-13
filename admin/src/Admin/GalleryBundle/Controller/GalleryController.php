@@ -286,6 +286,8 @@ class GalleryController extends Controller
     
     public function changeFileTitleAction(Request $request)
     {
+        $translator = $this->get('translator');
+        
         if ($request->isXmlHttpRequest()) {
             
             $newTitle   = $request->request->get('title');
@@ -293,7 +295,6 @@ class GalleryController extends Controller
             $em         = $this->getDoctrine()->getManager();
             $repo       = $em->getRepository(self::_picsEntityName);
             $file       = $repo->find($fileID);
-            $translator = $this->get('translator');
             
             try {
                 
@@ -314,6 +315,8 @@ class GalleryController extends Controller
     
     public function setGalleryCoverAction(Request $request)
     {
+        $translator = $this->get('translator');
+        
         if ($request->isXmlHttpRequest()) {
             
             $fileID     = $request->request->get('id');
@@ -323,7 +326,6 @@ class GalleryController extends Controller
             $fileRepo   = $em->getRepository(self::_picsEntityName);
             $gallery    = $galRepo->find($galleryID);
             $file       = $fileRepo->find($fileID);
-            $translator = $this->get('translator');
             
             try {
                 
@@ -344,13 +346,14 @@ class GalleryController extends Controller
     
     public function deleteFileAction(Request $request)
     {
+        $translator = $this->get('translator');
+        
         if ($request->isXmlHttpRequest()) {
             
             $fileID     = $request->request->get('id');
             $em         = $this->getDoctrine()->getManager();
             $fileRepo   = $em->getRepository(self::_picsEntityName);
             $file       = $fileRepo->find($fileID);
-            $translator = $this->get('translator');
             
             try {
                 
@@ -380,10 +383,11 @@ class GalleryController extends Controller
     
     public function updateGalleryJsonAction(Request $request)
     {
+        $translator = $this->get('translator');
+        
         if ($request->isXmlHttpRequest()) {
             
             $galleryID  = $request->request->get('galleryID');
-            $translator = $this->get('translator');
             
             if ($this->generateGalleryJSON($galleryID))
                 return new Response(json_encode(array('status' => 'OK', 'msg' => $translator->trans('AGB_JSON_UPDATED'))), 200);
@@ -409,6 +413,8 @@ class GalleryController extends Controller
         $galleryType = $gallery->getGalleryType()->getId();
         $files = null;
         $mainPic = null;
+        $token_var = $this->container->getParameter('uploader');
+        $token_var = $token_var['token'];
         
         if ($galleryType == 1) {
         
@@ -426,6 +432,9 @@ class GalleryController extends Controller
         if ($mainPic != null)
             $mainPic = $mainPic->getId();
         
+        $time   = time();
+        $token  = md5($token_var.$time);
+        
         
         return $this->render('AdminGalleryBundle:Gallery:upload.html.twig', array(
             'galleryID'     => $galleryID,
@@ -434,12 +443,18 @@ class GalleryController extends Controller
             'mainPic' => $mainPic,
             'galleryType' => $galleryType,
             'isPublished' => $gallery->getIsPublished(),
+            'token' => $token,
+            'timestamp' => $time,
         ));
     }
     
-    private function generateJSONDirStructure($galleryID, $galleryLocale)
+    private function generateJSONDirStructure($galleryID, $galleryLocale, $galleryType = 1)
     {
-        $path = getcwd().self::_galleryDir."/".$galleryLocale."/".$galleryID;
+        if ($galleryType == 1) 
+            $path = getcwd().self::_galleryDir."/photo/".$galleryLocale."/".$galleryID;
+        else
+            $path = getcwd().self::_galleryDir."/video/".$galleryLocale."/".$galleryID;
+        
         if(!is_dir($path)){
             mkdir($path, 0755, true);
         }
@@ -451,12 +466,14 @@ class GalleryController extends Controller
         $picsRepo       = $em->getRepository(self::_picsEntityName);
         $vidsRepo       = $em->getRepository(self::_vidsEntityName);
         
+        $galleryType = $data->getGalleryType()->getId();
+        
         if ($data === null) {
             $galleryRepo = $em->getRepository(self::_mainEntityName);
             $data = $galleryRepo->find($galleryID);
         }
         
-        if ($data->getGalleryType()->getId() == 1) {
+        if ($galleryType == 1) {
             $files = $picsRepo->getGalleryPics($galleryID);
         } else {
             $files = $vidsRepo->getGalleryVids($galleryID);
@@ -502,9 +519,9 @@ class GalleryController extends Controller
             
         }
         
-        $this->generateJSONDirStructure($data->getId(), $data->getLocale()->__toLocaleString());
+        $this->generateJSONDirStructure($data->getId(), $data->getLocale()->__toLocaleString(), $data->getGalleryType()->getId());
         
-        file_put_contents(getcwd().self::_galleryDir.$data->getLocale()->__toLocaleString()."/".$data->getId()."/gallery.json", json_encode($gallery, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE), LOCK_EX);
+        file_put_contents(getcwd().self::_galleryDir.(($galleryType == 1) ? 'photo/' : 'video/').$data->getLocale()->__toLocaleString()."/".$data->getId()."/gallery.json", json_encode($gallery, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE), LOCK_EX);
         
         return true;
     }

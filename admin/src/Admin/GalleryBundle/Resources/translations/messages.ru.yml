@@ -15,6 +15,11 @@ AGB_PICTURE_REMOVED: Файл удален
 AGB_PICTURE_NOT_REMOVED: Произошла ошибка при удалении файла
 AGB_JSON_UPDATED: Gallery JSON updated!
 
+#UploadController
+AGB_FILE_SAVE_ERROR: File save error.
+AGB_REQUEST_METHOD_NOT_POST: HTTP Method != POST
+AGB_UPLOAD_TOKEN_DOES_NOT_MATCH: Tokens do not match
+
 #index.html.twig
 AGB_GALLERY_DASHBOARD: Панель управления галереями
 AGB_BACK: Назад
@@ -47,6 +52,11 @@ AGB_NO: Нет
 AGB_ONLY_VIDEOS_ALLOWED: Разрешено загружать только видеофайлы (*.avi, *.wmv, *.mkv, *.mp4)!
 AGB_ONLY_IMAGES_ALLOWED: Разрешено загружать только картинки (*.jpe, *.jpg, *.jpeg, *.gif, *.png)!
 AGB_FILE_TYPE_NOT_ALLOWED: Извините, файл данного типа не может быть загружен.
+AGB_FILE_SIZE_EXCEEDS_LIMIT: Извините, размер файла превышает разрешенный.
+AGB_ONLY_FILES: Только файлы размером
+AGB_ALLOWED: или меньше разрешены для загрузки!
+AGB_TRIED_TO_UPLOAD: Вы пытались загрузить 
+AGB_FILE: файл
 AGB_SET_COVER: Сделать обложкой
 AGB_FILE_TITLE: Поле 'title'
 AGB_FILE_NAME: Имя

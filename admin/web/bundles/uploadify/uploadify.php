@@ -6,6 +6,8 @@ $glob_options = array(
     'max_height' => 160,
     'no_cache' => false,
     'no_video_thumbs' => true,
+    'max_original_width' => 1024,
+    'max_original_height' => 768,
     'thumbnail' => array(
         // Uncomment the following to use a defined directory for the thumbnails
         // instead of a subdirectory based on the version identifier.
@@ -66,6 +68,7 @@ if (!empty($_FILES) && $_POST['token'] == $verifyToken) {
                 $type = 'img';
                 
                 $fileInfo = pathinfo($targetFile);
+                var_dump($fileInfo);exit;
                 if ($_SERVER['SERVER_NAME'] === 'localhost') {
                     $fileInfo['dirname'] = explode('turan-pro',realpath($fileInfo['dirname']));
                     unset($fileInfo['dirname'][0]);
@@ -88,7 +91,7 @@ if (!empty($_FILES) && $_POST['token'] == $verifyToken) {
                 echo (
                         json_encode(
                                 array(
-                                    'thumb' => $fileInfo['dirname'] . "/thumbs/" . $fileInfo['thumbName'],
+                                    'thumb' => $fileInfo['thumbPath'] . '/' . $fileInfo['thumbName'],
                                     'name'  => $fileInfo['thumbName'],
                                     'title' => '',
                                     'fileID' => $data['id'],
@@ -336,10 +339,17 @@ function gd_create_scaled_image($file_name, $version = '', $options, $glob_optio
         if ($image_oriented) {
             return $write_func($src_img, $new_file_path, $image_quality);
         }
+        
         if ($file_path !== $new_file_path) {
             return copy($file_path, $new_file_path);
+        } else {
+            $fp = explode('/', $new_file_path);
+            $name = $fp[count($fp) - 1];
+            unset($fp[count($fp) - 1]);
+            $fp[] = "thumbs/".$name;
+            $new_file_path = implode('/', $fp);
+            return copy($file_path, $new_file_path);
         }
-        return true;
     }
     if (empty($options['crop'])) {
         $new_width = $img_width * $scale;
@@ -375,6 +385,7 @@ function gd_create_scaled_image($file_name, $version = '', $options, $glob_optio
     $exploded_path[] = "thumbs";
     $exploded_path[] = $file_name;
     $path = implode('/', $exploded_path);
+    
     $success = imagecopyresampled(
         $new_img,
         $src_img,

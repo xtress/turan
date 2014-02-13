@@ -15,6 +15,11 @@ AGB_PICTURE_REMOVED: File succesfully removed.
 AGB_PICTURE_NOT_REMOVED: There was an error while removing file.
 AGB_JSON_UPDATED: Gallery JSON updated!
 
+#UploadController
+AGB_FILE_SAVE_ERROR: File save error.
+AGB_REQUEST_METHOD_NOT_POST: HTTP Method != POST
+AGB_UPLOAD_TOKEN_DOES_NOT_MATCH: Tokens do not match
+
 #index.html.twig
 AGB_GALLERY_DASHBOARD: Gallery management dashboard
 AGB_BACK: Back
@@ -47,6 +52,11 @@ AGB_NO: No
 AGB_ONLY_VIDEOS_ALLOWED: Only video types (*.avi, *.wmv, *.mkv, *.mp4) allowed!
 AGB_ONLY_IMAGES_ALLOWED: Only image types (*.jpe, *.jpg, *.jpeg, *.gif, *.png) allowed!
 AGB_FILE_TYPE_NOT_ALLOWED: Sorry file of this type is not allowed to upload.
+AGB_FILE_SIZE_EXCEEDS_LIMIT: Sorry this file exceeds filesize limit.
+AGB_ONLY_FILES: Only files that are 
+AGB_ALLOWED: or less are allowed!
+AGB_TRIED_TO_UPLOAD: You are trying to upload 
+AGB_FILE: file
 AGB_SET_COVER: Set cover
 AGB_FILE_TITLE: Title
 AGB_FILE_NAME: Name

@@ -58,7 +58,7 @@
                     <td>
                         {% for role in administrator.userRoles %}
                             
-                            {{ role.name }}
+                            {{ role.name | trans }}
                             {% if loop.index != administrator.userRoles.count %}<br />{% endif %}
                             
                         {% endfor %}
