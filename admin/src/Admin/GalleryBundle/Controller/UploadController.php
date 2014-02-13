@@ -328,12 +328,10 @@ class UploadController extends Controller
         //creating dir structure
         if (!is_dir($path))
             mkdir($path, 0755, true);
-        else if ($originalsPath != null && !is_dir($originalsPath))
+        if ($originalsPath != null && !is_dir($originalsPath))
             mkdir($originalsPath, 0755);
-        else if ($framesPath != null && !is_dir($framesPath))
+        if ($framesPath != null && !is_dir($framesPath))
             mkdir($framesPath, 0755);
-        else
-            return false;
         
         return true;
     }

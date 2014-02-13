@@ -40,6 +40,9 @@
                 var isPublished = "{{isPublished}}";
                 var galleryType = "{{galleryType}}";
                 var fsLimit = 1024 * 1024 * 2;
+                $.fn.exists = function () {
+                    return this.length !== 0;
+                }
                 
                 if (galleryType == 1)
                     var allowedExts = '*.jpg; *.JPG; *.jpe; *.JPE; *.jpeg;*.JPEG; *.png; *.PNG; *.gif; *.GIF';
@@ -201,7 +204,7 @@
                     
                 }
                 
-                $('.file-title-change').on('input', function() {
+                $(document).on('input', '.file-title-change', function() {
                     
                     var fileID  = this.id;
                     var old     = this.titleOld;
@@ -211,7 +214,7 @@
                     
                 });
                 
-                $('.file-title-change').focusout(function() {
+                $(document).on('focusout', '.file-title-change', function() {
                     
                     var fileID  = this.id;
                     var title   = this.value;
@@ -241,7 +244,7 @@
                     
                 });
                 
-                $('.set-main').click(function() {
+                $(document).on('click', '.set-main', function() {
                     
                     var fileID = this.id;
                     var status = $(this).is(':checked');
@@ -259,19 +262,22 @@
                         }).done(function(data) {
                         
                             var old = $('[datamain]');
-                            var tr = old.parent().parent();
-                            var nextColor = old.parent().parent().next().children().css('background-color');
-                            if (nextColor == "rgba(0, 0, 0, 0)")
-                                var newColor = "rgb(249, 249, 249)";
-                            else
-                                var newColor = "rgba(0, 0, 0, 0)";
-                            console.log(tr[0]);
+                            
+                            if (old.exists()) {
+                                var tr = old.parent().parent();
+                                var nextColor = old.parent().parent().next().children().css('background-color');
+                                if (nextColor == "rgba(0, 0, 0, 0)")
+                                    var newColor = "rgb(249, 249, 249)";
+                                else
+                                    var newColor = "rgba(0, 0, 0, 0)";
+                                
+                                mainPicID = this.id;
+
+                                $($('.trow-file#'+tr[0].id).children()).css('background-color',newColor);
+                                old.removeAttr('datamain');
+                            }
 
                             $($('.trow-file#'+fileID).children()).css('background-color','#D8CCCC');
-                            mainPicID = this.id;
-
-                            $($('.trow-file#'+tr[0].id).children()).css('background-color',newColor);
-                            old.removeAttr('datamain');
                             $(checkbox).attr('datamain','');
 
                         }).fail(function() {
@@ -286,7 +292,7 @@
                     
                 });
                 
-                $('.delete').click(function() {
+                $(document).on('click', '.delete', function() {
                     
                     var fileID = this.id;
                     var tr = $('#'+fileID+".trow-file");
@@ -294,7 +300,7 @@
                     $.ajax({
                       type: "POST",
                       url: "{{ path('admin_gallery_delete_file') }}",
-                      data: { id: fileID }
+                      data: { id: fileID, galleryType: galleryType }
                     }).done(function(data) {
                         $($('.trow-file#'+fileID).children()).css('background-color',"#FF3700");
                         tr.fadeOut(400, function(){

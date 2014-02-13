@@ -190,4 +190,19 @@ class GalleryVids
     {
         return $this->filepath."/".$this->name;
     }
+    
+    public function getThumb()
+    {
+        return $this->filepath."/thumbs/".$this->name;
+    }
+    
+    public function getFrame()
+    {
+        return $this->filepath."/frames/".$this->name;
+    }
+    
+    public function getOriginal()
+    {
+        return $this->filepath."/originals/".$this->name;
+    }
 }

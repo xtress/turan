@@ -302,6 +302,8 @@ class GalleryController extends Controller
                 $em->persist($file);
                 $em->flush();
                 
+                $this->generateGalleryJSON($file->getGallery()->getId());
+                
                 return new Response(json_encode(array('status' => 'OK', 'msg' => $translator->trans('AGB_FILE_TITLE_CHANGED'))),200);
                 
             } catch(DBALException $e) {
@@ -333,6 +335,8 @@ class GalleryController extends Controller
                 $em->persist($gallery);
                 $em->flush();
                 
+                $this->generateGalleryJSON($galleryID);
+                
                 return new Response(json_encode(array('status' => 'OK', 'msg' => $translator->trans('AGB_GALLERY_MAIN_PIC_CHANGED'))),200);
                 
             } catch(DBALException $e) {
@@ -350,25 +354,61 @@ class GalleryController extends Controller
         
         if ($request->isXmlHttpRequest()) {
             
-            $fileID     = $request->request->get('id');
-            $em         = $this->getDoctrine()->getManager();
-            $fileRepo   = $em->getRepository(self::_picsEntityName);
-            $file       = $fileRepo->find($fileID);
+            $em             = $this->getDoctrine()->getManager();
+            $fileID         = $request->request->get('id');
+            $galleryType    = $request->request->get('galleryType');
+            
+            if ($galleryType == 1)
+                $fileRepo   = $em->getRepository(self::_picsEntityName);
+            else
+                $fileRepo   = $em->getRepository(self::_vidsEntityName);
+            
+            $file           = $fileRepo->find($fileID);
+            $galleryID      = $file->getGallery()->getId();
             
             try {
                 
                 if ($request->server->get('SERVER_NAME') === 'localhost') {
-                    $filepath = getcwd() . "/../../.." . $file->getPicture();
-                    $thumbpath = getcwd() . "/../../.." . $file->getThumb();
+                    
+                    if ($galleryType == 1) {
+                        $filePath   = getcwd() . "/../../.." . $file->getPicture();
+                        $thumbPath  = getcwd() . "/../../.." . $file->getThumb();
+                        $origPath   = getcwd() . "/../../.." . $file->getOriginal();
+                        $framePath  = null;
+                    } else {
+                        $filePath   = getcwd() . "/../../.." . $file->getVideo();
+                        $thumbPath  = getcwd() . "/../../.." . $file->getThumb();
+                        $origPath   = getcwd() . "/../../.." . $file->getOriginal();
+                        $framePath  = getcwd() . "/../../.." . $file->getFrame();
+                    }
                 } else {
-                    $filepath = getcwd() . "/../.." . $file->getPicture();
-                    $thumbpath = getcwd() . "/../.." . $file->getThumb();
+                    
+                    if ($galleryType == 1) {
+                        $filePath   = getcwd() . "/../.." . $file->getPicture();
+                        $thumbPath  = getcwd() . "/../.." . $file->getThumb();
+                        $origPath   = getcwd() . "/../.." . $file->getOriginal();
+                        $framePath  = null;
+                    } else {
+                        $filePath   = getcwd() . "/../.." . $file->getVideo();
+                        $thumbPath  = getcwd() . "/../.." . $file->getThumb();
+                        $origPath   = getcwd() . "/../.." . $file->getOriginal();
+                        $framePath  = getcwd() . "/../.." . $file->getFrame();
+                    }
                 }
                 
-                unlink($filepath);
-                unlink($thumbpath);
+                if (is_file($filePath))
+                    unlink($filePath);
+                if (is_file($thumbPath))
+                    unlink($thumbPath);
+                if (is_file($framePath))
+                    unlink($framePath);
+                if (is_file($origPath))
+                    unlink($origPath);
+                
                 $em->remove($file);
                 $em->flush();
+                
+                $this->generateGalleryJSON($galleryID);
                 
                 return new Response(json_encode(array('status' => 'OK', 'msg' => $translator->trans('AGB_PICTURE_REMOVED'))),200);
                 
@@ -466,12 +506,12 @@ class GalleryController extends Controller
         $picsRepo       = $em->getRepository(self::_picsEntityName);
         $vidsRepo       = $em->getRepository(self::_vidsEntityName);
         
-        $galleryType = $data->getGalleryType()->getId();
-        
         if ($data === null) {
             $galleryRepo = $em->getRepository(self::_mainEntityName);
             $data = $galleryRepo->find($galleryID);
         }
+        
+        $galleryType    = $data->getGalleryType()->getId();
         
         if ($galleryType == 1) {
             $files = $picsRepo->getGalleryPics($galleryID);
@@ -488,7 +528,7 @@ class GalleryController extends Controller
         if ($data->getMainPic() != null)
             $gallery['cover'] = array(
                 'filename'  => $data->getMainPic()->getPicture(),
-                'filepath'  => $data->getFrontendPath(),
+                'filepath'  => $data->getMainPic()->getFrontendPath(),
                 'thumb'     => array(
                     'filename' => $data->getMainPic()->getName(),
                     'filepath' => $data->getMainPic()->getFrontendThumb(),

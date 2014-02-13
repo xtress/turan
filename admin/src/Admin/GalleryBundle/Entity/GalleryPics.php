@@ -205,4 +205,9 @@ class GalleryPics
     {
         return $this->frontendPath."/thumbs/".$this->name;
     }
+    
+    public function getOriginal()
+    {
+        return $this->filepath."/originals/".$this->name;
+    }
 }
