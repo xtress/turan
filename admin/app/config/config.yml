@@ -27,6 +27,7 @@ twig:
     strict_variables: %kernel.debug%
     
 parameters:
+    session.storage.native.class: Admin\MainBundle\Session\Storage
     json_generator:
       newsDir:    ""
       staticDir:  ""
@@ -117,3 +118,6 @@ services:
         arguments: ["%kernel.default_locale%"]
         tags:
             - { name: kernel.event_subscriber }
+    session.storage.native:
+        class:     %session.storage.native.class%
+        arguments: [%session.storage.options%, @service_container]

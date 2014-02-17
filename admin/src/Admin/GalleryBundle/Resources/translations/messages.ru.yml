@@ -42,11 +42,14 @@ AGB_GALLERY_ACTIONS: Действия
 AGB_EDIT: Редактировать
 AGB_DELETE: Удалить
 AGB_PREVIEW: Просмотр
+AGB_NO_GALLERIES: Нет ни одной галереи.
 
 #showInfo.html.twig
 AGB_GALLERY_LOCALE: Язык
 AGB_YES: Да
 AGB_NO: Нет
+AGB_ATTRIBUTE: Атрибут
+AGB_VALUE: Значение
 
 #upload.html.twig
 AGB_ONLY_VIDEOS_ALLOWED: Разрешено загружать только видеофайлы (*.avi, *.wmv, *.mkv, *.mp4)!

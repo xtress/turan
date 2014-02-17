@@ -28,7 +28,7 @@
 
     {% block javascripts %}
         
-        <script type="text/javascript" src="{{ asset('js/uploadify/jquery.uploadify.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/uploadify/jquery.uploadify.js?v='~''|date('U')) }}"></script>
         <script type="text/javascript" src="{{ asset('js/uploadify/utf8_encode.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/uploadify/md5.js') }}"></script>
         <script type="text/javascript">
@@ -58,8 +58,8 @@
                 
                 $(function() {
                     $('#file_upload').uploadify({
-                        'swf'      : "{{ asset('bundles/uploadify/uploadify.swf') }}",//'uploadify.swf',
-                        'uploader' : "{{ path('admin_gallery_upload', { galleryID: galleryID }) }}"/*"{{ asset('bundles/uploadify/uploadify.php') }}"*/,
+                        'swf'      : "{{ asset('bundles/uploadify/uploadify.swf') }}",
+                        'uploader' : "{{ path('admin_gallery_upload', { galleryID: galleryID }) }}",
                         'onError'  : function(event,queueID,fileObj,errorObj){
                                        alert(errorObj["type"]+" - "+errorObj["status"]+" - "+errorObj["text"]);
                                    },
@@ -67,10 +67,9 @@
                         'formData' : {
                             'timestamp' : "{{timestamp}}",
                             'token'     : "{{token}}",
-                            /*'folder': '../../../../front-end/app/img/gallery/{{galleryLocale}}/{{galleryID}}',*/
                             'galleryID': '{{galleryID}}',
                             'galleryType': '{{galleryType}}',
-                            'galleryLocale': '{{galleryLocale}}',
+                            'galleryLocale': '{{galleryLocale}}'
                         },
                         onSelect: function (fileObj) {
                             validateFile(fileObj.size, fileObj.type, fileObj.id);

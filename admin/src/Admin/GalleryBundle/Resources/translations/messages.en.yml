@@ -42,11 +42,14 @@ AGB_GALLERY_ACTIONS: Actions
 AGB_EDIT: Edit
 AGB_DELETE: Delete
 AGB_PREVIEW: Preview
+AGB_NO_GALLERIES: No galleries found.
 
 #showInfo.html.twig
 AGB_GALLERY_LOCALE: Locale
 AGB_YES: Yes
 AGB_NO: No
+AGB_ATTRIBUTE: Attribute
+AGB_VALUE: Value
 
 #upload.html.twig
 AGB_ONLY_VIDEOS_ALLOWED: Only video types (*.avi, *.wmv, *.mkv, *.mp4) allowed!

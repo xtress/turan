@@ -11,9 +11,9 @@
 
 {% block container %}
     <br />
-    {% if galleries is defined and galleries != null %}
         <table class="table table-bordered table-striped">
 
+    {% if galleries is defined and galleries != null %}
             <thead>
 
                 <th>
@@ -91,8 +91,12 @@
                     </tr>
 
                 {% endfor %}
+        </tbody>
+    {% else %}
+        
+            <tbody>
+                <tr><td colspan="5">{%trans%}AGB_NO_GALLERIES{%endtrans%}</td></tr>
             </tbody>
-
         </table>
     {% endif %}
     
