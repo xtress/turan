@@ -68,6 +68,18 @@ angular.module('restApp.controllers', ['restApp.services']).
   }]).
   controller('GalleryCtrl', ['$scope','$routeParams','$http','$location','apiConfig', function($scope, $routeParams, $http, $location, apiConfig){
 
+//        var photoGalleryFile = contentFolder+'pagination.json?'+settingsJs.getUniqueValue();
+//        $http({method: 'GET', url: contentFolder+newsCacheFile}).
+//            success(function(data, status, headers, config) {
+//                $scope.news = data
+//            }).
+//            error(function(data, status, headers, config) {
+//                console.log("Not found!");
+//                $location.path( "#/" );
+//            });
+  }]).
+  controller('GalleryItemCtrl', ['$scope','$routeParams','$http','$location','apiConfig', function($scope, $routeParams, $http, $location, apiConfig){
+
   }])
 
 
