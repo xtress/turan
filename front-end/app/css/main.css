@@ -360,10 +360,12 @@
     }
 
     .image-box .image-title{
-        top: -51px;
+        top: -55px;
         position: relative;
         padding-left: 10px;
         padding-right: 10px;
+        height: 55px;
+        overflow: hidden;
         background: rgba(63, 14, 54, 0.9);
     }
     .image-box a, .image-title a{

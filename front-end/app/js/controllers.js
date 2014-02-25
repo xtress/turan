@@ -4,10 +4,10 @@
 
 angular.module('restApp.controllers', ['restApp.services']).
 
-  controller('MainCtrl', ['$scope','$routeParams','$http','$location','apiConfig','locale', function($scope, $routeParams, $http, $location, apiConfig, locale){
+  controller('MainCtrl', ['$scope','$routeParams','$http','$location', function($scope, $routeParams, $http, $location){
 
         var lastNewsCacheFile = 'lastNews.json?'+settingsJs.getUniqueValue();
-        var contentFolder = 'content/news/'+locale+'/';
+        var contentFolder = 'content/news/'+settingsJs.getLocale()+'/';
         $http({method: 'GET', url: contentFolder+lastNewsCacheFile}).
             success(function(data, status, headers, config) {
                 $scope.lastNews = data
@@ -17,10 +17,10 @@ angular.module('restApp.controllers', ['restApp.services']).
             });
   }]).
 
-  controller('ContentCtrl', ['$scope','$routeParams','$http','$location','apiConfig','locale', function($scope, $routeParams, $http, $location, apiConfig, locale){
+  controller('ContentCtrl', ['$scope','$routeParams','$http','$location', function($scope, $routeParams, $http, $location){
         var alias = $routeParams.alias;
         var contentCacheFile = alias+'.json?'+settingsJs.getUniqueValue();
-        var contentFolder = 'content/static/'+locale+'/';
+        var contentFolder = 'content/static/'+settingsJs.getLocale()+'/';
         $scope.alias = alias;
         $http({method: 'GET', url: contentFolder+contentCacheFile}).
             success(function(data, status, headers, config) {
@@ -32,12 +32,12 @@ angular.module('restApp.controllers', ['restApp.services']).
             });
   }]).
 
-  controller('NewsCtrl', ['$scope','$routeParams','$http','$location', 'locale', function($scope, $routeParams, $http, $location, locale) {
+  controller('NewsCtrl', ['$scope','$routeParams','$http','$location', function($scope, $routeParams, $http, $location) {
 
     var newsId = $routeParams.id;
     var newsCacheFile = newsId+'.json?'+settingsJs.getUniqueValue();
 
-    var contentFolder = 'content/news/'+locale+'/';
+    var contentFolder = 'content/news/'+settingsJs.getLocale()+'/';
     $http({method: 'GET', url: contentFolder+newsCacheFile}).
 		success(function(data, status, headers, config) {
 		     $scope.news = data
@@ -57,29 +57,45 @@ angular.module('restApp.controllers', ['restApp.services']).
              });
   }]).
 
-  controller('RecoverCtrl', ['$scope','$routeParams','$http','$location','apiConfig', function($scope, $routeParams, $http, $location, apiConfig){
+  controller('RecoverCtrl', ['$scope','$routeParams','$http','$location', function($scope, $routeParams, $http, $location){
 
   }]).
-  controller('RegistrationCtrl', ['$scope','$routeParams','$http','$location','apiConfig', function($scope, $routeParams, $http, $location, apiConfig){
+  controller('RegistrationCtrl', ['$scope','$routeParams','$http','$location', function($scope, $routeParams, $http, $location){
 
   }]).
-  controller('VacanciesCtrl', ['$scope','$routeParams','$http','$location','apiConfig', function($scope, $routeParams, $http, $location, apiConfig){
+  controller('VacanciesCtrl', ['$scope','$routeParams','$http','$location', function($scope, $routeParams, $http, $location){
 
   }]).
-  controller('GalleryCtrl', ['$scope','$routeParams','$http','$location','apiConfig', function($scope, $routeParams, $http, $location, apiConfig){
+  controller('GalleryCtrl', ['$scope','$routeParams','$http','$location', function($scope, $routeParams, $http, $location){
 
-//        var photoGalleryFile = contentFolder+'pagination.json?'+settingsJs.getUniqueValue();
-//        $http({method: 'GET', url: contentFolder+newsCacheFile}).
-//            success(function(data, status, headers, config) {
-//                $scope.news = data
-//            }).
-//            error(function(data, status, headers, config) {
-//                console.log("Not found!");
-//                $location.path( "#/" );
-//            });
+
+        var contentFolder = 'content/gallery/'+settingsJs.getLocale()+'/';
+        var photoGalleryFile = contentFolder+'gallery.json?'+settingsJs.getUniqueValue();
+        $http({method: 'GET', url: photoGalleryFile}).
+            success(function(data, status, headers, config) {
+                $scope.gallery = data;
+            }).
+            error(function(data, status, headers, config) {
+                console.log("Not found!");
+                $location.path( "#/" );
+            });
   }]).
-  controller('GalleryItemCtrl', ['$scope','$routeParams','$http','$location','apiConfig', function($scope, $routeParams, $http, $location, apiConfig){
+  controller('GalleryItemCtrl', ['$scope','$routeParams','$http','$location', function($scope, $routeParams, $http, $location){
 
+        var galleryType = $routeParams.type;
+        var galleryAlias = $routeParams.alias;
+        var galleryCacheFile = '/gallery.item.json?'+settingsJs.getUniqueValue();
+
+        var contentFile = 'content/gallery/'+settingsJs.getLocale()+'/'+galleryType+'/'+galleryAlias+'/'+galleryCacheFile;
+        $http({method: 'GET', url: contentFile}).
+            success(function(data, status, headers, config) {
+                $scope.gallery = data;
+                $scope.galleryType = galleryType;
+            }).
+            error(function(data, status, headers, config) {
+                console.log("Not found!");
+                $location.path( "#/gallery" );
+            });
   }])
 
 

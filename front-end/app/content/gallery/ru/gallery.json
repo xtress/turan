@@ -1,0 +1,12 @@
+{
+    "photo" :[
+        {"title":"Торжественное открытие 17.11.2013 г.", "previewImage":"./content/gallery/ru/photo/alias1/thumbs/1.png", "url":"#/gallery/photo/alias1"},
+        {"title":"Торжественное2", "previewImage":"./content/gallery/ru/photo/alias1/thumbs/2.png", "url":"#/gallery/photo/alias1"},
+        {"title":"Торжественное3", "previewImage":"./content/gallery/ru/photo/alias1/thumbs/3.png", "url":"#/gallery/photo/alias1"}
+
+    ],
+    "video":[
+        {"title":"Video item1","previewImage":"./content/gallery/ru/video/alias1/thumbs/1.png", "url":"#/gallery/video/alias1"},
+        {"title":"Video item2","previewImage":"./content/gallery/ru/video/alias1/thumbs/2.png", "url":"#/gallery/video/alias1"}
+    ]
+}

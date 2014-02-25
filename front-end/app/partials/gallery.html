@@ -14,31 +14,45 @@
 	</nav>	
  </article>
 
- <article class="container">
+ <article class="container" ng-init="tab='photo'">
 	<h2>{{'GALLERY_PAGE_TITLE'|translate}}</h2>
 	<div class="gallery-description">{{'GALLERY_DESC'|translate}}</div>
 	<div class="gallery-links">
-		<a href="#/gallery">{{'GALLERY_PHOTOS'|translate}}</a>
-		<!-- <a href="#">{{'GALLERY_VIDEOS'|translate}}</a> -->
+		<a href="#/gallery" ng-click="tab = 'photo'">{{'GALLERY_PHOTOS'|translate}}</a>
+		<a href="#/gallery" ng-click="tab = 'video'">{{'GALLERY_VIDEOS'|translate}}</a>
 	</div>
-	<div class="gallery">
-		<div class="image-box left">
-                <a href="#/gallery/open">
-                    <img src="./img/gallery/open/DSC_0343.jpg" />
+
+	<div class="gallery" >
+
+		<div class="image-box left" ng-repeat="item in gallery.photo" ng-show="tab == 'photo'">
+                <a href="{{item.url}}">
+                    <img src="{{item.previewImage}}" />
                 </a>
                 <div class="image-title">
-                    <a href="#/gallery/open">
-                        Торжественное открытие 17.11.2013 г.
+                    <a href="{{item.url}}">
+                        {{item.title}}
                     </a>
                 </div>
 		</div>
+
+        <div class="image-box left" ng-repeat="item in gallery.video" ng-show="tab == 'video'">
+            <a href="{{item.url}}">
+                <img src="{{item.previewImage}}" />
+            </a>
+            <div class="image-title">
+                <a href="{{item.url}}">
+                    {{item.title}}
+                </a>
+            </div>
+        </div>
+
 	</div>
-	
-	<div class="pagination rounded">
- 		<div class="preview"><a href="#/gallery"><<НАЗАД</a></div>
- 		<div class="page">1/1</div>
- 		<div class="next"><a href="#/gallery">ДАЛЬШЕ>></a></div>
- 	</div>
+
+	<!--<div class="pagination rounded">-->
+ 		<!--<div class="preview"><a href="#/gallery"><<НАЗАД</a></div>-->
+ 		<!--<div class="page">1/1</div>-->
+ 		<!--<div class="next"><a href="#/gallery">ДАЛЬШЕ>></a></div>-->
+ 	<!--</div>-->
  </article>
 
  <article class="right width10">
