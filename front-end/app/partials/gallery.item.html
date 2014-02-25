@@ -34,8 +34,8 @@
     <div ng-switch-when="video">
         <div class="image-item left" ng-repeat="item in gallery.items">
             player here!
-            <a href="{{item.thumb}}" data-lightbox="galery-item">
-                <img src="{{item.img}}" />
+            {{item.thumb}}
+            {{item.img}}
             </a>
         </div>
     </div>

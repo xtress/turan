@@ -16,7 +16,25 @@ angular.module('restApp', ['restApp.filters', 'restApp.services', 'restApp.direc
     $routeProvider.when('/vacancies', {templateUrl: 'partials/vacancies.html', controller: 'VacanciesCtrl'});
     $routeProvider.when('/news/:id', {templateUrl: 'partials/news.html', controller: 'NewsCtrl'});
     $routeProvider.when('/gallery', {templateUrl: 'partials/gallery.html', controller: 'GalleryCtrl'});
-    $routeProvider.when('/gallery/:type/:alias', {templateUrl: 'partials/gallery.item.html', controller: 'GalleryItemCtrl'});
+    $routeProvider.when('/gallery/:type/:alias', {
+        templateUrl: 'partials/gallery.item.html',
+        controller: 'GalleryItemCtrl',
+        resolve: {
+            type: function ($q, $route) {
+                var deferred = $q.defer(),
+                    allowedTypes = new Array('photo', 'video');
+
+                if (allowedTypes.indexOf($route.current.params.type) != -1) {
+                    deferred.resolve();
+                } else {
+                    //deferred.reject('NOT_ALLOWED_TYPE');
+                    console.log('NOT ALLOWED GALLERY TYPE');
+                    return false;
+                }
+
+                return deferred.promise;
+            }
+    }});
 
     $routeProvider.when('/recover', {templateUrl: 'partials/recover.html', controller: 'RecoverCtrl'});
     $routeProvider.when('/registration', {templateUrl: 'partials/registration.html', controller: 'RegistrationCtrl'});
