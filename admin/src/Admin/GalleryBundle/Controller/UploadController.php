@@ -53,7 +53,7 @@ class UploadController extends Controller
             $targetFolder   = $uploaderParams['upload_dir'];
             
             //setting targetFolder and targetFile
-            $targetFolder   = $targetFolder."/".$galleryLocale."/".$galleryID;
+            $targetFolder   = $targetFolder."/".$galleryLocale."/".(($galleryType==1)?'photo':'video').'/'.$galleryID;
             $targetFile     = $targetFolder . '/' . $fileData->getClientOriginalName();
             
             //creating gallery dir struture

@@ -34,7 +34,7 @@ parameters:
       uploadDir:  ""
       galleryDir: ""
     uploader:
-      upload_dir:   "../../front-end/app/img/gallery"
+      upload_dir:   "../../front-end/app/content/gallery"
       token:        "1oiCZN24qL237vL12CZN24qL237"
       img_types:
         0: "jpg"

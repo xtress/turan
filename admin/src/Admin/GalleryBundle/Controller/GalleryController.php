@@ -83,7 +83,8 @@ class GalleryController extends Controller
                 $em->flush();
                 
                 $this->setGalleryLocale($gallery->getLocale()->__toLocaleString());
-                $this->createGalleryFolders($gallery->getLocale()->__toLocaleString(),$gallery->getID());
+                $this->createGalleryFolders($gallery->getLocale()->__toLocaleString(),$gallery->getID(), (($gallery->getGalleryType()->getId == 1)?'photo':'video'));
+                $this->generateGalleriesListJSON($gallery->getLocale()->__toLocaleString())
                 
                 return $gallery->getID();
                 
@@ -137,7 +138,7 @@ class GalleryController extends Controller
             
             $galLocale  = $gallery->getLocale()->__toLocaleString();
             $galID      = $gallery->getID();
-            $galPath    = getcwd().'/../../front-end/app/img/gallery/'.$galLocale.'/'.$galID.'/';
+            $galPath    = getcwd().'/../../front-end/app/img/gallery/'.$galLocale.'/'.(($gallery->getGalleryType()->getId() == 1)?'photo/':'video/').$galID.'/';
             $thumbPath  = $galPath."thumbs/";
             
             $em->remove($gallery);
@@ -253,8 +254,10 @@ class GalleryController extends Controller
                 $em->persist($data);
                 $em->flush();
                 
-                if ($data->getIsPublished())
+                if ($data->getIsPublished()) {
                     $this->generateGalleryJSON($galleryID, $data);
+                    $this->generateGalleriesListJSON($data->getLocale()->__toLocaleString());
+                }
                 
             } catch (DBALException $e) {
                 
@@ -336,6 +339,7 @@ class GalleryController extends Controller
                 $em->flush();
                 
                 $this->generateGalleryJSON($galleryID);
+                $this->generateGalleriesListJSON($data->getLocale()->__toLocaleString());
                 
                 return new Response(json_encode(array('status' => 'OK', 'msg' => $translator->trans('AGB_GALLERY_MAIN_PIC_CHANGED'))),200);
                 
@@ -437,9 +441,9 @@ class GalleryController extends Controller
         return new Response(json_encode(array('status' => 'FAIL', 'msg' => $translator->trans('AGB_REQUEST_NOT_VALID_XHR'))), 200);
     }
     
-    private function createGalleryFolders($locale, $galleryID)
+    private function createGalleryFolders($locale, $galleryID, $galleryType)
     {
-        $path = getcwd()."/../../front-end/app/img/gallery/".$locale."/".$galleryID."/thumbs/";
+        $path = getcwd()."/../../front-end/app/img/gallery/".$locale."/".$galleryType.'/'.$galleryID."/thumbs/";
         if(!is_dir($path)){
             mkdir($path, 0755, true);
         }
@@ -491,9 +495,9 @@ class GalleryController extends Controller
     private function generateJSONDirStructure($galleryID, $galleryLocale, $galleryType = 1)
     {
         if ($galleryType == 1) 
-            $path = getcwd().self::_galleryDir."/photo/".$galleryLocale."/".$galleryID;
+            $path = getcwd().self::_galleryDir."/".$galleryLocale."/photo/".$galleryID;
         else
-            $path = getcwd().self::_galleryDir."/video/".$galleryLocale."/".$galleryID;
+            $path = getcwd().self::_galleryDir."/".$galleryLocale."/video/".$galleryID;
         
         if(!is_dir($path)){
             mkdir($path, 0755, true);
@@ -561,9 +565,41 @@ class GalleryController extends Controller
         
         $this->generateJSONDirStructure($data->getId(), $data->getLocale()->__toLocaleString(), $data->getGalleryType()->getId());
         
-        file_put_contents(getcwd().self::_galleryDir.(($galleryType == 1) ? 'photo/' : 'video/').$data->getLocale()->__toLocaleString()."/".$data->getId()."/gallery.json", json_encode($gallery, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE), LOCK_EX);
+        file_put_contents(getcwd().self::_galleryDir.$data->getLocale()->__toLocaleString()."/".(($galleryType == 1) ? 'photo/' : 'video/').$data->getId()."/gallery.json", json_encode($gallery, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE), LOCK_EX);
         
         return true;
+    }
+    
+    private function generateGalleriesListJSON($locale = 'ru')
+    {
+        $em = $this->getDoctrine()->getManager();
+        $galleriesList = $em->getRepository('Admin\GalleryBundle\Entity\Gallery')->getGalleries($locale);
+        $json_arr = array('photo' => array(), 'video' => array());
+        
+        for ($i = 0; $i < count($galleriesList); $i++) {
+            
+            $gallery = $galleriesList[$i];
+            
+            if ($gallery->getIsPubished()) {
+                $json_arr[($gallery->getGalleryType()->getId() == 1)?'photo':'video'][] = array(
+                    'name' => $gallery->getName(),
+                    'file' => self::_galleryDir.
+                                $gallery->getLocale()->__toLocaleString().'/'.
+                                (($gallery->getGalleryType()->getId == 1) ? 'photo/' : 'video/').
+                                $gallery->getId().'/gallery.json',
+                    'mainPic' => array(
+                        'file' => $gallery->getMainPic()->getFrontendPath()
+                    )
+                                
+                );
+            }
+            
+        }
+        
+        file_put_contents(getcwd().self::_galleryDir.$data->getLocale()->__toLocaleString()."/galleryList.json", json_encode($json_arr, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE), LOCK_EX);
+        
+        return true;
+        
     }
     
 }
