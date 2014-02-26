@@ -34,9 +34,17 @@
     <div ng-switch-when="video">
         <div class="image-item left" ng-repeat="item in gallery.items">
             player here!
-            {{item.thumb}}
-            {{item.img}}
-            </a>
+
+
+            <video poster="{{item.thumb}}" autoplay="false" loop="loop" controls="controls" tabindex="0">
+                <source src="{{item.img}}" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+                <!--<source src="movie.webm" type='video/webm; codecs="vp8, vorbis"' />-->
+                <!--<source src="movie.ogv" type='video/ogg; codecs="theora, vorbis"' />-->
+                <object type="application/x-shockwave-flash" width="360" height="240" data="player.swf?file={{item.img}}">
+                    <param name="movie" value="player.swf?file={{item.img}}">
+                Video tag not supported.
+                </object>
+            </video>
         </div>
     </div>
 

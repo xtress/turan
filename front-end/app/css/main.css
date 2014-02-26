@@ -437,6 +437,7 @@
     .company-data h3{
         margin-top: 25px;
         margin-bottom: 0px;
+        clear: both;
     }
     .company-data p{
         margin-top: 0px;
