@@ -547,7 +547,7 @@ class GalleryController extends Controller
                 $gallery['items'][$i] = array(
 //                    'filename' => $file->getName(),
                     'title'    => ($file->getTitle() !== null) ? $file->getTitle() : "",
-                    'img' => $file->getFrontendPath(),
+                    'img' => $file->getFrontendPicture(),
                 );
                 
                 if ($file instanceof GalleryPics) { 
