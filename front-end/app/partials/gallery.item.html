@@ -25,24 +25,21 @@
 <div ng-switch on="galleryType">
     <div ng-switch-when="photo">
         <div class="image-item left" ng-repeat="item in gallery.items">
-            <a href="{{item.thumb}}" data-lightbox="galery-item">
-                <img src="{{item.img}}" />
+            <a href="{{item.img}}" data-lightbox="galery-item">
+                <img src="{{item.thumb}}" />
             </a>
         </div>
     </div>
 
     <div ng-switch-when="video">
-        <div class="image-item left" ng-repeat="item in gallery.items">
-            player here!
-
-
-            <video poster="{{item.thumb}}" autoplay="false" loop="loop" controls="controls" tabindex="0">
-                <source src="{{item.img}}" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
-                <!--<source src="movie.webm" type='video/webm; codecs="vp8, vorbis"' />-->
-                <!--<source src="movie.ogv" type='video/ogg; codecs="theora, vorbis"' />-->
+        <div class="image-item left video-box" ng-repeat="item in gallery.items">
+            <video poster="{{item.thumb}}" controls="controls" tabindex="0">
+                <source src="{{item.img}}" type='video/webm; codecs="vp8, vorbis"' />-->
+                <source src="{{item.img}}" type='video/mp4;codecs="avc1.42E01E, mp4a.40.2"' />
+                <source src="{{item.img}}" type='video/ogg; codecs="theora, vorbis"' />
                 <object type="application/x-shockwave-flash" width="360" height="240" data="player.swf?file={{item.img}}">
                     <param name="movie" value="player.swf?file={{item.img}}">
-                Video tag not supported.
+                    Video tag not supported.
                 </object>
             </video>
         </div>
