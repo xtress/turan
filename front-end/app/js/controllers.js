@@ -70,7 +70,7 @@ angular.module('restApp.controllers', ['restApp.services']).
 
 
         var contentFolder = 'content/gallery/'+settingsJs.getLocale()+'/';
-        var photoGalleryFile = contentFolder+'gallery.json?'+settingsJs.getUniqueValue();
+        var photoGalleryFile = contentFolder+'galleryList.json?'+settingsJs.getUniqueValue();
         $http({method: 'GET', url: photoGalleryFile}).
             success(function(data, status, headers, config) {
                 $scope.gallery = data;
@@ -84,7 +84,7 @@ angular.module('restApp.controllers', ['restApp.services']).
 
         var galleryType = $routeParams.type;
         var galleryAlias = $routeParams.alias;
-        var galleryCacheFile = '/gallery.item.json?'+settingsJs.getUniqueValue();
+        var galleryCacheFile = '/gallery.json?'+settingsJs.getUniqueValue();
 
         var contentFile = 'content/gallery/'+settingsJs.getLocale()+'/'+galleryType+'/'+galleryAlias+'/'+galleryCacheFile;
         $http({method: 'GET', url: contentFile}).
