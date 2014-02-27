@@ -584,7 +584,7 @@ class GalleryController extends Controller
             
             $gallery = $galleriesList[$i];
             
-            if ($gallery->getIsPubished()) {
+            if ($gallery->getIsPublished()) {
                 $json_arr[($gallery->getGalleryType()->getId() == 1)?'photo':'video'][] = array(
                     'title' => $gallery->getName(),
                     'file' => self::_galleryDir.
