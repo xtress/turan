@@ -11,9 +11,9 @@ class Storage extends NativeSessionStorage{
         if ($container->isScopeActive('request')) { 
             $request = $container->get('request');
  
-            if ($request->request->has('sessionId')) {
+            if ($request->request->has('sessionID')) {
                 $request->cookies->set(session_name(), 1);
-                session_id($request->request->get('sessionId'));
+                session_id($request->request->get('sessionID'));
             }
         }
  

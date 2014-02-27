@@ -84,7 +84,7 @@ class GalleryController extends Controller
                 
                 $this->setGalleryLocale($gallery->getLocale()->__toLocaleString());
                 $this->createGalleryFolders($gallery->getLocale()->__toLocaleString(),$gallery->getID(), (($gallery->getGalleryType()->getId == 1)?'photo':'video'));
-                $this->generateGalleriesListJSON($gallery->getLocale()->__toLocaleString())
+                $this->generateGalleriesListJSON($gallery->getLocale()->__toLocaleString());
                 
                 return $gallery->getID();
                 
@@ -339,7 +339,7 @@ class GalleryController extends Controller
                 $em->flush();
                 
                 $this->generateGalleryJSON($galleryID);
-                $this->generateGalleriesListJSON($data->getLocale()->__toLocaleString());
+                $this->generateGalleriesListJSON($gallery->getLocale()->__toLocaleString());
                 
                 return new Response(json_encode(array('status' => 'OK', 'msg' => $translator->trans('AGB_GALLERY_MAIN_PIC_CHANGED'))),200);
                 
@@ -524,38 +524,42 @@ class GalleryController extends Controller
         }
         
         $gallery            = array();
-        $gallery['files']   = array();
+        $gallery['items']   = array();
         
-        $gallery['name'] = $data->getName();
-        $gallery['isPublished'] = $data->getIsPublished();
+        $gallery['galleryTitle'] = $data->getName();
+//        $gallery['isPublished'] = $data->getIsPublished();
         
-        if ($data->getMainPic() != null)
-            $gallery['cover'] = array(
-                'filename'  => $data->getMainPic()->getPicture(),
-                'filepath'  => $data->getMainPic()->getFrontendPath(),
-                'thumb'     => array(
-                    'filename' => $data->getMainPic()->getName(),
-                    'filepath' => $data->getMainPic()->getFrontendThumb(),
-                )
-            );
+//        if ($data->getMainPic() != null)
+//            $gallery['cover'] = array(
+//                'filename'  => $data->getMainPic()->getPicture(),
+//                'filepath'  => $data->getMainPic()->getFrontendPath(),
+//                'thumb'     => array(
+//                    'filename' => $data->getMainPic()->getName(),
+//                    'filepath' => $data->getMainPic()->getFrontendThumb(),
+//                )
+//            );
         
         if (!empty($files) && $files != null) {
             
             $i=0;
             foreach ($files as $file) {
                 
-                $gallery['files'][$i] = array(
-                    'filename' => $file->getName(),
-                    'filepath' => $file->getFrontendPath(),
-                    'title'    => $file->getTitle(),
+                $gallery['items'][$i] = array(
+//                    'filename' => $file->getName(),
+                    'title'    => ($file->getTitle() !== null) ? $file->getTitle() : "",
+                    'img' => $file->getFrontendPath(),
                 );
                 
-                if ($file instanceof GalleryPics) {
-                    $gallery['files'][$i]['thumb'] = array(
-                        'filename' => $file->getName(),
-                        'filepath' => $file->getFrontendThumb(),
-                    );
+                if ($file instanceof GalleryPics) { 
+                    $gallery['items'][$i]['thumb'] = $file->getFrontendThumb();
                 }
+                
+//                if ($file instanceof GalleryPics) {
+//                    $gallery['items'][$i]['thumb'] = array(
+//                        'filename' => $file->getName(),
+//                        'filepath' => $file->getFrontendThumb(),
+//                    );
+//                }
                 
                 $i++;
                 
@@ -582,21 +586,20 @@ class GalleryController extends Controller
             
             if ($gallery->getIsPubished()) {
                 $json_arr[($gallery->getGalleryType()->getId() == 1)?'photo':'video'][] = array(
-                    'name' => $gallery->getName(),
+                    'title' => $gallery->getName(),
                     'file' => self::_galleryDir.
                                 $gallery->getLocale()->__toLocaleString().'/'.
                                 (($gallery->getGalleryType()->getId == 1) ? 'photo/' : 'video/').
                                 $gallery->getId().'/gallery.json',
-                    'mainPic' => array(
-                        'file' => $gallery->getMainPic()->getFrontendPath()
-                    )
+                    'previewImage' => $gallery->getMainPic()->getFrontendPath(),
+                    'url' => '#/gallery/photo/'.$gallery->getId()
                                 
                 );
             }
             
         }
         
-        file_put_contents(getcwd().self::_galleryDir.$data->getLocale()->__toLocaleString()."/galleryList.json", json_encode($json_arr, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE), LOCK_EX);
+        file_put_contents(getcwd().self::_galleryDir.$locale."/galleryList.json", json_encode($json_arr, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE), LOCK_EX);
         
         return true;
         

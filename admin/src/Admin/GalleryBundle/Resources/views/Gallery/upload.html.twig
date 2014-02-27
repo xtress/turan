@@ -69,7 +69,8 @@
                             'token'     : "{{token}}",
                             'galleryID': '{{galleryID}}',
                             'galleryType': '{{galleryType}}',
-                            'galleryLocale': '{{galleryLocale}}'
+                            'galleryLocale': '{{galleryLocale}}',
+                            'sessionID': '{{ app.session.id }}'
                         },
                         onSelect: function (fileObj) {
                             validateFile(fileObj.size, fileObj.type, fileObj.id);
