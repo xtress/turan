@@ -591,7 +591,7 @@ class GalleryController extends Controller
                                 $gallery->getLocale()->__toLocaleString().'/'.
                                 (($gallery->getGalleryType()->getId == 1) ? 'photo/' : 'video/').
                                 $gallery->getId().'/gallery.json',
-                    'previewImage' => $gallery->getMainPic()->getFrontendPath(),
+                    'previewImage' => $gallery->getMainPic()->getFrontendPicture(),
                     'url' => '#/gallery/photo/'.$gallery->getId()
                                 
                 );
