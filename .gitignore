@@ -5,7 +5,8 @@
 /admin/app/bootstrap*
 /admin/app/cache/*
 /admin/app/logs/*
-/admin/vendor/
+/admin/bin/*
+/admin/vendor/*
 /admin/app/config/parameters.yml
 /admin/.idea
 
