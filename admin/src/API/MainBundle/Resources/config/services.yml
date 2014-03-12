@@ -1,7 +1,12 @@
 parameters:
 #    api_main.example.class: API\MainBundle\Example
+    api_main.response.manager.class: API\MainBundle\Manager\ResponseManager
 
 services:
 #    api_main.example:
 #        class: %api_main.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
+
+    response.manager:
+        class: %api_main.response.manager.class%
+        arguments: [@service_container]

@@ -2,6 +2,7 @@
 
 namespace Admin\GalleryBundle\Controller;
 
+use Admin\GalleryBundle\Repository\GalleryVidsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -113,8 +114,10 @@ class GalleryController extends Controller
         $translator     = $this->get('translator');
         $repo           = $em->getRepository(self::_mainEntityName);
         $picsRepo       = $em->getRepository(self::_picsEntityName);
+        /** @var GalleryVidsRepository $vidsRepo */
+        $vidsRepo       = $em->getRepository(self::_vidsEntityName);
+        /** @var Gallery $gallery */
         $gallery        = $repo->find($galleryID);
-        $galleryPics    = $picsRepo->getGalleryPics($galleryID);
 
         try {
 
@@ -124,11 +127,23 @@ class GalleryController extends Controller
                 $prefix = getcwd() . "/../..";
             }
 
-            if (count($galleryPics) > 0) {
-                foreach ($galleryPics as $pic) {
+            if ($gallery->getGalleryType()->getId() == 1) {
+                $galType = 1;
+                $galleryFiles = $picsRepo->getGalleryPics($galleryID);
+            } else {
+                $galType = 2;
+                $galleryFiles = $vidsRepo->getGalleryVids($galleryID);
+            }
 
-                    $filepath = $prefix . $pic->getPicture();
-                    $thumbpath = $prefix . $pic->getThumb();
+            if (count($galleryFiles) > 0) {
+                foreach ($galleryFiles as $file) {
+
+                    if ($galType == 1)
+                        $filepath = $prefix . $file->getPicture();
+                    else
+                        $filepath = $prefix . $file->getVideo();
+
+                    $thumbpath = $prefix . $file->getThumb();
 
                     unlink($filepath);
                     unlink($thumbpath);

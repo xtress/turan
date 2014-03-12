@@ -1,3 +1,8 @@
 api_main_homepage:
     pattern:  /hello/{name}
     defaults: { _controller: APIMainBundle:Default:index }
+
+api_add_order:
+    pattern:  /add-Order
+    defaults: { _controller: APIMainBundle:Order:addOrder }
+
