@@ -45,7 +45,7 @@ class OrderController extends Controller
             $order->setContactEmail($email);
             $order->setSeatsQuantity($seats);
             $order->setOrderDescription($desc);
-            $order->setDateOrder(new \DateTime($date." ".$time));
+            $order->setDateOrder(new \DateTime($date." ".$time.":00"));
             $order->setHall($hall);
 
             try {
@@ -54,13 +54,13 @@ class OrderController extends Controller
                 $em->flush();
 
             } catch (DBALException $e) {
-                return $responseManager->returnErrorResponse('Произошла ошибка при сохранении, попробуйте еще раз!');
+                return $responseManager->returnErrorResponse('ORDER_SAVE_ERROR');
             }
 
-            return $responseManager->returnDefaultResponse('Заказ добавлен');
+            return $responseManager->returnDefaultResponse('ORDER_SAVE_OK');
 
         } else {
-            return $responseManager->returnErrorResponse('Неверный запрос');
+            return $responseManager->returnErrorResponse('ORDER_BAD_REQUEST');
         }
     }
 }

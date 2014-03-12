@@ -19,19 +19,11 @@ class ResponseManager {
         $this->container = $container;
     }
 
-    public function returnDefaultResponse($alert='', $dataError=false, $alertError=false, $redirect = '')
+    public function returnDefaultResponse($alert='')
     {
         $response = array(
             'status' => true,
-            'errors' => array(
-                'status' => $dataError
-            ),
-            'alert' => array(
-                'status' => !empty($alert),
-                'alertClass' => 'alert-'.($alertError ? 'error' : 'success'),
-                'alertText' => $alert
-            ),
-            'redirect' => $redirect
+            'message' => $alert,
         );
         return new Response(json_encode($response));
     }
@@ -40,10 +32,7 @@ class ResponseManager {
     {
         $response = array(
             'status' => false,
-            'alert' => array(
-                'status' => true,
-                'message' => $msg
-            ),
+            'message' => $msg,
         );
         return new Response(json_encode($response));
     }
