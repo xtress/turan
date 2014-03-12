@@ -39,6 +39,7 @@ class OrderController extends Controller
             /** @var Orders $order */
             $order  = new Orders();
             $hall   = $em->getRepository('API\MainBundle\Entity\RestaurantHalls')->find($hall);
+            $status = $em->getRepository('API\MainBundle\Entity\OrdersStatus')->find(1);
 
             $order->setContactName($name);
             $order->setContactPhone($phone);
@@ -47,6 +48,7 @@ class OrderController extends Controller
             $order->setOrderDescription($desc);
             $order->setDateOrder(new \DateTime($date." ".$time.":00"));
             $order->setHall($hall);
+            $order->setOrdersStatus($status);
 
             try {
 

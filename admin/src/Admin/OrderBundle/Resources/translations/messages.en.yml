@@ -1,0 +1,23 @@
+#common
+AOB_ORDERS_DASHBOARD: Orders dashboard
+AOB_BACK: Back
+
+#list.html.twig
+AOB_NO_ORDERS: No orders found
+AOB_ORDER_ID: ID
+AOB_ORDER_DATE: Date
+AOB_ORDER_HALL: Hall
+AOB_ORDER_CONTACT_PERSON: Contact person
+AOB_ORDER_CONTACT_PHONE: Phone
+AOB_ORDER_STATUS: Status
+AOB_ORDER_ACTIONS: Actions
+
+#order_statuses
+ORDER_STATUS_NEW: New
+ORDER_STATUS_CONFIRMED: Confirmed
+ORDER_STATUS_REJECTED: Rejected
+
+#order_restaurant_halls
+ORDER_RESTAURANT_HALL: Restaurant
+ORDER_PIZZERIA_HALL: Pizzeriz
+ORDER_BANKET_HALL: Banket hall

@@ -1,3 +1,7 @@
+admin_order:
+    resource: "@AdminOrderBundle/Resources/config/routing.yml"
+    prefix:   /admin/orders
+
 admin_gallery:
     resource: "@AdminGalleryBundle/Resources/config/routing.yml"
     prefix:   /admin/gallery

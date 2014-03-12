@@ -1,0 +1,96 @@
+{% extends 'AdminMainBundle:Default:index.html.twig' %}
+
+{%block page_title_h1 %}
+    <h1 style="display: inline">
+        {%trans%}AOB_ORDERS_DASHBOARD{%endtrans%}
+        <a href="{{ path('_admin_main_homepage') }}" class="btn btn-primary">
+            {%trans%}AOB_BACK{%endtrans%}
+        </a>
+    </h1>
+{%endblock page_title_h1 %}
+
+{% block container %}
+    <br />
+        <table class="table table-bordered table-striped">
+
+    {% if orders is defined and orders != null %}
+            <thead>
+
+                <th>
+                    {%trans%}AOB_ORDER_ID{%endtrans%}
+                </th>
+
+                <th>
+                    {%trans%}AOB_ORDER_DATE{%endtrans%}
+                </th>
+
+                <th>
+                    {%trans%}AOB_ORDER_HALL{%endtrans%}
+                </th>
+
+                <th>
+                    {%trans%}AOB_ORDER_CONTACT_PERSON{%endtrans%}
+                </th>
+
+                <th>
+                    {%trans%}AOB_ORDER_CONTACT_PHONE{%endtrans%}
+                </th>
+
+                <th>
+                    {%trans%}AOB_ORDER_STATUS{%endtrans%}
+                </th>
+
+                <th>
+                    {%trans%}AOB_ORDER_ACTIONS{%endtrans%}
+                </th>
+
+            </thead>
+
+            <tbody>
+                {% for order in orders %}
+
+                    <tr>
+
+                        <td>
+                            {{ order.id }}
+                        </td>
+
+                        <td>
+                            {{ order.dateOrder | date('Y-m-d H:i') }}
+                        </td>
+
+                        <td>
+                            {{ order.hall.desc | trans }}
+                        </td>
+
+                        <td>
+                            {{ order.contactName }}
+                        </td>
+
+                        <td>
+                            {{ order.contactPhone }}
+                        </td>
+
+                        <td>
+                            {{ order.ordersStatus.alias | trans }}
+                        </td>
+
+                        <td>
+                            <a href="{{ path('admin_gallery_edit_info', { 'galleryID': order.id }) }}" class="btn btn-danger">{%trans%}AOB_EDIT{%endtrans%}</a>
+                            <a href="{{ path('admin_gallery_delete', { 'galleryID': order.id }) }}" class="btn btn-inverse">{%trans%}AOB_DELETE{%endtrans%}</a>
+                            <a href="{{ path('admin_gallery_show_info', { 'galleryID': order.id }) }}" class="btn btn-danger">{%trans%}AOB_PREVIEW{%endtrans%}</a>
+                        </td>
+
+                    </tr>
+
+                {% endfor %}
+        </tbody>
+    {% else %}
+        
+            <tbody>
+                <tr><td colspan="5">{%trans%}AOB_NO_ORDERS{%endtrans%}</td></tr>
+            </tbody>
+        </table>
+    {% endif %}
+    
+{% endblock container %}

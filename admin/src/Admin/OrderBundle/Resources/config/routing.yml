@@ -1,0 +1,7 @@
+admin_order_homepage:
+    pattern:  /index
+    defaults: { _controller: AdminOrderBundle:Default:index }
+
+admin_order_list:
+    pattern:  /list
+    defaults: { _controller: AdminOrderBundle:Orders:list }

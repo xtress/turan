@@ -25,6 +25,7 @@ AMB_SUCESFULLY_UPDATED: Administrator info succesfully updated
 
 AMB_PAGE_MANAGER:  Static Page Management
 AMB_NEWS_MANAGER: News Management
+AMB_ORDERS_MANAGER: Orders Management
 
 #common
 AMB_BACK: Back

@@ -1,0 +1,23 @@
+#common
+AOB_ORDERS_DASHBOARD: Панель управления заказами
+AOB_BACK: Назад
+
+#list.html.twig
+AOB_NO_ORDERS: Заказы не найдены
+AOB_ORDER_ID: ID
+AOB_ORDER_DATE: Дата
+AOB_ORDER_HALL: Зал
+AOB_ORDER_CONTACT_PERSON: Контактное имя
+AOB_ORDER_CONTACT_PHONE: Телефон
+AOB_ORDER_STATUS: Статус
+AOB_ORDER_ACTIONS: Действия
+
+#order_statuses
+ORDER_STATUS_NEW: Новый
+ORDER_STATUS_CONFIRMED: Подтвержден
+ORDER_STATUS_REJECTED: Отклонен
+
+#order_restaurant_halls
+ORDER_RESTAURANT_HALL: Ресторан
+ORDER_PIZZERIA_HALL: Пиццерия
+ORDER_BANKET_HALL: Банкетный зал

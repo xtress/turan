@@ -25,6 +25,7 @@ AMB_SUCESFULLY_UPDATED: Данные администратора успешно
 
 AMB_PAGE_MANAGER:  Управление статическими страницами
 AMB_NEWS_MANAGER: Управление новостями
+AMB_ORDERS_MANAGER: Панель управления заказами
 
 #common
 AMB_BACK: Назад

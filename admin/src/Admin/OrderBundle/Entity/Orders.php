@@ -1,6 +1,6 @@
 <?php
 
-namespace API\MainBundle\Entity;
+namespace Admin\OrderBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -236,10 +236,10 @@ class Orders
     /**
      * Set hall
      *
-     * @param \API\MainBundle\Entity\RestaurantHalls $hall
+     * @param \Admin\OrderBundle\Entity\RestaurantHalls $hall
      * @return Orders
      */
-    public function setHall(\API\MainBundle\Entity\RestaurantHalls $hall = null)
+    public function setHall(\Admin\OrderBundle\Entity\RestaurantHalls $hall = null)
     {
         $this->hall = $hall;
     
@@ -249,7 +249,7 @@ class Orders
     /**
      * Get hall
      *
-     * @return \API\MainBundle\Entity\RestaurantHalls 
+     * @return \Admin\OrderBundle\Entity\RestaurantHalls 
      */
     public function getHall()
     {
@@ -259,10 +259,10 @@ class Orders
     /**
      * Set ordersStatus
      *
-     * @param \API\MainBundle\Entity\OrdersStatus $ordersStatus
+     * @param \Admin\OrderBundle\Entity\OrdersStatus $ordersStatus
      * @return Orders
      */
-    public function setOrdersStatus(\API\MainBundle\Entity\OrdersStatus $ordersStatus = null)
+    public function setOrdersStatus(\Admin\OrderBundle\Entity\OrdersStatus $ordersStatus = null)
     {
         $this->ordersStatus = $ordersStatus;
     
@@ -272,7 +272,7 @@ class Orders
     /**
      * Get ordersStatus
      *
-     * @return \API\MainBundle\Entity\OrdersStatus 
+     * @return \Admin\OrderBundle\Entity\OrdersStatus 
      */
     public function getOrdersStatus()
     {
