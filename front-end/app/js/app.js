@@ -38,6 +38,7 @@ angular.module('restApp', ['restApp.filters', 'restApp.services', 'restApp.direc
 
     $routeProvider.when('/recover', {templateUrl: 'partials/recover.html', controller: 'RecoverCtrl'});
     $routeProvider.when('/registration', {templateUrl: 'partials/registration.html', controller: 'RegistrationCtrl'});
+    $routeProvider.when('/reserve', {templateUrl: 'partials/reserve.html', controller: 'ReserveCtrl'});
 
     $routeProvider.otherwise({redirectTo: '/'});
 

@@ -96,6 +96,9 @@ angular.module('restApp.controllers', ['restApp.services']).
                 console.log("Not found!");
                 $location.path( "#/gallery" );
             });
+  }]).
+  controller('ReserveCtrl', ['$scope','$routeParams','$http','$location', function($scope, $routeParams, $http, $location){
+        mainJs.initDateTimePickers();
   }])
 
 

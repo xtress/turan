@@ -21,5 +21,8 @@
     "Menu_Gallery":"Gallery",
     "Menu_History":"History",
     "Menu_Vacancies":"Vacancies",
-    "Menu_Contact":"Contact"
+    "Menu_Contact":"Contact",
+
+    "Menu_reserve":"Reserve table",
+    "RESERVE_FORM_TITLE": "Reserve form."
 }

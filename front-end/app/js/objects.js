@@ -26,7 +26,12 @@ var settingsJs = {
 
 
 var mainJs = {
-
+    initDateTimePickers: function (){
+        $('#request_date').datetimepicker({
+            pickTime: false,
+            language: settingsJs.getLocale()
+        });
+    },
   	toggleMenu: function (){
   		if ($('.mobile-search').hasClass('visible')){
   			this.toggleSearch();

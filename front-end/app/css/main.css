@@ -163,12 +163,13 @@
         color: #000000;   
     }
 
-    input{
+    input, textarea, select{
          border: 1px solid #DEC9E2;
          border-radius: 5px 5px 5px 5px;
          margin-bottom: 10px;
     }
-        input[type="text"], input[type="password"]{
+
+    input[type="text"], input[type="password"], textarea{
         padding-left: 10px;
         font-size: 100%;
         padding-right: 5px;
@@ -682,4 +683,46 @@ img.main-panoram-view{
 }
 .info{
     padding-left: 10px;
+}
+
+#saloon{
+    width: 145px;
+}
+#seats{
+    width: 50px;
+}
+#request_time{
+    width: 70px;
+}
+#request_date, input.request_date{
+    width: 90px;
+    display: inline;
+}
+
+.table-condensed{
+    background: #714679;
+}
+.bootstrap-datetimepicker-widget.dropdown-menu.pull-right{
+
+    position: absolute;
+    top: 351.8125px;
+    left: 559.078125px;
+    right: 0px !important;
+}
+.bootstrap-datetimepicker-widget.dropdown-menu{
+    display: none;
+}
+[class^="icon-"], [class*=" icon-"] {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin-top: 1px;
+    line-height: 14px;
+    vertical-align: text-top;
+    background-image: url("../img/glyphicons-halflings-white.png");
+    background-position: 14px 14px;
+    background-repeat: no-repeat;
+}
+.icon-calendar {
+    background-position: -192px -120px;
 }

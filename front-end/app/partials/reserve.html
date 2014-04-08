@@ -1,0 +1,148 @@
+<article class="menu left">
+    <nav class="mobile-menu"></nav>
+    <nav class="mobile-search"></nav>
+    <div class="nav-buttons">
+        <a href="#" class="left" onclick="mainJs.toggleMenu();return false;">
+            <div class="btn-menu"></div>
+        </a>
+        <!--  		<a href="#" class="right">
+                     <div class="btn-login" onclick="mainJs.toggleSearch();return false;"></div>
+                 </a> -->
+    </div>
+    <nav class="main-menu">
+        <!-- directive: mainMenu -->
+    </nav>
+</article>
+ <article class="container">
+	<h2>{{'RESERVE_FORM_TITLE' | translate}}</h2>
+	<form action="#">
+		<div class="form">
+
+            <div class="row">
+                <div class="left">
+                    <label for="request_date"><b>{{'RESERVE_DATE_TIME' | translate}}:</b></label>
+                </div>
+                <div class="right">
+                    <div id="request_date" class="input-append">
+                        <input class="request_date" data-format="dd.MM.yyyy" type="text" />
+                        <span class="add-on">
+                          <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+                        </span>
+                    </div>
+                    <select id="request_time">
+                        <option value="10:00">10:00</option>
+                        <option value="10:30">10:30</option>
+                        <option value="11:00">11:00</option>
+                        <option value="11:30">11:30</option>
+                        <option value="12:00">12:00</option>
+                        <option value="12:30">12:30</option>
+                        <option value="13:00">13:00</option>
+                        <option value="13:30">13:30</option>
+                        <option value="14:00">14:00</option>
+                        <option value="14:30">14:30</option>
+                        <option value="15:00">15:00</option>
+                        <option value="15:30">15:30</option>
+                        <option value="16:00">16:00</option>
+                        <option value="16:30">16:30</option>
+                        <option value="17:00">17:00</option>
+                        <option value="17:30">17:30</option>
+                        <option value="18:00">18:00</option>
+                        <option value="18:30">18:30</option>
+                        <option value="19:00">19:00</option>
+                        <option value="19:30">19:30</option>
+                        <option value="20:00">20:00</option>
+                        <option value="20:30">20:30</option>
+                        <option value="21:00">21:00</option>
+                        <option value="21:30">21:30</option>
+                        <option value="22:00">22:00</option>
+                        <option value="22:30">22:30</option>
+                        <option value="23:00">23:00</option>
+                        <option value="23:30">23:30</option>
+                        <option value="00:00">00:00</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="left">
+                    <label for="saloon"><b>{{'RESERVE_SALOON_SEATS' | translate}}:</b></label>
+                </div>
+                <div class="right">
+                    <select id="saloon">
+                        <option value="RESTAURANT">{{'SALOON_RESTAURANT' | translate}}</option>
+                        <option value="PIZZA">{{'SALOON_PIZZA' | translate}}</option>
+                        <option value="BANQUET_HALL">{{'SALOON_BANQUET_HALL' | translate}}</option>
+                    </select>
+                    <input id="seats" type="number" placeholder="" value="1" />
+                </div>
+            </div>
+
+			<div class="row">	
+				<div class="left">
+					<label for="contact_name"><b>{{'RESERVE_CONTACT_NAME' | translate}}:</b></label>
+				</div>	
+				<div class="right">	
+					<input id="contact_name" type="text" placeholder="" />
+				</div>
+			</div>	
+
+            <div class="row">
+				<div class="left">
+					<label for="contact_phone"><b>{{'RESERVE_CONTACT_PHONE' | translate}}:</b></label>
+				</div>	
+				<div class="right">	
+					<input id="contact_phone" type="text" placeholder="" />
+				</div>
+			</div>
+
+            <div class="row">
+				<div class="left">
+					<label for="contact_email"><b>{{'RESERVE_CONTACT_EMAIL' | translate}}:</b></label>
+				</div>	
+				<div class="right">	
+					<input id="contact_email" type="text" placeholder="" />
+				</div>
+			</div>
+
+            <div class="row">
+                <div class="left">
+                    <label for="request_description"><b>{{'RESERVE_ORDER_DESCRIPTION' | translate}}:</b></label>
+                </div>
+                <div class="right">
+                    <textarea id="request_description" rows="5" cols="30"></textarea>
+                </div>
+            </div>
+
+			<div class="row">	
+				<div class="left">
+                    <p></p>
+				</div>
+				<div class="right">	
+					<input type="submit" class="btn" value="{{'RESERVE_SEND_ORDER' | translate}}">
+				</div>
+			</div>
+
+		</div>	
+		
+	</form>
+ </article>
+
+ <article class="right width10">
+
+	<!--<section class="search-form">-->
+	    <!--<form>-->
+	    	<!--<input type="text" class="search" placeholder="Поиск по сайту..." /><br>-->
+	    	<!--<input type="submit" name="search" class="btn" value="Найти">-->
+	    <!--</form>-->
+	<!--</section> 	-->
+
+	<!--<section class="login-form">-->
+	    <!--<a href="#/registration">Зарегистрироваться</a>-->
+    	<!--<form>-->
+	   		<!--<input type="text" placeholder="Имя" /><br>-->
+	   		<!--<input type="password" placeholder="Пароль" /><br>-->
+	   		<!--<input type="submit" name="search" class="btn" value="Войти"> -->
+	  	<!--</form>-->
+		<!--<a href="#/recover">Не можите войти?</a>-->
+	<!--</section> 	-->
+ </article>

@@ -4,6 +4,7 @@
     "NEXT_BTN":"ДАЛЬШЕ",
 
     "COPYRIGHT":"© Ресторанный комплекс \"Туран\"",
+
     "NEWS_PAGE_TITLE":"Новости ресторанного комплекса",
 
     "GALLERY_PAGE_TITLE":"Галерея ресторанного комплекса \"Туран\"",
@@ -20,5 +21,19 @@
     "Menu_Gallery":"Галерея",
     "Menu_History":"История",
     "Menu_Vacancies":"Вакансии",
-    "Menu_Contact":"Контакты"
+    "Menu_Contact":"Контакты",
+
+    "Menu_reserve":"Заказать столик",
+    "RESERVE_FORM_TITLE": "Форма бронирования.",
+    "RESERVE_DATE_TIME": "Дата и время",
+    "RESERVE_SALOON_SEATS": "Зал и количество мест",
+    "SALOON_RESTAURANT": "Ресторан",
+    "SALOON_PIZZA": "Пиццерия",
+    "SALOON_BANQUET_HALL": "Банкетный зал",
+    "RESERVE_CONTACT_NAME": "Контактное лицо",
+    "RESERVE_CONTACT_PHONE": "Контактный телефон",
+    "RESERVE_CONTACT_EMAIL": "E-mail",
+    "RESERVE_ORDER_DESCRIPTION": "Описание",
+    "RESERVE_SEND_ORDER": "Отправить заявку"
+
 }
