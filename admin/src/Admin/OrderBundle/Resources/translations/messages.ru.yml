@@ -11,11 +11,15 @@ AOB_ORDER_CONTACT_PERSON: Контактное имя
 AOB_ORDER_CONTACT_PHONE: Телефон
 AOB_ORDER_STATUS: Статус
 AOB_ORDER_ACTIONS: Действия
+AOB_ORDER_DELETE: Удалить
+AOB_ORDER_VIEW: Просмотреть
+AOB_ORDER_EDIT: Редактировать
 
 #order_statuses
 ORDER_STATUS_NEW: Новый
 ORDER_STATUS_CONFIRMED: Подтвержден
 ORDER_STATUS_REJECTED: Отклонен
+ORDER_STATUS_DELETED: Удален
 
 #order_restaurant_halls
 ORDER_RESTAURANT_HALL: Ресторан

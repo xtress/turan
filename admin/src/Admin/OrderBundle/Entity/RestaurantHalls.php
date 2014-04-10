@@ -92,4 +92,9 @@ class RestaurantHalls
     {
         return $this->desc;
     }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
 }

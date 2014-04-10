@@ -5,3 +5,24 @@ admin_order_homepage:
 admin_order_list:
     pattern:  /list
     defaults: { _controller: AdminOrderBundle:Orders:list }
+
+admin_order_edit:
+    pattern:  /edit/{orderId}
+    defaults: { _controller: AdminOrderBundle:Orders:edit }
+    requirements:
+              _method:  POST
+              orderId:  \d+
+
+admin_order_delete:
+    pattern:  /delete/{orderId}
+    defaults: { _controller: AdminOrderBundle:Orders:delete }
+    requirements:
+              _method:  POST
+              orderId:  \d+
+
+admin_order_view:
+    pattern:  /view/{orderId}
+    defaults: { _controller: AdminOrderBundle:Orders:view }
+    requirements:
+              _method:  GET
+              orderId:  \d+

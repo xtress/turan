@@ -11,86 +11,67 @@
 
 {% block container %}
     <br />
-        <table class="table table-bordered table-striped">
 
-    {% if orders is defined and orders != null %}
-            <thead>
+    {% block javascripts %}
 
-                <th>
-                    {%trans%}AOB_ORDER_ID{%endtrans%}
-                </th>
+        <script type="text/javascript">
 
-                <th>
-                    {%trans%}AOB_ORDER_DATE{%endtrans%}
-                </th>
+            $(document).ready(function() {
 
-                <th>
-                    {%trans%}AOB_ORDER_HALL{%endtrans%}
-                </th>
+                $('body').on('click', '.show-deleted', function() {
+                    var $deletedOrders = ($(this).attr('data-shown') == 'false') ? true : false;
+                    $.ajax({
+                        url: $(this).data('ajax-url'),
+                        type: 'POST',
+                        dataType: 'json',
+                        data: {deletedOrders: $deletedOrders},
+                        success: function(data) {
+                            if (data.status) {
+                                $('.orders-table').html(data.content);
+                            }
+                        },
+                        complete: function() {
+                            if ($('.show-deleted').attr('data-shown') == 'false') {
+                                $('.show-deleted').attr('data-shown', 'true');
+                            } else {
+                                $('.show-deleted').attr('data-shown', 'false');
+                            }
+                        }
+                    });
+                });
 
-                <th>
-                    {%trans%}AOB_ORDER_CONTACT_PERSON{%endtrans%}
-                </th>
+                $('body').on('click', '.view-order', function() {
+                    $.ajax({
+                        url: $(this).data('ajax-url'),
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function(data) {
+                            if (data.status) {
+                                $('body').html($('body').html() + data.content);
+                                $('.modal').modal();
+                            }
+                        }
+                    });
+                });
 
-                <th>
-                    {%trans%}AOB_ORDER_CONTACT_PHONE{%endtrans%}
-                </th>
+            });
 
-                <th>
-                    {%trans%}AOB_ORDER_STATUS{%endtrans%}
-                </th>
+        </script>
 
-                <th>
-                    {%trans%}AOB_ORDER_ACTIONS{%endtrans%}
-                </th>
+    {% endblock javascripts %}
 
-            </thead>
+        <span class="show-deleted" style="float: right; cursor: pointer;" data-shown="false" data-ajax-url="{{ path('admin_order_list') }}">
+            Показать удаленные
+        </span>
+        <table class="table table-bordered table-striped orders-table">
 
-            <tbody>
-                {% for order in orders %}
-
-                    <tr>
-
-                        <td>
-                            {{ order.id }}
-                        </td>
-
-                        <td>
-                            {{ order.dateOrder | date('Y-m-d H:i') }}
-                        </td>
-
-                        <td>
-                            {{ order.hall.desc | trans }}
-                        </td>
-
-                        <td>
-                            {{ order.contactName }}
-                        </td>
-
-                        <td>
-                            {{ order.contactPhone }}
-                        </td>
-
-                        <td>
-                            {{ order.ordersStatus.alias | trans }}
-                        </td>
-
-                        <td>
-                            <a href="{{ path('admin_gallery_edit_info', { 'galleryID': order.id }) }}" class="btn btn-danger">{%trans%}AOB_EDIT{%endtrans%}</a>
-                            <a href="{{ path('admin_gallery_delete', { 'galleryID': order.id }) }}" class="btn btn-inverse">{%trans%}AOB_DELETE{%endtrans%}</a>
-                            <a href="{{ path('admin_gallery_show_info', { 'galleryID': order.id }) }}" class="btn btn-danger">{%trans%}AOB_PREVIEW{%endtrans%}</a>
-                        </td>
-
-                    </tr>
-
-                {% endfor %}
-        </tbody>
-    {% else %}
-        
-            <tbody>
-                <tr><td colspan="5">{%trans%}AOB_NO_ORDERS{%endtrans%}</td></tr>
-            </tbody>
+            {% if content is defined and content != null %}
+                {{ content | raw }}
+            {% else %}
+                <tbody>
+                    <tr><td colspan="5">{%trans%}AOB_NO_ORDERS{%endtrans%}</td></tr>
+                </tbody>
+            {% endif %}
         </table>
-    {% endif %}
     
 {% endblock container %}

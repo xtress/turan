@@ -1,0 +1,73 @@
+
+<thead>
+
+<th>
+    {%trans%}AOB_ORDER_ID{%endtrans%}
+</th>
+
+<th>
+    {%trans%}AOB_ORDER_DATE{%endtrans%}
+</th>
+
+<th>
+    {%trans%}AOB_ORDER_HALL{%endtrans%}
+</th>
+
+<th>
+    {%trans%}AOB_ORDER_CONTACT_PERSON{%endtrans%}
+</th>
+
+<th>
+    {%trans%}AOB_ORDER_CONTACT_PHONE{%endtrans%}
+</th>
+
+<th>
+    {%trans%}AOB_ORDER_STATUS{%endtrans%}
+</th>
+
+<th>
+    {%trans%}AOB_ORDER_ACTIONS{%endtrans%}
+</th>
+
+</thead>
+
+<tbody>
+{% for order in orders %}
+
+    <tr>
+
+        <td>
+            {{ order.id }}
+        </td>
+
+        <td>
+            {{ order.dateOrder | date('Y-m-d H:i') }}
+        </td>
+
+        <td>
+            {{ order.hall.desc | trans }}
+        </td>
+
+        <td>
+            {{ order.contactName }}
+        </td>
+
+        <td>
+            {{ order.contactPhone }}
+        </td>
+
+        <td>
+            {{ order.ordersStatus.alias | trans }}
+        </td>
+
+        <td>
+            {% if order.ordersStatus.id != 4 %}
+                <a href="#" class="btn btn-inverse" data-ajax-url="{{ path('admin_order_delete', { 'orderId': order.id }) }}">{%trans%}AOB_ORDER_DELETE{%endtrans%}</a>
+            {% endif %}
+            <a href="#" class="btn btn-danger view-order" data-ajax-url="{{ path('admin_order_view', { 'orderId': order.id }) }}">{%trans%}AOB_ORDER_VIEW{%endtrans%}</a>
+        </td>
+
+    </tr>
+
+{% endfor %}
+</tbody>

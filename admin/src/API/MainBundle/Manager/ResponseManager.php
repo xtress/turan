@@ -19,11 +19,12 @@ class ResponseManager {
         $this->container = $container;
     }
 
-    public function returnDefaultResponse($alert='')
+    public function returnDefaultResponse($alert='', $data = null)
     {
         $response = array(
             'status' => true,
             'message' => $alert,
+            'content' => $data
         );
         return new Response(json_encode($response));
     }
