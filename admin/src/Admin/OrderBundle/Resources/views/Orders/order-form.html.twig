@@ -1,20 +1,67 @@
+<style>
+    .controul-group .control {
+        width: 300px;
+    }
+    .controul-group .select {
+        width: 310px;
+    }
+    .controul-group .textarea {
+        height: 110px;
+    }
+</style>
 <div class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Modal title</h4>
+                <button type="button" class="close close-modal" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">{% trans %}AOB_EDIT_ORDER_NO{% endtrans %} {{ orderId }}</h4>
             </div>
             <div class="modal-body">
-                <form method="POST" action="{{ path('admin_order_edit', {'orderId': orderId}) }}">
-                    {{ form_widget(form.dateOrder) }}
-                    {{ form_widget(form) }}
+                <form method="POST" action="{{ path('admin_order_save', {'orderId': orderId}) }}" id="order-form">
+                    <div class="controls">
+                        <div class="controul-group">
+                            {{ form_label(form.dateOrder) }}
+                            {{ form_widget(form.dateOrder, {'attr': { 'class': 'control' } }) }}
+                        </div>
+                        <div class="controul-group">
+                            {{ form_label(form.hall) }}
+                            {{ form_widget(form.hall, {'attr': { 'class': 'control select' } }) }}
+                        </div>
+                        <div class="controul-group">
+                            {{ form_label(form.seatsQuantity) }}
+                            {{ form_widget(form.seatsQuantity, {'attr': { 'class': 'control' } }) }}
+                        </div>
+                        <div class="controul-group">
+                            {{ form_label(form.contactName) }}
+                            {{ form_widget(form.contactName, {'attr': { 'class': 'control' } }) }}
+                        </div>
+                        <div class="controul-group">
+                            {{ form_label(form.contactPhone) }}
+                            {{ form_widget(form.contactPhone, {'attr': { 'class': 'control' } }) }}
+                        </div>
+                        <div class="controul-group">
+                            {{ form_label(form.contactEmail) }}
+                            {{ form_widget(form.contactEmail, {'attr': { 'class': 'control' } }) }}
+                        </div>
+                        <div class="controul-group">
+                            {{ form_label(form.ordersStatus) }}
+                            {{ form_widget(form.ordersStatus, {'attr': { 'class': 'control select' } }) }}
+                        </div>
+                        <div class="controul-group">
+                            {{ form_label(form.orderDescription) }}
+                            {{ form_widget(form.orderDescription, {'attr': { 'class': 'control textarea' } }) }}
+                        </div>
+                    </div>
                     {{ form_rest(form) }}
-                    <button type="submit" class="btn btn-primary">Save changes</button>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary form-order-save" style="float:right;">
+                    {% trans %}AOB_SAVE_ORDER_INFO{% endtrans %}
+                </button>
+                <button type="button" class="btn btn-default order-form-dismiss" data-dismiss="modal" style="float: left;">
+                    {% trans %}AOB_CLOSE_ORDER_MODAL{% endtrans %}
+                </button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

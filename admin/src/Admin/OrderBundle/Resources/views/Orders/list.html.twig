@@ -47,18 +47,28 @@
                         dataType: 'json',
                         success: function(data) {
                             if (data.status) {
-                                $('body').html($('body').html() + data.content);
-                                $('.modal').modal();
+                                $('.modal-div').html(data.content);
+                                $('.modal').modal('show');
                             }
                         }
                     });
+                    $(document).on('hidden.bs.modal', '.modal', function () {
+                        $('.modal').modal('hide');
+                        $('.modal-div').html('');
+                    })
                 });
+                $(document).on('click', '.form-order-save', function () {
+                    $('#order-form').submit();
+                    $('.modal').modal('hide');
+                    $('.modal-div').html('');
+                })
 
             });
 
         </script>
 
     {% endblock javascripts %}
+    <div class="modal-div"></div>
 
         <span class="show-deleted" style="float: right; cursor: pointer;" data-shown="false" data-ajax-url="{{ path('admin_order_list') }}">
             Показать удаленные

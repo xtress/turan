@@ -6,9 +6,9 @@ admin_order_list:
     pattern:  /list
     defaults: { _controller: AdminOrderBundle:Orders:list }
 
-admin_order_edit:
-    pattern:  /edit/{orderId}
-    defaults: { _controller: AdminOrderBundle:Orders:edit }
+admin_order_save:
+    pattern:  /save/{orderId}
+    defaults: { _controller: AdminOrderBundle:Orders:save }
     requirements:
               _method:  POST
               orderId:  \d+

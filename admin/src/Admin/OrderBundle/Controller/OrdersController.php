@@ -33,7 +33,7 @@ class OrdersController extends Controller
         ));
     }
 
-    public function editAction(Request $request, $orderId)
+    public function saveAction(Request $request, $orderId)
     {
         $em = $this->getDoctrine()->getManager();
         /** @var OrdersRepository $orderRepo */

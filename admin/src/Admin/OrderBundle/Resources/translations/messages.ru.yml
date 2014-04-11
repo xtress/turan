@@ -25,3 +25,16 @@ ORDER_STATUS_DELETED: Удален
 ORDER_RESTAURANT_HALL: Ресторан
 ORDER_PIZZERIA_HALL: Пиццерия
 ORDER_BANKET_HALL: Банкетный зал
+
+#edit_order
+dateOrder: Дата заказа
+hall: Зал
+seatsQuantity: Количество мест
+contactName: Контактное лицо
+contactPhone: Контактный телефон
+contactEmail: Контактный e-mail
+ordersStatus: Статус
+orderDescription: Примечания
+AOB_CLOSE_ORDER_MODAL: Закрыть
+AOB_SAVE_ORDER_INFO: Сохранить
+AOB_EDIT_ORDER_NO: Заказ №
