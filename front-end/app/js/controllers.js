@@ -97,8 +97,49 @@ angular.module('restApp.controllers', ['restApp.services']).
                 $location.path( "#/gallery" );
             });
   }]).
-  controller('ReserveCtrl', ['$scope','$routeParams','$http','$location', function($scope, $routeParams, $http, $location){
+  controller('ReserveCtrl', ['$scope','$routeParams','$http','$location', '$translate', function($scope, $routeParams, $http, $location, $translate){
         mainJs.initDateTimePickers();
+
+        $scope.request_date = mainJs.getFormattedDate(new Date());
+        $scope.request_time = '10:00';
+        $scope.saloon = 1;
+        $scope.seats = 1;
+        $scope.contact_name = '';
+        $scope.contact_phone ='';
+        $scope.contact_email ='';
+        $scope.request_description = '';
+
+        $scope.sendOrder = function(){
+            var formData = {
+             'request_date': $scope.request_date,
+             'request_time': $scope.request_time,
+             'saloon': $scope.saloon,
+             'seats': $scope.seats,
+             'contact_name': $scope.contact_name,
+             'contact_phone': $scope.contact_phone,
+             'contact_email': $scope.contact_email,
+             'request_description': $scope.request_description
+             };
+            $.ajax({
+                type 		: 'POST',
+                url 		: 'http://localhost/turan/admin/web/app_dev.php/api/add-Order',
+                data 		: formData,
+                dataType 	: 'json',
+                success 	: function(data) {
+                    if(data.status == true){
+                        var n = noty({layout:'center', type: 'success',text: $translate(data.message)});
+                    }else{
+                        var n = noty({layout:'center', type: 'error',text: $translate(data.message)});
+                    }
+
+                }
+            });
+
+
+
+
+
+        };
   }])
 
 

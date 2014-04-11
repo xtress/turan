@@ -24,5 +24,10 @@
     "Menu_Contact":"Contact",
 
     "Menu_reserve":"Reserve table",
-    "RESERVE_FORM_TITLE": "Reserve form."
+    "RESERVE_FORM_TITLE": "Reserve form.",
+    "ORDER_SAVE_ERROR":"Incorrect data!",
+    "ORDER_SAVE_OK":"Success!",
+    "ORDER_BAD_REQUEST":"Bad request!"
+
+
 }

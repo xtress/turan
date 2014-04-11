@@ -29,8 +29,18 @@ var mainJs = {
     initDateTimePickers: function (){
         $('#request_date').datetimepicker({
             pickTime: false,
-            language: settingsJs.getLocale()
+            language: settingsJs.getLocale(),
+            setDate: 'today'
         });
+    },
+    getFormattedDate: function(input){
+        var data = input.toJSON().slice(0,10);
+        var pattern=/(.*?)\-(.*?)\-(.*?)$/;
+        var result = data.replace(pattern,function(match,p1,p2,p3){
+            return (p3<10?"0"+p3:p3)+"."+p2+"."+p1;
+        })
+
+        return result;
     },
   	toggleMenu: function (){
   		if ($('.mobile-search').hasClass('visible')){

@@ -181,7 +181,22 @@
     }
     .info{
         display: inline-block;
-    }    
+    }
+
+    input[type="text"], input[type="password"], textarea {
+        padding-left: 10px;
+        font-size: 100%;
+        padding-right: 5px;
+        min-height: 23px;
+        width: 185px;
+    }
+    #saloon {
+        width: 145px;
+    }
+    #request_date, input.request_date {
+        width: 90px;
+        display: inline;
+    }
 }
 
 /*Phones landscape and Tablets portrait*/

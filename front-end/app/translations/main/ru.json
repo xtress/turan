@@ -34,6 +34,9 @@
     "RESERVE_CONTACT_PHONE": "Контактный телефон",
     "RESERVE_CONTACT_EMAIL": "E-mail",
     "RESERVE_ORDER_DESCRIPTION": "Описание",
-    "RESERVE_SEND_ORDER": "Отправить заявку"
+    "RESERVE_SEND_ORDER": "Отправить заявку",
+    "ORDER_SAVE_ERROR":"Не верные данные, проверьте правильность заполнения формы!",
+    "ORDER_SAVE_OK":"Заявка добавлена!",
+    "ORDER_BAD_REQUEST":"Неверые данные!"
 
 }

@@ -32,6 +32,11 @@
 </thead>
 
 <tbody>
+{% if orders == NULL%}
+<tr>
+    <td colspan="7"><i>{% trans %}AOB_NO_ORDERS{% endtrans %}</i></td>
+</tr>
+{% endif %}
 {% for order in orders %}
 
     <tr>
@@ -45,7 +50,7 @@
         </td>
 
         <td>
-            {{ order.hall.desc | trans }}
+            {{ order.hall.name | trans }}
         </td>
 
         <td>

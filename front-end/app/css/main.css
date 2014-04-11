@@ -174,7 +174,7 @@
         font-size: 100%;
         padding-right: 5px;
         min-height: 23px;
-        width: 185px;   
+        width: 255px;
     }
     input[type="text"].search{
         background-image:url('../img/search.png');
@@ -686,7 +686,7 @@ img.main-panoram-view{
 }
 
 #saloon{
-    width: 145px;
+    width: 215px;
 }
 #seats{
     width: 50px;
@@ -695,7 +695,7 @@ img.main-panoram-view{
     width: 70px;
 }
 #request_date, input.request_date{
-    width: 90px;
+    width: 160px;
     display: inline;
 }
 

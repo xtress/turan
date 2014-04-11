@@ -15,8 +15,9 @@
 </article>
  <article class="container">
 	<h2>{{'RESERVE_FORM_TITLE' | translate}}</h2>
-	<form action="#">
-		<div class="form">
+
+	<form ng-submit="sendOrder()" id="order-form">
+        <div class="form">
 
             <div class="row">
                 <div class="left">
@@ -24,13 +25,13 @@
                 </div>
                 <div class="right">
                     <div id="request_date" class="input-append">
-                        <input class="request_date" data-format="dd.MM.yyyy" type="text" />
+                        <input class="request_date" ng-model="request_date" data-format="dd.MM.yyyy" type="text" placeholder="{{'RESERVE_DATE_TIME' | translate}}"/>
                         <span class="add-on">
                           <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
                         </span>
                     </div>
-                    <select id="request_time">
-                        <option value="10:00">10:00</option>
+                    <select id="request_time" ng-model="request_time">
+                        <option value="10:00" selected>10:00</option>
                         <option value="10:30">10:30</option>
                         <option value="11:00">11:00</option>
                         <option value="11:30">11:30</option>
@@ -68,12 +69,12 @@
                     <label for="saloon"><b>{{'RESERVE_SALOON_SEATS' | translate}}:</b></label>
                 </div>
                 <div class="right">
-                    <select id="saloon">
-                        <option value="RESTAURANT">{{'SALOON_RESTAURANT' | translate}}</option>
-                        <option value="PIZZA">{{'SALOON_PIZZA' | translate}}</option>
-                        <option value="BANQUET_HALL">{{'SALOON_BANQUET_HALL' | translate}}</option>
+                    <select id="saloon" ng-model="saloon">
+                        <option value="1" selected>{{'SALOON_RESTAURANT' | translate}}</option>
+                        <option value="2">{{'SALOON_PIZZA' | translate}}</option>
+                        <option value="3">{{'SALOON_BANQUET_HALL' | translate}}</option>
                     </select>
-                    <input id="seats" type="number" placeholder="" value="1" />
+                    <input id="seats"  ng-model="seats" type="number" placeholder="" value="2" />
                 </div>
             </div>
 
@@ -82,7 +83,7 @@
 					<label for="contact_name"><b>{{'RESERVE_CONTACT_NAME' | translate}}:</b></label>
 				</div>	
 				<div class="right">	
-					<input id="contact_name" type="text" placeholder="" />
+					<input id="contact_name" ng-model="contact_name" type="text" placeholder="{{'RESERVE_CONTACT_NAME' | translate}}" />
 				</div>
 			</div>	
 
@@ -91,7 +92,7 @@
 					<label for="contact_phone"><b>{{'RESERVE_CONTACT_PHONE' | translate}}:</b></label>
 				</div>	
 				<div class="right">	
-					<input id="contact_phone" type="text" placeholder="" />
+					<input id="contact_phone" ng-model="contact_phone" type="text" placeholder="{{'RESERVE_CONTACT_PHONE' | translate}}" />
 				</div>
 			</div>
 
@@ -100,7 +101,7 @@
 					<label for="contact_email"><b>{{'RESERVE_CONTACT_EMAIL' | translate}}:</b></label>
 				</div>	
 				<div class="right">	
-					<input id="contact_email" type="text" placeholder="" />
+					<input id="contact_email" ng-model="contact_email"  type="text" placeholder="{{'RESERVE_CONTACT_EMAIL' | translate}}" />
 				</div>
 			</div>
 
@@ -109,7 +110,7 @@
                     <label for="request_description"><b>{{'RESERVE_ORDER_DESCRIPTION' | translate}}:</b></label>
                 </div>
                 <div class="right">
-                    <textarea id="request_description" rows="5" cols="30"></textarea>
+                    <textarea id="request_description" ng-model="request_description" rows="5" cols="30" placeholder="{{'RESERVE_ORDER_DESCRIPTION' | translate}}"></textarea>
                 </div>
             </div>
 
