@@ -110,8 +110,10 @@ angular.module('restApp.controllers', ['restApp.services']).
         $scope.request_description = '';
 
         $scope.sendOrder = function(){
+            console.log('scope.request_date='+$scope.request_date);
+            console.log('(.request_date).val()='+$('.request_date').val());
             var formData = {
-             'request_date': $scope.request_date,
+             'request_date':  mainJs.getFormattedDateRequest($('.request_date').val()),
              'request_time': $scope.request_time,
              'saloon': $scope.saloon,
              'seats': $scope.seats,
@@ -131,6 +133,14 @@ angular.module('restApp.controllers', ['restApp.services']).
                     }else{
                         var n = noty({layout:'center', type: 'error',text: $translate(data.message)});
                     }
+                    $('#request_date').datetimepicker('setDate', new Date());
+                    $('#request_time').val('10:00');
+                    $('#saloon').val(1);
+                    $('#seats').val(1);
+                    $('#contact_name').val('');
+                    $('#contact_phone').val('');
+                    $('#contact_email').val('');
+                    $('#request_description').val('');
 
                 }
             });

@@ -42,6 +42,14 @@ var mainJs = {
 
         return result;
     },
+    getFormattedDateRequest: function(data){
+        var pattern=/(.*?)\.(.*?)\.(.*?)$/;
+        var result = data.replace(pattern,function(match,p1,p2,p3){
+            return p1+"-"+p2+"-"+(p3<10?"0"+p3:p3);
+        })
+        console.log(result);
+        return result;
+    },
   	toggleMenu: function (){
   		if ($('.mobile-search').hasClass('visible')){
   			this.toggleSearch();

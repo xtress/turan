@@ -135,6 +135,19 @@
 
             });
 
+            $('body').on('click', '.delete-order', function() {
+                $.ajax({
+                    url: $(this).data('ajax-url'),
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {},
+                    success: function(data) {
+                        if (data.status) {
+                            $('.orders-table').html(data.content);
+                        }
+                    }
+                });
+            });
         </script>
 
     {% endblock javascripts %}

@@ -36,7 +36,10 @@
     "RESERVE_ORDER_DESCRIPTION": "Описание",
     "RESERVE_SEND_ORDER": "Отправить заявку",
     "ORDER_SAVE_ERROR":"Не верные данные, проверьте правильность заполнения формы!",
-    "ORDER_SAVE_OK":"Заявка добавлена!",
-    "ORDER_BAD_REQUEST":"Неверые данные!"
+    "ORDER_SAVE_OK":"Заявка принята!",
+    "ORDER_BAD_REQUEST":"Неверые данные!",
+    "RESERVE_INVALID_FIELD_TITLE": "Ошибка",
+    "RESERVE_CONTACT_EMAIL_INVALID":"Не корректный e-mail.",
+    "RESERVE_REQUIRED_FIELD":"Это поле не должны быть пустым."
 
 }

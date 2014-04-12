@@ -183,7 +183,7 @@
         display: inline-block;
     }
 
-    input[type="text"], input[type="password"], textarea {
+    input[type="text"], input[type="password"], input[type="email"], textarea {
         padding-left: 10px;
         font-size: 100%;
         padding-right: 5px;

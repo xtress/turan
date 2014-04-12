@@ -16,7 +16,7 @@
  <article class="container">
 	<h2>{{'RESERVE_FORM_TITLE' | translate}}</h2>
 
-	<form ng-submit="sendOrder()" id="order-form">
+	<form ng-submit="sendOrder()" id="orderForm" name="orderForm">
         <div class="form">
 
             <div class="row">
@@ -25,7 +25,10 @@
                 </div>
                 <div class="right">
                     <div id="request_date" class="input-append">
-                        <input class="request_date" ng-model="request_date" data-format="dd.MM.yyyy" type="text" placeholder="{{'RESERVE_DATE_TIME' | translate}}"/>
+                        <div ng-show="orderForm.request_date.$invalid">
+                            <span ng-show="orderForm.request_date.$error.required">{{'RESERVE_REQUIRED_FIELD' | translate}}</span>
+                        </div>
+                        <input class="request_date"  name="request_date" ng-model="request_date" data-format="dd.MM.yyyy" type="text" readonly="readonly" required="required" placeholder="{{'RESERVE_DATE_TIME' | translate}}"/>
                         <span class="add-on">
                           <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
                         </span>
@@ -83,16 +86,22 @@
 					<label for="contact_name"><b>{{'RESERVE_CONTACT_NAME' | translate}}:</b></label>
 				</div>	
 				<div class="right">	
-					<input id="contact_name" ng-model="contact_name" type="text" placeholder="{{'RESERVE_CONTACT_NAME' | translate}}" />
-				</div>
+                    <div ng-show="orderForm.contact_name.$invalid">
+                        <span ng-show="orderForm.contact_name.$error.required">{{'RESERVE_REQUIRED_FIELD' | translate}}</span>
+                    </div>
+                    <input id="contact_name" name="contact_name" ng-model="contact_name" type="text" placeholder="{{'RESERVE_CONTACT_NAME' | translate}}" required="required"/>
+                </div>
 			</div>	
 
             <div class="row">
 				<div class="left">
 					<label for="contact_phone"><b>{{'RESERVE_CONTACT_PHONE' | translate}}:</b></label>
-				</div>	
-				<div class="right">	
-					<input id="contact_phone" ng-model="contact_phone" type="text" placeholder="{{'RESERVE_CONTACT_PHONE' | translate}}" />
+				</div>
+				<div class="right">
+                    <div ng-show="orderForm.contact_phone.$invalid">
+                        <span ng-show="orderForm.contact_phone.$error.required">{{'RESERVE_REQUIRED_FIELD' | translate}}</span>
+                    </div>
+					<input id="contact_phone" name="contact_phone" ng-model="contact_phone" type="text" placeholder="{{'RESERVE_CONTACT_PHONE' | translate}}" required="required"/>
 				</div>
 			</div>
 
@@ -100,9 +109,15 @@
 				<div class="left">
 					<label for="contact_email"><b>{{'RESERVE_CONTACT_EMAIL' | translate}}:</b></label>
 				</div>	
-				<div class="right">	
-					<input id="contact_email" ng-model="contact_email"  type="text" placeholder="{{'RESERVE_CONTACT_EMAIL' | translate}}" />
-				</div>
+				<div class="right">
+                    <div ng-show="orderForm.contact_email.$invalid">
+                        <span ng-show="orderForm.contact_email.$error.required">{{'RESERVE_REQUIRED_FIELD' | translate}}</span>
+                    </div>
+                    <div ng-show="orderForm.contact_email.$invalid">
+                        <span ng-show="orderForm.contact_email.$error.email">{{'RESERVE_CONTACT_EMAIL_INVALID' | translate}}</span>
+                    </div>
+					<input id="contact_email" ng-model="contact_email" name="contact_email"  type="email" placeholder="{{'RESERVE_CONTACT_EMAIL' | translate}}" required="required" />
+                </div>
 			</div>
 
             <div class="row">
@@ -119,7 +134,7 @@
                     <p></p>
 				</div>
 				<div class="right">	
-					<input type="submit" class="btn" value="{{'RESERVE_SEND_ORDER' | translate}}">
+					<input type="submit" class="btn" id="submit-order" value="{{'RESERVE_SEND_ORDER' | translate}}">
 				</div>
 			</div>
 

@@ -25,9 +25,20 @@
 
     "Menu_reserve":"Reserve table",
     "RESERVE_FORM_TITLE": "Reserve form.",
+    "RESERVE_DATE_TIME": "Date and time",
+    "RESERVE_SALOON_SEATS": "Saloon and seats",
+    "SALOON_RESTAURANT": "Restaurant",
+    "SALOON_PIZZA": "Pizza",
+    "SALOON_BANQUET_HALL": "Banquet hall",
+    "RESERVE_CONTACT_NAME": "Contact name",
+    "RESERVE_CONTACT_PHONE": "Contact phone",
+    "RESERVE_CONTACT_EMAIL": "E-mail",
+    "RESERVE_ORDER_DESCRIPTION": "Order description",
+    "RESERVE_SEND_ORDER": "Send order",
     "ORDER_SAVE_ERROR":"Incorrect data!",
     "ORDER_SAVE_OK":"Success!",
-    "ORDER_BAD_REQUEST":"Bad request!"
-
-
+    "ORDER_BAD_REQUEST":"Bad request!",
+    "RESERVE_INVALID_FIELD_TITLE": "Invalid",
+    "RESERVE_CONTACT_EMAIL_INVALID":"This is not a valid email.",
+    "RESERVE_REQUIRED_FIELD":"This is required field."
 }
