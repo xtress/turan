@@ -2,15 +2,13 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
-CREATE SCHEMA IF NOT EXISTS `turan` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
-USE `turan` ;
 
 -- -----------------------------------------------------
--- Table `turan`.`restaurant_halls`
+-- Table `restaurant_halls`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `turan`.`restaurant_halls` ;
+DROP TABLE IF EXISTS `restaurant_halls` ;
 
-CREATE TABLE IF NOT EXISTS `turan`.`restaurant_halls` (
+CREATE TABLE IF NOT EXISTS `restaurant_halls` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `desc` VARCHAR(255) NOT NULL,
@@ -19,11 +17,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `turan`.`orders_status`
+-- Table `orders_status`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `turan`.`orders_status` ;
+DROP TABLE IF EXISTS `orders_status` ;
 
-CREATE TABLE IF NOT EXISTS `turan`.`orders_status` (
+CREATE TABLE IF NOT EXISTS `orders_status` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `alias` VARCHAR(255) NOT NULL,
@@ -32,11 +30,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `turan`.`orders`
+-- Table `orders`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `turan`.`orders` ;
+DROP TABLE IF EXISTS `orders` ;
 
-CREATE TABLE IF NOT EXISTS `turan`.`orders` (
+CREATE TABLE IF NOT EXISTS `orders` (
   `id` BIGINT(19) UNSIGNED NOT NULL AUTO_INCREMENT,
   `date_order` DATETIME NOT NULL,
   `hall_id` INT UNSIGNED NOT NULL,
@@ -51,12 +49,12 @@ CREATE TABLE IF NOT EXISTS `turan`.`orders` (
   INDEX `fk_orders_orders_status1_idx` (`orders_status` ASC),
   CONSTRAINT `fk_orders_restaurant_halls1`
     FOREIGN KEY (`hall_id`)
-    REFERENCES `turan`.`restaurant_halls` (`id`)
+    REFERENCES `restaurant_halls` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_orders_orders_status1`
     FOREIGN KEY (`orders_status`)
-    REFERENCES `turan`.`orders_status` (`id`)
+    REFERENCES `orders_status` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -67,26 +65,26 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 -- -----------------------------------------------------
--- Data for table `turan`.`restaurant_halls`
+-- Data for table `restaurant_halls`
 -- -----------------------------------------------------
 START TRANSACTION;
-USE `turan`;
-INSERT INTO `turan`.`restaurant_halls` (`id`, `name`, `desc`) VALUES (NULL, 'ORDER_RESTAURANT_HALL', 'ORDER_RESTAURANT_HALL_DESC');
-INSERT INTO `turan`.`restaurant_halls` (`id`, `name`, `desc`) VALUES (NULL, 'ORDER_PIZZERIA_HALL', 'ORDER_PIZZERIA_HALL_DESC');
-INSERT INTO `turan`.`restaurant_halls` (`id`, `name`, `desc`) VALUES (NULL, 'ORDER_BANKET_HALL', 'ORDER_BANKET_HALL_DESC');
+
+INSERT INTO `restaurant_halls` (`id`, `name`, `desc`) VALUES (NULL, 'ORDER_RESTAURANT_HALL', 'ORDER_RESTAURANT_HALL_DESC');
+INSERT INTO `restaurant_halls` (`id`, `name`, `desc`) VALUES (NULL, 'ORDER_PIZZERIA_HALL', 'ORDER_PIZZERIA_HALL_DESC');
+INSERT INTO `restaurant_halls` (`id`, `name`, `desc`) VALUES (NULL, 'ORDER_BANKET_HALL', 'ORDER_BANKET_HALL_DESC');
 
 COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `turan`.`orders_status`
+-- Data for table `orders_status`
 -- -----------------------------------------------------
 START TRANSACTION;
-USE `turan`;
-INSERT INTO `turan`.`orders_status` (`id`, `name`, `alias`) VALUES (NULL, 'NEW', 'ORDER_STATUS_NEW');
-INSERT INTO `turan`.`orders_status` (`id`, `name`, `alias`) VALUES (NULL, 'CONFIRMED', 'ORDER_STATUS_CONFIRMED');
-INSERT INTO `turan`.`orders_status` (`id`, `name`, `alias`) VALUES (NULL, 'REJECTED', 'ORDER_STATUS_REJECTED');
-INSERT INTO `turan`.`orders_status` (`id`, `name`, `alias`) VALUES (NULL, 'REMOVED', 'ORDER_STATUS_REMOVED');
+
+INSERT INTO `orders_status` (`id`, `name`, `alias`) VALUES (NULL, 'ORDER_STATUS_NEW', 'ORDER_STATUS_NEW');
+INSERT INTO `orders_status` (`id`, `name`, `alias`) VALUES (NULL, 'ORDER_STATUS_CONFIRMED', 'ORDER_STATUS_CONFIRMED');
+INSERT INTO `orders_status` (`id`, `name`, `alias`) VALUES (NULL, 'ORDER_STATUS_REJECTED', 'ORDER_STATUS_REJECTED');
+INSERT INTO `orders_status` (`id`, `name`, `alias`) VALUES (NULL, 'ORDER_STATUS_REMOVED', 'ORDER_STATUS_REMOVED');
 
 COMMIT;
 
