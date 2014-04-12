@@ -20,7 +20,7 @@ class OrderType extends AbstractType
         $builder
             ->add('dateOrder', 'datetime', array(
                 'widget' => 'single_text',
-                'format' => 'yyyy-MM-dd H:m',
+                'format' => 'yyyy-MM-dd H:mm',
                 'label' => $translator->trans('dateOrder'),
                 'attr' => array(
                     'disabled' => true,
