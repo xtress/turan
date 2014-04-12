@@ -11,12 +11,80 @@
 
 {% block container %}
     <br />
+    
+                
+        <style>
+                
+            .loading-modal {
+                display:    none;
+                position:   fixed;
+                z-index:    1000;
+                top:        0;
+                left:       0;
+                height:     100%;
+                width:      100%;
+                background: rgba( 255, 255, 255, .8 ) 
+                            url('../../../img_admin/loading.gif') 
+                            50% 50% 
+                            no-repeat;
+                opacity: 0.80;
+                -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity = 80);
+                filter: alpha(opacity = 80);
+            }
+
+            /* When the body has the loading class, we turn
+               the scrollbar off with overflow:hidden */
+            body.loading {
+                overflow: hidden;   
+            }
+
+            /* Anytime the body has the loading class, our
+               modal element will be visible */
+            body.loading .loading-modal {
+                display: block;
+            }
+
+        </style>
 
     {% block javascripts %}
 
         <script type="text/javascript">
 
             $(document).ready(function() {
+                
+                $body = $("body");
+                $(document).on({
+                    ajaxStart: function() { $body.addClass("loading");    },
+                    ajaxStop: function() { $body.removeClass("loading"); }
+                });
+                
+                $('body').on('click', '.remove-order', function() {
+                    
+                    var $url = $(this).data('url');
+                    var $orderID = $(this).data('id');
+                    var $dataTable = $('.orders-table');
+                    var $deletedOrders = ($(this).attr('data-shown') == 'false') ? true : false;
+                    
+                    $.ajax({
+                        type: "json",
+                        method: "POST",
+                        url: $url,
+                        dataType: "json",
+                        data: {orderID: $orderID, deletedOrders: $deletedOrders},
+                        success: function(data) {
+                            if (data.status) {
+                                $dataTable.html(data.content);
+                            }
+                        },
+                        error: function(jqXHR,error, errorThrown){
+                            if(jqXHR.status&&(jqXHR.status==403||jqXHR.status==401))
+                            {
+                                setRedirect(jqXHR.responseText);
+                            }
+                        },
+                    });
+                    
+                });
 
                 $('body').on('click', '.show-deleted', function() {
                     var $deletedOrders = ($(this).attr('data-shown') == 'false') ? true : false;
@@ -32,8 +100,10 @@
                         },
                         complete: function() {
                             if ($('.show-deleted').attr('data-shown') == 'false') {
+                                $('.show-deleted').text("{{"AOB_HIDE_REMOVED"|trans}}");
                                 $('.show-deleted').attr('data-shown', 'true');
                             } else {
+                                $('.show-deleted').text("{{"AOB_SHOW_REMOVED"|trans}}");
                                 $('.show-deleted').attr('data-shown', 'false');
                             }
                         }
@@ -70,8 +140,8 @@
     {% endblock javascripts %}
     <div class="modal-div"></div>
 
-        <span class="show-deleted" style="float: right; cursor: pointer;" data-shown="false" data-ajax-url="{{ path('admin_order_list') }}">
-            Показать удаленные
+        <span class="show-deleted" style="float: right; cursor: pointer; color: #0088cc" data-shown="false" data-ajax-url="{{ path('admin_order_list') }}">
+            {{"AOB_SHOW_REMOVED"|trans}}
         </span>
         <table class="table table-bordered table-striped orders-table">
 
@@ -83,5 +153,7 @@
                 </tbody>
             {% endif %}
         </table>
+    
+    <div class="loading-modal"></div>
     
 {% endblock container %}

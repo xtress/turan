@@ -20,7 +20,7 @@ class OrderType extends AbstractType
         $builder
             ->add('dateOrder', 'datetime', array(
                 'widget' => 'single_text',
-                'format' => 'yyyy-MM-dd',
+                'format' => 'yyyy-MM-dd H:m',
                 'label' => $translator->trans('dateOrder'),
                 'attr' => array(
                     'disabled' => true,
@@ -76,11 +76,8 @@ class OrderType extends AbstractType
             $builder
                 ->add('ordersStatus', 'entity', array(
                     'class' => 'Admin\OrderBundle\Entity\OrdersStatus',
-                    'property' => 'name',
+                    'property' => 'alias',
                     'label' => $translator->trans('ordersStatus'),
-                    'attr' => array(
-                        'disabled' => true,
-                    )
                 ));
         } else {
             $builder

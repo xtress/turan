@@ -20,7 +20,6 @@ class OrdersRepository extends EntityRepository
         }
 
         $result = $qb->getQuery()->getResult();
-//        var_dump($deleted, $deleted == false);exit;
 
         if (!empty($result)) {
             return $result;
@@ -41,7 +40,6 @@ class OrdersRepository extends EntityRepository
         $qb->andWhere('o.id = :id')->setParameter('id', $id);
 
         $result = $qb->getQuery()->getResult();
-//        var_dump($deleted, $deleted == false);exit;
 
         if (!empty($result)) {
             return $result[0];

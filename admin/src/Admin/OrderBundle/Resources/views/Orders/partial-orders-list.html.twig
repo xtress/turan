@@ -67,7 +67,7 @@
 
         <td>
             {% if order.ordersStatus.id != 4 %}
-                <a href="#" class="btn btn-inverse" data-ajax-url="{{ path('admin_order_delete', { 'orderId': order.id }) }}">{%trans%}AOB_ORDER_DELETE{%endtrans%}</a>
+                <a href="#" class="btn btn-inverse remove-order" data-ajax-url="{{ path('admin_order_delete', { 'orderId': order.id }) }}" data-id="{{order.id}}">{%trans%}AOB_ORDER_DELETE{%endtrans%}</a>
             {% endif %}
             <a href="#" class="btn btn-danger view-order" data-ajax-url="{{ path('admin_order_view', { 'orderId': order.id }) }}">{%trans%}AOB_ORDER_VIEW{%endtrans%}</a>
         </td>

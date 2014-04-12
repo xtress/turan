@@ -18,7 +18,6 @@ class OrdersController extends Controller
 
     public function listAction(Request $request)
     {
-
         if ($request->isXmlHttpRequest()) {
             $deleted = $request->request->get('deletedOrders') == 'false' ? false : true;
             /** @var ResponseManager $responseManager */
@@ -27,7 +26,7 @@ class OrdersController extends Controller
         } else {
             $deleted = false;
         }
-
+        
         return $this->render('AdminOrderBundle:Orders:list.html.twig', array(
             'content' => $this->getFreshOrdersList($deleted),
         ));
@@ -82,23 +81,32 @@ class OrdersController extends Controller
     {
         /** @var ResponseManager $responseManager */
         $responseManager = $this->get('response.manager');
-
+        
         if ($request->isXmlHttpRequest()) {
+            
             $em = $this->getDoctrine()->getManager();
-            $orderRepo = $em->getRepository(self::ORDERS_ENTITY);
+            
+            $orderID = $request->request->get('orderID');
+            $deleted = $request->request->get('deletedOrders') == 'false' ? false : true;
+            
+            
             /** @var Orders $order */
-            $order = $orderRepo->find($orderId);
+            $order = $em->getRepository('Admin\OrderBundle\Entity\Orders')->find($orderID);
+            $order->setOrdersStatus($em->getRepository('Admin\OrderBundle\Entity\OrdersStatus')->find(4));
+            
+            try {
+                
+                $em->persist($order);
+                $em->flush();
+                
+            } catch(\Doctrine\DBAL\DBALException $e) {
+                return $responseManager->returnErrorResponse('ORDER_REMOVE_ERROR', $e->getMessage());
+            }
 
-            $order->setOrdersStatus($em->getRepository(self::ORDERS_STATUS_ENTITY)->find(4));
-            $em->persist($order);
-            $em->flush();
-
-            $deleted = $request->request->get('deletedOrders');
-
-            return $responseManager->returnDefaultResponse('Заказ удален!', $this->getFreshOrdersList($deleted));
-
+            return $responseManager->returnDefaultResponse('ORDER_REMOVE_OK', $this->getFreshOrderList($deleted));
+            
         } else {
-            $responseManager->returnErrorResponse('Неверный запрос!');
+            return $responseManager->returnErrorResponse('ORDER_BAD_REQUEST');
         }
     }
 
@@ -108,7 +116,7 @@ class OrdersController extends Controller
         $orderRepo = $em->getRepository(self::ORDERS_ENTITY);
 
         $list = $orderRepo->getAllOrders($deleted);
-
+        
         return $this->renderView('AdminOrderBundle:Orders:partial-orders-list.html.twig', array(
             'orders' => $list
         ));

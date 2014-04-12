@@ -17,8 +17,8 @@ class UserProvider extends EntityRepository implements UserProviderInterface {
 
     public function __construct($doctrine, $class)
     {
-        $class_entity = $doctrine->getEntityManager()->getClassMetadata($class);        
-        parent::__construct($doctrine->getEntityManager(), $class_entity);
+        $class_entity = $doctrine->getManager()->getClassMetadata($class);        
+        parent::__construct($doctrine->getManager(), $class_entity);
 
     }
     

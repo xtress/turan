@@ -14,12 +14,18 @@ AOB_ORDER_ACTIONS: Actions
 AOB_ORDER_DELETE: Delete
 AOB_ORDER_VIEW: View
 AOB_ORDER_EDIT: Edit
+AOB_SHOW_REMOVED: Show removed orders
+AOB_HIDE_REMOVED: Hide removed orders
+ORDER_REMOVE_ERROR: There was an error while removing order
+ORDER_REMOVE_OK: Order has been removed
+ORDER_BAD_REQUEST: Wrong request
 
 #order_statuses
 ORDER_STATUS_NEW: New
 ORDER_STATUS_CONFIRMED: Confirmed
 ORDER_STATUS_REJECTED: Rejected
 ORDER_STATUS_DELETED: Deleted
+ORDER_STATUS_REMOVED: Removed
 
 #order_restaurant_halls
 ORDER_RESTAURANT_HALL: Restaurant

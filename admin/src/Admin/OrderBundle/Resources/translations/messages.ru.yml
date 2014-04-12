@@ -14,12 +14,18 @@ AOB_ORDER_ACTIONS: Действия
 AOB_ORDER_DELETE: Удалить
 AOB_ORDER_VIEW: Просмотреть
 AOB_ORDER_EDIT: Редактировать
+AOB_SHOW_REMOVED: Показать удаленные заказы
+AOB_HIDE_REMOVED: Спрятать удаленные заказы
+ORDER_REMOVE_ERROR: Ошибка при удалении заказа
+ORDER_REMOVE_OK: Заказ удален
+ORDER_BAD_REQUEST: Неверный запрос
 
 #order_statuses
 ORDER_STATUS_NEW: Новый
 ORDER_STATUS_CONFIRMED: Подтвержден
 ORDER_STATUS_REJECTED: Отклонен
 ORDER_STATUS_DELETED: Удален
+ORDER_STATUS_REMOVED: Удален
 
 #order_restaurant_halls
 ORDER_RESTAURANT_HALL: Ресторан
