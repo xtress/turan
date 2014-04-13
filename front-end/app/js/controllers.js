@@ -122,9 +122,16 @@ angular.module('restApp.controllers', ['restApp.services']).
              'contact_email': $scope.contact_email,
              'request_description': $scope.request_description
              };
+            var apiUrl = 'turan.by';
+            var locationPartials = location.host.split('.');
+
+            if (locationPartials[0] == 'www'){
+                apiUrl = 'www.turan.by';
+            }
+
             $.ajax({
                 type 		: 'POST',
-                url 		: 'http://localhost/turan/admin/web/app_dev.php/api/add-Order',
+                url 		: 'http://'+apiUrl+'/admin/web/app_dev.php/api/add-Order',
                 data 		: formData,
                 dataType 	: 'json',
                 success 	: function(data) {
