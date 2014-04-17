@@ -8,6 +8,7 @@ use Doctrine\DBAL\DBALException;
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class OrderController extends Controller
 {
@@ -51,9 +52,10 @@ class OrderController extends Controller
             $order->setOrdersStatus($status);
 
             try {
-
                 $em->persist($order);
                 $em->flush();
+
+                $this->sendEmailNotification($order);
 
             } catch (DBALException $e) {
                 return $responseManager->returnErrorResponse('ORDER_SAVE_ERROR');
@@ -65,4 +67,21 @@ class OrderController extends Controller
             return $responseManager->returnErrorResponse('ORDER_BAD_REQUEST');
         }
     }
+
+    public function sendEmailNotification($order){
+
+        $message = \Swift_Message::newInstance()
+            ->setSubject($this->container->get('translator')->trans('NEW_ORDER_EMAIL_TITLE'))
+            ->setFrom('no-reply@turan.by')
+            ->setTo('darkos.cpp@gmail.com')
+            ->setBody(
+                $this->renderView(
+                    'APIMainBundle:Mail:email.html.twig',
+                    array('order'=>$order)
+                )
+            )
+        ;
+        $this->get('mailer')->send($message);
+    }
+
 }
