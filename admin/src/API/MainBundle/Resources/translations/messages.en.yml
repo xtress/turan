@@ -1,2 +1,3 @@
 NEW_ORDER_EMAIL_TITLE: 'New order.'
 NEW_ORDER_EMAIL_MESSAGE: 'New order added! Check this in admin panel.'
+NEW_ORDER_USER_EMAIL_TITLE: 'Information about order.'

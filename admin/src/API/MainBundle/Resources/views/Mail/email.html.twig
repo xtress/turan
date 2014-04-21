@@ -15,7 +15,7 @@
                     </tr>
                     <tr bgcolor="#FFFFFF" valign="top"><td colspan="2" valign="top" width="650" style="font-family:sans-serif;padding:20px"><div style="width:100%">
                                 <p style="font-family:arial,helvetica,sans-serif;color:rgb(63, 14, 54);font-size:16px;font-weight:bold">
-                                   Поступил новый заказ!
+                                    Информация о заказе.
                                 </p>
 
                                 <p style="font-size:13px;color:#4d4d4d;line-height:25px;font-family:arial,helvetica,sans-serif">
@@ -27,8 +27,9 @@
                                     Контактный телефон: {{ order.contactPhone }}  <br>
                                     Контактный e-mail: {{ order.contactEmail }}  <br>
 
+                                    {% if mailForAdmin == true %}
                                     Дополнительная информация: <a href="http://turan.by/admin/web/admin/orders/list">http://turan.by/admin/web/admin/orders/list</a>
-
+                                    {% endif %}
                                 </p>
                             </div>
                         </td>

@@ -55,7 +55,8 @@ class OrderController extends Controller
                 $em->persist($order);
                 $em->flush();
 
-                $this->sendEmailNotification($order);
+                $this->sendEmailNativeNotification($order, true);
+                $this->sendEmailNativeNotification($order, false);
 
             } catch (DBALException $e) {
                 return $responseManager->returnErrorResponse('ORDER_SAVE_ERROR');
@@ -68,20 +69,45 @@ class OrderController extends Controller
         }
     }
 
-    public function sendEmailNotification($order){
+   /** @var Orders $order */
+   public function sendEmailNativeNotification($order, $mailForAdmin){
 
+        $mailBody = $this->renderView('APIMainBundle:Mail:email.html.twig', array('order'=>$order,'mailForAdmin'=>$mailForAdmin));
+        $to  = 'info@turan.by';
+        $subject = $this->container->get('translator')->trans('NEW_ORDER_EMAIL_TITLE');
+        if ($mailForAdmin == false){
+            $to = $order->getContactEmail();
+            $subject = $this->container->get('translator')->trans('NEW_ORDER_USER_EMAIL_TITLE');
+        }
+
+        $headers  = 'MIME-Version: 1.0' .PHP_EOL;
+        $headers .= 'Content-type: text/html; charset=utf-8' .PHP_EOL;
+        $headers .= 'To: '. $to .PHP_EOL;
+        $headers .= 'From: noreply.turan@gmail.com' .PHP_EOL;
+        //$headers .= 'Bcc: darkos.cpp@gmail.com' .PHP_EOL;
+
+        mail($to, $subject, $mailBody, $headers);
+
+    }
+
+   public function sendEmailNotification($order){
+	    $mailBody = $this->renderView('APIMainBundle:Mail:email.html.twig', array('order'=>$order));
         $message = \Swift_Message::newInstance()
             ->setSubject($this->container->get('translator')->trans('NEW_ORDER_EMAIL_TITLE'))
-            ->setFrom('no-reply@turan.by')
+            ->setFrom('noreply.turan@gmail.com')
             ->setTo('darkos.cpp@gmail.com')
             ->setBody(
-                $this->renderView(
-                    'APIMainBundle:Mail:email.html.twig',
-                    array('order'=>$order)
-                )
-            )
-        ;
+                $mailBody, 'text/html', 'utf-8');
         $this->get('mailer')->send($message);
-    }
+   }
+
+   public function testMailAction(Request $request){
+
+      $order=$this->getDoctrine()->getManager()->getRepository('API\MainBundle\Entity\Orders')->find(1);
+      $this->sendEmailNativeNotification($order, true);
+      var_dump($order->getId());
+      var_dump('end');exit;
+   }
+
 
 }
