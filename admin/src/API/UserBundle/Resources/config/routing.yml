@@ -1,0 +1,35 @@
+#api_user_homepage:
+#    pattern:  /hello/{name}
+#    defaults: { _controller: APIUserBundle:Default:index }
+
+api_user_register:
+    pattern:  /register
+    defaults: { _controller: APIUserBundle:Security:register }
+
+api_user_login:
+    pattern:  /login
+    defaults: { _controller: APIUserBundle:Security:login }
+
+api_show_user:
+    pattern:  /getUserData
+    defaults: { _controller: APIUserBundle:Security:getUser }
+
+api_change_user_info:
+    pattern:  /changeInfo
+    defaults: { _controller: APIUserBundle:Security:changeClientInfo }
+
+api_user_add_order:
+    pattern:  /addOrder
+    defaults: { _controller: APIUserBundle:Main:addOrder }
+
+api_user_get_order_list:
+    pattern:  /orderList
+    defaults: { _controller: APIUserBundle:Main:getUserOrdersList }
+
+api_user_remove_order:
+    pattern:  /removeOrder
+    defaults: { _controller: APIUserBundle:Main:removeOrder }
+
+api_user_logout:
+    pattern:  /logout
+    defaults: { _controller: APIUserBundle:Security:logout }

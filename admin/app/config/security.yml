@@ -3,6 +3,10 @@ security:
     role_hierarchy:
         ROLE_ADMIN:       ROLE_USER
         ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+        ROLE_CLIENT:      ROLE_USER
+        ROLE_WAITER:      ROLE_USER
+        ROLE_RESTAURANT_MANAGER:  ROLE_USER
+        ROLE_AUTHOR:      ROLE_USER
 
     providers:
         in_memory:
@@ -15,6 +19,8 @@ security:
     encoders:
 #        Symfony\Component\Security\Core\User\User: plaintext
         Admin\MainBundle\Entity\Admin:
+            algorithm: sha512
+        API\UserBundle\Entity\Clients:
             algorithm: sha512
 
     firewalls:
@@ -44,6 +50,6 @@ security:
             #    realm: "Secured Demo Area"
 
     access_control:
-        - { path: ^/admin, roles: [ROLE_ADMIN, ROLE_SUPER_ADMIN] }
+        - { path: ^/admin, roles: [ROLE_ADMIN, ROLE_SUPER_ADMIN, ROLE_USER] }
         - { path: ^/admin/gallery/*/upload, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }

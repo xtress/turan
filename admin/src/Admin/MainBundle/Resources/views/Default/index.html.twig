@@ -192,34 +192,39 @@
     </div>#}
         <div class="bundle_panel">
 
-            <div class="bundle_item">
-                <a title="{{ 'AMB_ADMINS_MANAGER' | trans }}" href="{{path ('_admin_user_management')}}">
-                    <img src="{{asset("img_admin/icon-48-user.png")}}" alt=""><br>
-                    <span>{{ 'AMB_ADMINS_MANAGER' | trans }}</span>
-                </a>
-            </div>
+            {% if is_granted('ROLE_SUPER_ADMIN') %}
+                <div class="bundle_item">
+                    <a title="{{ 'AMB_ADMINS_MANAGER' | trans }}" href="{{path ('_admin_user_management')}}">
+                        <img src="{{asset("img_admin/icon-48-user.png")}}" alt=""><br>
+                        <span>{{ 'AMB_ADMINS_MANAGER' | trans }}</span>
+                    </a>
+                </div>
+            {% endif %}
 
-            <div class="bundle_item">
-                <a title="{{ 'AMB_PAGE_MANAGER' | trans }}" href="{{path ('_adminpage_index')}}">
-                    <img src="{{asset("img_admin/icon-48-content.png")}}" alt=""><br>
-                    <span>{{ 'AMB_PAGE_MANAGER' | trans }}</span>
-                </a>
-            </div>
+            {% if is_granted('ROLE_SUPER_ADMIN') or is_granted('ROLE_CONTENT_MANAGER') %}
+                <div class="bundle_item">
+                    <a title="{{ 'AMB_PAGE_MANAGER' | trans }}" href="{{path ('_adminpage_index')}}">
+                        <img src="{{asset("img_admin/icon-48-content.png")}}" alt=""><br>
+                        <span>{{ 'AMB_PAGE_MANAGER' | trans }}</span>
+                    </a>
+                </div>
 
-            <div class="bundle_item">
-                <a title="{{ 'AMB_NEWS_MANAGER' | trans }}" href="{{path ('admin_news_homepage')}}">
-                    <img src="{{asset("img_admin/icon-48-article.png")}}" alt=""><br>
-                    <span>{{ 'AMB_NEWS_MANAGER' | trans }}</span>
-                </a>
-            </div>
+                <div class="bundle_item">
+                    <a title="{{ 'AMB_NEWS_MANAGER' | trans }}" href="{{path ('admin_news_homepage')}}">
+                        <img src="{{asset("img_admin/icon-48-article.png")}}" alt=""><br>
+                        <span>{{ 'AMB_NEWS_MANAGER' | trans }}</span>
+                    </a>
+                </div>
 
-            <div class="bundle_item">
-                <a title="{{ 'AMB_GALLERY_MANAGER' | trans }}" href="{{path ('admin_gallery_homepage')}}">
-                    <img src="{{asset("img_admin/icon-48-media.png")}}" alt=""><br>
-                    <span>{{ 'AMB_GALLERY_MANAGER' | trans }}</span>
-                </a>
-            </div>
-            {% if is_granted('ROLE_RESTAURANT_MANAGER') or is_granted('ROLE_SUPER_ADMIN') %}
+                <div class="bundle_item">
+                    <a title="{{ 'AMB_GALLERY_MANAGER' | trans }}" href="{{path ('admin_gallery_homepage')}}">
+                        <img src="{{asset("img_admin/icon-48-media.png")}}" alt=""><br>
+                        <span>{{ 'AMB_GALLERY_MANAGER' | trans }}</span>
+                    </a>
+                </div>
+            {% endif %}
+
+            {% if is_granted('ROLE_RESTAURANT_MANAGER') or is_granted('ROLE_SUPER_ADMIN')  %}
                 <div class="bundle_item">
                     <a title="{{ 'AMB_ORDERS_MANAGER' | trans }}" href="{{path ('admin_order_list')}}">
                         <img src="{{asset("img_admin/icon-48-writemess.png")}}" alt=""><br>

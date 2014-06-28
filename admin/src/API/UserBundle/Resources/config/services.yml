@@ -1,0 +1,11 @@
+parameters:
+    api_user.clients_manager.class: API\UserBundle\Manager\ClientsManager
+    api_user.client_orders_manager.class: API\UserBundle\Manager\ClientOrdersManager
+
+services:
+    clients.manager:
+        class: %api_user.clients_manager.class%
+        arguments: [@doctrine, @security.encoder_factory]
+    client.orders.manager:
+        class: %api_user.client_orders_manager.class%
+        arguments: [@doctrine, @clients.manager]

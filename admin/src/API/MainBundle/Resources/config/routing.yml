@@ -3,6 +3,6 @@ api_main_homepage:
     defaults: { _controller: APIMainBundle:Default:index }
 
 api_add_order:
-    pattern:  /add-Order
+    pattern:  /addOrder
     defaults: { _controller: APIMainBundle:Order:addOrder }
 

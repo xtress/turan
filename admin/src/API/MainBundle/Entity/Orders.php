@@ -2,13 +2,14 @@
 
 namespace API\MainBundle\Entity;
 
+use API\UserBundle\Entity\Clients;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Orders
  *
  * @ORM\Table(name="orders")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="API\MainBundle\Repository\OrdersRepository")
  */
 class Orders
 {
@@ -82,6 +83,16 @@ class Orders
      * })
      */
     private $ordersStatus;
+
+    /**
+     * @var API\UserBundle\Entity\Clients
+     *
+     * @ORM\ManyToOne(targetEntity="API\UserBundle\Entity\Clients")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="clients_id", referencedColumnName="id", nullable=true)
+     * })
+     */
+    private $clients;
 
 
 
@@ -277,5 +288,41 @@ class Orders
     public function getOrdersStatus()
     {
         return $this->ordersStatus;
+    }
+
+    /**
+     * Set clients
+     *
+     * @param \API\UserBundle\Entity\Clients $clients
+     * @return Orders
+     */
+    public function setClients(\API\UserBundle\Entity\Clients $clients = null)
+    {
+        $this->clients = $clients;
+    
+        return $this;
+    }
+
+    /**
+     * Get clients
+     *
+     * @return \API\UserBundle\Entity\Clients
+     */
+    public function getClients()
+    {
+        return $this->clients;
+    }
+
+    public function getOrderData()
+    {
+        return array(
+            'ID' => $this->id,
+            'clientName' => $this->contactName,
+            'clientPhone' => $this->contactPhone,
+            'clientEmail' => $this->contactEmail,
+            'hall' => $this->getHall()->getName(),
+            'seats' => $this->seatsQuantity,
+            'orderStatus' => $this->getOrdersStatus()->getName()
+        );
     }
 }

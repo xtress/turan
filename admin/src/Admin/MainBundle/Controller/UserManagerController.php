@@ -59,7 +59,7 @@ class UserManagerController extends Controller {
                     
                     $data       = $form->getData();
                     $factory    = $this->get('security.encoder_factory');
-                    $encoder    = $factory->getEncoder(new Admin);
+                    $encoder    = $factory->getEncoder(new Admin());
                     $salt       = securityHelper::SaltGenerator();
                     $pass       = $encoder->encodePassword($data->getPassword(), $salt);
                     

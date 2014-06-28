@@ -5,7 +5,7 @@ parameters:
     database_port: ~
     database_name: turan
     database_user: root
-    database_password: "273f117"
+    database_password: "1oiHLzx70y"
     mailer_transport: smtp
     mailer_host: smtp.gmail.com
     mailer_user: noreply.turan@gmail.com
