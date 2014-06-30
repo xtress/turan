@@ -1,0 +1,16 @@
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^(www.)?turan.lh$
+RewriteCond %{REQUEST_URI} !^/front-end/app/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /front-end/app/$1
+RewriteCond %{HTTP_HOST} ^(www.)?turan.lh$
+RewriteRule ^(/)?$ front-end/app/index.html [L]
+
+RewriteCond %{HTTP_HOST} ^(www.)?en.turan.lh$
+RewriteCond %{REQUEST_URI} !^/front-end/app/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /front-end/app/$1
+RewriteCond %{HTTP_HOST} ^(www.)?en.turan.lh$
+RewriteRule ^(/)?$ front-end/app/index.html [L]
