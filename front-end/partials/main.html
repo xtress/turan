@@ -1,0 +1,57 @@
+﻿<div class="slider-panel">
+	<div class="container">
+		<div class="slider">
+
+			<div class="slide" ng-repeat="slide in mainSlider" on-last-repeat>
+			  		<div class="slide-image"><img ng-src="{{slide.img}}"></div>
+			  		<div class="slide-title">{{slide.title}}</div>
+			  		<div class="slide-text" ng-bind-html-unsafe="slide.content"></div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<div class="info">
+		<div class="container">
+			<div class="info-title">Ресторанный комплекс Туран</div>
+			<div class="info-content">Туран создан для того, чтобы Вы могли воплотить все свои желания и фантазии в жизнь.
+						Уникальность ресторанного комплекса состоит в том, что здесь каждый может найти зал по своему вкусу. Празднуете день рождения? Добро пожаловать в пиццерию! Организовывайте корпоратив? К вашим услугам ресторан. Планируйте роскошную свадьбу? Приглашаем в банкетный зал.
+						Развлекательные программы, юмористические шоу, театрализованные представления, карнавальные вечеринки – мы готовы удивлять наших гостей снова и снова, сопровождая каждый праздник уникальными развлекательными номерами и живой музыкой. «Туран» – это идеальное сочетание отдыха для души и тела.
+			</div>
+		</div>
+</div>
+
+<div class="actions">
+		<div class="container">
+
+			<div class="actions-list">
+				<div class="action-item" ng-repeat="action in actions">
+					<div class="action-image"><img ng-src="{{action.img}}"></div>
+					<div class="action-title">{{action.title}}</div>
+					<a href="{{action.url}}" class="action-button btn btn-light">{{"BTN_NEXT" | translate}}</a>
+				</div>
+			</div>
+
+		</div>
+</div>		
+
+<div class="news">
+	<div class="container">
+		    <div class="news-header">{{"NEWS_BLOCK_TITLE" | translate}}</div>
+
+			<div class="news-list">
+				
+        		<div class="news-item" ng-repeat="item in lastNews">
+					<div class="news-image"><img ng-src="{{item.prevewImg}}"></div>
+					<div class="news-title">{{item.title}}</div>
+					<div class="news-date">{{item.dateCreated}}</div>
+					<div class="news-text">
+						{{item.content}}
+						<div class="news-button"><a href="{{item.url}}"> >>> </a></div>
+					</div>
+				</div>
+
+			</div>
+	</div>
+</div>

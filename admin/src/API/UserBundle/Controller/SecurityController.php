@@ -57,7 +57,7 @@ class SecurityController extends Controller
 
 
         } else {
-            return $responseManager->returnErrorResponse('ORDER_BAD_REQUEST');
+            return $responseManager->returnErrorResponse('BAD_REQUEST');
         }
     }
 
@@ -78,7 +78,6 @@ class SecurityController extends Controller
             $clientsManager = $this->get('clients.manager');
             $userName = $request->request->get('username');
             $pass     = $request->request->get('password');
-
             /** @var Clients $client */
             $client = $this->getDoctrine()->getManager()->getRepository('APIUserBundle:Clients')->findOneBy(array('email' => $userName));
 
@@ -92,8 +91,10 @@ class SecurityController extends Controller
                 }
 
             } else {
-                return $responseManager->returnErrorResponse('ORDER_BAD_REQUEST');
+                return $responseManager->returnErrorResponse('BAD_REQUEST');
             }
+        }else{
+            return $responseManager->returnErrorResponse('BAD_REQUEST');
         }
     }
 
@@ -145,7 +146,7 @@ class SecurityController extends Controller
             }
 
         } else {
-            return $responseManager->returnErrorResponse('ORDER_BAD_REQUEST');
+            return $responseManager->returnErrorResponse('BAD_REQUEST');
         }
 
     }
@@ -193,7 +194,7 @@ class SecurityController extends Controller
             }
 
         } else {
-            return $responseManager->returnErrorResponse('ORDER_BAD_REQUEST');
+            return $responseManager->returnErrorResponse('BAD_REQUEST');
         }
     }
 
@@ -230,7 +231,7 @@ class SecurityController extends Controller
             }
 
         } else {
-            return $responseManager->returnErrorResponse('ORDER_BAD_REQUEST');
+            return $responseManager->returnErrorResponse('BAD_REQUEST');
         }
     }
 }

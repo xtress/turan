@@ -1,0 +1,46 @@
+﻿<div class="content">
+		<div class="container">
+			<div class="content-title">Регистрация</div>
+			<div class="content-conteiner">
+				<div class="form-div">
+					<p>Ресторанный комплекс Туран</p>
+					<form class="std-form" ng-submit="registrationAction()" role="form">
+
+
+						<div ng-show="registrationFormErrors.FIO" class="error">
+                          <span>{{'REQUIRED_FIELD' | translate}}</span>
+                    	</div>
+
+						<input type="text" class="fio" ng-model="registrationForm.FIO" placeholder="ФИО"  />
+						
+						<div ng-show="registrationFormErrors.phone" class="error">
+                          <span>{{'REQUIRED_FIELD' | translate}}</span>
+                    	</div>
+						<input type="text" class="phone" ng-model="registrationForm.phone" placeholder="Телефон">
+
+						<div ng-show="registrationFormErrors.email" class="error">
+                          <span>{{'REQUIRED_FIELD' | translate}}</span>
+                    	</div>
+						<input type="text" class="email" ng-model="registrationForm.email" placeholder="Email *">
+
+						<div ng-show="registrationFormErrors.password" class="error">
+                          <span>{{'REQUIRED_FIELD' | translate}}</span>
+                    	</div>
+						<input type="password" class="key" ng-model="registrationForm.password" placeholder="Пароль">
+
+						<div ng-show="registrationFormErrors.password_confirm" class="error">
+                          <span>{{'REQUIRED_FIELD' | translate}}</span>
+                    	</div>
+                    	<div ng-show="registrationFormErrors.passwords_not_equal" class="error">
+                          <span>{{'PASSWORDS_NOT_EQUAL' | translate}}</span>
+                    	</div>
+						<input type="password" class="key" ng-model="registrationForm.password_confirm" placeholder="Повторно пароль">
+
+						<center><input type="submit" class="btn btn-dark" value="Регистрация"></center>
+					</form>
+					<div class="registation-info">
+					*ВНИММАНИЕ При регистрации указывайте действительныери данные. Необходимо точно указать действующий адрес электронной почты (e-mail) и телефонный номер, по которому в будущем будут подтверждаться заказы и проводится розыгрыши ценных призов для зарегистрированных пользователей ресторанного комплекса.</div>
+				</div>
+			</div>
+		</div>
+</div>

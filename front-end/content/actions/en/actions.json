@@ -1,0 +1,17 @@
+{
+	"id1":{
+		"title":"Фотоальбом",
+		"img":"./img/actions-img1.png",
+		"url":"#"
+	},
+	"id2":{
+		"title":"Акции",
+		"img":"./img/actions-img2.png",
+		"url":"#"
+	},
+	"id3":{
+		"title":"Мероприятия",
+		"img":"./img/actions-img3.png",
+		"url":"#"
+	}
+}
