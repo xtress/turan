@@ -8,13 +8,17 @@ angular.module('restApp.services', ['ngCookies']).
     value('version', '0.1').
     factory('Session', function ($cookieStore, $rootScope, AUTH_EVENTS) {
         this.create = function (userData) {
-            this.userData = userData;
-            $cookieStore.put('userData', userData);
-            $rootScope.$emit(AUTH_EVENTS.loginSuccess);
+           $cookieStore.put('userData', userData);
+           $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
         };
-        this.destroy = function () {
-            this.userData = null;
-           };
+        this.destroy = function (data) {
+           $cookieStore.remove('userData');
+           $rootScope.$broadcast(AUTH_EVENTS.loginFailed, data);
+        };
+        this.getUserData = function () {
+            return $cookieStore.get('userData');
+        };
+
         return this;
     }).
     constant('AUTH_EVENTS', {
@@ -34,7 +38,7 @@ angular.module('restApp.services', ['ngCookies']).
         return locale;
 
     }])
-    .factory('AuthService', function ($http, Session, $rootScope, AUTH_EVENTS) {
+    .factory('AuthService', function ($http, Session) {
         var authService = {};
         authService.login = function (credentials) {
             return  $.ajax({
@@ -44,11 +48,10 @@ angular.module('restApp.services', ['ngCookies']).
                 dataType  : 'json'
             }).success(function (data) {
                 if(data.status == true){
-                   Session.create(data.content);
-                   return data;
-                 }else{
-                    $rootScope.$emit(AUTH_EVENTS.loginFailed);
-                }
+                  Session.create(data.content);
+                }else{
+                   Session.destroy(data);
+                 }
             });
         };
 

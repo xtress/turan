@@ -5,6 +5,11 @@
 				<div class="form-div">
 					<p>Ресторанный комплекс Туран</p>
 					<form class="std-form" ng-submit="loginAction()" role="form">
+
+                        <div ng-show="loginFormErrors" class="error">
+                            <span>{{loginFormErrors}}</span>
+                        </div>
+
 						<input type="text" class="email" ng-model="loginForm.username" placeholder="Email *">
 						<input type="password" class="key" ng-model="loginForm.password" placeholder="Пароль">
 						<div class="links"><a href="#/recover">Восставления пароля</a>   <a href="#/registration">Регистрация</a></div>

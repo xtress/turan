@@ -182,28 +182,41 @@ angular.module('restApp.controllers', ['restApp.services']).
       
   }]).
 
-  controller('LoginCtrl', ['$scope','$routeParams','$http','$location','$translate', 'AuthService', 'AUTH_EVENTS', '$rootScope', '$cookieStore', function($scope, $routeParams, $http, $location, $translate, AuthService, AUTH_EVENTS, $rootScope, $cookieStore){
-        //console.log($cookieStore.get('userData'));
+  controller('LoginCtrl', ['$scope','$routeParams','$http','$location','$translate', 'AuthService', 'Session', 'AUTH_EVENTS', '$rootScope', '$cookieStore', function($scope, $routeParams, $http, $location, $translate, AuthService, Session, AUTH_EVENTS, $rootScope, $cookieStore){
+        if( typeof Session.getUserData() != 'undefined'){
+            $location.path('/account');
+        }
+
+        console.log($cookieStore.get('12s'));
 
         $scope.loginFormErrors = {};
-        $scope.currentUser = {};
+
         $scope.loginAction = function (){
-        var formData = $scope.loginForm;
-        AuthService.login(formData);
-
-
-            $rootScope.$on(AUTH_EVENTS.loginSuccess, function(event, args) {
-                console.log($cookieStore.get('userData'));
-            });
-            $rootScope.$on(AUTH_EVENTS.loginFailed, function(event, args) {
-                $cookieStore.remove('userData');
-                console.log("cookieStore.get(userData)");
-            });
-
-
-
+            var formData = $scope.loginForm;
+            AuthService.login(formData);
         };
+
+        $scope.$on(AUTH_EVENTS.loginSuccess, function(event, args) {
+            console.log('Login success! Set new user data:');
+            console.log(Session.getUserData());
+            $location.path('/account').replace();
+        });
+
+        $scope.$on(AUTH_EVENTS.loginFailed, function(event, args) {
+            console.log('Login failed! User data removed.' );
+            $scope.loginFormErrors = JSON.stringify(args);
+        });
+
+
+
   }]).
+    controller('LogoutCtrl', ['$scope','$routeParams','$http','$location','$translate', 'AuthService', 'Session', 'AUTH_EVENTS', '$rootScope', '$cookieStore', function($scope, $routeParams, $http, $location, $translate, AuthService, Session, AUTH_EVENTS, $rootScope, $cookieStore){
+        if( typeof Session.getUserData() != 'undefined'){
+            Session.destroy();
+        }
+        $location.path('/login').replace();
+
+    }]).
   controller('VacanciesCtrl', ['$scope','$routeParams','$http','$location', function($scope, $routeParams, $http, $location){
 
   }]).
@@ -298,7 +311,16 @@ angular.module('restApp.controllers', ['restApp.services']).
 
 
         };
-  }])
+  }]).
+  controller('AccountCtrl', ['$scope','$routeParams','$http','$location','$translate', 'AuthService', 'Session', 'AUTH_EVENTS', '$rootScope', '$cookieStore', function($scope, $routeParams, $http, $location, $translate, AuthService, Session, AUTH_EVENTS, $rootScope, $cookieStore){
+        if(typeof Session.getUserData() == 'undefined'){
+            $location.path('/login');
+        }
+
+
+        $scope.page = {'title': 'Test',
+                       'content': JSON.stringify(Session.getUserData())};
+}])
 
 
 
