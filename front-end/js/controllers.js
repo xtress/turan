@@ -36,8 +36,6 @@ angular.module('restApp.controllers', ['restApp.services']).
                 console.log("Not found!: "+contentFolder+sliderCacheFile);
             });
 
-
-
                     
       $scope.$on('onRepeatLast', function(scope, element, attrs){
           $(".menu li a.active").removeClass('active');
@@ -100,11 +98,15 @@ angular.module('restApp.controllers', ['restApp.services']).
   }]).
 
   controller('RecoverCtrl', ['$scope','$routeParams','$http','$location', function($scope, $routeParams, $http, $location){
+        $scope.recoverFormErrors = {};
+        $scope.recoverAction = function (){
+            var formData = $scope.recoverForm;
 
+            console.log(formData);
+        };
   }]).
   controller('RegistrationCtrl', ['$scope','$routeParams','$http','$location','$translate', function($scope, $routeParams, $http, $location, $translate){
      $scope.registrationFormErrors = {};
-
      $scope.registrationAction = function (){
         var formData = $scope.registrationForm;
       
@@ -178,6 +180,29 @@ angular.module('restApp.controllers', ['restApp.services']).
 
 
       
+  }]).
+
+  controller('LoginCtrl', ['$scope','$routeParams','$http','$location','$translate', 'AuthService', 'AUTH_EVENTS', '$rootScope', '$cookieStore', function($scope, $routeParams, $http, $location, $translate, AuthService, AUTH_EVENTS, $rootScope, $cookieStore){
+        //console.log($cookieStore.get('userData'));
+
+        $scope.loginFormErrors = {};
+        $scope.currentUser = {};
+        $scope.loginAction = function (){
+        var formData = $scope.loginForm;
+        AuthService.login(formData);
+
+
+            $rootScope.$on(AUTH_EVENTS.loginSuccess, function(event, args) {
+                console.log($cookieStore.get('userData'));
+            });
+            $rootScope.$on(AUTH_EVENTS.loginFailed, function(event, args) {
+                $cookieStore.remove('userData');
+                console.log("cookieStore.get(userData)");
+            });
+
+
+
+        };
   }]).
   controller('VacanciesCtrl', ['$scope','$routeParams','$http','$location', function($scope, $routeParams, $http, $location){
 

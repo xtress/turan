@@ -30,8 +30,9 @@ angular.module('restApp', ['restApp.filters', 'restApp.services', 'restApp.direc
     //         }
     // }});
 
-    // $routeProvider.when('/recover', {templateUrl: 'partials/recover.html', controller: 'RecoverCtrl'});
+    $routeProvider.when('/recover', {templateUrl: 'partials/recover.html', controller: 'RecoverCtrl'});
     $routeProvider.when('/registration', {templateUrl: 'partials/registration.html', controller: 'RegistrationCtrl'});
+    $routeProvider.when('/login', {templateUrl: 'partials/login.html', controller: 'LoginCtrl'});
     // $routeProvider.when('/reserve', {templateUrl: 'partials/reserve.html', controller: 'ReserveCtrl'});
 
 

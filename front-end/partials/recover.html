@@ -1,55 +1,11 @@
-﻿<html>
-<head>
-	<title></title>
-	<link rel="stylesheet" href="css/normalize.css">
-	<link rel="stylesheet" href="css/main.css">
-	<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
-	<script type="text/javascript" src="js/jquery-migrate-1.2.1.min.js"></script>
-	<script type="text/javascript" src="js/jquery.bxslider.min.js"></script>
-</head>
-<body>
-
-	<div class="header">
-		<div class="container">
-
-			<div class="languages">
-				<a href="#" class="ru active">rus</a>
-				<span class="separator">&#8226</span>
-				<a href="#" class="en">eng</a>
-			</div>
-
-
-			<div class="menu">
-				<ul>
-					<span class="left">
-						<li><a href="#">Ресторан</a></li>
-						<li><a href="#">Пиццерия</a></li>
-						<li><a href="#">Банкетный зал</a></li>
-						<li><a href="#">Галерея</a></li>
-				    </span>
-					<span class="right">
-						<li><a href="#">Акции</a></li>
-						<li><a href="#">События</a></li>
-						<li><a href="#">Новости</a></li>
-						<li><a href="#">Личный кабинет</a></li>
-					</span>	
-				</ul>
-
-			</div>
-
-
-		</div>
-	</div>
-
-
-<div class="content">
+﻿<div class="content">
 		<div class="container">
 			<div class="content-title">Восстановление пароля</div>
 			<div class="content-conteiner">
 				<div class="form-div">
 					<p>Ресторанный комплекс Туран</p>
-					<form class="std-form">
-						<input type="text" class="email" placeholder="Email *">
+					<form class="std-form" ng-submit="recoverAction()" role="form">
+						<input type="text" class="email" ng-model="recoverForm.email" placeholder="Email *">
 						<center><input type="submit" class="btn btn-dark" value="Восстановление пароля"></center>
 					</form>
 					<div class="registation-info">
@@ -58,69 +14,3 @@
 			</div>
 		</div>
 </div>
-
-
-<div class="contacts">
-	<div class="container">
-		<div class="contact-title">Контакты</div>
-		<div class="contact-image"></div>
-		<div class="contact-text">
-
-				<p>Адрес:</p>
-				<span class='contact-text-grey'>
-				230020, Республика Беларусь<br>
-				 г. Гродно, проспект Клецкова 15а<br>
-				</span> 
-				<br>
-				<p>Пиццерия:</p>
-				<span class='contact-text-grey'>
-				Тел.: 8 (0152) 51-00-51<br>
-				 +375(33) 300-00-84 (МТС)<br>
-				 +375(44) 566-22-27 (Velcom)<br>
-				 </span> 
-				 <br>
-				<p>Ресторан:</p>
-				<span class='contact-text-grey'>
-				Тел.: 8 (0152) 50-92-86<br>
-				 +375(33) 300-00-85 (МТС)<br>
-				 +375(44) 566-22-28 (Velcom)<br>
-				 </span> 
-				 <br>
-				Электронная почта:<br>
-				<a href="mailto:info@turan.by">info@turan.by</a><br>
-
-				<span class="social">
-					<a href="#"><img src="img/icon-fb.png"></a>
-					<a href="#"><img src="img/icon-vk.png"></a>
-				</span>
-		</div>
-
-		<div class="footer">
-			<span class="left">Copyright © 2014 Turan Inc. All rights reserved</span>
-			<span class="right"><a href="#">Вакансии</a></span>
-		</div>
-
-	</div>
-</div>	
-
-
-			
-
-<script languages="javascript">
-$(document).ready(function(){
-  $('.slider').bxSlider({ // http://bxslider.com/options
-  	slideWidth: 720,
-    minSlides: 1,
-    maxSlides: 1,
-    slideMargin: 10,
-    pager: false,
-    nextText: '',
-    prevText: '',
-    auto: true,
-    pause: 6000
-  });
-});
-</script>
-
-</body>
-</html>
