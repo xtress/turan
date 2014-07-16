@@ -187,8 +187,6 @@ angular.module('restApp.controllers', ['restApp.services']).
             $location.path('/account');
         }
 
-        console.log($cookieStore.get('12s'));
-
         $scope.loginFormErrors = {};
 
         $scope.loginAction = function (){
@@ -199,8 +197,10 @@ angular.module('restApp.controllers', ['restApp.services']).
         $scope.$on(AUTH_EVENTS.loginSuccess, function(event, args) {
             console.log('Login success! Set new user data:');
             console.log(Session.getUserData());
-            $location.path('/account').replace();
-        });
+            console.log("LoginCtrl->AUTH_EVENTS.loginSuccess:");
+            console.log("Redirerct to account page");
+            window.location.replace(window.location.origin+window.location.pathname+"#/account");
+          });
 
         $scope.$on(AUTH_EVENTS.loginFailed, function(event, args) {
             console.log('Login failed! User data removed.' );
@@ -314,6 +314,8 @@ angular.module('restApp.controllers', ['restApp.services']).
   }]).
   controller('AccountCtrl', ['$scope','$routeParams','$http','$location','$translate', 'AuthService', 'Session', 'AUTH_EVENTS', '$rootScope', '$cookieStore', function($scope, $routeParams, $http, $location, $translate, AuthService, Session, AUTH_EVENTS, $rootScope, $cookieStore){
         if(typeof Session.getUserData() == 'undefined'){
+            console.log("AccountCtrl:");
+            console.log("Redirerct to Login page");
             $location.path('/login');
         }
 

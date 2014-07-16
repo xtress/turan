@@ -10,7 +10,7 @@
 	"MAIN_MENU_EVENTS":"События",
 	"MAIN_MENU_NEWS":"Новости",
 	"MAIN_MENU_PERSONAL_ACCOUNT":"Личный кабинет",
-
+    "MAIN_MENU_ACCOUNT_LOGOUT":"Выход",
 	"REQUIRED_FIELD":"Значение не должно быть пустым",
 	"PASSWORDS_NOT_EQUAL":"Пароли должны совпадать",
 	"USER_REGISTERED_AND_LOGGED_IN":"Пользователь успешно зарегистрирован",

@@ -11,7 +11,7 @@ angular.module('restApp.directives', [])
             }, 1);
         };
     })
-    .directive('mainMenu', ['$rootScope', function($rootScope){
+    .directive('mainMenu', ['$rootScope', 'Session', function($rootScope, Session){
         return {
             transclude: true,
             restrict: 'M',
@@ -20,6 +20,10 @@ angular.module('restApp.directives', [])
             compile: function compile(tElement, tAttrs) {
                 return function postLink(scope, elm, attrs) {
 
+                   // scope.logined = false;
+                    if (typeof Session.getUserData() != 'undefined'){
+                        scope.logined = true;
+                    }
                     var location = document.location.hash;
                     $(".menu li a[href='"+location+"']").addClass('active');
                     $(".menu li a").click(function(){
