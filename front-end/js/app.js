@@ -31,7 +31,7 @@ angular.module('restApp', ['restApp.filters', 'restApp.services', 'restApp.direc
     // }});
 
     $routeProvider.when('/recover', {templateUrl: 'partials/recover.html', controller: 'RecoverCtrl'});
-    $routeProvider.when('/account', {templateUrl: 'partials/staticContentTemplate.html', controller: 'AccountCtrl'}); // TMP
+    $routeProvider.when('/account', {templateUrl: 'partials/acount.html', controller: 'AccountCtrl'}); // TMP
     $routeProvider.when('/registration', {templateUrl: 'partials/registration.html', controller: 'RegistrationCtrl'});
     $routeProvider.when('/login', {templateUrl: 'partials/login.html', controller: 'LoginCtrl'});
     $routeProvider.when('/logout', {templateUrl: 'partials/login.html', controller: 'LogoutCtrl'});

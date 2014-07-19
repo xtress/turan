@@ -200,7 +200,7 @@ angular.module('restApp.controllers', ['restApp.services']).
             console.log("LoginCtrl->AUTH_EVENTS.loginSuccess:");
             console.log("Redirerct to account page");
             window.location.replace(window.location.origin+window.location.pathname+"#/account");
-          });
+        });
 
         $scope.$on(AUTH_EVENTS.loginFailed, function(event, args) {
             console.log('Login failed! User data removed.' );
@@ -208,15 +208,13 @@ angular.module('restApp.controllers', ['restApp.services']).
         });
 
 
-
-  }]).
-    controller('LogoutCtrl', ['$scope','$routeParams','$http','$location','$translate', 'AuthService', 'Session', 'AUTH_EVENTS', '$rootScope', '$cookieStore', function($scope, $routeParams, $http, $location, $translate, AuthService, Session, AUTH_EVENTS, $rootScope, $cookieStore){
+    }]).
+  controller('LogoutCtrl', ['$scope','$routeParams','$http','$location','$translate', 'AuthService', 'Session', 'AUTH_EVENTS', '$rootScope', '$cookieStore', function($scope, $routeParams, $http, $location, $translate, AuthService, Session, AUTH_EVENTS, $rootScope, $cookieStore){
         if( typeof Session.getUserData() != 'undefined'){
-            Session.destroy();
+            AuthService.logout();
         }
         $location.path('/login').replace();
-
-    }]).
+  }]).
   controller('VacanciesCtrl', ['$scope','$routeParams','$http','$location', function($scope, $routeParams, $http, $location){
 
   }]).

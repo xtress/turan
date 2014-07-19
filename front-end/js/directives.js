@@ -11,16 +11,34 @@ angular.module('restApp.directives', [])
             }, 1);
         };
     })
-    .directive('mainMenu', ['$rootScope', 'Session', function($rootScope, Session){
+    .directive('mainMenu', ['$rootScope', 'Session', 'AUTH_EVENTS', function($rootScope, Session, AUTH_EVENTS){
         return {
             transclude: true,
             restrict: 'M',
             replace: true,
             templateUrl: 'partials/mainMenuTemplate.html',
+            controller: function($scope, $attrs, Session, AUTH_EVENTS) {
+                $scope.$on(AUTH_EVENTS.loginSuccess, function() {
+
+                    $scope.logined = false;
+                    if (typeof Session.getUserData() != 'undefined'){
+                        $scope.logined = true;
+                    }
+
+                });
+                $scope.$on(AUTH_EVENTS.logoutSuccess, function() {
+
+                    $scope.logined = false;
+                    if (typeof Session.getUserData() != 'undefined'){
+                        $scope.logined = true;
+                    }
+
+                });
+            },
             compile: function compile(tElement, tAttrs) {
                 return function postLink(scope, elm, attrs) {
 
-                   // scope.logined = false;
+                    scope.logined = false;
                     if (typeof Session.getUserData() != 'undefined'){
                         scope.logined = true;
                     }

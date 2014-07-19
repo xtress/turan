@@ -11,7 +11,15 @@
                     <li><a href="#/events">{{"MAIN_MENU_EVENTS" | translate}}</a></li>
                     <li><a href="#/news">{{"MAIN_MENU_NEWS" | translate}}</a></li>
                     <li><a href="#/account">{{"MAIN_MENU_PERSONAL_ACCOUNT" | translate}}</a></li>
-                   </span>
+                    <span ng-switch on="logined">
+                        <span ng-switch-when="true">
+                            <li><a href="#/logout">{{"MAIN_MENU_ACCOUNT_LOGOUT" | translate}}</a></li>
+                       </span>
+                        <!--<span ng-switch-when="false">-->
+                           <!--<li><a href="#/account">{{"MAIN_MENU_PERSONAL_ACCOUNT" | translate}}</a></li>-->
+                        <!--</span>-->
+                    </span>
+                </span>
             </ul>
 
         </div>

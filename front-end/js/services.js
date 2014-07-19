@@ -11,6 +11,10 @@ angular.module('restApp.services', ['ngCookies']).
            $cookieStore.put('userData', userData);
            $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
         };
+        this.logout = function(){
+            $cookieStore.remove('userData');
+            $rootScope.$broadcast(AUTH_EVENTS.logoutSuccess);
+        }
         this.destroy = function (data) {
            $cookieStore.remove('userData');
            $rootScope.$broadcast(AUTH_EVENTS.loginFailed, data);
@@ -53,6 +57,9 @@ angular.module('restApp.services', ['ngCookies']).
                    Session.destroy(data);
                  }
             });
+        };
+        authService.logout = function () {
+            Session.logout();
         };
 
 //        authService.isAuthenticated = function () {
