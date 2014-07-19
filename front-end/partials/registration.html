@@ -4,8 +4,10 @@
 			<div class="content-conteiner">
 				<div class="form-div">
 					<p>Ресторанный комплекс Туран</p>
-					<form class="std-form" ng-submit="registrationAction()" role="form">
-
+					<form class="std-form form-centered" ng-submit="registrationAction()" role="form">
+                        <div ng-show="registrationFormErrors.message" class="error">
+                            <span>{{registrationFormErrors.message | translate}}</span>
+                        </div>
 
 						<div ng-show="registrationFormErrors.FIO" class="error">
                           <span>{{'REQUIRED_FIELD' | translate}}</span>
@@ -14,14 +16,15 @@
 						<input type="text" class="fio" ng-model="registrationForm.FIO" placeholder="ФИО"  />
 						
 						<div ng-show="registrationFormErrors.phone" class="error">
-                          <span>{{'REQUIRED_FIELD' | translate}}</span>
+                          <span>{{registrationFormErrors.phone | translate}}</span>
                     	</div>
 						<input type="text" class="phone" ng-model="registrationForm.phone" placeholder="Телефон">
 
+
 						<div ng-show="registrationFormErrors.email" class="error">
-                          <span>{{'REQUIRED_FIELD' | translate}}</span>
+                          <span>{{registrationFormErrors.email | translate}}</span>
                     	</div>
-						<input type="text" class="email" ng-model="registrationForm.email" placeholder="Email *">
+						<input type="text" class="email" ng-model="registrationForm.email" placeholder="Email">
 
 						<div ng-show="registrationFormErrors.password" class="error">
                           <span>{{'REQUIRED_FIELD' | translate}}</span>

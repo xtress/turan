@@ -105,80 +105,90 @@ angular.module('restApp.controllers', ['restApp.services']).
             console.log(formData);
         };
   }]).
-  controller('RegistrationCtrl', ['$scope','$routeParams','$http','$location','$translate', function($scope, $routeParams, $http, $location, $translate){
+  controller('RegistrationCtrl', ['$scope','$routeParams','$http','$location','$translate', 'AuthService', 'AUTH_EVENTS', 'Session',  function($scope, $routeParams, $http, $location, $translate, AuthService, AUTH_EVENTS, Session){
      $scope.registrationFormErrors = {};
      $scope.registrationAction = function (){
+
         var formData = $scope.registrationForm;
       
         if(typeof formData != 'undefined'){
-          var errors = 6;
 
           if(!formData.hasOwnProperty('FIO')||formData.FIO ==""){
             $scope.registrationFormErrors.FIO = true;
           }else{
-             $scope.registrationFormErrors.FIO = false; errors--;
+             delete $scope.registrationFormErrors.FIO;
           }
-
+          var  phoneValidator=  new RegExp(/^[\+ ]{0,1}[(]{0,1}[375]{0,3}[)]{0,1}[\-\ ?]{0,1}([29]{2}|[33]{2}|[44]{2})[\-\ ?]{0,1}[0-9]{3}[\-\ ?]{0,1}[0-9]{2}[\-\ ?]{0,1}[0-9]{2}$/);
           if(!formData.hasOwnProperty('phone')||formData.phone ==""){
-            $scope.registrationFormErrors.phone = true;
+            $scope.registrationFormErrors.phone = 'REQUIRED_FIELD';
           }else{
-             $scope.registrationFormErrors.phone = false; errors--;
+              if(phoneValidator.test(formData.phone) == true){
+                  delete $scope.registrationFormErrors.phone;
+              }else{
+                  $scope.registrationFormErrors.phone = 'INVALID_PHONE';
+              }
           }
 
+          var  mailValidator= /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
           if(!formData.hasOwnProperty('email')||formData.email ==""){
-            $scope.registrationFormErrors.email = true;
+             $scope.registrationFormErrors.email = 'REQUIRED_FIELD';
           }else{
-             $scope.registrationFormErrors.email = false; errors--;
+              if(mailValidator.test(formData.email) == true){
+                  delete $scope.registrationFormErrors.email;
+              }else{
+                  $scope.registrationFormErrors.email = 'INVALID_EMAIL';
+              }
           }
 
           if(!formData.hasOwnProperty('password')||formData.password ==""){
             $scope.registrationFormErrors.password = true;
           }else{
-             $scope.registrationFormErrors.password = false; errors--;
+              delete $scope.registrationFormErrors.password;
           }
 
           if(!formData.hasOwnProperty('password_confirm')||formData.password_confirm ==""){
             $scope.registrationFormErrors.password_confirm = true;
           }else{
-             $scope.registrationFormErrors.password_confirm = false; errors--;
+            delete $scope.registrationFormErrors.password_confirm;
           }
          
           if(formData.hasOwnProperty('password')&&formData.hasOwnProperty('password_confirm')){
             if(formData.password!==formData.password_confirm ){
               $scope.registrationFormErrors.passwords_not_equal = true;
             }else{
-              $scope.registrationFormErrors.passwords_not_equal = false; errors--;
+              delete $scope.registrationFormErrors.passwords_not_equal;
             }
           }else{
-            $scope.registrationFormErrors.passwords_not_equal = false; errors--;
+              delete $scope.registrationFormErrors.passwords_not_equal;
           }
 
-          if(errors == 0){
-            delete formData.password_confirm;
-            $.ajax({
-                type    : 'POST',
-                url     : 'http://'+location.host+'/admin/web/app_dev.php/api/user/register',
-                data    : formData,
-                dataType  : 'json',
-                success   : function(data) {
-                    if(data.status == true){
-                        var n = noty({layout:'center', type: 'success',text: $translate(data.message)});
-                    }else{
-                        var n = noty({layout:'center', type: 'error',text: $translate(data.message)});
-                    }
-                }
-
-            });
-          
-
-
+          console.log($scope.registrationFormErrors);
+          if(Object.getOwnPropertyNames($scope.registrationFormErrors).length == 0){
+              delete formData.password_confirm;
+              AuthService.register(formData);
+          }else{
+              $scope.registrationFormErrors.message = 'INVALID_FORM';
           }
-
-        }     
+        }
         
      }
 
+        $scope.$on(AUTH_EVENTS.loginSuccess, function(event, args) {
+            console.log('Login success! Set new user data:');
+            console.log(Session.getUserData());
+            console.log("RegisterCtrl->AUTH_EVENTS.loginSuccess:");
+            console.log("Redirerct to account page");
+            window.location.replace(window.location.origin+window.location.pathname+"#/account");
+        });
 
+        $scope.$on(AUTH_EVENTS.registrationFailed, function(event, args) {
+            console.log('Registration failed!' );
+            $scope.$apply(function () {
+                delete $scope.formData.password;
+                delete $scope.formData.password_confirm;
+                $scope.registrationFormErrors.message = args.message;
+            });
+        });
       
   }]).
 
@@ -204,8 +214,11 @@ angular.module('restApp.controllers', ['restApp.services']).
 
         $scope.$on(AUTH_EVENTS.loginFailed, function(event, args) {
             console.log('Login failed! User data removed.' );
-            $scope.loginFormErrors = JSON.stringify(args);
+            $scope.$apply(function () {
+                $scope.loginFormErrors = args;
+              });
         });
+
 
 
     }]).

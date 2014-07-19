@@ -32,6 +32,7 @@ class SecurityController extends Controller
             $phone      = $requestBag->get('phone');
             $password   = $requestBag->get('password');
             $email      = $requestBag->get('email');
+            /** @var ClientsManager $clientsManager */
             $clientsManager = $this->get('clients.manager');
 
             $clientData = array(
@@ -40,6 +41,11 @@ class SecurityController extends Controller
                 'email'     => $email,
                 'password'  => $password
             );
+
+            $client = $this->getDoctrine()->getManager()->getRepository('APIUserBundle:Clients')->findOneBy(array('phone' => $clientData['phone'], 'email' => $clientData['email']));
+            if($client == null){
+                return $responseManager->returnErrorResponse('USER_ALREADY_EXIST');
+            }
 
             $register = $clientsManager->registerClient($clientData);
 
@@ -91,7 +97,7 @@ class SecurityController extends Controller
                 }
 
             } else {
-                return $responseManager->returnErrorResponse('BAD_REQUEST');
+                return $responseManager->returnErrorResponse('USER_LOGIN_FAILED');
             }
         }else{
             return $responseManager->returnErrorResponse('BAD_REQUEST');

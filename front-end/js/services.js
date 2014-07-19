@@ -5,7 +5,12 @@
 
 
 angular.module('restApp.services', ['ngCookies']).
-    value('version', '0.1').
+    constant('AUTH_EVENTS', {
+        loginSuccess: 'auth-login-success',
+        loginFailed: 'auth-login-failed',
+        logoutSuccess: 'auth-logout-success',
+        registrationFailed:'registration-failed'
+    }).
     factory('Session', function ($cookieStore, $rootScope, AUTH_EVENTS) {
         this.create = function (userData) {
            $cookieStore.put('userData', userData);
@@ -15,23 +20,15 @@ angular.module('restApp.services', ['ngCookies']).
             $cookieStore.remove('userData');
             $rootScope.$broadcast(AUTH_EVENTS.logoutSuccess);
         }
-        this.destroy = function (data) {
+        this.destroy = function (data, callback) {
            $cookieStore.remove('userData');
-           $rootScope.$broadcast(AUTH_EVENTS.loginFailed, data);
+           $rootScope.$broadcast(callback, data);
         };
         this.getUserData = function () {
             return $cookieStore.get('userData');
         };
 
         return this;
-    }).
-    constant('AUTH_EVENTS', {
-        loginSuccess: 'auth-login-success',
-        loginFailed: 'auth-login-failed',
-        logoutSuccess: 'auth-logout-success',
-        sessionTimeout: 'auth-session-timeout',
-        notAuthenticated: 'auth-not-authenticated',
-        notAuthorized: 'auth-not-authorized'
     }).
     factory('locale', ['$location', function($location) {
         var locale = 'ru';
@@ -42,7 +39,7 @@ angular.module('restApp.services', ['ngCookies']).
         return locale;
 
     }])
-    .factory('AuthService', function ($http, Session) {
+    .factory('AuthService', function ($http, Session, AUTH_EVENTS) {
         var authService = {};
         authService.login = function (credentials) {
             return  $.ajax({
@@ -54,25 +51,28 @@ angular.module('restApp.services', ['ngCookies']).
                 if(data.status == true){
                   Session.create(data.content);
                 }else{
-                   Session.destroy(data);
+                   Session.destroy(data, AUTH_EVENTS.loginFailed);
                  }
             });
         };
         authService.logout = function () {
             Session.logout();
         };
-
-//        authService.isAuthenticated = function () {
-//            return !!Session.token;
-//        };
-//
-//        authService.isAuthorized = function (authorizedRoles) {
-//            if (!angular.isArray(authorizedRoles)) {
-//                authorizedRoles = [authorizedRoles];
-//            }
-//            return (authService.isAuthenticated() &&
-//                authorizedRoles.indexOf(Session.userRole) !== -1);
-//        };
+        authService.register = function (formData) {
+            return  $.ajax({
+                type    : 'POST',
+                url     : 'http://'+location.host+'/admin/web/app_dev.php/api/user/register',
+                data    : formData,
+                dataType  : 'json',
+                success   : function(data) {
+                    if(data.status == true){
+                        Session.create(data.content);
+                    }else{
+                        Session.destroy(data, AUTH_EVENTS.registrationFailed);
+                    }
+                }
+            });
+        };
 
         return authService;
     })

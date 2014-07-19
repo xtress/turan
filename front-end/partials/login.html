@@ -4,16 +4,16 @@
 			<div class="content-conteiner">
 				<div class="form-div">
 					<p>Ресторанный комплекс Туран</p>
-					<form class="std-form login-form" ng-submit="loginAction()" role="form">
+					<form class="std-form loginForm form-centered" ng-submit="loginAction()" role="form">
 
-                        <div ng-if="loginFormErrors" class="error">
-                            <span>{{loginFormErrors}}</span>
+                        <div ng-if="loginFormErrors.status == 'false'" class="error">
+                            <span>{{loginFormErrors.message | translate}}</span>
                         </div>
 
-						<input type="text" class="email" ng-model="loginform.username" placeholder="email *">
-						<input type="password" class="key" ng-model="loginform.password" placeholder="пароль">
+						<input type="text" class="email" ng-model="loginForm.username" placeholder="email *">
+						<input type="password" class="key" ng-model="loginForm.password" placeholder="пароль">
 						<div class="links"><a href="#/recover">восставления пароля</a>   <a href="#/registration">регистрация</a></div>
-						<center><input type="submit" class="btn btn-dark" value="вход"></center>
+						<center><input type="submit" class="btn btn-dark" value="Вход"></center>
 					</form>
 				</div>
 			</div>

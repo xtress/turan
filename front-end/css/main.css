@@ -684,7 +684,7 @@ input[type='submit']{
 	text-align: center;
 	margin-top: 35px;
 }
-input[type='text'], input[type='password']{
+input[type='text'], input[type='password'], input[type='email']{
 	 /*box-shadow: -1px 13px 27px -14px #000000 inset;*/
 	border: 1px #a3a3a3 solid;
 	border-radius: 5px;
@@ -719,10 +719,12 @@ textarea{
 
 }
 input[type='text']::-webkit-input-placeholder,
+input[type='email']::-webkit-input-placeholder,
 input[type='password']::-webkit-input-placeholder{
 	color: #230e1f;
 }
 input[type='text']::-moz-placeholder,
+input[type='email']::-moz-placeholder,
 input[type='password']::-moz-placeholder{
 	color: #230e1f;
 }
@@ -921,10 +923,10 @@ input.select{
 .order-edit-form .cancel{
 	min-width: 355px;
 }
-.login-form{
+.form-centered{
     text-align: center;
 }
-.login-form input{
+.form-centered input{
     margin-left: auto;
     margin-right: auto;
 }

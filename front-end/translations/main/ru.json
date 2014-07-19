@@ -15,5 +15,11 @@
 	"PASSWORDS_NOT_EQUAL":"Пароли должны совпадать",
 	"USER_REGISTERED_AND_LOGGED_IN":"Пользователь успешно зарегистрирован",
 	"ERROR_WHILE_SAVING_USER":"Пользователь с таким телефоном и Email существует",
-	"ORDER_BAD_REQUEST":"Ошибочный запрос"
+	"ORDER_BAD_REQUEST":"Ошибочный запрос",
+
+    "INVALID_FORM":"Неправильно заполнены данные на форме",
+    "INVALID_EMAIL":"Не корректный e-mail",
+    "INVALID_PHONE":"Не корректный номер телефона",
+    "USER_LOGIN_FAILED":"Неверная пара логин/пароль",
+    "USER_ALREADY_EXIST":"Пользователь с таким телефоном или e-mail уже существует"
 }
