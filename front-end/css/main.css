@@ -783,7 +783,7 @@ input.select{
 	color: #ffffff;
 	text-decoration: none;
 }
-.accoutn-reserve-form-div{
+.accoutn-reserve-form-div, .accoutn-form-div{
 	display: inline-block;
 	width: 550px;
 	margin: 0 auto;
@@ -813,6 +813,9 @@ input.select{
 }
 .accoutn-reserve-form-div input{
 	display: inline;
+}
+.accoutn-form-div input.date{
+    width: 330px;
 }
 .select select{
    background: transparent;

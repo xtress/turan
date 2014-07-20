@@ -178,7 +178,7 @@ angular.module('restApp.controllers', ['restApp.services']).
             console.log(Session.getUserData());
             console.log("RegisterCtrl->AUTH_EVENTS.loginSuccess:");
             console.log("Redirerct to account page");
-            window.location.replace(window.location.origin+window.location.pathname+"#/account");
+            window.location.replace(settingsJs.getBaseUrl()+"#/account");
         });
 
         $scope.$on(AUTH_EVENTS.registrationFailed, function(event, args) {
@@ -191,17 +191,39 @@ angular.module('restApp.controllers', ['restApp.services']).
         });
       
   }]).
-
   controller('LoginCtrl', ['$scope','$routeParams','$http','$location','$translate', 'AuthService', 'Session', 'AUTH_EVENTS', '$rootScope', '$cookieStore', function($scope, $routeParams, $http, $location, $translate, AuthService, Session, AUTH_EVENTS, $rootScope, $cookieStore){
         if( typeof Session.getUserData() != 'undefined'){
             $location.path('/account');
         }
 
-        $scope.loginFormErrors = {};
-
         $scope.loginAction = function (){
             var formData = $scope.loginForm;
-            AuthService.login(formData);
+            $scope.loginFormErrors = {};
+
+            var  mailValidator= /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            if(!formData.hasOwnProperty('username')||formData.username ==""){
+                $scope.loginFormErrors.username = 'REQUIRED_FIELD';
+            }else{
+                if(mailValidator.test(formData.username) == true){
+                    delete $scope.loginFormErrors.username;
+                }else{
+                    $scope.loginFormErrors.username = 'INVALID_EMAIL';
+                }
+            }
+
+            if(!formData.hasOwnProperty('password')||formData.password ==""){
+                $scope.loginFormErrors.password = 'REQUIRED_FIELD';
+            }else{
+                delete $scope.loginFormErrors.password;
+            }
+
+            if(Object.getOwnPropertyNames($scope.loginFormErrors).length == 0){
+               AuthService.login(formData);
+            }else{
+                delete formData.password;
+                $scope.loginFormErrors.message = 'INVALID_FORM';
+            }
+
         };
 
         $scope.$on(AUTH_EVENTS.loginSuccess, function(event, args) {
@@ -209,13 +231,14 @@ angular.module('restApp.controllers', ['restApp.services']).
             console.log(Session.getUserData());
             console.log("LoginCtrl->AUTH_EVENTS.loginSuccess:");
             console.log("Redirerct to account page");
-            window.location.replace(window.location.origin+window.location.pathname+"#/account");
+            window.location.replace(settingsJs.getBaseUrl()+"#/account");
         });
 
         $scope.$on(AUTH_EVENTS.loginFailed, function(event, args) {
             console.log('Login failed! User data removed.' );
             $scope.$apply(function () {
-                $scope.loginFormErrors = args;
+                delete $scope.loginForm.password;
+                $scope.loginFormErrors.message = args.message;
               });
         });
 
@@ -227,6 +250,13 @@ angular.module('restApp.controllers', ['restApp.services']).
             AuthService.logout();
         }
         $location.path('/login').replace();
+  }]).
+  controller('AccountSettingsCtrl', ['$scope','$routeParams','$http','$location','$translate', 'AuthService', 'AUTH_EVENTS', 'Session',  function($scope, $routeParams, $http, $location, $translate, AuthService, AUTH_EVENTS, Session){
+      console.log(Session.getUserData());
+
+      $scope.changeAction = function(){
+
+      }
   }]).
   controller('VacanciesCtrl', ['$scope','$routeParams','$http','$location', function($scope, $routeParams, $http, $location){
 

@@ -1,0 +1,64 @@
+﻿<div class="content">
+<div class="container">
+
+    <!-- directive: accountMenu -->
+
+
+    <div class="accoutn-form-div">
+    <p class="account-form-title">Настройки рофиля</p>
+    <form class="std-form form-centered" ng-submit="changeAction()" role="form">
+
+        <div ng-show="accountFormErrors.message" class="error">
+            <span>{{accountFormErrors.message | translate}}</span>
+        </div>
+
+        <div ng-show="accountFormErrors.FIO" class="error">
+            <span>{{'REQUIRED_FIELD' | translate}}</span>
+        </div>
+
+        <input type="text" class="fio" ng-model="accountFormErrors.FIO" placeholder="ФИО"  />
+
+        <div ng-show="accountFormErrors.phone" class="error">
+            <span>{{accountFormErrors.phone | translate}}</span>
+        </div>
+        <input type="text" class="phone" ng-model="accountFormErrors.phone" placeholder="Телефон">
+
+
+        <div ng-show="accountFormErrors.email" class="error">
+            <span>{{accountFormErrors.email | translate}}</span>
+        </div>
+        <input type="text" class="email" ng-model="accountFormErrors.email" placeholder="Email">
+
+        <div ng-show="accountFormErrors.birthDate" class="error">
+            <span>{{accountFormErrors.birthDate | translate}}</span>
+        </div>
+        <input type="text" class="date" ng-model="accountFormErrors.birthDate" placeholder="Дата рождения">
+
+        <div ng-show="accountFormErrors.discountCard" class="error">
+            <span>{{accountFormErrors.discountCard | translate}}</span>
+        </div>
+        <input type="text" class="phone" ng-model="accountFormErrors.discountCard" placeholder="Дисконтная карта">
+
+        <div ng-show="accountFormErrors.password" class="error">
+            <span>{{'REQUIRED_FIELD' | translate}}</span>
+        </div>
+        <input type="password" class="key" ng-model="accountFormErrors.password" placeholder="Пароль">
+
+        <div ng-show="accountFormErrors.password_confirm" class="error">
+            <span>{{'REQUIRED_FIELD' | translate}}</span>
+        </div>
+        <div ng-show="accountFormErrors.passwords_not_equal" class="error">
+            <span>{{'PASSWORDS_NOT_EQUAL' | translate}}</span>
+        </div>
+        <input type="password" class="key" ng-model="accountFormErrors.password_confirm" placeholder="Повторно пароль">
+
+
+
+
+        <center><input type="submit" class="btn btn-dark" value="Сохранить"></center>
+
+    </form>
+</div>
+
+</div>
+</div>

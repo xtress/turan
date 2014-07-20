@@ -17,24 +17,24 @@ angular.module('restApp.directives', [])
             restrict: 'M',
             replace: true,
             templateUrl: 'partials/mainMenuTemplate.html',
-            controller: function($scope, $attrs, Session, AUTH_EVENTS) {
-                $scope.$on(AUTH_EVENTS.loginSuccess, function() {
-
-                    $scope.logined = false;
-                    if (typeof Session.getUserData() != 'undefined'){
-                        $scope.logined = true;
-                    }
-
-                });
-                $scope.$on(AUTH_EVENTS.logoutSuccess, function() {
-
-                    $scope.logined = false;
-                    if (typeof Session.getUserData() != 'undefined'){
-                        $scope.logined = true;
-                    }
-
-                });
-            },
+//            controller: function($scope, $attrs, Session, AUTH_EVENTS) {
+//                $scope.$on(AUTH_EVENTS.loginSuccess, function() {
+//
+//                    $scope.logined = false;
+//                    if (typeof Session.getUserData() != 'undefined'){
+//                        $scope.logined = true;
+//                    }
+//
+//                });
+//                $scope.$on(AUTH_EVENTS.logoutSuccess, function() {
+//
+//                    $scope.logined = false;
+//                    if (typeof Session.getUserData() != 'undefined'){
+//                        $scope.logined = true;
+//                    }
+//
+//                });
+//            },
             compile: function compile(tElement, tAttrs) {
                 return function postLink(scope, elm, attrs) {
 
@@ -46,6 +46,32 @@ angular.module('restApp.directives', [])
                     $(".menu li a[href='"+location+"']").addClass('active');
                     $(".menu li a").click(function(){
                         $(".menu li a.active").removeClass('active');
+                        $(this).addClass('active');
+                    });
+
+                }
+            }
+
+
+        };
+    }])
+    .directive('accountMenu', ['$rootScope', 'Session', 'AUTH_EVENTS', function($rootScope, Session, AUTH_EVENTS){
+        return {
+            transclude: true,
+            restrict: 'M',
+            replace: true,
+            templateUrl: 'partials/accountMenuTemplate.html',
+            compile: function compile(tElement, tAttrs) {
+                return function postLink(scope, elm, attrs) {
+
+                    scope.logined = false;
+                    if (typeof Session.getUserData() != 'undefined'){
+                        scope.logined = true;
+                    }
+                    var location = document.location.hash;
+                    $(".accoutn-menu li a[href='"+location+"']").addClass('active');
+                    $(".accoutn-menu li a").click(function(){
+                        $(".accoutn-menu li a.active").removeClass('active');
                         $(this).addClass('active');
                     });
 
