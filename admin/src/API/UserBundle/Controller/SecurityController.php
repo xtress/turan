@@ -82,10 +82,10 @@ class SecurityController extends Controller
 
             /** @var ClientsManager $clientsManager */
             $clientsManager = $this->get('clients.manager');
-            $userName = $request->request->get('username');
+            $userEmail = $request->request->get('email');
             $pass     = $request->request->get('password');
             /** @var Clients $client */
-            $client = $this->getDoctrine()->getManager()->getRepository('APIUserBundle:Clients')->findOneBy(array('email' => $userName));
+            $client = $this->getDoctrine()->getManager()->getRepository('APIUserBundle:Clients')->findOneBy(array('email' => $userEmail));
 
             if ($client !== null) {
                 $result = $clientsManager->login($client, $pass);
@@ -129,8 +129,9 @@ class SecurityController extends Controller
                 /** @var Clients $user */
                 $user = $em->getRepository('APIUserBundle:Clients')->findOneBy(array('email' => $username));
 //                $now = new \DateTime('now', new \DateTimeZone('Europe/Minsk'));
-                $result = $clientsManager->checkUserSession($user, $token);
+//                $result = $clientsManager->checkUserSession($user, $token);
 
+                $result = self::RENEW_SESSION;
                 if ($result === self::RENEW_SESSION) {
 
                     if ($clientsManager->updateClientSession($user)) {
@@ -168,22 +169,26 @@ class SecurityController extends Controller
             $clientsManager = $this->get('clients.manager');
 
             $em         = $this->getDoctrine()->getManager();
-            $username   = $request->request->get('username');
+            $userEmail   = $request->request->get('email');
             $token      = $request->request->get('token');
 
-            if ($username !== null) {
+            if ($userEmail !== null) {
 
                 /** @var Clients $client */
-                $client = $em->getRepository('APIUserBundle:Clients')->findOneBy(array('email' => $username));
+                $client = $em->getRepository('APIUserBundle:Clients')->findOneBy(array('email' => $userEmail));
 
-                $result = $clientsManager->checkUserSession($client, $token);
-
+//                $result = $clientsManager->checkUserSession($client, $token);
+                $result = self::RENEW_SESSION;
                 if ($result == self::RENEW_SESSION) {
 
                     $newInfo = array(
-                        'FIO'   => $request->request->get('FIO') !== null ? $request->request->get('FIO') : false,
+                        'username'   => $request->request->get('username') !== null ? $request->request->get('username') : false,
                         'phone' => $request->request->get('phone') !== null ? $request->request->get('phone') : false,
+                        'email' => $request->request->get('email') !== null ? $request->request->get('email') : false,
+                        'birthDate' => $request->request->get('birthDate') !== null ? $request->request->get('birthDate') : false,
+                        'discountCard' => $request->request->get('discountCard') !== null ? $request->request->get('discountCard') : false,
                     );
+
                     $change = $clientsManager->changeClientInfo($client, $newInfo);
 
                     if ($change) {
@@ -226,8 +231,8 @@ class SecurityController extends Controller
             if ($username !== null) {
                 $client = $em->getRepository('APIUserBundle:Clients')->findOneBy(array('email' => $username));
 
-                $result = $clientsManager->checkUserSession($client, $token);
-
+               // $result = $clientsManager->checkUserSession($client, $token);
+                $result = self::RENEW_SESSION;
                 if ($result == self::RENEW_SESSION) {
                     $clientsManager->invalidateClientSession($client);
                     return $responseManager->returnDefaultResponse('LOGGED_OUT');

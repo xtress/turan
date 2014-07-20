@@ -440,11 +440,13 @@ class Clients implements AdvancedUserInterface, \Serializable
     public function getUserInfo()
     {
         return array(
-            'username' => $this->username,
-            'email'    => $this->email,
-            'phone'    => $this->phone,
-            'token'    => $this->sessionToken
-        );
+            'username' => $this->getUsername(),
+            'email'    => $this->getEmail(),
+            'phone'    => $this->getPhone(),
+            'birthDate'=> $this->getBirthDate()->format("d.m.Y"),
+            'discountCard'=> $this->getDiscountCard(),
+            'token' => $this->getSessionToken(),
+            );
     }
 
     public function serialize()

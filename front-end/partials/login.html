@@ -10,10 +10,10 @@
                             <span>{{loginFormErrors.message | translate}}</span>
                         </div>
 
-                        <div ng-show="loginFormErrors.username" class="error">
-                            <span>{{loginFormErrors.username | translate}}</span>
+                        <div ng-show="loginFormErrors.email" class="error">
+                            <span>{{loginFormErrors.email | translate}}</span>
                         </div>
-						<input type="text" class="email" ng-model="loginForm.username" placeholder="email *">
+						<input type="text" class="email" ng-model="loginForm.email" placeholder="email *">
 
                         <div ng-show="loginFormErrors.password" class="error">
                             <span>{{loginFormErrors.password | translate}}</span>

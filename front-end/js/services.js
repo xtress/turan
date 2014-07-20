@@ -16,6 +16,9 @@ angular.module('restApp.services', ['ngCookies']).
            $cookieStore.put('userData', userData);
            $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
         };
+        this.update = function (userData) {
+            $cookieStore.put('userData', userData);
+        };
         this.logout = function(){
             $cookieStore.remove('userData');
             $rootScope.$broadcast(AUTH_EVENTS.logoutSuccess);
@@ -39,6 +42,26 @@ angular.module('restApp.services', ['ngCookies']).
         return locale;
 
     }])
+    .factory('UserService', function ($http, Session, AUTH_EVENTS) {
+        var userService = {};
+
+        userService.getClientData = function (user) {
+            var data = {};
+            data.username = user.email;
+            data.token = user.token;
+            return $.ajax({
+                url: 'http://'+location.host+'/admin/web/app_dev.php/api/user/getUserData',
+                method: "POST",
+                data: data,
+                dataType  : 'json'
+            }).success(function (data) {
+                if(data.status == true){
+                    return data.content;
+                }
+            });
+        };
+        return userService;
+    })
     .factory('AuthService', function ($http, Session, AUTH_EVENTS) {
         var authService = {};
         authService.login = function (credentials) {

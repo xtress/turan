@@ -157,13 +157,26 @@ class ClientsManager {
     {
         $em = $this->doctrine->getManager();
 
-        if ($newInfo['FIO']) {
-            $client->setUsername($newInfo['FIO']);
+        if ($newInfo['username']) {
+            $client->setUsername($newInfo['username']);
         }
 
         if ($newInfo['phone']) {
             $client->setPhone($newInfo['phone']);
         }
+
+        if ($newInfo['email']) {
+            $client->setEmail($newInfo['email']);
+        }
+
+        if ($newInfo['birthDate']) {
+            $client->setBirthDate(\DateTime::createFromFormat('d.m.Y', $newInfo['birthDate']));
+        }
+
+        if ($newInfo['discountCard']) {
+            $client->setDiscountCard($newInfo['discountCard']);
+        }
+
 
         try {
             $em->persist($client);

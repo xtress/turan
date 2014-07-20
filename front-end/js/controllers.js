@@ -55,7 +55,6 @@ angular.module('restApp.controllers', ['restApp.services']).
         
 
   }]).
-
   controller('ContentCtrl', ['$scope','$routeParams','$http','$location', function($scope, $routeParams, $http, $location){
         var alias = $routeParams.alias;
         var contentCacheFile = alias+'.json?'+settingsJs.getUniqueValue();
@@ -71,7 +70,6 @@ angular.module('restApp.controllers', ['restApp.services']).
             });
 
   }]).
-
   controller('NewsCtrl', ['$scope','$routeParams','$http','$location', function($scope, $routeParams, $http, $location) {
 
     var newsId = $routeParams.id;
@@ -96,7 +94,6 @@ angular.module('restApp.controllers', ['restApp.services']).
                 console.log("Pagination not found!");
              });
   }]).
-
   controller('RecoverCtrl', ['$scope','$routeParams','$http','$location', function($scope, $routeParams, $http, $location){
         $scope.recoverFormErrors = {};
         $scope.recoverAction = function (){
@@ -113,10 +110,10 @@ angular.module('restApp.controllers', ['restApp.services']).
       
         if(typeof formData != 'undefined'){
 
-          if(!formData.hasOwnProperty('FIO')||formData.FIO ==""){
-            $scope.registrationFormErrors.FIO = true;
+          if(!formData.hasOwnProperty('username')||formData.username ==""){
+            $scope.registrationFormErrors.username = true;
           }else{
-             delete $scope.registrationFormErrors.FIO;
+             delete $scope.registrationFormErrors.username;
           }
           var  phoneValidator=  new RegExp(/^[\+ ]{0,1}[(]{0,1}[375]{0,3}[)]{0,1}[\-\ ?]{0,1}([29]{2}|[33]{2}|[44]{2})[\-\ ?]{0,1}[0-9]{3}[\-\ ?]{0,1}[0-9]{2}[\-\ ?]{0,1}[0-9]{2}$/);
           if(!formData.hasOwnProperty('phone')||formData.phone ==""){
@@ -178,7 +175,7 @@ angular.module('restApp.controllers', ['restApp.services']).
             console.log(Session.getUserData());
             console.log("RegisterCtrl->AUTH_EVENTS.loginSuccess:");
             console.log("Redirerct to account page");
-            window.location.replace(settingsJs.getBaseUrl()+"#/account");
+            window.location.replace(window.location.origin+window.location.pathname+"#/account");
         });
 
         $scope.$on(AUTH_EVENTS.registrationFailed, function(event, args) {
@@ -201,13 +198,13 @@ angular.module('restApp.controllers', ['restApp.services']).
             $scope.loginFormErrors = {};
 
             var  mailValidator= /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-            if(!formData.hasOwnProperty('username')||formData.username ==""){
-                $scope.loginFormErrors.username = 'REQUIRED_FIELD';
+            if(!formData.hasOwnProperty('email')||formData.email ==""){
+                $scope.loginFormErrors.email = 'REQUIRED_FIELD';
             }else{
-                if(mailValidator.test(formData.username) == true){
-                    delete $scope.loginFormErrors.username;
+                if(mailValidator.test(formData.email) == true){
+                    delete $scope.loginFormErrors.email;
                 }else{
-                    $scope.loginFormErrors.username = 'INVALID_EMAIL';
+                    $scope.loginFormErrors.email = 'INVALID_EMAIL';
                 }
             }
 
@@ -251,12 +248,55 @@ angular.module('restApp.controllers', ['restApp.services']).
         }
         $location.path('/login').replace();
   }]).
-  controller('AccountSettingsCtrl', ['$scope','$routeParams','$http','$location','$translate', 'AuthService', 'AUTH_EVENTS', 'Session',  function($scope, $routeParams, $http, $location, $translate, AuthService, AUTH_EVENTS, Session){
-      console.log(Session.getUserData());
+  controller('AccountSettingsCtrl', ['$scope','$routeParams','$http','$location','$translate', 'AuthService', 'UserService', 'AUTH_EVENTS', 'Session',  function($scope, $routeParams, $http, $location, $translate, AuthService, UserService, AUTH_EVENTS, Session){
 
-      $scope.changeAction = function(){
+        if(typeof Session.getUserData() == 'undefined'){
+            console.log("AccountSettingsCtrl:");
+            console.log("Redirerct to Login page");
+            $location.path('/login');
+        }
 
-      }
+        var data ={};
+        $scope.accountForm = {};
+        var user = Session.getUserData();
+        data.username = user.email;
+        data.token = user.token;
+        console.log(data);
+
+        $.ajax({
+            url: 'http://'+location.host+'/admin/web/app_dev.php/api/user/getUserData',
+            method: "POST",
+            data: data,
+            dataType  : 'json'
+        }).success(function (data) {
+            if(data.status == true){
+                $scope.$apply(function () {
+                    var accountData = JSON.parse(data.content);
+                    Session.update(accountData);
+                    $scope.accountForm = accountData;
+                });
+
+            }
+        });
+
+        $scope.changeAction = function(){
+            var data =  $scope.accountForm;
+            $.ajax({
+                url: 'http://'+location.host+'/admin/web/app_dev.php/api/user/changeInfo',
+                method: "POST",
+                data: data,
+                dataType  : 'json'
+            }).success(function (data) {
+                if(data.status == true){
+                    $scope.$apply(function () {
+                        var accountData = JSON.parse(data.content);
+                        Session.update(accountData);
+                        $scope.accountForm = accountData;
+                    });
+
+                }
+            });
+        };
   }]).
   controller('VacanciesCtrl', ['$scope','$routeParams','$http','$location', function($scope, $routeParams, $http, $location){
 

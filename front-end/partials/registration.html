@@ -9,11 +9,11 @@
                             <span>{{registrationFormErrors.message | translate}}</span>
                         </div>
 
-						<div ng-show="registrationFormErrors.FIO" class="error">
+						<div ng-show="registrationFormErrors.username" class="error">
                           <span>{{'REQUIRED_FIELD' | translate}}</span>
                     	</div>
 
-						<input type="text" class="fio" ng-model="registrationForm.FIO" placeholder="ФИО"  />
+						<input type="text" class="fio" ng-model="registrationForm.username" placeholder="ФИО"  />
 						
 						<div ng-show="registrationFormErrors.phone" class="error">
                           <span>{{registrationFormErrors.phone | translate}}</span>
