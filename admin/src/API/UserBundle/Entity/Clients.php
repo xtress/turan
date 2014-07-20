@@ -101,6 +101,19 @@ class Clients implements AdvancedUserInterface, \Serializable
     private $sessionTokenLifetime;
 
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="birth_date", type="datetime", nullable=true)
+     */
+    private $birthDate;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="discount_card", type="string", length=255, nullable=true)
+     */
+    private $discountCard;
 
     /**
      * Get id
@@ -341,6 +354,39 @@ class Clients implements AdvancedUserInterface, \Serializable
     {
         return $this->sessionToken;
     }
+
+    /**
+     * @param \DateTime $birthDate
+     */
+    public function setBirthDate($birthDate)
+    {
+        $this->birthDate = $birthDate;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getBirthDate()
+    {
+        return $this->birthDate;
+    }
+
+    /**
+     * @param string $discountCard
+     */
+    public function setDiscountCard($discountCard)
+    {
+        $this->discountCard = $discountCard;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDiscountCard()
+    {
+        return $this->discountCard;
+    }
+
 
     /**
      * Set sessionTokenLifetime
