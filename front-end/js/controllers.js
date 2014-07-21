@@ -249,6 +249,7 @@ angular.module('restApp.controllers', ['restApp.services']).
         $location.path('/login').replace();
   }]).
   controller('AccountSettingsCtrl', ['$scope','$routeParams','$http','$location','$translate', 'AuthService', 'UserService', 'AUTH_EVENTS', 'Session',  function($scope, $routeParams, $http, $location, $translate, AuthService, UserService, AUTH_EVENTS, Session){
+        mainJs.initDateTimePickers();
 
         if(typeof Session.getUserData() == 'undefined'){
             console.log("AccountSettingsCtrl:");
@@ -280,22 +281,97 @@ angular.module('restApp.controllers', ['restApp.services']).
         });
 
         $scope.changeAction = function(){
-            var data =  $scope.accountForm;
-            $.ajax({
-                url: 'http://'+location.host+'/admin/web/app_dev.php/api/user/changeInfo',
-                method: "POST",
-                data: data,
-                dataType  : 'json'
-            }).success(function (data) {
-                if(data.status == true){
-                    $scope.$apply(function () {
-                        var accountData = JSON.parse(data.content);
-                        Session.update(accountData);
-                        $scope.accountForm = accountData;
-                    });
 
+            var formData = $scope.accountForm;
+            $scope.accountFormErrors = {};
+            if(typeof formData != 'undefined'){
+
+                if(!formData.hasOwnProperty('username')||formData.username ==""){
+                    $scope.accountFormErrors.username = true;
+                }else{
+                    delete $scope.accountFormErrors.username;
                 }
-            });
+                var  phoneValidator=  new RegExp(/^[\+ ]{0,1}[(]{0,1}[375]{0,3}[)]{0,1}[\-\ ?]{0,1}([29]{2}|[33]{2}|[44]{2})[\-\ ?]{0,1}[0-9]{3}[\-\ ?]{0,1}[0-9]{2}[\-\ ?]{0,1}[0-9]{2}$/);
+                if(!formData.hasOwnProperty('phone')||formData.phone ==""){
+                    $scope.accountFormErrors.phone = 'REQUIRED_FIELD';
+                }else{
+                    if(phoneValidator.test(formData.phone) == true){
+                        delete $scope.accountFormErrors.phone;
+                    }else{
+                        $scope.accountFormErrors.phone = 'INVALID_PHONE';
+                    }
+                }
+
+                var  mailValidator= /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                if(!formData.hasOwnProperty('email')||formData.email ==""){
+                    $scope.accountFormErrors.email = 'REQUIRED_FIELD';
+                }else{
+                    if(mailValidator.test(formData.email) == true){
+                        delete $scope.accountFormErrors.email;
+                    }else{
+                        $scope.accountFormErrors.email = 'INVALID_EMAIL';
+                    }
+                }
+
+
+                if(!formData.hasOwnProperty('birthDate')||formData.birthDate ==""){
+                    $scope.accountFormErrors.birthDate = true;
+                }else{
+                    delete $scope.accountFormErrors.birthDate;
+                }
+
+                if(!formData.hasOwnProperty('password')||formData.password ==""){
+                    $scope.accountFormErrors.password = true;
+                }else{
+                    delete $scope.accountFormErrors.password;
+                }
+
+                if(!formData.hasOwnProperty('password_confirm')||formData.password_confirm ==""){
+                    $scope.accountFormErrors.password_confirm = true;
+                }else{
+                    delete $scope.accountFormErrors.password_confirm;
+                }
+
+                if(formData.hasOwnProperty('password')&&formData.hasOwnProperty('password_confirm')){
+                    if(formData.password!==formData.password_confirm ){
+                        $scope.accountFormErrors.passwords_not_equal = true;
+                    }else{
+                        delete $scope.accountFormErrors.passwords_not_equal;
+                    }
+                }else{
+                    delete $scope.accountFormErrors.passwords_not_equal;
+                }
+
+
+
+
+
+                console.log($scope.accountFormErrors);
+                if(Object.getOwnPropertyNames($scope.accountFormErrors).length == 0){
+                    delete formData.password_confirm;
+                    var data =  $scope.accountForm;
+                    $.ajax({
+                        url: 'http://'+location.host+'/admin/web/app_dev.php/api/user/changeInfo',
+                        method: "POST",
+                        data: data,
+                        dataType  : 'json'
+                    }).success(function (data) {
+                            if(data.status == true){
+                                $scope.$apply(function () {
+                                    var accountData = JSON.parse(data.content);
+                                    Session.update(accountData);
+                                    $scope.accountForm = accountData;
+                                });
+
+                            }
+                        });
+                }else{
+                    $scope.accountFormErrors.message = 'INVALID_FORM';
+                }
+            }
+
+
+
         };
   }]).
   controller('VacanciesCtrl', ['$scope','$routeParams','$http','$location', function($scope, $routeParams, $http, $location){
