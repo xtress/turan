@@ -443,7 +443,7 @@ class Clients implements AdvancedUserInterface, \Serializable
             'username' => $this->getUsername(),
             'email'    => $this->getEmail(),
             'phone'    => $this->getPhone(),
-            'birthDate'=> $this->getBirthDate()->format("d.m.Y"),
+            'birthDate'=> $this->getBirthDateAsText(),
             'discountCard'=> $this->getDiscountCard(),
             'token' => $this->getSessionToken(),
             );
@@ -463,5 +463,15 @@ class Clients implements AdvancedUserInterface, \Serializable
         $data = unserialize($data);
         $this->id = $data['id'];
         $this->username = $data['username'];
+    }
+
+    public function getBirthDateAsText(){
+        $result = $this->getBirthDate();
+
+        if($result instanceof \DateTime){
+           $result = $result->format('d.m.Y');
+        }else{
+            $result = '';
+        }
     }
 }

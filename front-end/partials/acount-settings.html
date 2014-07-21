@@ -32,8 +32,9 @@
         <div ng-show="accountFormErrors.birthDate" class="error">
             <span>{{accountFormErrors.birthDate | translate}}</span>
         </div>
-        <input type="text" class="date" ng-model="accountForm.birthDate" placeholder="Дата рождения">
-
+        <div id="date" class="input-append">
+            <input type="text" class="date" data-format="dd.MM.yyyy" ng-model="accountForm.birthDate" readonly="readonly" placeholder="Дата рождения">
+        </div>
         <div ng-show="accountFormErrors.discountCard" class="error">
             <span>{{accountFormErrors.discountCard | translate}}</span>
         </div>

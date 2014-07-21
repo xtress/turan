@@ -30,7 +30,7 @@ var settingsJs = {
 
 var mainJs = {
     initDateTimePickers: function (){
-        $('#request_date').datetimepicker({
+        $('#date').datetimepicker({
             pickTime: false,
             language: settingsJs.getLocale(),
             setDate: 'today'
