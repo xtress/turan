@@ -38,3 +38,12 @@ ANB_CATEGORY_DELETE: Удалить
 ANB_NEWSCATEGORY_ADDED: Новостная категория успешно добавлена!
 ANB_NEWSCATEGORY_DELETED: Новостная категория успешно удалена!
 ANB_NEWSCATEGORY_SAVED: Новостная категория успещно сохранена!
+
+
+ANB_VACANCIES_MANAGER: Управление вакансиями
+ANB_VACANCIES_DASHBOARD: Панель управления вакансиями
+ANB_VACANCY_CREATE: Создать вакансию
+ANB_VACANCY_LIST: Список вакансий
+ANB_VACANCY_ADDED: Вакансия была добавлена
+ANB_VACANCY_DELETED: Вакансия была удалена
+ANB_VACANCY_SAVED: Вакансия успешно сохранена

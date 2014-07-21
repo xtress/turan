@@ -1,0 +1,33 @@
+{% extends 'AdminMainBundle:Default:index.html.twig' %}
+
+{%block page_title_h1 %}
+    <h1 style="display: inline">
+        {%trans%}ANB_VACANCIES_DASHBOARD{%endtrans%}
+        <a href="{{ path('_admin_main_homepage') }}" class="btn btn-primary">
+            {%trans%}ANB_BACK{%endtrans%}
+        </a>
+    </h1>
+{%endblock page_title_h1 %}
+
+{% block container %}
+    
+    
+    <div class="bundle_panel">
+
+        <div class="bundle_item">
+            <a title="{{ 'ANB_VACANCY_CREATE' | trans }}" href="{{path ('admin_vacancies_create')}}">
+                <img src="{{asset("img_admin/icon-48-article.png")}}" alt=""><br>
+                <span>{{ 'ANB_VACANCY_CREATE' | trans }}</span>
+            </a>
+        </div>
+
+        <div class="bundle_item">
+            <a title="{{ 'ANB_VACANCY_LIST' | trans }}" href="{{path ('admin_vacancies_list')}}">
+                <img src="{{asset("img_admin/icon-48-levels.png")}}" alt=""><br>
+                <span>{{ 'ANB_VACANCY_LIST' | trans }}</span>
+            </a>
+        </div>
+
+    </div>
+    
+{% endblock container %}

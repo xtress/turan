@@ -89,3 +89,42 @@ admin_news_lastNewsJSON:
     defaults: { _controller: AdminNewsBundle:News:generateLastNews }
     requirements:
                 _method:  GET
+
+admin_vacancies_index:
+    pattern:  /vacancies
+    defaults: { _controller: AdminNewsBundle:Vacancy:index }
+    requirements:
+                _method:  GET
+
+admin_vacancies_create:
+    pattern:  /vacancies/create
+    defaults: { _controller: AdminNewsBundle:Vacancy:createVacancy }
+    requirements:
+                _method:  GET|POST
+
+admin_vacancies_list:
+    pattern:  /vacancies/list
+    defaults: { _controller: AdminNewsBundle:Vacancy:listVacancies }
+    requirements:
+                _method:  GET
+
+admin_vacancies_delete:
+    pattern:  /vacancies/remove/{vacancyID}
+    defaults: { _controller: AdminNewsBundle:Vacancy:removeVacancy }
+    requirements:
+                _method:  GET
+                vacancyID: \d+
+
+admin_vacancies_edit:
+    pattern:  /vacancies/edit/{vacancyID}
+    defaults: { _controller: AdminNewsBundle:Vacancy:editVacancy }
+    requirements:
+                _method:  GET
+                vacancyID: \d+
+
+admin_vacancies_save:
+    pattern:  /vacancies/save/{vacancyID}
+    defaults: { _controller: AdminNewsBundle:Vacancy:saveVacancy }
+    requirements:
+                _method:  POST
+                vacancyID:  \d+

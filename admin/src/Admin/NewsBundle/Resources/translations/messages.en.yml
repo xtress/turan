@@ -39,3 +39,12 @@ ANB_CATEGORY_DELETE: Delete
 ANB_NEWSCATEGORY_ADDED: News category succesfully added!
 ANB_NEWSCATEGORY_DELETED: News category succesfully deleted!
 ANB_NEWSCATEGORY_SAVED: News category succesfully saved!
+
+
+ANB_VACANCIES_MANAGER: Vacancies management
+ANB_VACANCIES_DASHBOARD: Vacancies dashboard
+ANB_VACANCY_CREATE: Create vacancy
+ANB_VACANCY_LIST: Vacancies list
+ANB_VACANCY_ADDED: Vacancy has been added
+ANB_VACANCY_DELETED: Vacancy has been deleted
+ANB_VACANCY_SAVED: Vacancy saved

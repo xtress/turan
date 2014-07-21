@@ -29,6 +29,31 @@ class NewsRepository extends EntityRepository
         else
             return null;
     }
+
+    public function getVacancies($locale = 'ru')
+    {
+        $em = $this->_em;
+
+        $qb = $em->getRepository($this->_entityName)->createQueryBuilder('news');
+
+        $qb->select('news, creator, modifier, newsCategories');
+        $qb->where("news.locale = '$locale'");
+
+        $qb->leftJoin('news.creator', 'creator');
+        $qb->leftJoin('news.modifier', 'modifier');
+        $qb->leftJoin('news.newsCategories', 'newsCategories');
+
+        $qb->andWhere('newsCategories.name = :catName')->setParameter('catName', 'Вакансии');
+
+        $query = $qb->getQuery();
+
+        $result = $query->getResult();
+
+        if (!empty($result))
+            return $result;
+        else
+            return null;
+    }
     
     public function getNewsCount()
     {

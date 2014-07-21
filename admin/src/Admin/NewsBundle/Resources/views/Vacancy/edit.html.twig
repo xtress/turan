@@ -1,0 +1,44 @@
+{% extends 'AdminMainBundle:Default:index.html.twig' %}
+
+{%block page_title_h1 %}
+    <h1 style="display: inline">
+        {%trans%}ANB_VACANCIES_DASHBOARD{%endtrans%}
+        <a href="{{ path('admin_vacancies_list') }}" class="btn btn-primary">
+            {%trans%}ANB_BACK{%endtrans%}
+        </a>
+    </h1>
+{%endblock page_title_h1 %}
+
+{% block container %}
+                
+    {% block javascripts %}
+            
+            <script>
+                
+                $(document).ready(function() {
+                    
+                    CKEDITOR.replace( 'admin_newsbundle_news_body', { toolbar: 'Full' } );
+                    
+                });
+                
+            </script>
+
+            <script type="text/javascript" src="{{ asset('js/ckeditor/ckeditor.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('js/ckeditor/config.js') }}"></script>
+
+    {% endblock javascripts %}
+    
+    <br />
+    
+    <form action="{{ path('admin_vacancies_save', { 'vacancyID': vacancyID }) }}" method="POST" {{ form_enctype(form) }} >
+        {{ form_errors(form) }}
+                
+        {{ form_widget(form) }}
+                    
+        {{ form_rest(form) }}
+            
+        <input type="submit" value="{%trans%}ANB_SAVE{%endtrans%}" class="btn btn-success">
+        
+    </form>
+    
+{% endblock container %}

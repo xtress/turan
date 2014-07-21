@@ -233,6 +233,15 @@
                 </div>
             {% endif %}
 
+            {% if is_granted('ROLE_CONTENT_MANAGER') or is_granted('ROLE_SUPER_ADMIN') %}
+                <div class="bundle_item">
+                    <a title="{{ 'ANB_VACANCIES_MANAGER' | trans }}" href="{{path ('admin_vacancies_index')}}">
+                        <img src="{{asset("img_admin/icon-48-writemess.png")}}" alt=""><br>
+                        <span>{{ 'ANB_VACANCIES_MANAGER' | trans }}</span>
+                    </a>
+                </div>
+            {% endif %}
+
       </div>
 
     {%endblock container%}
